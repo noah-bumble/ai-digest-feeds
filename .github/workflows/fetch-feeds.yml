@@ -1,0 +1,66 @@
+name: Fetch RSS feeds
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'   # every 2 hours
+  workflow_dispatch:          # manual trigger
+  push:
+    branches: [main]
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch feeds
+        run: |
+          mkdir -p feeds
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+
+          fetch() {
+            local url="$1" out="$2"
+            curl -sSL -A "$UA" --max-time 20 "$url" -o "feeds/$out" \
+              && echo "OK  $out" \
+              || echo "ERR $out (skipped)"
+          }
+
+          # Reddit
+          fetch "https://www.reddit.com/r/ClaudeAI/top/.rss?t=day"      reddit-claudeai.xml
+          fetch "https://www.reddit.com/r/ChatGPTCoding/top/.rss?t=day"  reddit-chatgptcoding.xml
+          fetch "https://www.reddit.com/r/LocalLLaMA/top/.rss?t=day"    reddit-localllama.xml
+
+          # Practitioner blogs
+          fetch "https://simonwillison.net/atom/everything/"  simonwillison.xml
+          fetch "https://lucumr.pocoo.org/feed.atom"          lucumr.xml
+          fetch "https://hamel.dev/index.xml"                 hamel.xml
+          fetch "https://news.smol.ai/rss.xml"               smolai.xml
+
+          # HN Algolia (JSON)
+          fetch "https://hn.algolia.com/api/v1/search_by_date?query=%22claude%20code%22&tags=story&hitsPerPage=20" hn-claude-code.json
+          fetch "https://hn.algolia.com/api/v1/search_by_date?query=%22ai%20coding%22&tags=story&hitsPerPage=20"   hn-ai-coding.json
+          fetch "https://hn.algolia.com/api/v1/search_by_date?tags=show_hn&hitsPerPage=30"                         hn-showhn.json
+
+          # X / xcancel RSS
+          fetch "https://rss.xcancel.com/bcherny/rss" x-bcherny.xml
+          fetch "https://rss.xcancel.com/trq212/rss"  x-trq212.xml
+
+          # Stamp fetch time
+          date -u > feeds/last-fetched.txt
+
+      - name: Commit updated feeds
+        run: |
+          git config user.name  "feeds-bot"
+          git config user.email "feeds-bot@users.noreply.github.com"
+          git add feeds/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: refresh feeds $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
