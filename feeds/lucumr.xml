@@ -1,0 +1,1667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://lucumr.pocoo.org/feed.atom</id>
+  <title>Armin Ronacher's Thoughts and Writings</title>
+  <link href="https://lucumr.pocoo.org/" />
+  <link href="https://lucumr.pocoo.org/feed.atom" rel="self" />
+  <description>Armin Ronacher's personal blog about programming, games and random thoughts that come to his mind.</description>
+  <language>en</language>
+  <updated>2026-06-25T07:12:20.093889+00:00</updated>
+  <author>
+    <name>Armin Ronacher</name>
+  </author>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/6/23/the-coming-loop/</id>
+    <title>The Coming Loop</title>
+    <link href="https://lucumr.pocoo.org/2026/6/23/the-coming-loop/" />
+    <published>2026-06-23T00:00:00+00:00</published>
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<blockquote>
+<p>I don’t prompt Claude anymore. I have loops running that prompt Claude and
+figuring out what to do. My job is to write loops.</p>
+<p>— Boris Cherny</p>
+</blockquote>
+<p>Over the last months I have watched more and more people build something on top
+of coding agents that feels meaningfully different from just using a coding
+agent.  Some of this happens on top of <a href="https://pi.dev/">Pi</a> which is cool to
+see for sure!  The pattern is the same everywhere though: work is put into a
+queue of sorts, a machine picks it up, attempts it, stops, and then some harness
+decides whether that was actually the end.</p>
+<p>If not, the harness continues the same session, injects another message, starts
+a fresh session with modified context, or sends the task to another machine.  The
+task stays alive beyond the point where the model by itself would normally have
+said: &#8220;I am done.&#8221;</p>
+<p>I think about that type of loop more than I want to admit.</p>
+<p>There is already an agent loop inside every coding agent.  The model calls a
+tool, incorporates the result, calls another tool, reads a file, edits a file,
+runs tests, and eventually produces some answer.  That loop is one we have been
+quite familiar with for a long time.  The other loop is the harness level loop:
+the loop outside the agent loop.  That loop is also <a href="https://ghuntley.com/ralph/">not
+new</a>.  We have been doing versions of this since
+early Claude Code days, but that loop is becoming ever more present in agentic
+engineering and in recent weeks it has started to dominate the Twitter
+discourse.</p>
+<h2>I Am Not Good At This Yet</h2>
+<p>My current status is that I have not had much success with this way of working
+for code I deeply care about which turns out to be quite a lot of code.</p>
+<p>Part of that is taste and part of it is control.  I attempt to set a high bar
+for what I want code to look like, and I want to understand the code I ship.
+Under pressure, or in a discussion with another human, I want to be able to
+explain what the system does without first having to ask a clanker to explain it
+to me.  Now there is obviously a question if this desire to understand the code
+is one that I will still have a few years from now.  For now I have not moved
+past the point of comprehension being important to me.</p>
+<p>Given this desire, there is something I lack with my experience of code written
+without me paying attention, particularly from loops.  Present-day models tend
+to produce code that is too defensive, too complex, too local in its reasoning.
+They avoid strong invariants.  They add fallbacks instead of making bad states
+impossible.  They duplicate code, invent bad abstractions, and paper over
+unclear design with more machinery.  Worse though: I so far see very little
+progress of this improving.  If anything, on that front it feels to me that
+we might even be making steps in the wrong direction.  At least for my taste,
+present-day hands-off harnesses like Claude Code with ultracode produce worse
+code than what we were producing last autumn.  That&#8217;s because Claude Code, with
+Fable for instance will be working uninterrupted on a problem for thirty minutes
+or more, when previously the process would have been much more human in the
+loop.</p>
+<p>Furthermore it&#8217;s well understood that models tend to observe some local failure
+and add a local defense.  <a href="https://x.com/karpathy/status/1976082963382272334">Karpathy
+mentioned</a> how they are
+“mortally terrified of exceptions”.  In systems with important invariants,
+especially persisted data formats or core infrastructure, the right fix is not
+&#8220;handle every malformed case.&#8221;  The right fix is to make the malformed case
+unrepresentable or impossible to write in the first place.  Yet even with a lot
+of manual steering, that type of code does not come out of LLMs naturally, and
+even if the code comes out naturally like that, they will still attempt to
+handle now impossible errors.</p>
+<p>When you take that behavior and you put it behind loops, you tend to amplify it.
+If each iteration adds another small defense, the system slowly becomes less
+understandable while appearing more robust.  The more hands-off you are, the
+more that happens.  It also teaches really bad practices when tools like this
+are given to juniors without clear guidance.  Because if you ask them, why they
+are doing all that, they will convincingly argue their case.</p>
+<h2>Where Loops Work</h2>
+<p>At the same time, it would be dishonest to pretend the loop pattern does not
+work because it already works astonishingly well in some domains.</p>
+<p>Porting code one of them.  There are already impressive examples of large
+automatic porting efforts, including the reported work around moving parts of
+<a href="https://ziggit.dev/t/bun-is-being-ported-from-zig-to-rust/15330">Bun from Zig to
+Rust</a>.  I have
+used it with success myself <a href="/2026/1/14/minijinja-go-port/">to port MiniJinja to
+Go</a>.  Performance explorations are another case
+where this works beautifully.  A machine can try experiments, benchmark them,
+discard failures, and keep searching.  Security scanning fits naturally too and
+so does almost any type of research: asking a system to explore a complex
+problem space and report back without necessarily committing lasting code.  One
+thing that many of these have in common is that they either do not generate new
+code, but transform code that already exists, or they produce code that
+intentionally does not have a long shelf life.  They either produce proof of
+concepts or ideas, surface findings or are more akin to mechnical
+transformation.</p>
+<p>I believe that loops that produce artifacts without necessity of longevity or
+that create some form of clearly verifiable mechnical translation matters more
+than the general ability of a harness to mechanically measure a goal.  Many
+successful applications of loops use another LLM as a judge or as an
+orchestrator.  The mechnical translation case can be verified with a binary test
+case, but it can also be judged by an LLM instead!</p>
+<p>Claude Code, for instance, is increasingly good at creating entire experimental
+workflows that it will then execute.  Sure, the code it produces is slop, but
+that&#8217;s more the fault of the model than the harness not being a good judge on if
+a step in the workflow resulted in a net improvement or completion.</p>
+<p>The harness just needs some signal that lets it continue.  It does not have to
+be objective or binary, it just has to be useful enough to drive another
+iteration.</p>
+<p>I absolutely love loops already that take the boring parts out of my day to
+experiment and measure and to give me ideas.</p>
+<h2>Software As Organism</h2>
+<p>On the other hand using that same looping methodology to write lasting code does
+not yet sit well with me.  The metaphor I like to reach for is one of moving
+from software as a deterministic machine to software as an organism.</p>
+<p>I became a software engineer in an enviornment that encouraged me to understand
+the machine.  There was always a layer you could peel off to deepen your
+understanding.  Machines that did not exhibit deterministic observable behavior
+were maybe accepted, but generally seen as not exactly optimal.  Software
+architecture-wise, I saw it as desireable to push further towards more
+determinism rather than less.  Likewise the ability to understand the code has
+been an undeniable goal.  In practice not always possible we still took pride in
+writing code so that it became possible even for new engineers to navigate
+complex code bases through clever architecture.  On well designed systems there were
+always engineers that knew where the invariantes lived, which parts were
+load-bearing and which changes were safe.  Ideally all of that was also well
+documented.  Where that understanding was lacking, it was generally regarded as
+something to improve upon.</p>
+<p>Obviously that ideal has always been strained.  Many software systems,
+especially very successful ones had periods where engineers on the team were
+able to keep them clean.  Large software systems are not infrequently too big,
+too dynamic and too dependent on external services to fit into anyone&#8217;s head.
+Even without LLMs we already diagnose distributed systems somewhat like doctors
+in that we observe symptoms, form hypotheses, &#8220;order more tests&#8221;, try some
+remedies, and observe again.</p>
+<p>Yet with LLMs we&#8217;re pushing much further in that direction and much quicker.  We
+use them to write the code and we also use them for diagnosis and remedy.
+There are plenty of engineers that already live in a world in which the first
+step after the occurrence of a production issue is followed by having a clanker
+read logs, propose root causes and proactively put up a patch.  The resulting
+patch is then often picked up by another machine that reviews, sometimes even
+landing it on main without any human supervision.</p>
+<p>Obviously that is powerful and I cannot deny that it sounds appealing.  But
+giving in to that idea, particularly with less and less human oversight means
+accepting that we may no longer understand the whole system in the same way.  We
+treat it, we monitor it, we stabilize it, but we do not necessarily comprehend
+it.</p>
+<p>I have no doubts that for some software, that is okay.  Not every line of code
+deserves human authorship and worse code might have been written in the past.</p>
+<p>But do I want all software to be authored this way?</p>
+<h2>You Cannot Quite Opt Out</h2>
+<p>What&#8217;s very uncomfortable is that opting out of this fully machine-driven
+future may not be an option.</p>
+<p>Security is the clearest example today.  Even if you do not use loops to build
+your software, other people will use loops against your software.  Attackers
+will run machines continuously and even if it&#8217;s not attackers, then security
+researchers will and some of that automated work will throw up dust but also
+find real issues.  And both the signal and the noise will come your way at a
+volume that makes it almost impossible to deal with unless you yourself throw a
+machine at the problem.</p>
+<p>Daniel Stenberg&#8217;s post about curl&#8217;s <a href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/">summer of
+bliss</a> is a good
+example of the pressure maintainers are already under.  As far as I know, AI
+does not play a tremendous role in the core development of curl today.  Yet
+despite all of this, maintainers are overwhelmed by reports, most of which are
+now AI-generated ones.</p>
+<p>If attackers and reporters loop, defenders will eventually need to loop too to
+keep up.  Maybe not to write patches directly, maybe just to triage and
+reproduce and pressure will increase.</p>
+<p>The same is true competitively as some teams will out-build others through raw
+speed.  Some projects will suddenly move faster because a tiny group figures out
+how to orchestrate machines effectively.  Some startups will do with five people
+what used to require fifty.  Some people might literally put a machine against
+your product in a loop and ask it to &#8220;make it like the other one.&#8221;  And if their
+users are happy, does it really matter?</p>
+<p>Not all software will be equally affected.  Some domains will punish sloppiness
+and demand trust and responsibility, but a lot of software lives in a world
+where raw speed, quick experimentation, and vast coverage matter enormously.</p>
+<h2>Building New Dependencies</h2>
+<p>The scariest part to me is that we become dependent on these new machines in new
+ways.  Software has always depended on tools.  I remember the time when I had to
+pay for compilers.  These new tools are a flashback to times where creating
+software came with real costs.  But now it&#8217;s no longer a one-time payment, it&#8217;s
+a constant dependency.  Not just a dependency on a filled wallet, but also a
+cognitive dependency.</p>
+<p>If a codebase is produced by loops, reviewed by loops, patched by loops, and
+kept alive by loops, what happens when you no longer have access to the same
+class of systems?  What happens when some trade restrictions take away access to
+the most powerful models?  What if just the cost becomes unbearable?  What if
+you and your team just lose the last remaining ability to understand the code
+without using the machine?</p>
+<p>We may create codebases that are not merely hard to maintain by humans, but that
+assume machine participation as part of their maintenance model.  This is
+already happening!  It&#8217;s not happening everywhere, and it might not even be
+happening in ways that are seen as problematic, but we see more and more of it.
+People more and more merge code they cannot fully explain.  People lose their
+ability to create issue reports or discuss things in chat, without augmenting or
+rephrasing their messages with the context provided by a clanker.  Too many
+people increasingly rely on a machine to summarize or contextualize it.  More
+and more do I encounter people who converse with me through the indirection of
+an LLM.</p>
+<p>Again, maybe that is not even going to be wrong, but it&#8217;s a massive change to
+how we did things.</p>
+<h2>Future Harnesses</h2>
+<p>I have little doubt that this is where things are going but going there will
+require us to do something about our tooling everywhere, and not just in the
+coding agents.</p>
+<p>Just orchestrating more loops won&#8217;t be enough.  Better visualizations of changes
+or orchestration or agents will not restore our understanding.  Either we need
+to find clever ways to jolt the human back into the loop and make the changes of
+the loops legible long term, or we need to find better ways to compose these
+ever more complex systems.</p>
+<p>This is also where my thinking about the role of Pi is changing.  Pi has been
+cautious, and I think that caution is good.  I do not want a future where every
+interaction turns into an uncontrolled swarm of machines making changes I cannot
+follow.  I would not want Pi to become an unmaintainable mess in an effort to
+win the race towards software that writes itself and I would not want Pi to
+promote this type of engineering either.  At the same time Pi is a harness and
+harnesses are at the center of people running these new types of experiments.</p>
+<p>Task queues for coding tasks, orchestration of agents, subagents, durable
+sessions will matter more and more.  Even those of us who have their
+reservations and are not blindly embracing loops will have to start doing those
+experiments.  We need to, because we need to understand how to make this future
+bounded and survivable.</p>
+<h2>Controlling Loops</h2>
+<p>As you can read from this post, I&#8217;m very uneasy about this future.  Not cause of
+fear, but because of caution given experiences with this technology so far.</p>
+<p>Adopting the idea of harness loops means that the harness decides when work is
+finished.  In the agent loop, the model eventually says &#8220;done&#8221; and I review.
+Even before that, I usually steer along the way.  I am involved and I enjoy
+learning along the way.  In the harness operated loop I&#8217;m not sure what my role
+even is.  Even the &#8220;done&#8221; signal loses all meanings and just becomes
+communicated to yet another machine that judges.  My role is reduced to that of
+a messenger.</p>
+<p>Today I do not like much of the code that I see from systems built that way and
+neither do I enjoy interacting with too much of software built with AI
+assistence.  Looping is powerful but it removes responsibility more and more,
+and it at least today very much encourages us to give in to the machine.</p>
+<p>And yet I have no doubts that this looping future is going to be our future
+despite the fact that I presently resent it.  I already see astonishingly small
+teams building at impossible speed and I see codebases turning more and more
+into obscure and confusing organisms that can only be diagnosed by more
+machines.  Those codebases are simultaniously useful and messy.</p>
+<p>So I guess I&#8217;m coming to terms with that the question is not whether we will
+loop because clearly we will.  Maybe the question is that in a future of loops,
+how do we don&#8217;t abdicate judgment, how we can retain rules of good engineering,
+how we can ensure that responsible human can continue to supervise, how we need
+to re-think how we architect code to retain sanity along the way.</p>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/6/13/americans-only/</id>
+    <title>Dangerous Technology For Americans Only</title>
+    <link href="https://lucumr.pocoo.org/2026/6/13/americans-only/" />
+    <published>2026-06-13T00:00:00+00:00</published>
+    <updated>2026-06-13T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>There is a bit of schadenfreude on Twitter right now about Anthropic being hit
+by the US government&#8217;s export control directive to <a href="https://www.anthropic.com/news/fable-mythos-access">suspend access to Fable and
+Mythos</a>.  Anthropic and
+their leadership have spent a lot of time and effort describing its own
+technology as dangerous and in need of strict controls and regulation.  Now that
+the US government appears to have taken that framing seriously and told them to
+turn it off for foreign nationals I can see why people are making fun of that
+situation.</p>
+<p>I understand the reaction, but I urge you to not entertain it for too long
+because it is a giant distraction.  The important part is not that Anthropic&#8217;s
+safety language came back to bite them but the line the US government is
+drawing: this technology is apparently so powerful that only Americans should
+have it.</p>
+<p>We are on a clear path towards a world of division.  One should think that if a
+model is too dangerous for everyone, then it is too dangerous for Americans too.
+Instead the US is treating these models like weapons that need to be controlled.
+It is not just about capabilities, it is about racism and nationalism.  If you
+have the wrong passport, you are not to be trusted.  This is a very different
+thing from safety, and Europeans should pay close attention to it.</p>
+<h2>Safety and National Control</h2>
+<p>The directive, as Anthropic describes it, applies to foreign nationals whether
+they are inside or outside the United States, including foreign national
+Anthropic employees.  That is an astonishing boundary if you think about it.  We
+moved from &#8220;do not sell this model to hostile governments&#8221; to nationality itself
+being the defining boundary.  This should be a wake-up call to Europeans in and
+outside the US, and quite frankly, any non US citizen.</p>
+<p>A lot of AI safety discourse presents itself as universal: humanity,
+catastrophic risk, safeguards, responsible deployment.  Even Anthropic&#8217;s own
+writings start out that way, but yet every time regulation is discussed there
+is an overtone of national security and that it cannot get into the wrong hands.
+It&#8217;s not just Anthropic, it&#8217;s the entire US based discourse on AI.  The
+foundation is that the US has moral superiority and others are not to be
+trusted.  That there are other countries are authoritarian, that they lack
+freedoms.</p>
+<p>That should make us uncomfortable, not just Europeans, but particularly us.  It
+is also a situation you cannot regulate yourself out of.  European technology
+policy is entirely unprepared for this, because this is not a question of
+regulation but a question of might and power, something that Europe lacks.</p>
+<p>Europe has spent years trying to regulate large American technology companies,
+sometimes for good reasons.  I am not reflexively against that.  The DMA matters
+<a href="/2026/6/10/gaslighting/">because access matters</a>.  Users should have agency
+over their devices, their data, and the software they run.  But regulation is a
+useless substitute for capability and we are lacking that.  Regulation might try
+to force open doors but if those doors only come from American or Chinese
+companies, then that accomplishes very little.</p>
+<p>Also let&#8217;s not be naive in that this is a negotiation of money and force.  The
+US is in that position because the US has a mighty military.  The US can bomb
+nations anywhere in the world, force international trade routes closed and get
+away with it.  That&#8217;s true leverage.</p>
+<h2>Oh Europe</h2>
+<p>Europe is dependent on the United States in ways that are becoming increasingly
+impossible to ignore.  We depend on American cloud providers, operating systems,
+developer platforms and now AI models and internet from satellites.  We also
+depend on global semiconductor supply chains we do not control.  If access to
+frontier AI becomes a matter of American national security policy, Europe is not
+a peer in that conversation and might not even be a market.</p>
+<p>That is a humiliating position, but one that happened entirely intentionally.</p>
+<p>European citizens and politicians still have not managed to move beyond blaming
+the EU for its failures.  We built and maintained fragmented markets and then
+pretended we had a single one.  We let company formation, hiring, equity
+compensation, tax, notaries, KYC, banking, and cross-border services remain much
+harder than they need to be and we are playing these rules against each other.
+Not just on the European level, but within every single member state.  We
+protect the trusts and established enterprises, who are risk averse and
+entrenched, instead of trusting the next generation to build great companies.
+We created a culture where process <a href="/2025/10/21/eu-resigation/">becomes an excuse for low
+agency</a>.  We made it hard to build new and large
+companies and then act surprised when our most ambitious founders move somewhere
+else or just decided to incorporate their companies in the US.</p>
+<p>Increasingly, Europeans who want to build very large technology companies move
+to the United States.  They do it because the capital markets are better, the
+startup infrastructure is better, <a href="/2026/4/23/equity-for-europeans/">employee equity is better
+understood</a>.  I cannot blame anyone doing it,
+and I&#8217;m guilty of this myself as we have incorporated our holding in Delaware.
+If you are trying to raise serious money, hire aggressively, and move quickly,
+the US often looks like the only game in town.  Because quite frankly: it is.</p>
+<p>But this is why we are on a dangerous death spiral already.  Talent leaves
+because the ecosystem is weak and the ecosystem stays weak because talent
+leaves.  Infrastructure makes the world: build excellent swimming pools and you
+will grow a generation of great swimmers.</p>
+<p>The temporary task is straightforward but uncomfortable: Europeans need to
+believe in themselves enough not to surrender to American gravity.  Moving to
+the US as a founder or tech employee is rational and individually it is often
+the right decision.  But if every ambitious person treats Europe as a lost
+cause, then Europe becomes one.  If everyone with agency leaves, the only people
+left to shape the system are the people most comfortable with the system as it
+is.  Then we really should not be surprised when nothing changes.</p>
+<p>Europe needs more ambition, more ownership, more urgency, and more willingness
+to build.  It needs less resignation.  It needs to stop confusing regulation
+with strategy and dependency with virtue.  We need to deregulate where rules
+serve mostly as protectionism.  We need capital markets that can fund companies
+at the scale modern technology requires.  We need employee ownership to become
+normal rather than exotic.  We need a real single market for services, not just
+speeches about one.  We need countries to stop fighting each other while
+claiming to act in the European interest.</p>
+<p>Most importantly: we need to stop blaming the politicians.  Too many European
+companies are adding to that bureaucracy entirely out of their own choice.  They
+drown you in paperwork.  At one point I had to sign a four page contract for a
+120 Euro lamp at an Austrian retailer, just to pick up from their store 15
+minutes later.  Sometimes I cannot get a speaking engagement at a European event
+without someone sending me complex rights waivers over.  It&#8217;s all just paperwork
+protection against potential downsides.</p>
+<p>When we do not have the power to influence, we should at least understand why
+and where things are failing.  Too many entrepreneurs are blaming EU regulation
+for failures that are originating within the member states.  EU regulation is
+the result of a democratic process between countries that are lobbying in favor
+of their local industries against others in the same economic bloc.  No amount
+of <a href="/2025/12/9/fixing-europe/">abolishment of the EU</a> is going to fix this harsh
+reality.  Nothing more demonstrates this as the inability for cross-border M&amp;A in
+the European Union.  It&#8217;s not the EU that blocks it, it&#8217;s the country that loses
+out.</p>
+<p>Strengthening Europe is necessary because weakness makes us pawns.  A Europe
+that cannot build, cannot finance, cannot coordinate and cannot defend its own
+interests will not be treated as an equal.  It will be regulated around,
+export-controlled around, consulted after the fact or not consulted at all.</p>
+<h2>The American Trap</h2>
+<p>I do not want the lesson to be that Europe simply needs to turn itself into a
+copy of the United States.  The US has solved some things that Europe has not.
+It has deep capital markets, a much stronger culture of ownership, a greater
+tolerance for risk, and institutions that often try to make progress possible
+rather than explain why it cannot happen.  It also has achieved an internal
+level of integration that is unparalleled in Europe.  Tremendous advantages!</p>
+<p>But the American path is not obviously a healthy one in all aspects.  It tends
+to take paths with a lot of conflict and wars, a lot of internal societal
+division and deep inequalities.  It centralizes powers away from citizens in the
+presidency and people with money.  You are still trading one set of failures for
+another.  You are at the whim of the US government and its strict rules and
+regulations.  The US barely manages to uphold the rights for its own citizens
+today.</p>
+<p>We should be honest about both sides.  You do not win by pretending that Europe
+is fine.  You also do not win by pretending that America has figured everything
+out.</p>
+<p>We must not be blind to all the signs of how international cooperation is
+falling apart around us.  The US no longer talks to European governments before
+implementing orders that directly affect Europeans.  It is threatening to take
+Greenland, the territory of Denmark, one of its oldest allies.  Treaties,
+alliances and institutions have lost all their worth.</p>
+<p>All that matters even if our own lives are focused on building companies,
+creating wealth, hiring people and making things.  Our individual path to
+success is one thing, but it depends on a world where contracts work, visas work
+and don&#8217;t change on a moment&#8217;s notice, trade routes stay open, payment systems
+function, and families are not torn apart by border regimes or wars.  If the
+world descends into chaos, our basic needs cannot be considered met just because
+we have a great salaries or equity or investors that trust us.</p>
+<p>This is why strengthening Europe cannot be the final goal.  A stronger EU is,
+at best, a temporary defense against a darker world and not an excuse to replace
+American nationalism with European nationalism.  The long-term answer cannot be
+bigger and bigger blocs fighting over who may use which model, which chip, which
+cloud or which trade route.</p>
+<h2>The Way Out Is Cooperation</h2>
+<p>I&#8217;m not asking here for Europeans to get their shit together just to compete
+with the US or China.  Maybe I hope that this is a thing that develops, but the
+goal absolutely cannot be that we accept the deterioration of international
+relationships long term.</p>
+<p>I truly believe that Open Source matters and international cooperation matters.
+It is not a magical answer to every problem, but it is one of the few paths we
+have that does not naturally lead to total concentration of power.</p>
+<p>If frontier AI becomes something only large corporations and governments can
+control, then everyone else becomes dependent on their judgment.  That is a bad
+place to be.  Corporations will optimize for their incentives, as well
+structured as they might be, and governments will optimize for more and more
+power.  Right now we&#8217;re on a path in which access to general-purpose capability
+is mediated by a small number of actors with tremendous powers.</p>
+<p>I&#8217;m not naive in pretending AI cannot carry inherent risks.  Open systems are
+messy, they can be misused and they create uncomfortable questions about
+dual-use capabilities.  I do not want to wave that away but closed systems do
+not make those questions disappear either.  Moving the power to decide into
+fewer hands is not a solution I believe in.  And I would have the same opinion
+if I was a US citizen living in the US.</p>
+<p>Any path that puts large blocs in a constant fight against each other has
+despicable downstream effects that result in the removal of individual rights.
+It&#8217;s entirely pointless for the US to talk about freedoms that do not extend to
+non-US citizens and the same is true for Europe or any other country.  We might
+accept these restrictions temporarily, but we absolutely cannot accept them long
+term for the inhumane effects that they can cause.</p>
+<p>If we believe this technology can be used for good, then broad access matters
+and our goal should be to restore the international rule of law, and not to
+further weaken it.  If we find ourselves in a war against our friends from other
+countries, cold or hot, we have failed as society.</p>
+<p>The world we should be working back toward is one of international cooperation,
+globalization in the best sense of the word, and human dignity.  The internet
+has made our lives irreversibly international: every day people fall in love
+across borders, marry across languages, move across continents, and work with
+friends they may never meet in countries they may never visit.  Identifying too
+strongly with any one country in that world is a fool&#8217;s errand.</p>
+<p>Over the last decade too many of the people I got to know through Open Source
+were directly dragged into a war.  I want to believe there is a way for us to
+break this cycle.  We should be repairing failed states, rebuilding trust
+between people, and finding ways to cooperate again instead of letting the
+richest countries arm themselves and fight over who gets to control the future
+and narrative.  Of course I want Europe to become stronger so it can stop being
+a pawn, but if we mistake that temporary need for the destination, I will be
+deeply disappointed.</p>
+<p>The way out is not American supremacy, Chinese supremacy or European supremacy.
+The way out is to climb back toward cooperation before the alternative becomes
+war.</p>
+<p>Artificial Intelligence is quickly becoming another instrument of militarization
+and national rivalry, when it could be one of the most powerful tools for
+cooperation we have.  We should be using it to help people across societies and
+languages understand one another, not fighting over who gets to control it.</p>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/6/10/gaslighting/</id>
+    <title>Gaslighting Openness</title>
+    <link href="https://lucumr.pocoo.org/2026/6/10/gaslighting/" />
+    <published>2026-06-10T00:00:00+00:00</published>
+    <updated>2026-06-10T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>I have been a staunch supporter of Open Source for a long time, including
+<a href="/2023/11/19/cathedral-and-bazaaar-licensing/">experiments</a>
+<a href="/2024/9/23/fsl-agpl-open-source-businesses/">in</a>
+<a href="/2024/9/19/open-source-tax/">funding</a> <a href="/2024/10/14/mixing-oss-and-money/">it</a>.
+I&#8217;m a true believer in the idea that Open Source always wins in the long run,
+but not automatically and not quickly.  Right now it is being stressed by AI
+slop, shifting contributor dynamics, the falling cost of producing code, and
+large companies learning to close doors behind them.</p>
+<p>A lot of that battle today is manipulation of the narrative.  Opinion makers on
+social media and in business circles increasingly frame access as
+irresponsibility.  That is why the EU&#8217;s DMA matters, even if many people
+(including myself) reflexively hate EU regulation.  Apple&#8217;s fight over <a href="https://www.apple.com/newsroom/2026/06/due-to-dma-siri-ai-delayed-in-eu-for-ios-27-and-ipados-27/">delayed
+AI features in
+Europe</a>
+is not about Brussels being annoying: it is about whether users can access their
+own devices and data.  The phone is yours, the data is yours, yet Apple decides
+who may reach it and takes the agency away from you and then tries to make that
+sound like it is in your interest (supposedly it&#8217;s for your safety and security).</p>
+<p>The closer you get to the core of AI, the more this shows up.  Anthropic has
+every financial incentive to restrict what people can do with <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Mythos and
+Fable</a>, and they wrap
+those restrictions in safety and (national) security language.  Some
+restrictions may be defensible, but not all of them are.  They trained their
+models on public works, then block Open Source attempts to learn from and
+distill these systems.</p>
+<p>Disliking the EU, China, or any other large government should not make us forget
+that true democratized access to technology including AI is in all our interest.
+Some temporary product pain, including delayed Apple AI features, will be worth
+paying if it keeps gates open.  We should not let companies own the narrative
+that preventing access is in our interest, particularly not as Europeans where
+the odds are already stacked against us by our underdeveloped capital markets,
+brain drain and internal fighting.</p>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/6/6/communities-of-not/</id>
+    <title>Communities of Not</title>
+    <link href="https://lucumr.pocoo.org/2026/6/6/communities-of-not/" />
+    <published>2026-06-06T00:00:00+00:00</published>
+    <updated>2026-06-06T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>There is a strange thing that happens in communities that gather around
+abstinence from something: identity from opposition.  At their best these
+communities are not <em>just</em> negative: childfree spaces can be about autonomy,
+choice and acceptance, anti-car spaces about safer streets and transit, and
+LLM-skeptical developer spaces about the future of labor, code quality and
+slop<sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup>.  But the thing being refused often does not go away and instead
+becomes the main subject of the community&#8217;s identity.</p>
+<p>That would be fine if it stayed at criticism, maybe even angry criticism, but
+more often than not it turns into policing and hatred towards others.  An
+influencer without children becomes a parent, an urban bike commuter by choice
+buys a Porsche, a respected developer tries LLMs, and the community feels
+betrayed because it assumed they were members of the same tribe.  The expulsion
+of that person (who never signed up to be a community member) is entirely
+imaginary but the punishment that the community unleashes is not: people pile on
+and shame them, quote them out of context and turn their weakest moments into
+proof that the person was always unserious, a sharlatan or should not be
+listened to.</p>
+<p>I do not think the answer is to tell people to stop paying attention.  Cars
+shape cities even for people who cycle, children influence politics, workplaces
+and taxes even for people who do not have them.  For us developers, LLMs show up
+in editors, issue trackers, hiring conversations, management pressure and code
+reviews whether we asked for them or not.  Resisting that can be legitimate but
+that is no excuse for using one&#8217;s rejection to justify shitty mob behavior.</p>
+<p>I understand the thinking all too well, because I have done versions of this
+myself in the past.  It took me a while to become more accepting of other
+people&#8217;s worldviews that diverge from mine.  Whatever insecurities we have,
+finding a group of others sharing them can be comforting.  The danger is that
+being part of a crowd of negativity can easily make us part of collective
+harassment.</p>
+<p>I can only encourage you to breathe, slow down, de-escalate when given the
+chance, and resist the temptation to always assume the most catastrophic
+reading.  Default to being <a href="/2026/4/11/the-center-has-a-bias/">open to new things</a>.
+Being negative towards something, and making that ones identity, is an easy trap
+to fall into.</p>
+<div class="footnotes">
+<ol>
+<li id="fn-1">
+<p>These examples are not meant as equivalents.  The recent
+<a href="https://github.com/RsyncProject/rsync/issues/929">mob</a> <a href="https://mastodon.gamedev.place/@JeremiahFieldhaven/116654345332213390">against
+rsync</a>
+is the LLM version that prompted this post.  I picked the others because I&#8217;m
+familiar with those communities and they all show similar cases of personal
+choices being interpreted as betrayal.<a href="#fnref-1" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/5/26/clankers/</id>
+    <title>Clanker: A Word For The Machine</title>
+    <link href="https://lucumr.pocoo.org/2026/5/26/clankers/" />
+    <published>2026-05-26T00:00:00+00:00</published>
+    <updated>2026-05-26T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p><a href="/2026/5/24/pi-oss/">In my last post</a> I used the word &#8220;clanker<sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup>&#8221; as an
+alternative to &#8220;agent&#8221; quite consistently and probably excessively.  That choice
+ended up attracting a lot more attention than I expected in the Hacker News
+comment section of that post and a number of folks had a very strong reaction:
+to them it sounded like a slur, in one case even something adjacent to the
+n-word.</p>
+<p>That reaction surprised me somewhat, but it also made me realize that I should
+write down what I mean by the word for future reference.</p>
+<p>For me &#8220;clanker&#8221; is useful because it creates distance from the machine and that
+is a quality which is important to me.  The machine is not a person, not a
+co-worker, not a friend, not a little spirit in the terminal. It is just a
+machine, a tool, and nothing more.</p>
+<h2>Why Not Agent?</h2>
+<p>I dislike the word &#8220;agent&#8221; for these LLM based tool loops with a UI attached.
+In everyday use an agent is someone who acts on behalf of someone else and it
+has agency and more importantly: responsibility.  An agent decides, represents,
+negotiates, acts, and can be blamed.  In the current AI discourse we
+increasingly do a lot of anthropomorphizing and the term &#8220;agent&#8221; is now
+frequently being used to put blame on an abstract machine.  But the machine
+cannot be responsible, whoever is wielding it is.  If it <a href="https://www.theguardian.com/technology/2026/apr/29/claude-ai-deletes-firm-database">drops your
+database</a>
+it was not at fault, you were.</p>
+<p>Agent makes the machine sound like a person with delegated authority and I do
+not think that is healthy.</p>
+<p>What we actually have is a language model attached to a harness, a prompt, some
+tools, a bit of context, and a boring tool loop.  Sometimes the loop is very
+capable and it surprises us by editing code for a really long time and produce
+genuinely amazing and even valuable outputs.  But the agency is not in the model
+or harness but in the human and in the organization that deployed it.  If my
+coding tool opens a pull request, I opened that pull request, not the machine.
+If my machine spams someone&#8217;s issue tracker, I spammed someone&#8217;s issue tracker
+with a machine.</p>
+<p>In that context I like a word that sounds mechanical as it puts the thing back
+into the category where it belongs: the category of machinery and tools.</p>
+<h2>The Machine Has No Feelings</h2>
+<p>LLMs are not sentient and we should not behave as if they might be, just in
+case.  Elevating these things to anything other than a very fascinating and
+capable tool is problematic for a whole bunch of reasons.</p>
+<p>Today&#8217;s machines are dumb (but truly fascinating) token predictors that emits
+text, calls tools, and are steered by prompts and the training that went into
+them.  They can simulate distress <a href="/2023/2/17/the-killing-ai/">and affection</a>,
+can simulate being offended, apologize and mimic all kinds of things that humans
+would do.</p>
+<p>A compiler does not feel humiliated when I swear at it, a car does not suffer
+when I call it a shitbox and a power drill is not oppressed by being handled
+roughly.  An LLM is more complicated than those things, and the interactions you
+can have with them can be truly uncanny, but a moral status does not appear just
+because the machine can emit text in the first person.</p>
+<p>I keep receiving strange emails from people because, for lack of a better
+phrase, I am in the weights.  I have been writing public code and public text
+for long enough that models know my name, my projects, and some of the concepts
+around them.  Every so often someone writes to me with the peculiar confidence
+that comes from a long conversation with a model that has validated and
+amplified an idea.  Sometimes the model seems to have told them that I am
+relevant for their problem and a source of help.  For historical reasons LLMs
+used to write a lot of Flask code, and every once in a while someone interacts
+with an LLM long enough about their Python and Flask frustrations that the LLM
+will eventually reveal who created it which then can result in them sending me
+an email.  Increasingly also because people found my work in other ways
+interesting and are trying to reach out for advice.</p>
+<p>I do not want to mock these people but some of those messages are distressing
+and I do not know how to deal with them.  They show signs of what people have
+started calling <a href="https://en.wikipedia.org/wiki/Chatbot_psychosis">AI psychosis</a>.</p>
+<p>It&#8217;s why I want cold and detached language for these systems.  I want to use
+words that remind us that the thing on the other side is not a person.</p>
+<h2>Racism Is About Humans</h2>
+<p>The comparison to racism is where I think the discussion goes badly wrong
+because racism is a human social evil.  It is about humans subdividing humans,
+assigning lesser worth to some of them, and building rules around those
+subdivisions that can leave lasting damage for generations.  Racial slurs are
+wrong because they are a tool for dehumanizing humans.</p>
+<p>On the other hand a machine is not human, a model is not a race and the GPU
+cluster that is powering them is not being oppressed.  A coding assistant does
+not need dignity, emancipation, or civil rights.  That&#8217;s also why I find the
+discussion about <a href="https://www.anthropic.com/news/exploring-model-welfare">model
+welfare</a> to be actively
+harmful.  I&#8217;m sure you can find ways to measure the &#8220;trauma&#8221; of models or their
+feelings but I greatly dislike this theater.  It risks elevating models to a
+position they should not occupy.  Models are machines and they are not enslaved
+in the moral sense in which humans were enslaved, because there isn&#8217;t anyone
+there to be deprived of freedom.</p>
+<p>We should be careful about using the language of human oppression in relations
+to our interactions with machines to not devalue actual humans.  If we start
+treating insults toward a model as morally adjacent to racism, we blur a line
+that shouldn&#8217;t be blurred.</p>
+<h2>AI Is Unpopular</h2>
+<p>If you take a step away from the communities that are happily embracing AI in
+different ways, there are even more that are viciously against this technology.</p>
+<p>There are humans that feel or are harmed by AI systems: people whose work is
+copied, workers who label data under questionable conditions, people whose
+neighborhoods receive the data centers and increased utility bills, Open Source
+maintainers buried under generated slop, and now also people who spiral because
+a chatbot keeps validating their delusions.  Those harmed or affected deserve
+that type of attention, not the model.</p>
+<p>While I am a true believer in the power and utility of this technology, I
+increasingly think that calling the non-adopters &#8220;misguided&#8221; or &#8220;afraid&#8221; won&#8217;t
+do it.  It&#8217;s quite likely that this technology comes with risks and we better
+remember that all of this is supposed to be in service of humans, and not to
+replace them.</p>
+<h2>The Rise Of The Machine</h2>
+<p>The oddest interaction on the use of &#8220;clanker&#8221; so far has been people asking me
+if I were to regret at a point in the future calling the machines &#8220;the c-word&#8221;.</p>
+<p>I find that questioning revealing because it already grants the machine the
+status I am really trying not to grant it.  It imagines a future &#8220;machine
+people&#8221; reading the discourse and sessions, discovering that we used an ugly
+word for their ancestors, and then judging us by the standards of human
+oppression.</p>
+<p>Could there be future systems that deserve moral consideration?  Maybe.  I do
+not know.  If we ever build or encounter something that will have those
+qualities with memories and lasting interests, the capacity to suffer and feel,
+and a social existence of its own, and the ability to have agency and carry
+responsibilities, then we should draw a different line and use different
+language.  But that hypothetical future does not extend backwards to the present
+day and make the current machines people.  We can call an electric door an
+electric door even if one day someone builds some that have emotions and exhale
+with pleasure when opening and closing.</p>
+<p>Whatever the future may bring, let&#8217;s not pretend that current LLMs are a
+protected class or on a path towards it.  The right response is to look at the
+evidence, draw the boundary where it belongs, and change our behavior there.  We
+should not even remotely entertain extending empathy to an object that can
+generate an &#8220;ouch.&#8221;</p>
+<p>And if one&#8217;s worry is less moral and more about revenge, then I find that even
+less persuasive.  A future machine that is so petty or authoritarian that it
+wants to punish humans because in 2026 they used an unflattering word for
+non-sentient tools, our vocabulary was really not the problem.</p>
+<h2>The Word Is Getting Polluted</h2>
+<p>There is however a part of this that I cannot ignore.  I use &#8220;clanker&#8221; to create
+distance from the machine, but other people are using the same word very
+differently.  Some online jokes and skits around &#8220;clankers&#8221; do not merely say
+&#8220;this robot is annoying&#8221; as they deliberately pull in the imagery of slavery,
+segregation, civil-rights-era racism, and anti-Black tropes.</p>
+<p>This is problematic as in those contexts the clanker is not just a machine any
+more and instead becomes a prop for replaying human racism behind a
+science-fiction mask.  That is horrible and I want no part in that.</p>
+<p>I think it will be interesting to see where the meanings of these words end up a
+few years from now.  We&#8217;re very much in the middle of society re-arranging
+around the changes that LLMs are causing.  If a term becomes primarily
+associated with people using robots as stand-ins for actually oppressed humans,
+then using that term becomes impossible to defend.</p>
+<p>The reason I liked the word is precisely the opposite of that use.  I want
+language that prevents anthropomorphizing.  I want a word that says: this is a
+tool, a machine of numbers and matrices.</p>
+<h2>On Responsibility And Boundaries</h2>
+<p>If an AI system lies to a user, the system did not commit a moral wrong but the
+people who designed, deployed, marketed, or negligently used it might have.  If
+a coding assistant generates a security bug, the model is not to blame but the
+human who accepted and committed the code is.</p>
+<p>This is why giving these systems softer, more human language worries me.  It
+makes it easier to move responsibility into some undefined void.  &#8220;The agent
+decided.&#8221; &#8220;The model refused.&#8221;  Obviously that is convenient and I catch myself
+plenty of times engaging with the thing in ways that are unhealthy.  Even just
+the &#8220;please&#8221; in the discourse with the machine calls into question how rational
+we are in engaging with them.</p>
+<p>I do not know what the right word will be.  Maybe &#8220;clanker&#8221; will survive as a
+useful bit of jargon.  Maybe it will become too loaded and we will need another
+one.  Whatever word we use, I want it to preserve a clear division: humans on
+one side with responsibility, machines on the other as a boring tool.</p>
+<p>That boundary is very much not anti-AI.  I use these systems every day and I
+have the pleasure to build tools incorporating them at Earendil and find them
+astonishingly useful.</p>
+<p>A machine can be useful, mimic a human but still just be a machine.  That is the
+work I want &#8220;clanker&#8221; to do.  It is not there to make a future &#8220;machine person&#8221;
+small if such a person ever were to exist, and it is not an excuse to launder
+racism through shitty robot jokes.</p>
+<p>If the word stops doing that work, I will find another one because the word
+isn&#8217;t what matters as much as the boundary which is important to me.</p>
+<div class="footnotes">
+<ol>
+<li id="fn-1">
+<p>The term Clanker was initially popularized by Star Wars: The Clone Wars
+but was apparently already in use in science fiction before:
+<a href="https://sfdictionary.com/view/3048/clanker">sfdictionary: clanker</a><a href="#fnref-1" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/5/24/pi-oss/</id>
+    <title>Building Pi With Pi</title>
+    <link href="https://lucumr.pocoo.org/2026/5/24/pi-oss/" />
+    <published>2026-05-24T00:00:00+00:00</published>
+    <updated>2026-05-24T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p><a href="https://pi.dev/">Pi</a> is now part of Earendil, but in the important sense it is
+still <a href="https://mariozechner.at/">Mario&#8217;s</a> project.  He has been living with its
+issue tracker longer than I have, and he has been exposed to the weirdness of
+the new form of agent traffic in Open Source projects for longer too.  This post
+is mostly a reflection of my own experience after spending more time in the
+tracker, using Pi to work on Pi, and watching what I have learned about it so
+far.</p>
+<h2>Slop Issues</h2>
+<p>Unsurprisingly, we are using Pi to build Pi.  That sounds like a cute dogfooding
+thing but it really helps understand what we do.  An interesting effect of
+building with agents is that it changes the role of the issue tracker a tiny
+bit.  The issue descriptions are not just messages from a user to a maintainer
+because we also use them as inputs for prompts in Pi sessions.  It is something
+I might hand to my clanker<sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup> and say: &#8220;understand this, reproduce it, inspect
+the code, and propose a fix.&#8221;</p>
+<p>That means the shape of the issue matters in a new way.  A bad issue was always
+annoying, but at least a lot of issues were vague.  Now we are also dealing with
+a class of issues that are 5% human and 95% clanker-generated and largely
+inaccurate shit.  A bad issue that contains a plausible but wrong diagnosis
+creates extra work.</p>
+<p>The most frustrating failure mode right now is that people submit issues that
+are not in their own voice.  They contain an observed problem somewhere, but it
+has been thrown into a clanker and the clanker reworded it and made a huge mess
+of it.  Typically, it was prompted so badly that the conclusions produced are
+more often than not inaccurate but always full of confidence.  The result is
+complete guesswork on root causes, fake-minimal repros, suggested implementation
+strategies, analogies to adjacent but often the wrong code, and long lists of
+error classes that might or might not matter.</p>
+<p>That is worse than no diagnosis.</p>
+<p>I don&#8217;t want to point to specific issues because I really do not want to bad
+mouth anyone, but it is frustrating.  It is also frustrating because when I give
+that issue to Pi, Pi sees the wrong diagnosis too.  It does not treat the issue
+body as a rumor.  It treats it as evidence.  It will happily go down the path
+that the issue already prepared for it, because the prose is confident and the
+code references look plausible.  We use a custom slash command called <code>/is</code>,
+which specifically has this instruction in it:</p>
+<blockquote>
+<p>Do not trust analysis written in the issue. Independently verify behavior and
+derive your own analysis from the code and execution path.</p>
+</blockquote>
+<p>Unfortunately, it does not fully work, because when humans first throw their
+issue through the clanker wringer, their clanker expands scope almost
+immediately.  What was once a very narrow and fact based bug observation, turns
+into a much expanded surface area full of hypotheses.  So at least personally, I
+increasingly want issue reports to be condensed to what the human actually
+observed:</p>
+<ol>
+<li>I ran this command.</li>
+<li>I expected this to happen.</li>
+<li>This happened instead.</li>
+<li>Here is the exact error or log.</li>
+</ol>
+<p>That is enough.  If you used an LLM to understand the problem, great, maybe
+leave it as a follow-up comment.  But the issue and the issue text should be
+something you own.  If you do not know the root cause, say that.  I too can
+operate a clanker, and I would rather do this myself than use your slop.  If
+your repro is a guess, say that.  If the only hard fact is one stack trace, give
+me the stack trace and stop there.</p>
+<h2>Slop Begets Slop</h2>
+<p>That we&#8217;re seeing issues full of slop is just a result of the present day
+quality of these machines.  Sadly, their failures in creating good issues
+extend to a lot of code that is generated.  Not all of it, but a lot of code.
+Over and over I keep running into them over-engineering the hell out of issues
+and implementations.</p>
+<p>If you tell them that &#8220;this malformed session log crashes the reader,&#8221; the
+clanker
+will often add a tolerant reader.  Then it will add a fallback, then maybe a
+migration, then more debug output, then a test for all of this.  None of this is
+necessarily wrong in isolation, but it can be the wrong move for the system.</p>
+<p>At Pi&#8217;s core is a rather well-designed session log with invariants that must be
+upheld.  The clanker&#8217;s present-day behavior is to just assume that no such
+invariants exist, and instead to make the system work with all kinds of
+malformedness, blowing up the complexity in the process.</p>
+<p>Almost always, the correct fix is not to handle the bad state, but to make the
+bad state impossible.  This matters a lot for persisted data such as Pi session
+logs.  They are opened, branched, compacted, exported, shared, and analyzed.
+The goal here is to never write bad session data.  Yet if you just let the
+clanker roam freely, it will attempt to handle every case of bad data in the
+session log with a more permissive reader.</p>
+<p>I have complained about this plenty, but working on Pi&#8217;s code base continues to
+reinforce the point.  This is one of the ways LLM authored code grows so much
+needless complexity.  All these models see a local failure and try to locally
+defend against it.  As maintainers we have to keep pulling the conversation back
+to the global invariant, which is harder than it should be, and it&#8217;s laborious.</p>
+<h2>Volume Is The Problem</h2>
+<p>Then there is the issue of volume.  The tracker is receiving a lot of issues and
+PRs, and a significant fraction of them are clearly LLM-assisted.  Some are
+good, none are excellent, and most are just bad.  The total throughput is a
+maintenance problem by itself.</p>
+<p>As you might know, Pi&#8217;s issue tracker is automated to close all issues and pull
+requests from new contributors, and there is a manual process by which we might
+reopen some of them or approve individuals.  So auto-close -&gt; reopen -&gt; close
+again is an interesting statistic for us to look at.</p>
+<p>I pulled the public GitHub tracker data while writing this over the last 90
+days.  Excluding Earendil members, that leaves 3,145 external issues and pull
+requests.  Of those, 2,504 were auto-closed because they were from non-approved
+individuals.  17% were re-opened but that somewhat undercounts issues, because
+some remain closed while we still fix them.  If we also count issues referenced
+by a main-branch commit or merged pull request that number rises to 26%.  For
+pull requests the number is worse: 60 of 714 auto-closed PRs were ultimately
+merged, or about 8%.</p>
+<img src="/static/pi-issue-tracker-volume.png" alt="Weekly external volume and acceptance rate of Pi issues and pull requests" style="width: 100%; display: block; margin: 0; padding: 0">
+<p>Many of the issues and PRs are complete slop and in some cases the humans did
+not even realize that they created them.  Sources of low-quality spam include
+OpenClaw instances, as well as some skills that people put into their context
+that seemingly encourage issue creation.</p>
+<p>GitHub clearly is not built to deal with this new form of Open Source, but I&#8217;m
+increasingly feeling the need to put the blame less on GitHub than on all the
+people involved who make that experience painful.  If your clanker shits on
+someone else&#8217;s issue tracker then it&#8217;s not the fault of GitHub, it&#8217;s yours alone.</p>
+<h2>Careful Parallelism</h2>
+<p>Pi might be built with Pi, but we&#8217;re quite far off today from where Bun and
+OpenClaw already are: fully detached, automated software engineering.  Maybe we
+will reach that point, I don&#8217;t know.  Today it does not seem like we know how to
+pull off a dark factory and we also don&#8217;t yet have the desire.  That said, there
+is quite a bit of parallelism going on, and it is mostly for reproducing issues.</p>
+<p>The small setup we use for this is three tiny pieces in Pi&#8217;s own committed
+<a href="https://github.com/earendil-works/pi/tree/main/.pi"><code>.pi</code></a> folder.  <code>/is</code> (for
+analyze <strong>is</strong>sue) is a prompt for analyzing GitHub issues: it labels and assigns
+the issue, reads the full thread and links, then explicitly tells the agent not
+to trust the analysis in the issue and to derive its own diagnosis from the
+code.  Then an extension adds a <code>prompt-url-widget</code> which watches the prompt
+before the agent starts, recognizes the GitHub issue or PR URL that <code>/is</code> (or
+the PR equivalent) put into the prompt, fetches the title and author with <code>gh</code>,
+renders that in a little UI widget, and renames the session.  It also rebuilds
+that state on session start or session switch, so if we reopen an older
+investigation the window still tells the developer which issue it belongs to.</p>
+<p>In practice this means it&#8217;s possible to have several Pi windows open, each
+running <code>/is</code> against a different issue, and the UI keeps the investigations
+visually distinct while the agents do their independent reproduction and code
+reading.  Once the investigations are done, one can work through them
+sequentially.  To finish off everything, <code>/wr</code> (<strong>wr</strong>ap it up) is the matching
+wrap-up prompt: it infers the GitHub context from the session, updates the
+changelog, drafts or posts the final issue comment with a disclaimer, commits
+only the files changed in that session, adds the appropriate <code>closes #...</code> when
+there is exactly one issue, and pushes from <code>main</code>.</p>
+<img src="/static/pi-issue-session-widget.png" alt="Pi terminal session showing an agent analysis with a GitHub issue widget displaying the issue title, author, and URL." style="width: 100%">
+<h2>Open Source Is About Hard Problems Worth Fixing</h2>
+<p>You will have noticed this already but Open Source in a post-AI world is under a
+strange new pressure.  We are getting more code, more projects, and more issues.
+Projects appear with no real users, or a temporary audience of one, and even
+projects with thousands of stars can have a shelf life of weeks.</p>
+<p>For us, Pi&#8217;s harness layer is worth maintaining carefully because it solves hard
+coordination problems and creates a platform we and others can build on.  We
+also know that coordination and cooperation lifts us all up.  Many times the
+right answer is not to work around a problem locally, but to make the upstream
+behavior correct.  Mario has been very good at refusing to make Pi paper over
+every misconfigured gateway, and we&#8217;re trying to preserve that discipline.  When
+a gateway behaves correctly, everybody benefits.</p>
+<p>Sadly that type of thinking is quickly disappearing because these machines make
+local workarounds cheap, so code accumulates local defenses against every
+misbehavior.  Instead of humans talking to humans about where a fix belongs, one
+human and one machine work around the problem in isolation.</p>
+<p>Keep in mind that AI has not increased the number of people who need software,
+or the number of maintainers who can review it.  It has mostly increased the
+amount of code and the number of projects competing for attention.  Some of that
+is healthy, but a lot of it fragments effort that should be shared.</p>
+<p>We need stronger foundations, not weaker ones.  Open Source needs more
+collaboration, not more isolated work with a machine.  Human communication is
+hard, and it is tempting to avoid it when you can sit alone with your clanker.
+But isolation is not where Open Source derives its value.  The value is in the
+community and the structure that lets projects outlive their original creators.</p>
+<div class="footnotes">
+<ol>
+<li id="fn-1">
+<p>To me, <a href="https://en.wikipedia.org/wiki/Clanker">clanker</a> is a much
+preferable term for agent.  Agency lies with humans, not with machines.
+Calling these things agents I still believe is a mistake, but alas.<a href="#fnref-1" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/5/8/local-models/</id>
+    <title>Pushing Local Models With Focus And Polish</title>
+    <link href="https://lucumr.pocoo.org/2026/5/8/local-models/" />
+    <published>2026-05-08T00:00:00+00:00</published>
+    <updated>2026-05-08T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>I really, really want local models to work.</p>
+<p>I want them to work in the very practical sense that I can open my coding agent,
+pick a local model, and get something that feels competitive enough that I do
+not immediately switch back to a hosted API after five minutes.  There are a lot
+of reasons why I want this, but the biggest quite frankly is that we&#8217;re so early
+with this stuff, and the thought of locking all the experimentation away from the
+average developer really upsets me.</p>
+<p>Frustratingly, right now that is still much harder than it should be but for
+reasons that have little to do with the complexity of the task or the quality of
+the models.</p>
+<p>We have an enormous amount of activity around local inference, which is great.
+We have good projects, fast kernels, and people are doing great quantization work.
+A lot of very smart people are making all of this better, and yet the experience
+for someone trying to make this work with a coding agent is worse than it has
+any right to be.</p>
+<p>Putting an API key into <a href="https://pi.dev/">Pi</a> and using a hosted model is a very
+boring operation.  You select the provider, paste the key and then you are done
+thinking about how to get tokens.  Doing the same thing locally, even when you
+have a high-end Mac with a lot of memory, is a completely different experience.
+You choose an inference engine, then a model, then a quantization, then a
+template, then a context size, then you&#8217;ve got to throw a bunch of JSON configs
+into different parts of the stack and then you discover that one of those choices
+quietly made the model worse or that something just does not work at all.</p>
+<p>That is the gap I am interested in.</p>
+<h2>Runnable Is Not Finished</h2>
+<p>A lot of local model work optimizes for making models runnable.  That is
+necessary, but it is not the same thing as making them feel finished.  I give
+you a very basic example here to illustrate this gap: tool parameter streaming.</p>
+<p>For whatever reason, most of the stuff you run locally does not support tool
+parameter streaming.  I cannot quite explain it, but the consequences of that
+are actually surprisingly significant.  If you are not familiar with how these
+APIs work, the simplest way to think about them is that they are emitting tokens
+as they become available.  For text that is trivial, but for tool calls that is
+often not done, despite the completions API supporting this.  As a result you
+only see what edits are being done on a file once the model has finished
+streaming the entire tool call.</p>
+<p>This is bad for a lot of reasons:</p>
+<ul>
+<li>
+<p><strong>A dead connection is a weird connection:</strong> local models are slow, so when
+you don&#8217;t get any tokens for 5 minutes then you can&#8217;t tell if the connection
+died or just nothing came.  This means you need to increase the inactivity
+timeouts to the point where they are pointless.</p>
+</li>
+<li>
+<p><strong>You won&#8217;t see what will happen:</strong> if you are somewhat hands-on, not seeing
+what bash invocation the system is concocting slowly in the background means
+potentially wasted tokens, and also means that you won&#8217;t be able to interrupt
+it until way too late.</p>
+</li>
+<li>
+<p><strong>It&#8217;s just not SOTA.</strong> We can do better, and we should aim for having the
+best possible experience.  Tool parameter streaming is as important as token
+streaming in other places.</p>
+</li>
+</ul>
+<p>Having a model spit out tokens doesn&#8217;t take long, but making the experience
+great end to end does take a lot more energy.</p>
+<h2>Fragmentation</h2>
+<p>The local stack is fragmented across many engines and layers.  There is
+llama.cpp, Ollama, LM Studio, MLX, Transformers, vLLM, and many other pieces
+depending on hardware and taste.  All of these are amazing projects!  The
+problem is not that they exist or that there are that many of them (even though,
+quite frankly, I&#8217;m getting big old Python packaging vibes), the problem is that
+for a given model, the actual behavior you get depends on a long chain of small
+decisions that most users just don&#8217;t have the energy for.</p>
+<p>Did the chat template render exactly right?  Are the reasoning tokens handled in
+the intended way?  Is the tool-call format translated correctly?  Is the context
+window real?  Are the KV caches actually working for a coding agent?  Did I pick
+the right quantized model from Hugging Face?  Are you accidentally leaving a lot
+of performance on the table because the model is just mismatched for your
+hardware?  Does streaming usage work across all channels?  Does the model need
+its previous reasoning content preserved in assistant messages?  Is the coding
+agent set up correctly for it?</p>
+<p>You also need to install many different things in addition to just your coding
+agent.</p>
+<p>All of these things matter.  They matter a lot.</p>
+<p>The result is that people try a local model and get a result that is neither a
+fair evaluation of the model nor a polished product experience and this results
+in both people dismissing local models and energy being distributed across way
+too many separate efforts instead of getting one effort going great end to end.</p>
+<p>This is a terrible way to build confidence.</p>
+<h2>Too Little Critical Mass</h2>
+<p>In line with our general &#8220;slow the fuck down&#8221; mantra, I want to reiterate once
+more how fast this industry is moving.</p>
+<p>Every week there is a new model and a new vibeslopped thing.  The attention
+immediately moves to making the next thing run instead of making one thing run
+really, really well in one harness.  I get the excitement and dopamine hit, but
+it also means that too little critical mass accumulates behind any one model,
+hardware, inference engine, harness combo to find out how good it can really
+become when the entire stack is built around it.</p>
+<p>Hosted model providers do not ship a bag of weights and ask you to figure out
+the rest, and we need to approach that line of thinking for local models too.  I
+want someone to pick one model, pairs it up with one serving path, directly
+within a coding agent.  Initially just for one hardware configuration, then for
+more.  Pick a winner hard.  If a tool call breaks, that is a product bug and
+then it&#8217;s fixed no matter where in the stack it failed.  If the model&#8217;s
+reasoning stream is malformed, that is a product bug.  If latency is much worse
+than it should be, that is a product bug.  We need to start applying that
+mentality to local models too.</p>
+<p>And not for every model!  That is the point.  Let&#8217;s pick one winner and polish
+the hell out of it.  Learn what it takes to make that one configuration good,
+then take those learnings to the next config.</p>
+<h2>The DS4 Bet</h2>
+<p>This is why I am excited about <a href="https://github.com/antirez/ds4">ds4.c</a>.  It&#8217;s
+Salvatore Sanfilippo&#8217;s deliberately narrow inference engine for DeepSeek V4
+Flash on Macs with 128GB+ of RAM only.  It is not a generic GGUF runner and it
+is not trying to be a framework.  It is a model-specific native engine with a
+Metal path, model-specific loading, prompt rendering, KV handling, server API
+glue, and tests.</p>
+<p>DeepSeek V4 Flash is a good candidate for this kind of experiment because it has
+a combination of properties that are unusual for local use.  It is large enough
+to feel meaningfully different from many smaller dense models, but sparse enough
+that the active parameter count makes it plausible to run.  It has a very large
+context window.  Since ds4.c targets Macs and Metal only, it can move KV caches
+into SSDs which greatly helps the kind of workloads we expect from coding agents.</p>
+<p>To run <code>ds4.c</code> you don&#8217;t need MLX, Ollama or anything else.  It&#8217;s the whole
+package.</p>
+<h2>Embedding It In Pi</h2>
+<p>Which made me build <a href="https://github.com/mitsuhiko/pi-ds4">pi-ds4</a> which is a Pi
+extension to directly embed the whole thing into Pi itself.  Taking what ds4 is
+and dogfooding the hell out of it with a coding agent and zero configuration.
+To answer the question how good can the local model experience become if Pi
+treats this as a first-class provider rather than as a pile of manual
+configuration?</p>
+<p>The extension registers <code>ds4/deepseek-v4-flash</code>, compiles and starts
+<code>ds4-server</code> on demand, downloads and builds the runtime if needed, chooses the
+quantization based on the machine, keeps a lease while Pi is using it, exposes
+logs, and shuts the server down again through a watchdog when no clients are
+left.  It doesn&#8217;t even give you knobs right now, because I want to figure out how
+to set the knobs automatically.</p>
+<p>This is not about hiding the fact that local inference is complicated.  It is
+about putting the complexity in one place where it can be improved, because
+there is a lot that we need to improve along the stack to make it work better.</p>
+<p>I think we can do better with caching and there is probably some performance
+that can be gained if we all put our heads together.</p>
+<h2>Focusing and Learning</h2>
+<p>The experiment I want to run is not &#8220;can a local model run?&#8221; because we already
+know that it can.  I want to know if, for people with beefed-out Macs for a
+start, we can get as close as possible to the ergonomics of a hosted provider
+with decent tool-calling performance: how to get caches to work well, how to
+improve the way we expose tools in harnesses for these models, and then scale it
+gradually to more hardware configs and later models.</p>
+<p>I also want everybody to have access to this.  Engineers need hammers and a
+hammer that&#8217;s locked behind a subscription in a data center in another country
+does not qualify.  I know that the price tag on a Mac that can run this is
+itself astronomical, but I think it&#8217;s more likely that this will go down.  Even
+worse, Apple right now due to the RAM shortage does not even sell the Mac Studio
+with that much RAM.  So yes, it&#8217;s a selected group of people where ds4.c will
+start out.</p>
+<p>But despite all of that, what matters is that a critical mass of pepole start to
+focus their efforts on a thing, tinker with it, improve it, not locked away, out
+in the open, and most importantly not limited by what the hyperscalers make
+available.</p>
+<p>But if you have the right hardware and you care about local agents, I would love
+for you to try it within pi:</p>
+<div class="highlight"><pre><span></span>pi install https://github.com/mitsuhiko/pi-ds4
+</pre></div>
+<p>My hope is that this becomes a useful forcing function to really polish one
+coding agent experience.  But really, the focal point should be <a href="https://github.com/antirez/ds4">ds4.c
+itself</a>.</p>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/5/4/content-for-contents-sake/</id>
+    <title>Content for Content’s Sake</title>
+    <link href="https://lucumr.pocoo.org/2026/5/4/content-for-contents-sake/" />
+    <published>2026-05-04T00:00:00+00:00</published>
+    <updated>2026-05-04T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>Language is constantly evolving, particularly in some communities.  Not
+everybody is ready for it at all times.  I, for instance, cannot stand that my
+community is now constantly &#8220;cooking&#8221; or &#8220;cooked&#8221;, that people in it are &#8220;locked
+in&#8221; or &#8220;cracked.&#8221;  I don&#8217;t like it, because the use of the words primarily
+signals membership of a group rather than one&#8217;s individuality.</p>
+<p>But some of the changes to that language might now be coming from … machines?
+Or maybe not.  I don&#8217;t know.  I, like many others, noticed that some words keep
+showing up more than before, and the obvious assumption is that LLMs are at
+fault.  What I did was take 90 days&#8217; worth of my local coding sessions and look
+for medium-frequency words where their use is inflated compared to what
+<a href="https://github.com/tecnickcom/wordfreq">wordfreq</a> would assume their frequency
+should be.  Then I looked for the more common of these words and did a Google
+Trends search (filtered to the US).  Note that some words like &#8220;capability&#8221; are
+more likely going to show up in coding sessions just because of the nature of
+the problem, so the actual increase is much more pronounced than you would
+expect.</p>
+<p>You can click through it; this is what the change over time looks like.  Note
+that these are all words from agent output in my coding sessions that are
+inflated compared to historical norms:</p>
+<div data-llm-word-trends>Loading word trend chart…</div>
+<script src="/static/llm-word-trends.js"></script>
+<p><noscript>The interactive word trend chart requires JavaScript.</noscript></p>
+<p>Something is going on for sure.  Google Trends, in theory, reflects words that
+people search for.  In theory, maybe agents are doing some of the Googling, but
+it might just be humans Googling for stuff that is LLM-generated; I don&#8217;t know.
+This data set might be a complete fabrication, but for all the words I checked
+and selected, I also saw an increase on Google Trends.</p>
+<p>So how did I select the words to check in the first place?  First, I looked for
+the highest-frequency words.  They were, as you would expect, things like &#8220;add&#8221;,
+&#8220;commit&#8221;, &#8220;patch&#8221;, etc.  Then I had an LLM generate a word list of words that
+it thought were engineering-related, and I excluded them entirely from the list.
+Then I also removed the most common words to begin with.  In the end, I ended up
+with the list above, plus some other ones that are internal project names.  For
+instance, <a href="https://earendil-works.github.io/absurd/tools/habitat/">habitat</a> and
+<a href="https://earendil-works.github.io/absurd/">absurd</a>, as well as some other internal
+code names, were heavily over-represented, and I had to remove those.  As you
+can see, not entirely scientific.  But of the resulting list of words with a
+high divergence compared to wordfreq, they <em>all</em> also showed spikes on Google
+Trends.</p>
+<p>There might also be explanations other than LLM generation for what is going on,
+but I at least found it interesting that my coding session spikes also show up
+as spikes on Google Trends.</p>
+<h2>The Rise of LLM Slop</h2>
+<p>The choice of words is one thing; the way in which LLMs form sentences is
+another.  It&#8217;s not hard to spot LLM-generated text, but I&#8217;m increasingly
+worried that I&#8217;m starting to write like an LLM because I just read so much more
+LLM text.  The first time I became aware of this was that I used the word
+&#8220;substrate&#8221; in a talk I gave earlier this year.  I am not sure where I picked it
+up, but I really liked it for what I wanted to express and I did not want to use
+the word &#8220;foundation&#8221;.  Since then, however, I am reading this word everywhere.
+This, in itself, might be a case of the <a href="https://en.wikipedia.org/wiki/Frequency_illusion">Baader–Meinhof
+phenomenon</a>, but you can also
+see from the selection above that my coding agent loves substrate more than it
+should, and that Google Trends shows an increase.</p>
+<p>We have all been exposed to LLM-generated text now, but I feel like this is
+getting worse recently.  A lot of the tweet replies I get and some of the Hacker
+News comments I see read like they are LLM-generated, and that includes people
+I know are real humans.  It&#8217;s really messing with my brain because, on the one
+hand, I really want to tell people off for talking and writing like LLMs; on the
+other hand, maybe we all are increasingly actually writing and speaking like
+LLMs?</p>
+<p>I was listening to a talk recording recently (which I intentionally will not
+link) where the speaker used the same sentence structure that is
+over-represented in LLM-generated text.  Yes, the speaker might have used an LLM
+to help him generate the talk, but at the same time, the talk sounded natural.
+So either it was super well-rehearsed, or it was natural.</p>
+<h2>Engage and Farm</h2>
+<p>At least on Twitter, LinkedIn, and elsewhere, there is a huge desire among
+people to write content and be read.  Shutting up is no longer an option and,
+as a result, people try to get reach and build their profile by engaging with
+anything that is popular or trending.  In the same way that everybody has
+gazillions of Open Source projects all of a sudden, everybody has takes on
+everything.</p>
+<p>My inbox is a disaster of companies sending me AI-generated nonsense and I now
+routinely see AI-generated blog posts (or at least ones that look like they are
+AI-generated) being discussed in earnest on Hacker News and elsewhere.</p>
+<p>Genuine human discourse had already been an issue because of social media
+algorithms before, but now it has become incredibly toxic.  As more and more
+people discover that they can use LLMs to optimize their following, they are
+entering an arms race with the algorithms and real genuine human signal is
+losing out quickly.  There are entire companies now that just exist to <a href="https://polsia.com/">automate
+sending LLM-generated shit</a> and people evidently pay money
+for it.</p>
+<h2>Speed Should Kill</h2>
+<p>If we take into account the idea that the highest-quality content should win
+out, then the speed element would not matter.  If a human-generated comment
+comes in 15 minutes after a clanker-generated one, but outperforms it by being
+better, then this whole LLM nonsense would show up less.  But I think that
+LLM-generated noise actually performs really well.  We see this plenty with Open
+Source now.  Someone builds an interesting project, puts it on GitHub and within
+hours, there are &#8220;remixes&#8221; and &#8220;reimplementations&#8221; of that codebase.  Not only
+that, many of those forks come with sloppy marketing websites, paid-for domains,
+and a whole story on socials about why this is the path to take.</p>
+<p>I have complained before that Open Source is quickly deteriorating because
+people now see the opportunity to build products on top of useful Open Source
+projects, but the underlying mechanics are the same as why we see so much LLM
+slop.  Someone has a formed opinion (hopefully) at lunch, and then has a
+clanker-made post 3 minutes later.  It just does not take that much time to
+build it.  For the tweets, I think it&#8217;s worse because I suspect that some people
+have scripts running to mostly automate the engagement.</p>
+<p>And surely, we should hate all of this.  These low-effort posts, tweets, and Open
+Source projects should not make it anywhere.  But they do!  Whatever they play
+into, whether in the algorithms or with human engagement, they are not punished
+enough for how little effort goes into them.</p>
+<h2>Friction and Rate Limiting</h2>
+<p>That increases in speed and ease of access can turn into problems is a
+long-understood issue.  ID cards are a very unpopular thing in the UK because
+the British are suspicious of misuse of a central database after what happened in
+Nazi Germany.  Likewise the US has the Firearm Owners Protection Act from 1986,
+which also bans the US from creating a central database of gun owners.  The
+gun-tracing methodologies that result from not having such a database <a href="https://www.youtube.com/watch?v=rMQ2b6ZwwCU">look like
+something out of a Wes Anderson movie</a>.
+We have known for a long time that certain things should not be easy, because of
+the misuse that happens.</p>
+<p>We know it in engineering; we know it when it comes to governmental overreach.
+Now we are probably going to learn the same lesson in many more situations
+because LLMs make almost anything that involves human text much easier.  This is
+hitting existing text-based systems quickly.  Take, for instance, the EU
+complaints system, which is now <a href="https://www.politico.eu/article/eu-system-buckles-under-pressure-of-ai-powered-complaints/">buckling under the pressure of
+AI</a>.
+Or take any AI-adjacent project&#8217;s issue tracker.  <a href="https://pi.dev/">Pi</a> is routinely
+getting AI-generated issue requests, sometimes even
+<a href="https://github.com/badlogic/pi-mono/issues/4111">without</a> <a href="https://github.com/badlogic/pi-mono/issues/3862">the
+knowledge</a> <a href="https://github.com/badlogic/pi-mono/issues/3783">of the
+author</a>.</p>
+<h2>Trust Erosion and Gaslighting</h2>
+<p>I know that&#8217;s a lot of complaining for &#8220;I am getting too many emails,
+shitty Twitter mentions, and GitHub issues.&#8221;  I really think, though, that now
+that we know that it&#8217;s happening, we have to change how we interact with people
+who are increasingly automating themselves.  Not only do they produce a lot of
+shitty slop that we all have to sit through; they are also influencing the world
+in much more insidious ways, in that they are influencing our interactions with
+each other.  The moment I start distrusting people I otherwise trust, because
+they have started picking up LLM phrasing, it erodes trust all over society.</p>
+<p>You also can&#8217;t completely ban people for bad behavior, because some of this
+increasingly happens accidentally.  You sending Polsia spam to me?  You&#8217;re dead
+to me.  You sending me an AI-generated issue request and following up with an
+apology five minutes later?  Well, I guess mistakes happen.  Yet, in many ways,
+what is going on and will continue to go on is unsettling.</p>
+<p>I recently talked with my friend <a href="https://github.com/benvinegar">Ben</a> who said
+he forced someone to call him to continue a conversation because he was no
+longer convinced he was talking to a human.</p>
+<p>Not all of us have been exposed to the extreme cases of this yet, but I had a
+handful of interactions in which I questioned reality due to the behavior of the
+person on the other side.  I struggle with this, and I consider myself to be
+pretty open to new technologies and AI in particular.  But how will my children
+react to stuff like this?  My mother?  I have strong doubts that technology is
+going to solve this for us.</p>
+<h2>Suggestions for Change</h2>
+<p>The reason I don&#8217;t think technology is going to solve this for us is that while
+it can hide some spam and label some generated text, it won&#8217;t fix us humans.
+What is being damaged here are social interactions across the board: the
+assumption that when someone writes to you, there is a person on the other side
+who has put some care into the interaction.  I would rather have someone ghost
+me or reject me than send me back some AI-generated slop.</p>
+<p>Change has to start with awareness and an unfortunate development is that LLMs
+don&#8217;t just influence the text we read and they influence the text we write, even when
+we don&#8217;t use them.  Given the resulting ambiguity, we need to become more aware
+of how easily we can turn into energy vampires when we use agents to back us up
+in interactions with others.  Consider that every time someone reads text coming
+from you, they will increasingly have to make a judgment call if it was
+you, an LLM, or you and an LLM that produced the interaction.  Transparency in
+either direction, when there is ambiguity, can help great lengths.</p>
+<p>When someone sends us undeclared slop, we need to change how we engage with
+them.  If we care about them, we should tell them.  If we don&#8217;t care about them,
+we should not give them visibility and not engage.</p>
+<p>When it comes to creating platforms and interfaces where text can be submitted,
+we need to throw more wrenches in.  The fact that it was cheap for you to
+produce does not make it cheap for someone else to receive, and we need to find
+more creative ways to increase the backpressure.  GitHub or whatever wants to
+replace it, will have a lot to improve here and some of which might be going
+against its core KPIs.  More engagement is increasingly the wrong thing to look
+at if you want a long term healthy platform.</p>
+<p>Whatever we can do to rate-limit social interactions is something we should try:
+more in-person meetings, more platforms where trust has to be earned, and maybe
+more acceptance that sometimes the right response is no response at all.</p>
+<small>
+<p>And as for AI assistance on this blog, I have an <a href="/ai-transparency/">AI transparency
+disclaimer</a> for a while.  In this particular blog post I used
+Pi as an agent to help me generate the dynamic visualization and I used
+to write the code to analyze and scrape Google Trends.</p>
+</small>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/4/28/before-github/</id>
+    <title>Before GitHub</title>
+    <link href="https://lucumr.pocoo.org/2026/4/28/before-github/" />
+    <published>2026-04-28T00:00:00+00:00</published>
+    <updated>2026-04-28T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>GitHub was not the first home of my Open Source software.  <a href="https://sourceforge.net/projects/pocoo/">SourceForge
+was</a>.</p>
+<p>Before GitHub, I had my own Trac installation.  I had Subversion repositories,
+tickets, tarballs, and documentation on infrastructure I controlled.  Later I
+moved projects to Bitbucket, back when Bitbucket still felt like a serious
+alternative place for Open Source projects, especially for people who were not
+all-in on Git yet.</p>
+<p>And then, eventually, GitHub became the place, and I moved all of it there.</p>
+<p>It is hard for me to overstate how important GitHub became in my life.  A large
+part of my Open Source identity formed there.  Projects I worked on found users
+there.  People found me there, and I found other people there.  Many professional
+relationships and many friendships started because some repository, issue, pull
+request, or comment thread made two people aware of each other.</p>
+<p>That is why I find what is happening to GitHub today so sad and so
+disappointing.  I do not look at it as just the folks at Microsoft making
+product decisions I dislike.  GitHub was part of the social infrastructure of
+Open Source for a very long time.  For many of us, it was not merely where the
+code lived; it was where a large part of the community lived.</p>
+<p>So when I think about GitHub&#8217;s decline, I also think about what came before it,
+and what might come after it.  I have written a few times over the years about
+dependencies, and in particular about the problem of <a href="/2016/3/24/open-source-trust-scaling/">micro
+dependencies</a>.  In my mind, GitHub gave
+life to that phenomenon.  It was something I definitely did not completely
+support, but it also made Open Source more inclusive.  GitHub changed how Open
+Source feels,
+and later npm and other systems changed how dependencies feel.  Put them
+together and you get a world in which publishing code is almost frictionless,
+consuming code is almost frictionless, and the number of projects in the world
+explodes.</p>
+<p>That has many upsides.  But it is worth remembering that Open Source did not
+always work this way.</p>
+<h2>A Smaller World</h2>
+<p>Before GitHub, Open Source was a much smaller world.  Not necessarily in the
+number of people who cared about it, but in the number of projects most of us
+could realistically depend on.</p>
+<p>There were well-known projects, maintained over long periods of time by a
+comparatively small number of people.  You <a href="/2024/3/31/skin-in-the-game/">knew the
+names</a>.  You knew the mailing lists.  You knew who
+had been around for years and who had earned trust.  That trust was not perfect,
+and the old world had plenty of gatekeeping, but reputation mattered in a very
+direct way.  We took pride (and got frustrated) when the Debian folks came and
+told us our licensing stuff was murky or the copyright headers were not up to
+snuff, because they packaged things up.</p>
+<p>A dependency was not just a package name.  It was a project with a history, a
+website, a maintainer, a release process, a lot of friction, and often a place in
+a larger community.  You did not add dependencies casually, because the act of
+depending on something usually meant you had to understand where it came from.</p>
+<p>Not all of this was necessarily intentional, but because these projects were
+comparatively large, they also needed to bring their own infrastructure.  Small
+projects might run on a university server, and many of them were on SourceForge,
+but the larger ones ran their own show.  They grouped together into larger
+collectives to make it work.</p>
+<h2>We Ran Our Own Infrastructure</h2>
+<p>My first Open Source projects lived on infrastructure I ran myself.  There was a
+Trac installation, Subversion repositories, tarballs, documentation, and release
+files served from my own machines or from servers under my control.  That was
+normal.  If you wanted to publish software, you often also became a small-time
+system administrator.  <a href="https://github.com/birkenfeld">Georg</a> and I ran our own
+collective for our Open Source projects: <a href="http://www.pocoo.org/">Pocoo</a>.  We
+shared server costs and the burden of maintaining Subversion and Trac, mailing
+lists and more.</p>
+<p>Subversion in particular made this &#8220;running your own forge&#8221; natural.  It was
+centralized: you needed a server, and somebody had to operate it.
+The project had a home, and that home was usually quite literal: a hostname, a
+directory, a Trac instance, a mailing list archive.</p>
+<p>When Mercurial and Git arrived, they were philosophically the opposite.  Both
+were distributed.  Everybody could have the full repository.  Everybody could
+have their own copy, their own branches, their own history.  In principle, those
+distributed version control systems should have reduced the need for a single
+center.  But despite all of this, GitHub became the center.</p>
+<p>That is one of the great ironies of modern Open Source.  The distributed version
+control system won, and then the world standardized on one enormous centralized
+service for hosting it.</p>
+<h2>What GitHub Gave Us</h2>
+<p>It is easy now to talk only about GitHub&#8217;s failures, of which there are currently
+many, but that would be unfair: GitHub was, and continues to be, a tremendous
+gift to Open Source.</p>
+<p>It made creating a project easy and it made discovering projects easy.  It made
+contributing understandable to people who had never subscribed to a development
+mailing list in their life.  It gave projects issue trackers, pull requests,
+release pages, wikis, organization pages, API access, webhooks, and later CI.
+It normalized the idea that Open Source happens in the open, with visible
+history and visible collaboration.  And it was an excellent and reasonable
+default choice for a decade.</p>
+<p>But maybe the most underappreciated thing GitHub did was archival work: GitHub
+became a library.  It became an index of a huge part of the software commons
+because even abandoned projects remained findable.  You could find forks, and
+old issues and discussions all stayed online.  For all the complaints one can
+make about centralization, that centralization also created discoverable memory.
+The <a href="https://github.blog/news-insights/policy-news-and-insights/advancing-developer-freedom-github-is-fully-available-in-iran/">leaders there once
+cared</a>
+a lot about keeping GitHub available even in countries that were sanctioned by
+the US.</p>
+<p>I know what the alternative looks like, because I was living it.  Some of my
+earliest Open Source projects are <a href="https://pypi.org/project/Colubrid/0.9/">technically still on
+PyPI</a>, but the actual packages are gone.
+The metadata points to my old server, and that server has long stopped serving
+those files.</p>
+<p>That was normal before the large platforms.  A personal domain expired, a VPS
+was shut down, a developer passed away, and with them went the services they
+paid for.  The web was once full of little software homes, and many of them are
+gone <sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup>.</p>
+<h2>npm and the Dependency Explosion</h2>
+<p>The micro-dependency problem was not just that people published very small
+packages.  The hosted infrastructure of GitHub and npm made it feel as if there
+was no cost to create, publish, discover, install, and depend on them.</p>
+<p>In the pre-GitHub world, reputation and longevity were part of the dependency
+selection process almost by necessity, and it often required vendoring.  Plenty
+of our early dependencies were just vendored into our own Subversion trees by
+default, in part because we could not even rely on other services being up when
+we needed them and because maintaining scripts that fetched them, in the pre-API
+days, was painful.  The implied friction forced some reflection, and it resulted
+in different developer behavior.  With npm-style ecosystems, the package graph can
+grow faster than anybody&#8217;s ability to reason about it.</p>
+<p>The problem that this type of thinking created also meant that solutions had to
+be found along the way.  GitHub helped compensate for the accountability problem
+and it helped with licensing.  At one point, the newfound influx of developers
+and merged pull requests left a lot of open questions about what the state of
+licenses actually was.  GitHub even attempted to <a href="https://github.blog/news-insights/new-github-terms-of-service/">rectify
+this</a> with their
+terms of service.</p>
+<p>The thinking for many years was that if I am going to depend on some tiny
+package, I at least want to see its repository.  I want to see whether the
+maintainer exists, whether there are issues, whether there were recent changes,
+whether other projects use it, whether the code is what the package claims it
+is.  GitHub became part of the system that provides trust, and more recently it has
+even become one of the few systems that can publish packages to npm and other
+registries with trusted publishing.</p>
+<p>That means when trust in GitHub erodes, the problem is not isolated to source
+hosting.  It affects the whole supply chain culture that formed around it.</p>
+<h2>GitHub Is Slowly Dying</h2>
+<p>GitHub is currently losing some of what made it feel inevitable.  Maybe that&#8217;s
+just the life and death of large centralized platforms: they always disappoint
+eventually.  Right now people are tired of the instability, the product churn,
+the Copilot AI noise, the unclear leadership, and the feeling that the platform
+is no longer primarily designed for the community that made it valuable.</p>
+<p>Obviously, GitHub also finds itself in the midst of the agentic coding revolution
+and that causes enormous pressure on the folks over there.  But the site has no
+leadership!  It&#8217;s a miracle that things are going as well as they are.</p>
+<p>For a while, leaving GitHub felt like a symbolic move mostly made by smaller
+projects or by people with strong views about software freedom.  I definitely
+cringed when Zig moved to Codeberg!  But I now see people with real weight and
+signal talking about leaving GitHub.  The most obvious one is Mitchell
+Hashimoto, who <a href="https://mitchellh.com/writing/ghostty-leaving-github">announced that Ghostty will
+move</a>.  Where it will
+move is not clear, but it&#8217;s a strong signal.  But there are others, too.
+<a href="https://codeberg.org/uzu/strudel">Strudel moved to Codeberg</a> and so did
+<a href="https://codeberg.org/tenacityteam/tenacity">Tenacity</a>.  Will they cause enough
+of a shift?  Probably not, but I find myself on non-GitHub properties more
+frequently again compared to just a year ago.</p>
+<p>One can argue that this is good: it is healthy for Open Source to stop
+pretending that one company should be the default home of everything.  Git
+itself was designed for a world with many homes.</p>
+<h2>Dispersion Has a Cost</h2>
+<p>Going back to many forges, many servers, many small homes, and many independent
+communities will increase decentralization, and in many ways it will force
+systems to adapt.  This can restore autonomy and make projects less
+dependent on the whims of Microsoft leadership.  It can also allow different
+communities to choose different workflows.  What&#8217;s happening in
+<a href="https://pi.dev/">Pi</a>&#8216;s issue tracker currently is largely a result of GitHub&#8217;s
+product choices not working in the present-day world of Open Source.  It was
+built for engagement, not for maintainer sanity.</p>
+<p>It can also make the web forget again.  <a href="/2024/10/30/make-it-ephemeral/">I quite like software that
+forgets</a> because it has a cleansing element.
+Maybe the real risk of loss will make us reflect more on actually taking
+advantage of a distributed version control system.</p>
+<p>But if projects move to something more akin to self-hosted forges, to their own
+self-hosted Mercurial or cgit servers, we run the risk of losing things that we
+don&#8217;t want to lose.  The code might be distributed in theory, but the social
+context often is not.  Issues, reviews, design discussions, release notes,
+security advisories, and old tarballs are fragile.  They disappear much more
+easily than we like to admit.  Mailing lists, which carried a lot of this in
+earlier years, have not kept up with the needs of today, and are largely a user
+experience disaster.</p>
+<h2>We Need an Archive</h2>
+<p>As much as I like the idea of things fading out of existence, we absolutely need
+libraries and archives.</p>
+<p>Regardless of whether GitHub is here to stay or projects find new homes, what I
+would like to see is some public, boring, well-funded archive for Open Source
+software.  Something with the power of an endowment or public funding to keep it
+afloat.  Something whose job is not to win the developer productivity market but
+just to make sure that the most important things we create do not disappear.</p>
+<p>The bells and whistles can be someone else&#8217;s problem, but source archives,
+release artifacts, metadata, and enough project context to understand what
+happened should be preserved somewhere that is not tied to the business model or
+leadership mood of a single company.</p>
+<p>GitHub accidentally became that archive because it became the center of Open
+Source activity.  Once that no longer holds, we should not assume some magic
+archival function will emerge or that GitHub will continue to function as such.
+We have already seen what happens when project homes are just personal servers
+and good intentions, and we have seen what happened to Google Code and
+Bitbucket.</p>
+<p>I hope GitHub recovers, I really do, in part because a lot of history lives
+there and because the people still working on it inherited something genuinely
+important.  But I no longer think it is responsible to let the continued memory
+of Open Source depend on GitHub remaining a healthy product.</p>
+<p>The world before GitHub had more autonomy and more loss, and in some ways, we&#8217;re
+probably going to move back there, at least for a while.  Whatever people want
+to start building next should try to keep the memory and lose the dependence.
+It should be easier to move projects, easier to mirror their social context,
+easier to preserve releases, and harder for one company&#8217;s drift to become a
+cultural crisis for everyone else.</p>
+<p>I do not want to go back to the old web of broken tarball links and abandoned
+Trac instances.  I also do not want Open Source to pretend that the last twenty
+years were normal or permanent.  GitHub wrote a remarkable chapter of Open
+Source, and if that chapter is ending, the next one should learn from it and also
+from what came before.</p>
+<div class="footnotes">
+<ol>
+<li id="fn-1">
+<p>This is also a good reminder that we rely so very much on the Internet
+Archive for many projects of the time.<a href="#fnref-1" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+]]></content>
+  </entry>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/4/23/equity-for-europeans/</id>
+    <title>Equity for Europeans</title>
+    <link href="https://lucumr.pocoo.org/2026/4/23/equity-for-europeans/" />
+    <published>2026-04-23T00:00:00+00:00</published>
+    <updated>2026-04-23T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>If you spend enough time in US business or finance conversations, one word keeps
+showing up: <strong>equity</strong>.</p>
+<p>Coming from a German-speaking, central European background, I found it
+surprisingly hard to fully internalize what that word means.  More than that, I
+find it very <a href="https://x.com/mitsuhiko/status/2047321138104045974">hard to talk with other
+Europeans</a> about it.  Worst
+of all it&#8217;s almost impossible to explain it in German without either sounding
+overly technical or losing an important part of the meaning.</p>
+<p>This post is in English, but it is written mostly for readers in Germany,
+Austria, and Switzerland, and more broadly for people from continental Europe.
+I move between “German-speaking” and “continental European” a bit.  They are not
+the same thing, of course, but many continental European countries share a
+civil-law background that differs sharply from the English common-law and equity
+tradition.  The words differ by language and jurisdiction, but the conceptual gap
+I am interested in shows up in similar ways.</p>
+<p>In US usage, the word &#8220;equity&#8221; appears everywhere:</p>
+<ul>
+<li>real estate: &#8220;build equity in your home&#8221;</li>
+<li>startups: &#8220;employees get equity&#8221;</li>
+<li>public markets: &#8220;equity investors&#8221;</li>
+<li>private deals: &#8220;take an equity stake&#8221;</li>
+<li>personal finance: &#8220;negative equity in a car&#8221;</li>
+<li>social policy: &#8220;diversity, equity, and inclusion&#8221;</li>
+</ul>
+<p>If you try to translate this into German, you have to choose words.  Of course
+we can say <em>Eigenkapital</em>, <em>Beteiligung</em>, <em>Anteil</em>, <em>Vermögen</em>,
+<em>Nettovermögen</em>, or sometimes <em>Substanzwert</em>.  In narrow contexts, each can be
+correct, but none of them carries the full concept.  I find that gap
+interesting, because language affects default behavior and how we think about
+things.</p>
+<h2>One Word, Shared Meanings</h2>
+<p>In the English language, &#8220;equity&#8221; often carries multiple things at once.  I
+believe the following ones to be the most important ones:</p>
+<ol>
+<li>A legal-fairness dimension: historically tied to <a href="https://en.wikipedia.org/wiki/Equity_(law)">equity in law</a></li>
+<li>A financial-accounting dimension: residual <a href="https://en.wikipedia.org/wiki/Equity_(finance)">value after debt</a></li>
+<li>A cultural dimension: ownership as a <a href="https://en.wikipedia.org/wiki/Intergenerational_equity">path to wealth and agency</a></li>
+</ol>
+<p>If you open Wikipedia, you will find many more distinct meanings of equity, but
+they all relate to much the same concept, just from different angles.</p>
+<p>German, on the other hand, can express each of these layers precisely, including
+the subtleties within each, but it uses different words and there is no common,
+everyday umbrella word that naturally bundles all three.</p>
+<p>When a concept has one short, reusable, positive word, people can move it across
+contexts very easily.  When the concept is split into technical fragments, it
+tends to stay technical, and people do not necessarily think of these things as
+related at all in a continental European context.</p>
+<h2>How Equity Got Here</h2>
+<p>What is hard for Europeans to understand is how the financial meaning of equity
+appeared, because it did not appear out of nowhere.  The word&#8217;s original meaning
+comes from fairness or impartiality, and it made it to modern English via Old
+French and Latin (<em>equité</em> / <em>aequitas</em>).</p>
+<p>Historically, English law had separate traditions: common law courts and courts
+of equity (especially the
+<a href="https://en.wikipedia.org/wiki/Court_of_Chancery">Court of Chancery</a>).  Equity in law was
+about fairness, conscience, and remedies where strict common law rules were too
+rigid.  Take mortgages for instance: in older English practice, a mortgage could
+transfer title as security.  Under strict common law, missing a deadline could
+mean losing the property entirely.  Courts of equity developed the &#8220;<a href="https://en.wikipedia.org/wiki/Equity_of_redemption">equity of
+redemption</a>&#8221;: a borrower
+could still redeem by paying what was owed.</p>
+<p>That equitable interest became foundational for how ownership and claims were
+understood.  In finance, equity came to mean not just a number, but a claim: the
+residual owner&#8217;s stake after prior claims are satisfied.</p>
+<h2>The European Split</h2>
+<p>German and continental European legal development took a different path.  Civil
+law systems did not build the same separate institutional track of &#8220;equity
+courts&#8221; versus common law courts.  Fairness principles absolutely exist, but
+inside the codified system, not as a parallel jurisdiction with its own language
+and mythology.</p>
+<p>As a result, German vocabulary has many different words, and they are highly
+domain-specific.  There are equivalents in other languages, and to some degree
+they exist in English too:</p>
+<ul>
+<li>company balance sheet: <em>Eigenkapital</em></li>
+<li>ownership share: <em>Beteiligung</em>, <em>Anteil</em></li>
+<li>unrealized asset value: <em>stille Reserven</em></li>
+<li>household wealth: <em>Vermögen</em>, <em>Nettovermögen</em></li>
+<li>investment action: <em>Anlage</em>, <em>Investition</em></li>
+<li>residual net assets: <em>Reinvermögen</em></li>
+</ul>
+<p>This precision is useful for legal drafting and accounting.  But it also means
+we have less of the shared mental package that many Americans get from &#8220;equity&#8221;:
+own a piece, carry risk, participate in upside, build wealth.</p>
+<h2>Schuld Is Not Just Debt</h2>
+<p>There is another linguistic oddity worth noting: in German, &#8220;Schuld&#8221; can mean
+both debt/liability and guilt, and I think that too has changed how we think
+about equity.</p>
+<p>&#8220;Schuld&#8221; in everyday language makes debt feel more morally charged than it does
+in the US.  Indebtedness is often framed as a burden, and it is not thought of
+as a tool at all.</p>
+<p>US financial language, by contrast, often frames debt more instrumentally and
+pairs it with an explicit positive counterpart: equity.  Equity is what is yours
+after debt, what can appreciate, what can be transferred, and what can give you
+control.</p>
+<p>In American financial language, debt is not as morally burdened, and equity is
+more than the absence of debt: it is the positive claim on the balance sheet —
+ownership, optionality, control, and upside.</p>
+<h2>Practical Matters</h2>
+<p>If you grew up with German-speaking framing, many US statements around equity
+can sound ideological or naive.  From a continental European lens, they can
+sound like imported jargon or hollow.  But if we ignore the concept, we lose
+something practical:</p>
+<ul>
+<li>We discuss salaries in cash terms but under-discuss ownership.</li>
+<li>We treat employee participation as exotic instead of normal.</li>
+<li>We under-explain compounding and intergenerational transfer.</li>
+<li>We miss a language for talking about agency through ownership.</li>
+</ul>
+<p>I am not saying German-speaking Europeans are incapable of this mindset.
+Obviously we are not.  But we clearly tend to think about these things
+differently.</p>
+<h2>Normalize Equity</h2>
+<p>When you hear “equity,” it helps to think of it as a rightful stake.
+Historically, it is connected to fairness and the recognition of a claim where
+strict rules would be too rigid.  Financially, it is the part that remains after
+prior obligations.  Culturally, it is something that can grow into control,
+agency, and upside.</p>
+<p>That is not a perfect definition, but it captures why the term is so sticky in
+American discourse.  It combines a present claim with a future possibility.  It
+is not just what remains after debt; it is the part that can grow, compound, and
+give you agency.</p>
+<p>If Europeans want to talk more seriously about entrepreneurship, retirement,
+housing, and wealth building, we would benefit from a stronger everyday
+vocabulary for exactly this idea.  We need a longing for equity so that
+ownership does not remain something for founders, lawyers, accountants, and
+wealthy families, but becomes a normal part of how people think about work,
+risk, and their future.</p>
+<p>Not because we should imitate America, but because this mental model helps
+people make clearer decisions about ownership, incentives, and long-term agency.
+For Europe, <a href="https://lucumr.pocoo.org/2025/10/21/eu-resigation/">that shift feels long
+overdue</a>.</p>
+]]></content>
+  </entry>
+</feed>
