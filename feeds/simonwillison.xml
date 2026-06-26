@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-06-25T22:28:46+00:00</updated><author><name>Simon Willison</name></author><entry><title>AI and Liability</title><link href="https://simonwillison.net/2026/Jun/25/ai-and-liability/#atom-everything" rel="alternate"/><published>2026-06-25T22:28:46+00:00</published><updated>2026-06-25T22:28:46+00:00</updated><id>https://simonwillison.net/2026/Jun/25/ai-and-liability/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-06-26T17:58:54+00:00</updated><author><name>Simon Willison</name></author><entry><title>Incident Report: CVE-2026-LGTM</title><link href="https://simonwillison.net/2026/Jun/26/incident-report/#atom-everything" rel="alternate"/><published>2026-06-26T17:58:54+00:00</published><updated>2026-06-26T17:58:54+00:00</updated><id>https://simonwillison.net/2026/Jun/26/incident-report/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://nesbitt.io/2026/06/26/incident-report-cve-2026-lgtm.html"&gt;Incident Report: CVE-2026-LGTM&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Spectacular hypothetical incident report by Andrew Nesbitt.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Day 2, 16:00 UTC&lt;/strong&gt; --- Two AI review agents from competing vendors, both attached to a downstream pull request bumping &lt;code&gt;foxhole-lz4&lt;/code&gt;, enter a disagreement loop over whether the package is malicious. After 340 comments and $41,255 in inference spend, Finance revokes both API keys; one vendor's marketing team, cc'd on the cost anomaly alert, issues a press release citing "a 430% YoY increase in adversarial multi-agent security reasoning." The stock opens up 6%.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/prompt-injection"&gt;prompt-injection&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/supply-chain"&gt;supply-chain&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/andrew-nesbitt"&gt;andrew-nesbitt&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="security"/><category term="ai"/><category term="prompt-injection"/><category term="generative-ai"/><category term="llms"/><category term="supply-chain"/><category term="ai-security-research"/><category term="andrew-nesbitt"/></entry><entry><title>Quoting OpenAI</title><link href="https://simonwillison.net/2026/Jun/26/openai/#atom-everything" rel="alternate"/><published>2026-06-26T17:10:43+00:00</published><updated>2026-06-26T17:10:43+00:00</updated><id>https://simonwillison.net/2026/Jun/26/openai/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://openai.com/index/previewing-gpt-5-6-sol/"&gt;&lt;p&gt;We're beginning a limited preview of the GPT‑5.6 series: Sol, our flagship model; Terra, a balanced model for everyday work; and Luna, a fast and affordable model. Terra has competitive performance to GPT‑5.5 while being 2x cheaper and Luna brings strong capability at our lowest cost. [...]&lt;/p&gt;
+&lt;p&gt;We believe in broad access, and we plan to make GPT‑5.6 Sol, Terra, and Luna generally available in the coming weeks. As part of our ongoing engagement with the U.S. government, we previewed our plans and the models’ capabilities ahead of today’s launch. At their request, we are starting with a limited preview for a small group of trusted partners whose participation has been shared with the government, before releasing more broadly. [...]&lt;/p&gt;
+&lt;p&gt;GPT‑5.6 is priced per 1M tokens across three model sizes: Sol is $5 input / $30 output; Terra is $2.50 input / $15 output; and Luna is $1 input / $6 output. GPT‑5.6 also introduces more predictable prompt caching, including support for explicit cache breakpoints and a 30-minute minimum cache life. For GPT‑5.6 and later models, cache writes are billed at 1.25x the model’s uncached input rate, while cache reads continue to receive the 90% cached-input discount.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://openai.com/index/previewing-gpt-5-6-sol/"&gt;OpenAI&lt;/a&gt;, Previewing GPT‑5.6 Sol: a next-generation model&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/gpt"&gt;gpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-pricing"&gt;llm-pricing&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="gpt"/><category term="generative-ai"/><category term="ai-security-research"/><category term="openai"/><category term="llms"/><category term="llm-release"/><category term="llm-pricing"/></entry><entry><title>AI and Liability</title><link href="https://simonwillison.net/2026/Jun/25/ai-and-liability/#atom-everything" rel="alternate"/><published>2026-06-25T22:28:46+00:00</published><updated>2026-06-25T22:28:46+00:00</updated><id>https://simonwillison.net/2026/Jun/25/ai-and-liability/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://www.schneier.com/blog/archives/2026/06/ai-and-liability.html"&gt;AI and Liability&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Bruce Schneier on the recent &lt;a href="https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/"&gt;German ruling&lt;/a&gt; that Google be held liable for errors introduced in their AI overviews:&lt;/p&gt;
@@ -677,35 +700,4 @@ Lots of "source familiar with the administration's thinking" and "source close t
 
 
 
-</summary><category term="jailbreaking"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="nicholas-carlini"/><category term="ai-ethics"/><category term="claude-mythos"/></entry><entry><title>Quoting Julia Evans</title><link href="https://simonwillison.net/2026/Jun/15/julia-evans/#atom-everything" rel="alternate"/><published>2026-06-15T02:05:19+00:00</published><updated>2026-06-15T02:05:19+00:00</updated><id>https://simonwillison.net/2026/Jun/15/julia-evans/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://wizardzines.com/comics/write-for-one-person/"&gt;&lt;p&gt;[...] Instead, I picture a specific person and I just write for them. Often this person is "me, but 3 years ago" or a good friend.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://wizardzines.com/comics/write-for-one-person/"&gt;Julia Evans&lt;/a&gt;, write for 1 person&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/writing"&gt;writing&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/julia-evans"&gt;julia-evans&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="writing"/><category term="julia-evans"/></entry><entry><title>Why AI hasn’t replaced software engineers, and won’t</title><link href="https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything" rel="alternate"/><published>2026-06-14T23:54:11+00:00</published><updated>2026-06-14T23:54:11+00:00</updated><id>https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.normaltech.ai/p/why-ai-hasnt-replaced-software-engineers"&gt;Why AI hasn’t replaced software engineers, and won’t&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Arvind Narayanan and Sayash Kappor take on the question of AI job losses through the lens of a profession that is uniquely suited to AI disruption - software engineering.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In this essay, we argue that there is enough evidence to reject the narrative that once AI capabilities reach a certain threshold, it will cause mass layoffs. Given that this is true even in a sector with very few regulatory barriers, most other professions are likely to be even more cushioned.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The first good news is that the data still doesn't support the idea that AI is causing mass unemployment.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In March 2025, New York became the first U.S. state to add an AI disclosure checkbox to WARN Act filings. In the full first year, more than 160 companies filed WARN notices. &lt;a href="https://www.hunton.com/hunton-employment-labor-perspectives/new-york-warn-act-no-ai-related-layoffs-reported-in-first-year-of-adding-ai-related-disclosure-to-the-system"&gt;Not a single one&lt;/a&gt; checked the AI box&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;AI speeds up the typing-code-into-a-computer phase, but it turns out software engineering is about a whole lot more than that:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If writing code isn’t the bottleneck, what is? The task-breakdown surveys point at things like meetings or debugging. This just leads to more questions: what are developers doing in those meetings and why can’t it be done by AI? Won’t debugging get automated as capabilities improve? To understand the real bottlenecks, we have to get qualitative, and dig into software engineers’ own understanding of what it is they do that resists automation.&lt;/p&gt;
-&lt;p&gt;When we did this analysis, it revealed three things as the real bottlenecks (1) deciding and specifying what to build, (2) verifying and being accountable for what is delivered, and (3) the deep human understanding — of the codebase, the business, and the environment — required to carry out both of these.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I'm finding AI assistance also helps me with the deciding and verifying steps, but it's the "deep human understanding" that remains key to the value I provide. Give me all of the AI assistance in the world and the value I produce will still be reliant on how deeply I understand both the problems and the solutions that the agents are building for them.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/careers"&gt;careers&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/arvind-narayanan"&gt;arvind-narayanan&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="careers"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="arvind-narayanan"/><category term="ai-ethics"/></entry></feed>
+</summary><category term="jailbreaking"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="nicholas-carlini"/><category term="ai-ethics"/><category term="claude-mythos"/></entry></feed>
