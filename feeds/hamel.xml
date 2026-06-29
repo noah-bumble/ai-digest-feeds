@@ -16,8 +16,1522 @@
 <height>81</height>
 <width>144</width>
 </image>
-<generator>quarto-1.9.38</generator>
-<lastBuildDate>Thu, 26 Mar 2026 07:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Mon, 29 Jun 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>“It’s Hard to Eval” Is a Product Smell</title>
+  <dc:creator>Hamel Husain</dc:creator>
+  <link>https://hamel.dev/blog/posts/eval-smell/</link>
+  <description><![CDATA[ 
+
+<!-- Content inserted at the beginning of body tag -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKGWQMKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+
+
+<!-- Shared styles for the inline figure mockups. Included once near the top of index.qmd. -->
+<style>
+.da-fig {
+  max-width: 600px; margin: 1.6rem auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* proof-surface tint: neutrals nudged toward one hue at low chroma.
+     Change --proof-hue (and --proof-chroma) to retint the whole panel. Hue 75 = warm stone. */
+  --proof-hue: 75;
+  --proof-chroma: 1;
+  --proof-surface: oklch(0.985 calc(0.006 * var(--proof-chroma)) var(--proof-hue));
+  /* the disclosure header is a control: step it darker + a touch warmer than the
+     surface so it reads as a distinct band, not part of the body */
+  --proof-header: oklch(0.945 calc(0.02 * var(--proof-chroma)) var(--proof-hue));
+  --proof-header-hover: oklch(0.93 calc(0.024 * var(--proof-chroma)) var(--proof-hue));
+  --proof-border: oklch(0.915 calc(0.014 * var(--proof-chroma)) var(--proof-hue));
+  --proof-line: oklch(0.93 calc(0.009 * var(--proof-chroma)) var(--proof-hue));
+  --proof-track: oklch(0.93 calc(0.012 * var(--proof-chroma)) var(--proof-hue));
+}
+.da-fig__win { border: 1px solid #d9dce1; border-radius: 12px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.da-fig__bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #f5f6f8; border-bottom: 1px solid #e6e8ec; font-size: 13px; font-weight: 600; color: #3b3f46; }
+.da-fig__lights { display: flex; gap: 6px; align-items: center; }
+.da-fig__light { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.da-fig__light--r { background: #ff5f57; }
+.da-fig__light--y { background: #febc2e; }
+.da-fig__light--g { background: #28c840; }
+.da-fig__title { margin-left: 4px; }
+.da-fig__body { padding: 18px 16px; background: #ffffff; }
+.da-fig__user { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+.da-fig__user span { background: #eef1f6; color: #1f2329; padding: 9px 13px; border-radius: 14px 14px 4px 14px; font-size: 14px; max-width: 80%; }
+.da-fig__bot { color: #1f2329; font-size: 15px; line-height: 1.5; }
+.da-fig__bot strong { font-weight: 700; }
+.da-fig__input { display: flex; align-items: center; gap: 8px; margin-top: 18px; padding: 10px 13px; border: 1px solid #e2e4e9; border-radius: 10px; color: #9aa0a8; font-size: 13px; background: #fafbfc; }
+.da-fig__send { margin-left: auto; color: #c2c6cc; }
+.da-fig__cap { text-align: center; font-size: 13px; color: #6b7079; margin-top: 10px; font-style: italic; }
+
+/* "after" figure: the answer is primary, the proof is a quiet subsection */
+.da-ans { font-size: 16px; color: #1f2329; line-height: 1.5; }
+.da-ans strong { font-weight: 700; }
+/* a heads-up on the answer itself: some inputs could not be verified, check details */
+.da-ans__info { color: #d4493c; font-size: 14px; font-weight: 700; margin-left: 5px; cursor: help; vertical-align: 1px; }
+/* the detail card is subordinate to the answer: indented, with a dotted thread that drops and curves into it */
+.da-sub { position: relative; margin: 14px 0 0 26px; }
+.da-thread { position: absolute; left: -20px; top: -14px; width: 22px; height: 46px; overflow: visible; }
+.da-thread path { stroke: var(--proof-border); }
+
+/* verification subsection: a tinted, low-elevation card with a clickable header bar */
+.da-verify { margin: 0; border: 1px solid var(--proof-border); border-radius: 12px; overflow: hidden; background: var(--proof-surface); box-shadow: 0 1px 2px rgba(40, 40, 50, 0.05); }
+.da-verify > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; background: var(--proof-header); border-bottom: 1px solid var(--proof-line); font-size: 13px; }
+.da-verify > summary:hover { background: var(--proof-header-hover); }
+.da-verify > summary::-webkit-details-marker { display: none; }
+.da-verify > summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid #6b7079; border-bottom: 1.5px solid #6b7079; transform: rotate(45deg); margin: -3px 4px 0 0; transition: transform 0.15s ease; }
+.da-verify:not([open]) > summary::after { transform: rotate(-45deg); }
+.da-verify__label { font-weight: 600; color: #1f2329; font-size: 13.5px; }
+.da-verify__body { padding: 2px 14px 12px; }
+
+.da-group { background: #ffffff; border: 1px solid var(--proof-border); border-radius: 9px; padding: 1px 12px 5px; margin-top: 9px; box-shadow: 0 1px 2px rgba(40, 40, 50, 0.04); }
+.da-group:first-child { margin-top: 5px; }
+.da-group__head { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: #8a909a; font-weight: 700; padding: 8px 0 7px; border-bottom: 1px solid var(--proof-line); }
+
+.da-step { display: grid; grid-template-columns: 1fr auto; gap: 0 10px; align-items: start; padding: 9px 0 9px 16px; font-size: 13px; }
+.da-step--flag { border-left: 2px solid #e08379; padding-left: 14px; }
+.da-step + .da-step { border-top: 1px solid var(--proof-line); }
+.da-squig { text-decoration: none; }
+.da-info { color: #d4493c; font-size: 12.5px; font-weight: 700; margin-left: 4px; }
+.da-step__label { color: #797f87; }
+.da-step__val { color: #2a2d33; font-weight: 400; margin-left: 8px; }
+.da-step__check { color: #9aa0a8; text-align: right; }
+.da-step__src { color: #6b7079; text-decoration: underline; text-decoration-color: #c4c9d0; text-underline-offset: 2px; }
+
+/* region breakdown: shown inline as part of the expanded view */
+.da-dist { margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--proof-line); }
+.da-chart { margin: 4px 0 6px; }
+.da-chart__cap { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #9aa0a8; margin: 6px 0 7px; }
+.da-bar { display: grid; grid-template-columns: 92px 1fr 58px; align-items: center; gap: 10px; margin: 6px 0; font-size: 12.5px; }
+.da-bar__label { color: #6b7079; }
+.da-bar__track { background: var(--proof-track); border-radius: 4px; height: 14px; overflow: hidden; }
+.da-bar__fill { display: block; background: #5b8def; height: 100%; border-radius: 4px; }
+.da-bar__val { text-align: right; color: #3b3f46; font-weight: 600; }
+
+/* tools, quiet */
+.da-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+/* the primary action: a raised white button with dark text. The white fill and
+   lift separate it from the warm panel without the shout of a solid dark button. */
+.da-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #2a2d33; background: #fff; border: 1px solid #c7ccd3; border-radius: 7px; padding: 7px 13px; box-shadow: 0 1px 3px rgba(40, 40, 50, 0.10); }
+
+/* provenance: the answer was built from a vetted analysis a colleague authored.
+   Warm tint and an open affordance, echoing the vetted-lesson-plan idea elsewhere. */
+/* a white card lifts it off the warm panel like the data groups, so it belongs;
+   a small notebook glyph and the amber "Open" link are the only distinguishing cues. */
+.da-prov { display: flex; align-items: center; gap: 10px; margin: 2px 0 11px; padding: 11px 13px; background: #fff; border: 1px solid var(--proof-border); border-radius: 9px; box-shadow: 0 1px 2px rgba(40,40,50,0.05); text-decoration: none; }
+.da-prov__ic { flex: none; width: 15px; height: 15px; color: #9aa0a8; }
+.da-prov__ic svg { display: block; width: 15px; height: 15px; }
+.da-prov__main { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+.da-prov__title { font-size: 12.5px; color: #2a2d33; font-weight: 400; }
+.da-prov__by { font-size: 11px; color: #8a909a; margin-top: 1px; }
+.da-prov__open { margin-left: auto; font-size: 11.5px; font-weight: 600; color: #9a7a30; white-space: nowrap; }
+
+/* ===========================================================================
+   PE Lesson Planner: a desktop app. Deliberately distinct from the data agent
+   (window chrome with traffic lights, split panes, a teal accent, wider canvas).
+   =========================================================================== */
+.pe-figure { width: 100%; margin: 1.8rem auto; }
+.pe-app {
+  --pe-accent: #1f7a6b;
+  /* warm-stone proof tint, scoped here so the lineage card, avatar, chips and
+     changed-line highlight read as a differentiated surface (same hue as Example 1). */
+  --proof-hue: 75;
+  --proof-chroma: 1;
+  --proof-surface: oklch(0.985 calc(0.006 * var(--proof-chroma)) var(--proof-hue));
+  --proof-border: oklch(0.915 calc(0.014 * var(--proof-chroma)) var(--proof-hue));
+  --proof-line: oklch(0.93 calc(0.009 * var(--proof-chroma)) var(--proof-hue));
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  border: 1px solid #d4d7dd; border-radius: 10px; overflow: hidden;
+  background: #ffffff; box-shadow: 0 6px 22px rgba(30, 32, 40, 0.10);
+}
+.pe-app__bar { display: flex; align-items: center; gap: 11px; padding: 9px 14px; background: #eceef1; border-bottom: 1px solid #dfe2e7; }
+.pe-app__lights { display: flex; gap: 6px; }
+.pe-light { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.pe-light--r { background: #ff5f57; }
+.pe-light--y { background: #febc2e; }
+.pe-light--g { background: #28c840; }
+.pe-app__title { font-size: 12.5px; font-weight: 600; color: #5b6068; }
+.pe-app__cap { text-align: center; font-size: 13px; color: #6b7079; margin-top: 11px; font-style: italic; }
+
+/* shared plan document rendering */
+.pe-doc__header { display: flex; align-items: baseline; gap: 9px; margin-bottom: 15px; }
+.pe-doc__tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #4b5059; }
+.pe-doc__title { font-size: 17px; font-weight: 700; color: #1f2329; }
+.pe-doc__sub { font-size: 12px; color: #5b6068; }
+.pe-doc__header .pe-doc__tag { margin-left: auto; }
+.pe-scroll { overflow-y: auto; padding-right: 10px; }
+.pe-scroll::-webkit-scrollbar { width: 10px; }
+.pe-scroll::-webkit-scrollbar-track { background: #f1f2f4; border-radius: 6px; }
+.pe-scroll::-webkit-scrollbar-thumb { background: #c4c9d0; border-radius: 6px; border: 2px solid #f1f2f4; }
+.pe-fill { position: relative; flex: 1; min-height: 0; }
+.pe-fill .pe-scroll { position: absolute; inset: 0; }
+.pe-sec + .pe-sec { margin-top: 14px; }
+.pe-sec__head { font-size: 13px; font-weight: 700; color: #1f2329; margin-bottom: 4px; }
+.pe-sec p { font-size: 13.5px; line-height: 1.55; color: #3b3f46; margin: 0; }
+
+/* "before": inputs panel on the left, generated plan on the right */
+.pe-app__split { display: grid; grid-template-columns: 268px 1fr; }
+.pe-inputs { padding: 18px 18px 20px; background: #f7f8fa; border-right: 1px solid #e6e8ec; }
+.pe-inputs__head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #4b5059; margin-bottom: 13px; }
+.pe-field { display: flex; flex-direction: column; gap: 4px; }
+.pe-field + .pe-field { margin-top: 11px; }
+.pe-field__label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #4b5059; }
+.pe-field__input { display: flex; align-items: center; justify-content: space-between; font-size: 13.5px; color: #1f2329; background: #ffffff; border: 1px solid #e2e4e9; border-radius: 8px; padding: 8px 11px; }
+.pe-field__caret { color: #b4b9c0; font-size: 11px; margin-left: 8px; }
+.pe-generate { display: block; text-align: center; margin-top: 16px; font-size: 13.5px; font-weight: 600; color: #ffffff; background: var(--pe-accent); border-radius: 8px; padding: 10px 16px; }
+.pe-doc { padding: 20px 22px; display: flex; flex-direction: column; min-height: 0; }
+
+/* "after": lineage header, then a split of the full plan and its diff */
+.pe-app__body { padding: 18px 20px 20px; }
+.pe-src { position: relative; border: 1px solid var(--proof-border); border-radius: 12px; background: var(--proof-surface); padding: 15px; text-align: center; }
+.pe-src__id { display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
+.pe-src__avatar { flex: none; width: 30px; height: 30px; border-radius: 50%; background: oklch(0.88 0.035 var(--proof-hue)); color: #4b5059; font-size: 11.5px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.pe-src__name { font-size: 14px; font-weight: 600; color: #1f2329; }
+.pe-src__meta { font-size: 12px; color: #6b7079; margin-top: 3px; }
+.pe-src__signals { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; justify-content: center; }
+.pe-sig { font-size: 11.5px; color: #4b5059; background: #ffffff; border: 1px solid #d3d7dd; border-radius: 999px; padding: 4px 11px; }
+.pe-src__link { position: absolute; top: 14px; right: 15px; font-size: 12.5px; color: var(--pe-accent); text-decoration: none; font-weight: 500; }
+
+.pe-split2 { display: grid; grid-template-columns: 1fr 1fr; margin-top: 16px; border: 1px solid #e6e8ec; border-radius: 10px; overflow: hidden; }
+.pe-pane { padding: 14px 16px; }
+.pe-pane--full { border-right: 1px solid #e6e8ec; display: flex; flex-direction: column; min-height: 0; }
+.pe-pane__head { display: flex; align-items: center; justify-content: space-between; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #4b5059; margin-bottom: 11px; }
+
+/* full plan, with changed lines marked to match the diff */
+.pe-line__sec { font-size: 13px; font-weight: 700; color: #1f2329; margin: 13px 0 5px; }
+.pe-line__sec:first-child { margin-top: 0; }
+.pe-line { font-size: 13px; line-height: 1.5; color: #3b3f46; }
+.pe-line + .pe-line { margin-top: 7px; }
+.pe-line--changed { display: flex; gap: 9px; align-items: baseline; border-left: 2px solid #d7dbe1; padding: 3px 0 3px 11px; }
+.pe-line--changed + .pe-line { margin-top: 9px; }
+.pe-badge { flex: none; width: 16px; height: 16px; border-radius: 50%; background: #eaecef; color: #5b6068; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+
+/* diff pane, each group keyed to a badge in the full plan */
+.pe-dgroup + .pe-dgroup { margin-top: 13px; padding-top: 13px; border-top: 1px solid #eef0f3; }
+.pe-dgroup__head { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: #1f2329; margin-bottom: 7px; }
+.pe-drow { display: grid; grid-template-columns: 14px 1fr; gap: 7px; align-items: baseline; font-size: 12.5px; padding: 4px 8px; border-radius: 5px; }
+.pe-drow__mark { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; text-align: center; }
+.pe-drow--del { background: #fbecea; }
+.pe-drow--del .pe-drow__text { color: #9aa0a8; text-decoration: line-through; }
+.pe-drow--del .pe-drow__mark { color: #c2705f; }
+.pe-drow--add { background: #eaf6ee; margin-top: 3px; }
+.pe-drow--add .pe-drow__text { color: #2f3338; }
+.pe-drow--add .pe-drow__mark { color: #3fae6a; }
+.pe-dwhy { font-size: 11.5px; color: #8a909a; margin-top: 5px; padding-left: 8px; }
+
+/* Cursor-style review controls: accept / reject per change, plus an accept-all bar */
+.pe-review { display: inline-flex; gap: 12px; text-transform: none; letter-spacing: normal; }
+.pe-allbtn { font-size: 11.5px; font-weight: 600; cursor: pointer; color: #8a909a; }
+.pe-allbtn--accept { color: var(--pe-accent); }
+.pe-dactions { display: flex; gap: 8px; margin-top: 10px; padding-left: 8px; }
+.pe-dbtn { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 6px; border: 1px solid #e2e4e9; background: #ffffff; color: #5b6068; cursor: pointer; }
+.pe-dbtn--accept { color: #2f7a52; background: #eaf6ee; border-color: #cfe9d8; }
+.pe-dbtn--reject { color: #b05c4f; background: #fbecea; border-color: #f0d7d2; }
+.pe-dbtn__key { font-size: 10px; opacity: 0.55; font-weight: 400; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+/* ===========================================================================
+   ClaimDraft: a workers-comp report tool. A clinical/enterprise desktop app,
+   distinct again from the data agent and the PE planner: a slate title bar with
+   window controls on the right, a classic menu bar, a source-records sidebar,
+   and a serif report body paginated to show how long the output is.
+   =========================================================================== */
+.wc-figure { width: 100%; margin: 1.8rem auto; --wc-accent: #3d4d6b; }
+.wc-app { width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; border: 1px solid #c5c8ce; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 6px 22px rgba(30, 32, 40, 0.10); }
+.wc-titlebar { display: flex; align-items: center; justify-content: space-between; padding: 8px 13px; background: var(--wc-accent); color: #ffffff; }
+.wc-titlebar__name { font-size: 12.5px; font-weight: 600; }
+.wc-win { display: flex; gap: 15px; font-size: 11px; color: #c3cad8; }
+.wc-menubar { display: flex; gap: 18px; padding: 6px 14px; background: #f1f2f4; border-bottom: 1px solid #e2e4e9; font-size: 12px; color: #4b5059; }
+.wc-body { display: grid; grid-template-columns: 150px 1fr; }
+.wc-side { background: #f6f7f9; border-right: 1px solid #e6e8ec; padding: 13px 13px 16px; }
+.wc-side__head { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; color: #4b5059; margin-bottom: 10px; }
+.wc-doc { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #3b3f46; padding: 4px 0; }
+.wc-doc__ic { position: relative; width: 12px; height: 15px; flex: none; background: #ffffff; border: 1px solid #aeb4bd; border-radius: 1px; }
+.wc-doc__ic::before { content: ""; position: absolute; top: -1px; right: -1px; width: 5px; height: 5px; background: #f6f7f9; border-left: 1px solid #aeb4bd; border-bottom: 1px solid #aeb4bd; }
+.wc-doc__ic::after { content: ""; position: absolute; left: 2px; right: 2px; top: 7px; height: 1px; background: #c2c7ce; box-shadow: 0 3px 0 #c2c7ce; }
+.wc-side__more { font-size: 11.5px; color: #8a909a; margin-top: 7px; }
+.wc-main { display: flex; flex-direction: column; min-height: 0; }
+.wc-case { display: flex; flex-wrap: wrap; gap: 3px 16px; padding: 11px 18px; border-bottom: 1px solid #eceef1; font-size: 11.5px; color: #6b7079; }
+.wc-case b { color: #2a2d33; font-weight: 600; }
+.wc-report { padding: 18px 22px; overflow-y: auto; max-height: 300px; }
+.wc-report::-webkit-scrollbar { width: 10px; }
+.wc-report::-webkit-scrollbar-track { background: #f1f2f4; border-radius: 6px; }
+.wc-report::-webkit-scrollbar-thumb { background: #c4c9d0; border-radius: 6px; border: 2px solid #f1f2f4; }
+.wc-report__title { font-family: Georgia, "Times New Roman", serif; font-size: 16px; font-weight: 700; color: #1f2329; text-align: center; }
+.wc-report__sub { font-size: 10.5px; color: #8a909a; text-align: center; margin: 3px 0 18px; text-transform: uppercase; letter-spacing: 0.06em; }
+.wc-sec { margin-bottom: 16px; }
+.wc-sec__h { font-family: Georgia, "Times New Roman", serif; font-size: 13.5px; font-weight: 700; color: #1f2329; margin-bottom: 5px; }
+.wc-sec p { font-family: Georgia, "Times New Roman", serif; font-size: 12.5px; line-height: 1.62; color: #33373d; margin: 0; }
+.wc-foot { display: flex; align-items: center; justify-content: space-between; padding: 9px 18px; border-top: 1px solid #eceef1; background: #fafbfc; font-size: 11px; color: #8a909a; }
+.wc-app__cap { text-align: center; font-size: 13px; color: #6b7079; margin-top: 11px; font-style: italic; }
+
+/* "after": a review console. documents get a review status; the AI's findings are
+   typed (contradiction, key fact, open question), each cited back to a page, with
+   an action so the doctor resolves them; the report is gated on that review. */
+.wc-doc__st { margin-left: auto; font-size: 11px; line-height: 1; }
+.wc-doc__st--done { color: #2f7a52; }
+.wc-doc__st--todo { color: #b9bec6; }
+.wc-finds { padding: 14px 15px; overflow-y: auto; max-height: 380px; }
+.wc-finds::-webkit-scrollbar { width: 10px; }
+.wc-finds::-webkit-scrollbar-track { background: #f1f2f4; border-radius: 6px; }
+.wc-finds::-webkit-scrollbar-thumb { background: #c4c9d0; border-radius: 6px; border: 2px solid #f1f2f4; }
+.wc-find { border: 1px solid #e6e8ec; border-radius: 8px; padding: 11px 13px; }
+.wc-find + .wc-find { margin-top: 10px; }
+.wc-find__head { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+.wc-find__num { flex: none; width: 17px; height: 17px; border-radius: 50%; background: #eef0f3; color: #8a909a; font-size: 10.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.wc-tag { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; }
+.wc-tag--warn { color: #8a5a00; background: #fbf0dc; }
+.wc-tag--fact { color: #2f6a52; background: #e7f3ec; }
+.wc-tag--q { color: #4b5563; background: #eceef1; }
+.wc-find__body { font-family: Georgia, "Times New Roman", serif; font-size: 12.5px; line-height: 1.55; color: #33373d; }
+.wc-cite { color: var(--wc-accent); text-decoration: none; font-weight: 600; font-size: 12px; border-bottom: 1px solid rgba(61, 77, 107, 0.4); }
+.wc-find__foot { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.wc-abtn { font-size: 11.5px; font-weight: 600; padding: 4px 11px; border-radius: 6px; border: 1px solid #d7dbe1; background: #ffffff; color: #44484e; }
+.wc-abtn--primary { color: #ffffff; background: var(--wc-accent); border-color: var(--wc-accent); }
+.wc-foot__status { font-size: 11.5px; color: #3b3f46; }
+.wc-foot__gen { font-size: 11.5px; font-weight: 600; padding: 6px 13px; border-radius: 6px; background: #e9eaed; color: #9aa0a8; border: 1px solid #dcdfe4; }
+@media (max-width: 700px) {
+  .wc-body { grid-template-columns: 1fr; }
+  .wc-side { border-right: none; border-bottom: 1px solid #e6e8ec; }
+}
+
+@media (max-width: 700px) {
+  .pe-app__split, .pe-split2 { grid-template-columns: 1fr; }
+  .pe-inputs { border-right: none; border-bottom: 1px solid #e6e8ec; }
+  .pe-pane--full { border-right: none; border-bottom: 1px solid #e6e8ec; }
+}
+
+/* data-agent chat card: stack the proof rows on phones so the right-hand
+   check can't crush the label/value or overflow the card */
+@media (max-width: 520px) {
+  .da-step { grid-template-columns: 1fr; gap: 2px 0; }
+  .da-step__check { text-align: left; }
+  .da-prov { flex-wrap: wrap; gap: 6px 10px; }
+  .da-prov__open { margin-left: 0; }
+}
+
+/* intro text above a figure, colored to match the figure captions */
+.fig-intro, .fig-intro p { color: #6b7079; }
+
+/* the tabset border is nearly invisible in dark mode; make it readable */
+.quarto-dark .panel-tabset > .nav-tabs { border-bottom-color: #515861; }
+.quarto-dark .panel-tabset > .tab-content { border-color: #515861; }
+.quarto-dark .panel-tabset > .nav-tabs .nav-link.active {
+  border-color: #515861 #515861 var(--bs-body-bg, #151515);
+}
+</style>
+<!-- Shared "this is only a mockup" easter egg.  Any link or button in any
+     figure on this page can opt in by adding the class `mockup-noop`; one
+     page-level handler shows a subtle, dismissable note at the cursor. -->
+<style>
+.mockup-egg { position: fixed; z-index: 60; max-width: calc(100vw - 20px); background: rgba(38,40,46,0.93); color: #fff; font-size: 11.5px; font-weight: 500; line-height: 1.35; padding: 5px 10px; border-radius: 7px; box-shadow: 0 3px 12px rgba(0,0,0,0.22); white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .14s ease; }
+.mockup-egg.is-on { opacity: 1; }
+.mockup-noop { cursor: pointer; }
+</style>
+<script>
+(function(){
+  if (window.__mockupEgg) return;            // install once per page
+  window.__mockupEgg = true;
+  function install(){
+    var egg = document.createElement("div");
+    egg.className = "mockup-egg";
+    egg.textContent = "Just a mockup, not a live app :)";
+    document.body.appendChild(egg);
+    var timer;
+    function hide(){ egg.classList.remove("is-on"); }
+    document.addEventListener("click", function(e){
+      if(e.target.closest(".mockup-noop")){
+        e.preventDefault();
+        var M = 10;                              // viewport margin
+        // place once to measure, then clamp inside the viewport (mobile-safe)
+        egg.style.left = (e.clientX + 11) + "px";
+        egg.style.top = (e.clientY + 12) + "px";
+        egg.classList.add("is-on");
+        var r = egg.getBoundingClientRect();
+        var x = e.clientX + 11, y = e.clientY + 12;
+        if(x + r.width > window.innerWidth - M) x = window.innerWidth - M - r.width;
+        if(x < M) x = M;
+        if(y + r.height > window.innerHeight - M) y = e.clientY - 12 - r.height;
+        if(y < M) y = M;
+        egg.style.left = x + "px";
+        egg.style.top = y + "px";
+        clearTimeout(timer);
+        timer = setTimeout(hide, 2600);
+      } else {
+        hide();
+      }
+    });
+  }
+  if(document.body){ install(); }
+  else { document.addEventListener("DOMContentLoaded", install); }
+})();
+</script>
+<p>For the past 3 years, AI evals have been my professional focus.<sup>1</sup> The most common objection I hear to evals is “our product is hard to eval”.</p>
+<p>This objection is a product smell. Artifacts that are hard for you to verify are often hard for users too. In the worst case, users have to redo the work from scratch to verify the output. More importantly, designing your product for ease of verification should come before building evals.</p>
+<p>In this post, I’ll walk through three products I advised on that faced this issue. I’ll also show before and after sketches to demonstrate design principles. After these examples, I’ll discuss how to apply this general pattern to your product.</p>
+<section id="example-1-the-ai-data-agent" class="level2">
+<h2 class="anchored" data-anchor-id="example-1-the-ai-data-agent">Example 1: the AI data agent</h2>
+<p>Almost every company I’ve worked with builds an internal AI data agent. You ask it a business question, like what was net revenue for Product A last quarter, and it finds relevant data sources, runs the queries, and provides an answer. The goal of this agent is to reduce dependency on data analysts.</p>
+<p>A common mistake when building AI data agents is to make the answer the only output, as illustrated below.</p>
+<!-- Figure: the data agent whose only output is the answer (the "before" design). -->
+<div class="da-fig">
+  <div class="da-fig__win">
+    <div class="da-fig__bar"><span class="da-fig__lights"><span class="da-fig__light da-fig__light--r"></span><span class="da-fig__light da-fig__light--y"></span><span class="da-fig__light da-fig__light--g"></span></span><span class="da-fig__title">Data Agent</span></div>
+    <div class="da-fig__body">
+      <div class="da-fig__user"><span>What was net revenue for Product A last quarter?</span></div>
+      <div class="da-fig__bot">Net revenue for Product A last quarter was <strong>$4.21M</strong>.</div>
+      <div class="da-fig__input">Ask anything about your business…<span class="da-fig__send">➤</span></div>
+    </div>
+  </div>
+  <div class="da-fig__cap">Since the only output is the answer, there is nothing here to check.</div>
+</div>
+<p>In the sketch above, the user has no way to verify the answer beyond redoing work.<sup>2</sup> A better design is to provide the user with checkable artifacts, informed by how a domain expert might validate the output. Here are techniques I use to validate metrics as a data scientist:</p>
+<ol type="1">
+<li>Compare the quantity and any intermediate calculations against a trusted source, like a vetted dashboard or report, or a similar analysis a colleague has already vetted.<sup>3</sup></li>
+<li>Confirm the metric definition precisely. A number like net revenue can include or exclude things like returns and discounts.</li>
+<li>Sanity-check a related quantity. If I can’t verify the number directly, I pull a related number that should move with it, like units sold or unique customers, and check if the combination is plausible.</li>
+<li>Look at what is beneath the aggregate. A total can hide problems, so I break it down by dimensions like region or time period and sanity-check the distribution.</li>
+<li>Read the query. For an important number I look at the SQL to confirm it does what I think, and I tweak it and rerun to test my assumptions.</li>
+<li>Note anything I could not verify. If a step has no trusted reference to check it against, I flag it instead of presenting it as settled.</li>
+</ol>
+<p>Here’s what a better interface might look like. The two tabs below show the same answer at two levels of detail. The chat reply surfaces the details worth seeing up front, and the notebook holds the full analysis behind the answer. Use the tabs to switch between them.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Chat</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Notebook</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<!-- Figure: the same answer with the proof laid out as a calm, scannable subsection (the "after" design). -->
+<div class="da-fig">
+  <div class="da-fig__win">
+    <div class="da-fig__bar"><span class="da-fig__lights"><span class="da-fig__light da-fig__light--r"></span><span class="da-fig__light da-fig__light--y"></span><span class="da-fig__light da-fig__light--g"></span></span><span class="da-fig__title">Data Agent</span></div>
+    <div class="da-fig__body">
+      <div class="da-fig__user"><span>What was net revenue for Product A last quarter?</span></div>
+      <div class="da-ans">Net revenue for Product A last quarter was <strong>$4.21M</strong>.<span class="da-ans__info" title="Some inputs could not be verified — see details">ⓘ</span></div>
+
+      <div class="da-sub">
+      
+      <details class="da-verify" open="">
+        <summary><span class="da-verify__label">Details</span></summary>
+        <div class="da-verify__body">
+
+          
+            <span class="da-prov__ic"><svg viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="1.5" width="10" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><line x1="5.6" y1="1.5" x2="5.6" y2="14.5" stroke="currentColor" stroke-width="1.3"></line></svg></span>
+            <span class="da-prov__main"><span class="da-prov__title">Adapted from “Quarterly revenue review”</span><span class="da-prov__by">authored by Priya Nair · Jun 28, 2026</span></span>
+            <span class="da-prov__open">Open ↗</span>
+          
+
+          <div class="da-group">
+            <div class="da-group__head">Assumptions</div>
+            <div class="da-step">
+              <span class="da-step__main"><span class="da-step__label">Metric definition</span><span class="da-step__val">gross − returns − discounts</span></span>
+              <span class="da-step__check">matches governed definition</span>
+            </div>
+          </div>
+
+          <div class="da-group">
+            <div class="da-group__head">Intermediate calculations</div>
+            <div class="da-step da-step--flag">
+              <span class="da-step__main"><span class="da-step__label">Returns netted out</span><span class="da-step__val">−$0.7M</span></span>
+              <span class="da-step__check"><span class="da-squig">no trusted source</span><span class="da-info">ⓘ</span></span>
+            </div>
+            <div class="da-step da-step--flag">
+              <span class="da-step__main"><span class="da-step__label">Unique customers</span><span class="da-step__val">12,480</span></span>
+              <span class="da-step__check"><span class="da-squig">183 unmatched</span><span class="da-info">ⓘ</span>, CRM ↔ Billing</span>
+            </div>
+          </div>
+
+          <div class="da-actions">
+            <span class="da-btn">Open as notebook</span>
+          </div>
+        </div>
+      </details>
+      </div>
+    </div>
+  </div>
+  <div class="da-fig__cap">The agent surfaces the important details behind the answer.  Select the Notebook tab above to see the full analysis generated by the agent.</div>
+</div>
+<script>
+(function(){
+  // "Open as notebook" jumps to the Notebook tab of the surrounding Quarto tabset
+  var btns = document.querySelectorAll(".da-fig .da-btn");
+  btns.forEach(function(b){
+    if(b.textContent.toLowerCase().indexOf("notebook") === -1) return;
+    b.style.cursor = "pointer";
+    b.addEventListener("click", function(){
+      var tabs = document.querySelectorAll('[role="tab"]');
+      for(var i = 0; i < tabs.length; i++){
+        if(tabs[i].textContent.trim() === "Notebook"){ tabs[i].click(); break; }
+      }
+    });
+  });
+})();
+</script>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="fig-intro">
+<p>This is the notebook the agent worked in while producing its answer. Scroll within the figure to see all the cells. The sidebar has a Contents tab for jumping between sections and an Assistant tab for asking follow-ups.</p>
+</div>
+<!-- Figure: what "Open as notebook" opens. The agent's answer, rendered as a readable analysis notebook: markdown prose interleaved with code/SQL cells, a TOC to navigate, and an explicit section for what could not be verified. Self-contained styles. -->
+<style>
+.nb {
+  --nb-accent: #5b8def;
+  --nb-ai: #8a5cf5;
+  --nb-ink: #1f2329;
+  --nb-mut: #6b7079;
+  --nb-line: #e7e9ee;
+  --nb-code-bg: #fbfbfd;
+  width: 100%; margin: 1.8rem auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--nb-ink);
+}
+.nb__win { border: 1px solid #d9dce1; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 6px 24px rgba(30,32,40,0.10); }
+
+/* top chrome: traffic lights, sidebar toggle, file name, assistant toggle, run-all */
+.nb__bar { display: flex; align-items: center; gap: 9px; padding: 9px 13px; background: #f5f6f8; border-bottom: 1px solid #e6e8ec; }
+.nb__lights { display: flex; gap: 6px; }
+.nb__light { width: 11px; height: 11px; border-radius: 50%; }
+.nb__light--r { background: #ff5f57; } .nb__light--y { background: #febc2e; } .nb__light--g { background: #28c840; }
+.nb__file { font-size: 13px; font-weight: 600; color: #3b3f46; }
+.nb__file .nb__ext { color: #9aa0a8; font-weight: 500; }
+.nb__spacer { margin-left: auto; }
+.nb__runall { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #3b3f46; background: #fff; border: 1px solid #d3d7dd; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.nb__runall:hover { background: #fbfbfc; }
+.nb__sidebtn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 26px; border-radius: 6px; color: #6b7079; background: #fff; border: 1px solid #d3d7dd; cursor: pointer; }
+.nb__sidebtn:hover { background: #fbfbfc; }
+.nb__sidebtn svg { width: 14px; height: 14px; }
+.nb.is-side-open .nb__sidebtn { background: #eef3fd; color: var(--nb-accent); border-color: #cfe0fb; }
+.nb__publish { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #fff; background: var(--nb-accent); border: 1px solid var(--nb-accent); border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.nb__publish:hover { filter: brightness(0.96); }
+
+/* provenance strip: shows this notebook was built from a vetted one (echoes the
+   "adapted from a vetted lesson plan" idea in the PE example). Warm tint, openable. */
+.nb__prov { display: flex; align-items: baseline; gap: 7px; padding: 7px 14px; background: #faf6ee; border-bottom: 1px solid #efe7d6; font-size: 11.5px; line-height: 1.45; color: #6b5f48; }
+.nb__prov__ic { color: #b48a3c; font-size: 13px; flex: none; position: relative; top: 1px; }
+.nb__prov__txt { flex: 1 1 auto; min-width: 0; }
+/* the source name is itself the "open" affordance: a small diagonal arrow rides
+   with it, and the pair stays on one line so the arrow never detaches */
+.nb__prov a { color: #8a6d2f; text-decoration: none; border-bottom: 1px solid rgba(138,109,47,0.45); white-space: nowrap; }
+.nb__prov__arr { border-bottom: 0; font-size: 0.92em; }
+.nb__prov b { color: #4b4334; font-weight: 600; }
+
+/* AI assistant: a tab inside the right sidebar */
+.nb__ai { min-height: 0; }
+.nb__ai-head { display: flex; align-items: center; gap: 8px; padding: 9px 13px; border-bottom: 1px solid #eef0f3; flex: none; }
+.nb__ai-spark { color: var(--nb-ai); font-size: 13px; }
+.nb__ai-new { font-size: 11px; color: #9aa0a8; }
+.nb__ai-x { margin-left: auto; color: #c2c6cc; font-size: 13px; cursor: pointer; }
+.nb__ai-body { flex: 1; overflow-y: auto; padding: 13px; display: flex; flex-direction: column; gap: 12px; }
+.nb__ai-user { align-self: flex-end; max-width: 92%; background: #eef1f6; color: #1f2329; font-size: 12px; line-height: 1.45; padding: 8px 11px; border-radius: 12px 12px 4px 12px; }
+.nb__ai-msg { display: flex; gap: 8px; }
+.nb__ai-ava { flex: none; color: var(--nb-ai); font-size: 12px; line-height: 1.6; }
+.nb__ai-msg p { margin: 0; font-size: 12px; line-height: 1.5; color: #33373d; }
+.nb__ai-done { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #9aa0a8; padding-left: 1px; }
+.nb__ai-done b { color: #2f7a52; font-weight: 700; }
+.nb__ai-input { border-top: 1px solid #eef0f3; padding: 10px 12px 12px; }
+.nb__ai-field { border: 1px solid #d9dce1; border-radius: 10px; background: #fff; padding: 9px 11px; box-shadow: 0 1px 2px rgba(40,40,50,0.04); }
+.nb__ai-ph { color: #9aa0a8; font-size: 12.5px; }
+.nb__ai-controls { display: flex; align-items: center; gap: 7px; margin-top: 9px; }
+.nb__ai-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: #5b6068; background: #f1f2f5; border: 1px solid #e6e8ec; border-radius: 6px; padding: 3px 8px; }
+.nb__ai-model { margin-left: auto; font-size: 11px; color: #6b7079; }
+.nb__ai-send { width: 24px; height: 24px; border-radius: 6px; background: var(--nb-ai); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+
+/* layout: cells on the left, one collapsible sidebar on the right holding both the
+   contents navigator and the AI assistant (as tabs) so the figure stays text-width */
+.nb__main { display: grid; grid-template-columns: 1fr 238px; }
+.nb:not(.is-side-open) .nb__main { grid-template-columns: 1fr; }
+.nb:not(.is-side-open) .nb__side { display: none; }
+.nb__side { display: flex; flex-direction: column; min-height: 0; background: #fcfcfd; border-left: 1px solid #eceef1; }
+/* collapsed-sidebar rail: only used on phones (see the mobile media query) */
+.nb__rail { display: none; }
+.nb__tabs { display: flex; border-bottom: 1px solid #eef0f3; flex: none; }
+.nb__tab { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 6px; font-size: 11.5px; font-weight: 600; color: #9aa0a8; cursor: pointer; border-bottom: 2px solid transparent; }
+.nb__tab:hover { color: #5b6068; }
+.nb__tab.is-active { color: var(--nb-ink); border-bottom-color: var(--nb-accent); }
+.nb__tab-flag { width: 7px; height: 7px; border-radius: 50%; background: #e0795f; }
+.nb__panel { display: none; flex: 1; min-height: 0; overflow-y: auto; }
+.nb__panel.is-active { display: flex; flex-direction: column; }
+.nb__toc { padding: 12px 11px; }
+.nb__toc-h { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #9aa0a8; font-weight: 700; padding: 0 8px 9px; }
+.nb__toc a { display: flex; align-items: baseline; gap: 7px; text-decoration: none; font-size: 12.5px; color: #5b6068; padding: 6px 8px; border-radius: 6px; line-height: 1.3; }
+.nb__toc a:hover { background: #f0f1f4; }
+.nb__toc a.is-active { background: #eef3fd; color: var(--nb-accent); font-weight: 600; }
+.nb__toc .nb__toc-n { font-size: 10.5px; color: #b4b9c0; font-variant-numeric: tabular-nums; }
+.nb__toc a.is-active .nb__toc-n { color: var(--nb-accent); }
+.nb__toc-flag { position: relative; margin-left: auto; align-self: center; width: 14px; height: 14px; border-radius: 50%; background: #e0795f; color: #fff; font-size: 9px; font-weight: 700; line-height: 1; display: inline-flex; align-items: center; justify-content: center; cursor: help; }
+/* tooltip shows only when the icon itself is hovered, not the whole row */
+.nb__toc-flag::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: -4px; background: #2a2d33; color: #fff; font-weight: 400; font-size: 11px; line-height: 1.3; white-space: nowrap; padding: 5px 9px; border-radius: 6px; box-shadow: 0 3px 12px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transition: opacity .12s; z-index: 6; }
+.nb__toc-flag::before { content: ""; position: absolute; bottom: calc(100% + 3px); left: 4px; border: 5px solid transparent; border-top-color: #2a2d33; opacity: 0; transition: opacity .12s; }
+.nb__toc-flag:hover::after, .nb__toc-flag:hover::before { opacity: 1; }
+
+.nb__scroll { max-height: 720px; overflow-y: auto; padding: 8px 0 14px; }
+.nb__scroll::-webkit-scrollbar { width: 11px; }
+.nb__scroll::-webkit-scrollbar-track { background: #f6f7f9; }
+.nb__scroll::-webkit-scrollbar-thumb { background: #cfd3da; border-radius: 6px; border: 3px solid #f6f7f9; }
+
+/* a cell: gutter prompt on the left, body on the right; toolbar reveals the cell type */
+.nb-cell { display: grid; grid-template-columns: 56px 1fr; padding: 4px 18px 4px 0; }
+.nb-cell__gutter { padding-top: 9px; text-align: right; padding-right: 11px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 600; color: var(--nb-accent); user-select: none; }
+.nb-cell__body { min-width: 0; border-left: 2px solid transparent; padding-left: 14px; }
+.nb-cell--md .nb-cell__body:hover { border-left-color: #e7e9ee; }
+/* every code cell gets a quiet grey rail; only the ACTIVE cell gets the blue accent */
+.nb-cell--code .nb-cell__body { border-left-color: #e2e4e9; }
+.nb-cell__body--sel { border-left: 3px solid var(--nb-accent) !important; padding-left: 13px; background: linear-gradient(90deg, rgba(91,141,239,0.06), rgba(91,141,239,0) 40%); border-radius: 0 6px 6px 0; }
+
+/* the little per-cell toolbar that signals each cell is typed and editable */
+.nb-cell__tools { display: flex; align-items: center; gap: 6px; opacity: 0.62; transition: opacity .12s; margin-bottom: 6px; }
+.nb-cell__body:hover .nb-cell__tools { opacity: 1; }
+.nb-chip { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 7px; border-radius: 5px; }
+.nb-chip--md { color: #6b7079; background: #eef0f3; }
+.nb-chip--py { color: #3f6fd6; background: #eaf0fc; }
+.nb-chip--sql { color: #1f7a6b; background: #e3f3ef; }
+.nb-tool { min-width: 22px; height: 18px; padding: 0 4px; border-radius: 4px; border: 1px solid #e2e4e9; background: #fff; color: #9aa0a8; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; }
+.nb-tool--b { font-weight: 800; }
+.nb-tool--i { font-style: italic; font-family: Georgia, serif; }
+
+/* code cell input is collapsible, but only the chevron toggles it */
+.nb-codecell { border: 0; }
+.nb-codecell__bar { list-style: none; cursor: default; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.nb-codecell__bar::-webkit-details-marker { display: none; }
+.nb-codecell__bar .nb-tool { cursor: pointer; }
+.nb-codecell__chev { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; margin-left: 1px; border-radius: 5px; color: #aab0b8; cursor: pointer; transition: background .12s, transform .15s; }
+.nb-codecell__chev:hover { background: #eceef1; color: #6b7079; }
+.nb-codecell__chev svg { width: 11px; height: 11px; display: block; }
+.nb-codecell:not([open]) .nb-codecell__chev { transform: rotate(-90deg); }
+.nb-codecell__hint { font-size: 11px; color: #aeb4bd; }
+.nb-codecell[open] .nb-codecell__hint { display: none; }
+
+/* per-cell hint that AI can be invoked on this specific cell; revealed on hover
+   so it doesn't clutter every cell at rest */
+.nb-aibtn { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; color: var(--nb-ai); background: #f5f1fe; border: 1px solid #e7dcfb; border-radius: 6px; padding: 2px 8px; opacity: 0; transition: opacity .12s; }
+.nb-cell--code .nb-cell__body:hover .nb-aibtn { opacity: 1; }
+.nb-aibtn .nb-aikbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; color: #a99ad6; }
+
+/* markdown cell rendering */
+.nb-md { font-size: 14px; line-height: 1.62; color: #2a2d33; }
+.nb-md h1 { font-size: 21px; font-weight: 700; margin: 6px 0 6px; letter-spacing: -0.01em; }
+.nb-md h2 { font-size: 16px; font-weight: 700; margin: 8px 0 6px; }
+.nb-md p { margin: 7px 0; }
+.nb-md a { color: var(--nb-accent); text-decoration: none; border-bottom: 1px solid rgba(91,141,239,0.35); }
+.nb-md code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; background: #f1f2f5; padding: 1px 5px; border-radius: 4px; color: #3b3f46; }
+.nb-md .nb-q { color: var(--nb-mut); font-style: italic; }
+.nb-md strong { font-weight: 700; }
+
+/* code + sql cell */
+.nb-code { background: var(--nb-code-bg); border: 1px solid var(--nb-line); border-radius: 8px; padding: 11px 13px; overflow-x: auto; }
+.nb-code pre { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; line-height: 1.62; color: #2a2d33; white-space: pre; }
+.tk-kw { color: #8a5cf5; } .tk-bn { color: #1f9e8f; } .tk-fn { color: #3f6fd6; }
+.tk-str { color: #4f9a52; } .tk-num { color: #b06400; } .tk-com { color: #a6abb3; font-style: italic; } .tk-pn { color: #8a909a; }
+
+/* output area */
+.nb-out { margin-top: 7px; padding-left: 2px; }
+.nb-out__lbl { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: #d0664f; padding-top: 2px; }
+.nb-result { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; color: #2a2d33; margin-top: 3px; }
+.nb-check { color: #2f7a52; font-weight: 600; }
+/* the variable each cell outputs, shown as a small chip the way Hex labels results */
+.nb-outvar { display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.nb-outvar__a { color: #b4b9c0; font-size: 12px; }
+.nb-outvar__n { font-size: 11px; color: #2f7a52; background: #e7f3ec; border: 1px solid #d3e9da; border-radius: 5px; padding: 2px 7px; }
+.nb-outvar__n--chart { color: #6b5bd1; background: #efebfb; border-color: #ddd3f6; }
+.nb-warnline { color: #b05c4f; }
+
+/* a dataframe-style table output */
+.nb-df { border-collapse: collapse; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; margin-top: 5px; }
+.nb-df th, .nb-df td { padding: 4px 14px 4px 0; text-align: right; }
+.nb-df th { color: #8a909a; font-weight: 600; border-bottom: 1px solid var(--nb-line); }
+.nb-df td:first-child, .nb-df th:first-child { text-align: left; color: #5b6068; }
+.nb-df td { color: #2a2d33; border-bottom: 1px solid #f3f4f6; }
+
+/* a chart output, drawn to look like a generated matplotlib figure:
+   title, horizontal bars, value labels, gridlines, an x-axis with ticks and a label */
+.nb-fig { border: 1px solid var(--nb-line); border-radius: 8px; background: #fff; padding: 13px 16px 9px; margin-top: 8px; }
+.nb-fig__title { font-size: 12.5px; font-weight: 600; color: #2a2d33; text-align: center; margin-bottom: 13px; }
+.nb-fig__plot { position: relative; }
+.nb-fig__grid { position: absolute; top: 0; bottom: 0; left: 62px; right: 40px; pointer-events: none; }
+.nb-fig__grid span { position: absolute; top: 0; bottom: 0; width: 1px; background: #eef0f3; }
+.nb-fig__grid span:first-child { background: #d4d8de; }
+.nb-fig__row { display: grid; grid-template-columns: 62px 1fr 40px; align-items: center; height: 27px; }
+.nb-fig__yl { font-size: 11.5px; color: #5b6068; text-align: right; padding-right: 11px; }
+.nb-fig__track { position: relative; height: 15px; }
+.nb-fig__bar { position: absolute; left: 0; top: 0; height: 100%; background: var(--nb-accent); border-radius: 0 2px 2px 0; }
+.nb-fig__vl { font-size: 11.5px; color: #3b3f46; font-weight: 600; padding-left: 9px; font-variant-numeric: tabular-nums; }
+.nb-fig__baseline { position: absolute; left: 62px; right: 40px; bottom: 0; height: 1px; background: #c4c9d0; }
+.nb-fig__axis { display: grid; grid-template-columns: 62px 1fr 40px; margin-top: 4px; }
+.nb-fig__ticks { grid-column: 2; position: relative; height: 13px; }
+.nb-fig__ticks span { position: absolute; top: 0; transform: translateX(-50%); font-size: 10px; color: #9aa0a8; font-variant-numeric: tabular-nums; }
+.nb-fig__xlabel { text-align: center; font-size: 10.5px; color: #8a909a; margin-top: 1px; padding-left: 22px; }
+
+.nb__cap { text-align: center; font-size: 13px; color: #6b7079; margin-top: 11px; font-style: italic; }
+
+@media (max-width: 640px) {
+  .nb-cell { grid-template-columns: 40px 1fr; padding-right: 12px; }
+  .nb-cell__gutter { padding-right: 8px; }
+  /* keep the top chrome on one row: traffic lights on the left, actions pushed
+     to the right by the spacer. the filename is dropped on phones (a 2-char
+     truncated stub looks broken), and the sidebar toggle lives on the rail */
+  .nb__bar { flex-wrap: nowrap; gap: 7px; }
+  .nb__sidebtn, .nb__file { display: none; }
+  .nb__runall, .nb__publish { flex: none; padding: 4px 9px; }
+
+  /* the sidebar stays on screen as a thin collapsed rail on the right; tapping
+     it expands the full panel as an overlay, leaving the cells all but the rail */
+  .nb__main,
+  .nb:not(.is-side-open) .nb__main,
+  .nb.is-side-open .nb__main { grid-template-columns: 1fr 42px; position: relative; }
+  .nb__rail {
+    display: flex; flex-direction: column; align-items: center; gap: 11px;
+    padding: 13px 0; background: #f6f7f9; border: 0; border-left: 1px solid #eceef1;
+    color: #6b7079; cursor: pointer; -webkit-appearance: none; appearance: none;
+  }
+  .nb__rail:hover { background: #f0f1f4; }
+  .nb__rail__ic svg { width: 16px; height: 16px; display: block; }
+  .nb.is-side-open .nb__rail { background: #eef3fd; color: var(--nb-accent); border-left-color: #cfe0fb; }
+
+  .nb__side {
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: min(86%, 296px); z-index: 8;
+    box-shadow: -12px 0 30px rgba(20, 22, 28, 0.20);
+  }
+  /* keep it mounted in both states (so it can slide), driven by two mutually
+     exclusive rules of equal weight: off-screen when closed, in when open */
+  .nb:not(.is-side-open) .nb__side { display: flex; transform: translateX(101%); }
+  .nb.is-side-open .nb__side { display: flex; transform: translateX(0); }
+  /* slide-in on open. a CSS transition between these two conditional rules gets
+     stuck at the closed value in Chrome, so animate with a keyframe instead;
+     gated by .is-anim (added on first user toggle) so it never fires on load */
+  .nb.is-anim.is-side-open .nb__side { animation: nbDrawerIn .24s ease; }
+  @keyframes nbDrawerIn { from { transform: translateX(101%); } to { transform: translateX(0); } }
+  /* dim the cells behind an open drawer; tapping the dim area closes it (JS) */
+  .nb.is-side-open .nb__main::before {
+    content: ""; position: absolute; inset: 0; z-index: 7;
+    background: rgba(18, 20, 26, 0.34);
+  }
+}
+
+/* touch devices have no hover, so hover-only affordances never appear; keep the
+   per-cell "Ask AI" button reachable by revealing it */
+@media (hover: none) {
+  .nb-cell--code .nb-cell__body .nb-aibtn { opacity: 1; }
+}
+</style>
+
+<div class="nb is-side-open">
+  <div class="nb__win">
+
+    <div class="nb__bar">
+      <div class="nb__lights"><span class="nb__light nb__light--r"></span><span class="nb__light nb__light--y"></span><span class="nb__light nb__light--g"></span></div>
+      <span class="nb__file">net_revenue_product_a<span class="nb__ext">.ipynb</span></span>
+      <span class="nb__spacer"></span>
+      <span class="nb__sidebtn" aria-label="Toggle sidebar"><svg viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.6" y="2.6" width="12.8" height="10.8" rx="2" stroke="currentColor" stroke-width="1.4"></rect><line x1="10.3" y1="2.6" x2="10.3" y2="13.4" stroke="currentColor" stroke-width="1.4"></line></svg></span>
+      <span class="nb__runall">▶ Run all</span>
+      <span class="nb__publish">↑ Publish</span>
+    </div>
+
+    <div class="nb__prov">
+      <span class="nb__prov__ic">◫</span>
+      <span class="nb__prov__txt">Adapted from Quarterly revenue review <span class="nb__prov__arr">↗</span>, authored by <b>Priya Nair</b> · Jun 28, 2026</span>
+    </div>
+
+    <div class="nb__main">
+
+      <div class="nb__scroll">
+
+        <!-- title -->
+        <div class="nb-cell nb-cell--md">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body nb-cell__body--sel">
+            <div class="nb-cell__tools" style="opacity:1"><span class="nb-chip nb-chip--md">Markdown</span><span class="nb-tool nb-tool--b">B</span><span class="nb-tool nb-tool--i">i</span><span class="nb-tool">H</span><span class="nb-tool">🔗</span><span class="nb-tool">☰</span></div>
+            <div class="nb-md">
+              <h1>Net revenue — Product A, Q4 FY25</h1>
+              <p class="nb-q">“What was net revenue for Product A last quarter?”</p>
+              <p>Short answer: <strong>$4.21M</strong>. This notebook shows how that number was built and what was checked against a trusted source.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. metric definition -->
+        <div class="nb-cell nb-cell--md" id="nbsec-1">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md">
+              <h2 class="anchored">1. Metric definition</h2>
+              <p>Net revenue is <code>gross − returns − discounts</code>. Read the definition from the governed metrics layer so this matches what finance reports.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--code">
+          <div class="nb-cell__gutter">[1]</div>
+          <div class="nb-cell__body">
+            <details class="nb-codecell"><summary class="nb-codecell__bar"><span class="nb-chip nb-chip--py">Python</span><span class="nb-tool">▶</span><span class="nb-codecell__chev" aria-label="Toggle code"><svg viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.2 4.6 L6 7.4 L8.8 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nb-codecell__hint">Code collapsed</span><span class="nb-aibtn">✦ Ask AI <span class="nb-aikbd">⌘K</span></span></summary>
+            <div class="nb-code"><pre><span class="tk-kw">import</span> yaml
+
+defn <span class="tk-pn">=</span> yaml<span class="tk-pn">.</span><span class="tk-fn">safe_load</span>(<span class="tk-fn">open</span>(<span class="tk-str">"metrics/net_revenue.yml"</span>))
+defn<span class="tk-pn">[</span><span class="tk-str">"expr"</span><span class="tk-pn">]</span>, defn<span class="tk-pn">[</span><span class="tk-str">"source"</span><span class="tk-pn">]</span></pre></div></details>
+            <div class="nb-out">
+              <div class="nb-result"><span class="tk-pn">(</span><span class="tk-str">'gross - returns - discounts'</span><span class="tk-pn">,</span> <span class="tk-str">'finance.order_lines'</span><span class="tk-pn">)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. net revenue for Product A -->
+        <div class="nb-cell nb-cell--md" id="nbsec-2">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md">
+              <h2 class="anchored">2. Net revenue for Product A</h2>
+              <p>Pull net revenue for Product A for the quarter, straight from the order lines.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--code">
+          <div class="nb-cell__gutter">[2]</div>
+          <div class="nb-cell__body">
+            <details class="nb-codecell" open=""><summary class="nb-codecell__bar"><span class="nb-chip nb-chip--sql">SQL</span><span class="nb-tool">▶</span><span class="nb-codecell__chev" aria-label="Toggle code"><svg viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.2 4.6 L6 7.4 L8.8 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nb-codecell__hint">Code collapsed</span><span class="nb-aibtn">✦ Ask AI <span class="nb-aikbd">⌘K</span></span></summary>
+            <div class="nb-code"><pre><span class="tk-kw">SELECT</span> <span class="tk-fn">SUM</span>(gross <span class="tk-pn">-</span> returns <span class="tk-pn">-</span> discounts) <span class="tk-kw">AS</span> net_revenue
+<span class="tk-kw">FROM</span>   finance<span class="tk-pn">.</span>order_lines
+<span class="tk-kw">WHERE</span>  product <span class="tk-pn">=</span> <span class="tk-str">'Product A'</span>
+  <span class="tk-kw">AND</span>  fiscal_quarter <span class="tk-pn">=</span> <span class="tk-str">'Q4-FY25'</span>;</pre></div></details>
+            <div class="nb-out">
+              
+<table class="nb-df caption-top table">
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">net_revenue</th>
+</tr>
+<tr class="even">
+<td>4,210,442</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--md">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md"><p>That's the <strong>$4.21M</strong> the chat answer reported.</p></div>
+          </div>
+        </div>
+
+        <!-- 4. by region -->
+        <div class="nb-cell nb-cell--md" id="nbsec-4">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md">
+              <h2 class="anchored">3. Sanity-check the distribution</h2>
+              <p>Break Product A down by region, then plot it.  Nothing should look out of place against last quarter's mix.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--code">
+          <div class="nb-cell__gutter">[3]</div>
+          <div class="nb-cell__body">
+            <details class="nb-codecell" open=""><summary class="nb-codecell__bar"><span class="nb-chip nb-chip--sql">SQL</span><span class="nb-tool">▶</span><span class="nb-codecell__chev" aria-label="Toggle code"><svg viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.2 4.6 L6 7.4 L8.8 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nb-codecell__hint">Code collapsed</span><span class="nb-aibtn">✦ Ask AI <span class="nb-aikbd">⌘K</span></span></summary>
+            <div class="nb-code"><pre><span class="tk-kw">SELECT</span> region,
+       <span class="tk-fn">SUM</span>(gross <span class="tk-pn">-</span> returns <span class="tk-pn">-</span> discounts) <span class="tk-kw">AS</span> net_revenue
+<span class="tk-kw">FROM</span>   finance<span class="tk-pn">.</span>order_lines
+<span class="tk-kw">WHERE</span>  product <span class="tk-pn">=</span> <span class="tk-str">'Product A'</span>
+  <span class="tk-kw">AND</span>  fiscal_quarter <span class="tk-pn">=</span> <span class="tk-str">'Q4-FY25'</span>
+<span class="tk-kw">GROUP BY</span> region;</pre></div></details>
+            <div class="nb-out">
+              
+<table class="nb-df caption-top table">
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">net_revenue</th>
+</tr>
+<tr class="even">
+<td>West</td>
+<td>1,740,000</td>
+</tr>
+<tr class="odd">
+<td>Central</td>
+<td>1,160,000</td>
+</tr>
+<tr class="even">
+<td>East</td>
+<td>890,000</td>
+</tr>
+<tr class="odd">
+<td>Intl</td>
+<td>420,000</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--code">
+          <div class="nb-cell__gutter">[4]</div>
+          <div class="nb-cell__body">
+            <details class="nb-codecell"><summary class="nb-codecell__bar"><span class="nb-chip nb-chip--py">Python</span><span class="nb-tool">▶</span><span class="nb-codecell__chev" aria-label="Toggle code"><svg viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.2 4.6 L6 7.4 L8.8 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nb-codecell__hint">Code collapsed</span><span class="nb-aibtn">✦ Ask AI <span class="nb-aikbd">⌘K</span></span></summary>
+            <div class="nb-code"><pre>m <span class="tk-pn">=</span> by_region<span class="tk-pn">.</span><span class="tk-fn">set_index</span>(<span class="tk-str">"region"</span>)<span class="tk-pn">[</span><span class="tk-str">"net_revenue"</span><span class="tk-pn">]</span> <span class="tk-pn">/</span> <span class="tk-num">1e6</span>
+m<span class="tk-pn">.</span>plot<span class="tk-pn">.</span><span class="tk-fn">barh</span>(title<span class="tk-pn">=</span><span class="tk-str">"Net revenue by region · Q4 FY25"</span>)</pre></div></details>
+            <div class="nb-out">
+              <div class="nb-fig">
+                <div class="nb-fig__title">Net revenue by region · Q4 FY25</div>
+                <div class="nb-fig__plot">
+                  <div class="nb-fig__grid"><span style="left:0%"></span><span style="left:25%"></span><span style="left:50%"></span><span style="left:75%"></span><span style="left:100%"></span></div>
+                  <div class="nb-fig__row"><span class="nb-fig__yl">West</span><span class="nb-fig__track"><span class="nb-fig__bar" style="width:87%"></span></span><span class="nb-fig__vl">1.74</span></div>
+                  <div class="nb-fig__row"><span class="nb-fig__yl">Central</span><span class="nb-fig__track"><span class="nb-fig__bar" style="width:58%"></span></span><span class="nb-fig__vl">1.16</span></div>
+                  <div class="nb-fig__row"><span class="nb-fig__yl">East</span><span class="nb-fig__track"><span class="nb-fig__bar" style="width:44.5%"></span></span><span class="nb-fig__vl">0.89</span></div>
+                  <div class="nb-fig__row"><span class="nb-fig__yl">Intl</span><span class="nb-fig__track"><span class="nb-fig__bar" style="width:21%"></span></span><span class="nb-fig__vl">0.42</span></div>
+                  <div class="nb-fig__baseline"></div>
+                </div>
+                <div class="nb-fig__axis"><span class="nb-fig__ticks"><span style="left:0%">0</span><span style="left:25%">0.5</span><span style="left:50%">1.0</span><span style="left:75%">1.5</span><span style="left:100%">2.0</span></span></div>
+                <div class="nb-fig__xlabel">net revenue ($M)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--md">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md"><p>West and Central drive most of the revenue, with International a small tail.</p></div>
+          </div>
+        </div>
+
+        <!-- 5. open items: left as runnable cells, not a styled card -->
+        <div class="nb-cell nb-cell--md" id="nbsec-5">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md">
+              <h2 class="anchored">4. What I could not verify</h2>
+              <p>Two inputs have no trusted source to check against. Instead of treating them as settled, each is left below as a cell you can run and edit to dig in.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--code">
+          <div class="nb-cell__gutter">[5]</div>
+          <div class="nb-cell__body">
+            <details class="nb-codecell" open=""><summary class="nb-codecell__bar"><span class="nb-chip nb-chip--sql">SQL</span><span class="nb-tool">▶</span><span class="nb-codecell__chev" aria-label="Toggle code"><svg viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.2 4.6 L6 7.4 L8.8 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nb-codecell__hint">Code collapsed</span><span class="nb-aibtn">✦ Ask AI <span class="nb-aikbd">⌘K</span></span></summary>
+            <div class="nb-code"><pre><span class="tk-com">-- the agent's -$0.7M returns figure is an estimate;</span>
+<span class="tk-com">-- check the returns table for Q4 rows to back it</span>
+<span class="tk-kw">SELECT</span> <span class="tk-fn">COUNT</span>(<span class="tk-pn">*</span>) <span class="tk-kw">AS</span> n_rows, <span class="tk-fn">SUM</span>(amount) <span class="tk-kw">AS</span> returns
+<span class="tk-kw">FROM</span>   finance<span class="tk-pn">.</span>returns
+<span class="tk-kw">WHERE</span>  product <span class="tk-pn">=</span> <span class="tk-str">'Product A'</span>
+  <span class="tk-kw">AND</span>  fiscal_quarter <span class="tk-pn">=</span> <span class="tk-str">'Q4-FY25'</span>;</pre></div></details>
+            <div class="nb-out">
+              
+<table class="nb-df caption-top table">
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">n_rows</th>
+<th data-quarto-table-cell-role="th">returns</th>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+
+              <div class="nb-result" style="margin-top:7px"><span class="nb-warnline"># Q4 returns haven't loaded yet, so the −$0.7M is an estimate</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--md">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md"><p>So that <strong>−$0.7M</strong> has no source to check against yet.  The other open item is the customer join:</p></div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--code">
+          <div class="nb-cell__gutter">[6]</div>
+          <div class="nb-cell__body">
+            <details class="nb-codecell" open=""><summary class="nb-codecell__bar"><span class="nb-chip nb-chip--sql">SQL</span><span class="nb-tool">▶</span><span class="nb-codecell__chev" aria-label="Toggle code"><svg viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.2 4.6 L6 7.4 L8.8 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nb-codecell__hint">Code collapsed</span><span class="nb-aibtn">✦ Ask AI <span class="nb-aikbd">⌘K</span></span></summary>
+            <div class="nb-code"><pre><span class="tk-com">-- 183 of 12,480 unique customers are in Billing, not CRM,</span>
+<span class="tk-com">-- so some revenue can't be attributed. Pull them:</span>
+<span class="tk-kw">SELECT</span> b<span class="tk-pn">.</span>customer_id, b<span class="tk-pn">.</span>amount
+<span class="tk-kw">FROM</span>   billing<span class="tk-pn">.</span>invoices b
+<span class="tk-kw">LEFT JOIN</span> crm<span class="tk-pn">.</span>customers c <span class="tk-kw">USING</span> (customer_id)
+<span class="tk-kw">WHERE</span>  c<span class="tk-pn">.</span>customer_id <span class="tk-kw">IS NULL</span>
+<span class="tk-kw">ORDER BY</span> b<span class="tk-pn">.</span>amount <span class="tk-kw">DESC</span>
+<span class="tk-kw">LIMIT</span> <span class="tk-num">5</span>;</pre></div></details>
+            <div class="nb-out">
+              
+<table class="nb-df caption-top table">
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">customer_id</th>
+<th data-quarto-table-cell-role="th">amount</th>
+</tr>
+<tr class="even">
+<td>BIL-44821</td>
+<td>18,400</td>
+</tr>
+<tr class="odd">
+<td>BIL-39105</td>
+<td>12,950</td>
+</tr>
+<tr class="even">
+<td>BIL-50277</td>
+<td>9,310</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+
+              <div class="nb-result" style="margin-top:7px"><span class="nb-warnline"># 183 rows · $61,540 unattributed</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nb-cell nb-cell--md">
+          <div class="nb-cell__gutter"></div>
+          <div class="nb-cell__body">
+            <div class="nb-md"><p>That's $61,540 of revenue whose customer attribution is uncertain, surfaced so a person can resolve it before the total is trusted.</p></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="nb__side">
+        <div class="nb__tabs">
+          <span class="nb__tab" data-tab="toc">Contents</span>
+          <span class="nb__tab is-active" data-tab="ai"><span class="nb__ai-spark">✦</span>Assistant</span>
+        </div>
+
+        
+
+        <div class="nb__ai nb__panel is-active" data-panel="ai">
+          <div class="nb__ai-head"><span class="nb__ai-new">New thread</span><span class="nb__ai-x">✕</span></div>
+          <div class="nb__ai-body">
+            <div class="nb__ai-user">What was net revenue for Product A last quarter?</div>
+            <div class="nb__ai-msg">
+              <span class="nb__ai-ava">✦</span>
+              <p>I pulled Product A's net revenue from the order lines using finance's governed definition, broke it out by region, and flagged what I couldn't verify. The cells are on the left.</p>
+            </div>
+            <div class="nb__ai-done"><b>✓</b> Generated the cells in this notebook</div>
+          </div>
+          <div class="nb__ai-input">
+            <div class="nb__ai-field">
+              <div class="nb__ai-ph">Ask a follow-up…</div>
+              <div class="nb__ai-controls"><span class="nb__ai-chip">SQL [2]</span><span class="nb__ai-model">Auto ▾</span><span class="nb__ai-send">↑</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nb__rail" aria-label="Open contents and assistant">
+        <span class="nb__rail__ic"><svg viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.6" y="2.6" width="12.8" height="10.8" rx="2" stroke="currentColor" stroke-width="1.4"></rect><line x1="10.3" y1="2.6" x2="10.3" y2="13.4" stroke="currentColor" stroke-width="1.4"></line></svg></span>
+      </button>
+    </div>
+  </div>
+  <div class="nb__cap">The notebook reads top to bottom: the assumptions the agent made, the queries it ran, and an explicit list of what it could not verify.</div>
+<script>
+(function(){
+  var here = document.currentScript;
+  var nb = here.closest(".nb");
+  if(!nb) return;
+  var scroller = nb.querySelector(".nb__scroll");
+  var links = nb.querySelectorAll(".nb__toc a");
+  // native smooth scroll is unreliable inside this container, so animate by hand
+  function glide(el, to, dur){
+    var start = el.scrollTop, delta = to - start, t0 = null;
+    function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+    function step(ts){
+      if(t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      el.scrollTop = start + delta * ease(p);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  links.forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      var id = (a.hash || "").slice(1);
+      var target = id && nb.querySelector("#" + id);
+      if(target && scroller){
+        var top = target.getBoundingClientRect().top
+                - scroller.getBoundingClientRect().top
+                + scroller.scrollTop;
+        var dest = Math.max(0, top - 6);
+        var reduce = window.matchMedia &&
+                     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if(reduce || document.hidden) scroller.scrollTop = dest;
+        else glide(scroller, dest, 360);
+      }
+      links.forEach(function(x){ x.classList.remove("is-active"); });
+      a.classList.add("is-active");
+      // on phones the contents live in a drawer; close it so the cell is visible
+      if(window.matchMedia("(max-width: 640px)").matches) nb.classList.remove("is-side-open");
+    });
+  });
+
+  // one collapsible sidebar; tabs switch between contents and the assistant.
+  // on phones it is a slide-in drawer, so start it closed there (open on desktop)
+  var sideMq = window.matchMedia("(max-width: 640px)");
+  function isPhone(){ return sideMq.matches; }
+  function syncSide(){
+    if(isPhone()) nb.classList.remove("is-side-open");
+    else nb.classList.add("is-side-open");
+  }
+  syncSide();
+  if(sideMq.addEventListener) sideMq.addEventListener("change", syncSide);
+  else if(sideMq.addListener) sideMq.addListener(syncSide);
+
+  // desktop: top toolbar button. phones: the collapsed sidebar rail. both toggle.
+  function toggleSide(){
+    nb.classList.add("is-anim");            // enable the slide animation after first use
+    nb.classList.toggle("is-side-open");
+  }
+  var sidebtn = nb.querySelector(".nb__sidebtn");
+  if(sidebtn) sidebtn.addEventListener("click", toggleSide);
+  var rail = nb.querySelector(".nb__rail");
+  if(rail) rail.addEventListener("click", toggleSide);
+  var aiClose = nb.querySelector(".nb__ai-x");
+  if(aiClose) aiClose.addEventListener("click", function(){
+    nb.classList.remove("is-side-open");
+  });
+  // on phones, tapping the dimmed cells behind the open drawer closes it
+  var main = nb.querySelector(".nb__main");
+  if(main) main.addEventListener("click", function(e){
+    if(!isPhone() || !nb.classList.contains("is-side-open")) return;
+    if(e.target.closest(".nb__side") || e.target.closest(".nb__rail")) return;
+    nb.classList.remove("is-side-open");
+  });
+  var tabs = nb.querySelectorAll(".nb__tab");
+  var panels = nb.querySelectorAll(".nb__panel");
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){
+      var name = t.getAttribute("data-tab");
+      tabs.forEach(function(x){ x.classList.toggle("is-active", x === t); });
+      panels.forEach(function(p){ p.classList.toggle("is-active", p.getAttribute("data-panel") === name); });
+    });
+  });
+  // clicking a contents link also makes sure the contents tab is the one showing
+  links.forEach(function(a){
+    a.addEventListener("click", function(){
+      tabs.forEach(function(x){ x.classList.toggle("is-active", x.getAttribute("data-tab") === "toc"); });
+      panels.forEach(function(p){ p.classList.toggle("is-active", p.getAttribute("data-panel") === "toc"); });
+    });
+  });
+
+  // only the chevron collapses a code cell, not the rest of the bar
+  nb.querySelectorAll(".nb-codecell > summary").forEach(function(s){
+    s.addEventListener("click", function(e){
+      if(!e.target.closest(".nb-codecell__chev")) e.preventDefault();
+    });
+  });
+
+  // mark this notebook's "live" controls as no-ops; the shared page-level
+  // handler (see _fig-styles.qmd) shows the "just a mockup" note on click
+  var EGG_SEL = ".nb__runall, .nb__publish, .nb-codecell__bar .nb-tool, .nb-aibtn, .nb__ai-field, .nb__prov a";
+  nb.querySelectorAll(EGG_SEL).forEach(function(el){ el.classList.add("mockup-noop"); });
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+<p>There is a lot to unpack here. Here are notable changes:</p>
+<ul>
+<li>The agent optionally performs retrieval from vetted analyses, and the interface shows which one was used along with who authored it.</li>
+<li>There is progressive disclosure of details. The chat reply shows high value items like sources, assumptions, and issues. The user can optionally open an interactive notebook to see the full context.</li>
+<li>The AI-generated notebook (see notebook tab above) is organized to promote verification: it opens with the assumptions the agent made, like the metric definition and where it came from, then shows the queries it ran and the numbers they returned. It breaks the total down so you can sanity-check the distribution, and it closes with a list of what it could not verify, each item left as a cell you can run.</li>
+<li>The AI agent is also available in the notebook to help with follow-ups. Finally, the user can publish the notebook back to a knowledge base, where it can be retrieved by future analyses, creating a virtuous cycle.</li>
+</ul>
+<p>This design sketch is far from perfect. The point is that the product should help the user verify the answer as a domain expert would. Compare it to the earlier approach, where the only output was the number.</p>
+<p>Data agents like these are not science fiction. Hex<sup>4</sup> is my favorite product in this genre; it integrates notebooks and chat better than anything I’ve seen. Here are screenshots from their landing page:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hamel.dev/blog/posts/eval-smell/hex-chat.png" class="img-fluid figure-img"></p>
+<figcaption>Chat interface.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hamel.dev/blog/posts/eval-smell/hex-notebook.png" class="img-fluid figure-img"></p>
+<figcaption>Notebook view which allows the user to see the intermediate steps and data.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>But what does this have to do with evals? If you design your product for verification, annotation becomes less expensive and evals will have better signals to draw from. More importantly, you’ll provide your users with a better product.</p>
+</section>
+<section id="example-2-the-pe-curriculum-builder" class="level2">
+<h2 class="anchored" data-anchor-id="example-2-the-pe-curriculum-builder">Example 2: the PE curriculum builder</h2>
+<p>A founder I advised was building an AI tool that writes physical education lesson plans for K-12 teachers. A teacher enters their constraints, like the grade they teach, how long the class is, whether it meets indoors or outdoors, and what equipment they have. The tool then writes a lesson plan for those constraints. The goal is to save teachers the time they spend planning and give them a plan that fits their class. Here is a sketch of what the product looks like:</p>
+<!-- Figure: the PE lesson plan desktop app. Inputs on the left, a plan generated from scratch on the right (the "before" design). -->
+<div class="pe-figure">
+  <div class="pe-app">
+    <div class="pe-app__bar">
+      <span class="pe-app__lights"><span class="pe-light pe-light--r"></span><span class="pe-light pe-light--y"></span><span class="pe-light pe-light--g"></span></span>
+      <span class="pe-app__title">PE Planner</span>
+    </div>
+    <div class="pe-app__split">
+
+      <div class="pe-inputs">
+        <div class="pe-inputs__head">Class details</div>
+        <div class="pe-field">
+          <span class="pe-field__label">Grade</span>
+          <span class="pe-field__input">Grade 4<span class="pe-field__caret">▾</span></span>
+        </div>
+        <div class="pe-field">
+          <span class="pe-field__label">Class length</span>
+          <span class="pe-field__input">45 minutes<span class="pe-field__caret">▾</span></span>
+        </div>
+        <div class="pe-field">
+          <span class="pe-field__label">Location</span>
+          <span class="pe-field__input">Outdoors<span class="pe-field__caret">▾</span></span>
+        </div>
+        <div class="pe-field">
+          <span class="pe-field__label">Equipment</span>
+          <span class="pe-field__input">12 cones, 6 balls</span>
+        </div>
+        <span class="pe-generate">Generate lesson plan</span>
+      </div>
+
+      <div class="pe-doc">
+        <div class="pe-doc__header">
+          <span class="pe-doc__title">Ball skills</span>
+          <span class="pe-doc__sub">Lesson 1 of 8</span>
+          <span class="pe-doc__tag">Generated plan</span>
+        </div>
+        <div class="pe-fill"><div class="pe-scroll">
+          <div class="pe-sec">
+            <div class="pe-sec__head">Warm-up · 8 min</div>
+            <p>Jog the perimeter, then dynamic stretches: arm circles, lunges, and high knees.  Finish with a partner toss to warm up the hands.</p>
+          </div>
+          <div class="pe-sec">
+            <div class="pe-sec__head">Main activity · 30 min</div>
+            <p>Pair students and set cones 10 feet apart.  Partners practice underhand throws, then overhand.  Cue them to step with the opposite foot and follow through.  Widen the gap as accuracy improves and rotate partners every 5 minutes.</p>
+          </div>
+          <div class="pe-sec">
+            <div class="pe-sec__head">Cool-down · 7 min</div>
+            <p>Static stretches and a quick recap of throwing cues: step, point, follow through.</p>
+          </div>
+          <div class="pe-sec">
+            <div class="pe-sec__head">Assessment · notes</div>
+            <p>Watch for a stepped throw with the opposite foot forward and eyes on the target.  Note students who need a shorter throwing distance next class.</p>
+          </div>
+          <div class="pe-sec">
+            <div class="pe-sec__head">Equipment</div>
+            <p>12 cones, 6 foam balls, 3 station markers.</p>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pe-app__cap">The teacher enters constraints and the tool writes a plan from scratch.  The only output is the plan, so its difficult to verify.</div>
+</div>
+<p>The founder asked me how to eval the lesson plans. I turned the question around: <strong>what does a teacher care about?</strong></p>
+<p>The fastest way to trust a plan is to see that a teacher like them already uses it. Additionally, teachers value visibility into what others are doing so they can learn new approaches. Therefore, a better design might start from vetted lesson plans that are actively used in schools. When the tool generates a plan, it shows which vetted plan it started from, who uses that plan, and a diff of what it changed for this teacher’s constraints.</p>
+<p>Next, the teacher can check a small set of changes against a plan they already trust, instead of judging a whole plan from scratch. Here’s a sketch of what a better interface might look like:</p>
+<!-- Figure: the PE plan as a desktop app. Lineage on top, then a split of the full plan and its diff, with changed lines keyed to the diff (the "after" design). -->
+<div class="pe-figure">
+  <div class="pe-app">
+    <div class="pe-app__bar">
+      <span class="pe-app__lights"><span class="pe-light pe-light--r"></span><span class="pe-light pe-light--y"></span><span class="pe-light pe-light--g"></span></span>
+      <span class="pe-app__title">PE Planner</span>
+    </div>
+    <div class="pe-app__body">
+
+      <div class="pe-doc__header">
+        <span class="pe-doc__title">Ball skills</span>
+        <span class="pe-doc__sub">Lesson 1 of 8</span>
+        <span class="pe-doc__tag">Generated plan</span>
+      </div>
+
+      <div class="pe-src">
+        View original
+        <div class="pe-src__id">
+          <span class="pe-src__avatar">DR</span>
+          <span class="pe-src__name">Adapted from Dana Ruiz's plan</span>
+        </div>
+        <div class="pe-src__meta">Grade 4 PE · Lincoln Elementary, Austin TX</div>
+        <div class="pe-src__signals">
+          <span class="pe-sig">Used at 14 schools</span>
+          <span class="pe-sig">Run 30+ times this year</span>
+          <span class="pe-sig">Aligned to SHAPE standards</span>
+        </div>
+      </div>
+
+      <div class="pe-split2">
+
+        <div class="pe-pane pe-pane--full">
+          <div class="pe-pane__head"><span>Full plan</span></div>
+          <div class="pe-fill"><div class="pe-scroll">
+            <div class="pe-line__sec">Warm-up · 8 min</div>
+            <div class="pe-line pe-line--changed"><span class="pe-badge">1</span><span>Jog 1 lap to the far cones and back, then dynamic stretches: arm circles, lunges, and high knees.</span></div>
+            <div class="pe-line">Finish with partner toss to warm up the hands, 10 throws each.</div>
+            <div class="pe-line__sec">Main activity · 30 min</div>
+            <div class="pe-line pe-line--changed"><span class="pe-badge">2</span><span>3 stations with cones as targets.  Pairs throw underhand then overhand with 6 balls, rotating every 5 minutes.</span></div>
+            <div class="pe-line">Cue students to step with the opposite foot and follow through toward the target.</div>
+            <div class="pe-line">Widen the distance between partners as accuracy improves.</div>
+            <div class="pe-line__sec">Cool-down · 7 min</div>
+            <div class="pe-line">Static stretches and a recap of throwing cues: step, point, follow through.</div>
+            <div class="pe-line__sec">Assessment · notes</div>
+            <div class="pe-line">Watch for a stepped throw with the opposite foot forward and eyes on the target.</div>
+            <div class="pe-line">Note students who need a shorter throwing distance next class.</div>
+            <div class="pe-line__sec">Equipment</div>
+            <div class="pe-line">12 cones, 6 foam balls, 3 station markers.</div>
+          </div></div>
+        </div>
+
+        <div class="pe-pane pe-pane--diff">
+          <div class="pe-pane__head"><span>What changed · 2 edits</span><span class="pe-review"><span class="pe-allbtn pe-allbtn--accept">Accept all</span><span class="pe-allbtn">Reject all</span></span></div>
+
+          <div class="pe-dgroup">
+            <div class="pe-dgroup__head"><span class="pe-badge">1</span> Warm-up</div>
+            <div class="pe-drow pe-drow--del"><span class="pe-drow__mark">−</span><span class="pe-drow__text">Jog 2 laps, then dynamic stretches (10 min)</span></div>
+            <div class="pe-drow pe-drow--add"><span class="pe-drow__mark">+</span><span class="pe-drow__text">Jog 1 lap, then dynamic stretches (8 min)</span></div>
+            <div class="pe-dwhy">Shortened to fit a 45-minute class</div>
+            <div class="pe-dactions">
+              <span class="pe-dbtn pe-dbtn--accept">Accept <span class="pe-dbtn__key">⌘⏎</span></span>
+              <span class="pe-dbtn pe-dbtn--reject">Reject <span class="pe-dbtn__key">⌘⌫</span></span>
+            </div>
+          </div>
+
+          <div class="pe-dgroup">
+            <div class="pe-dgroup__head"><span class="pe-badge">2</span> Main activity</div>
+            <div class="pe-drow pe-drow--del"><span class="pe-drow__mark">−</span><span class="pe-drow__text">4 stations, 8 balls, hoops as targets</span></div>
+            <div class="pe-drow pe-drow--add"><span class="pe-drow__mark">+</span><span class="pe-drow__text">3 stations, 6 balls, cones as targets</span></div>
+            <div class="pe-dwhy">Matched to your equipment</div>
+            <div class="pe-dactions">
+              <span class="pe-dbtn pe-dbtn--accept">Accept <span class="pe-dbtn__key">⌘⏎</span></span>
+              <span class="pe-dbtn pe-dbtn--reject">Reject <span class="pe-dbtn__key">⌘⌫</span></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="pe-app__cap">The plan is anchored to a vetted plan another teacher uses.  The changes are marked so the teacher can check a diff against a plan they trust.</div>
+</div>
+<p>In this version, most of the plan is inherited from a vetted plan. The teacher’s review is scoped to a few edits, each with a reason explaining why the change was made. This is a more efficient way to review a plan because it reduces the cognitive load of judging a whole plan from scratch.</p>
+<p>Designing for this makes the product simpler to build. Instead of stuffing hundreds of examples into a prompt, the tool captures important dimensions, retrieves a close match, and adapts it. Automated evals now become tractable because there is less surface area to test. For example, you can verify that the plan retrieval picked a sensible anchor, and each edit honors the constraints.</p>
+</section>
+<section id="example-3-the-workers-comp-medical-report" class="level2">
+<h2 class="anchored" data-anchor-id="example-3-the-workers-comp-medical-report">Example 3: the workers-comp medical report</h2>
+<p>The last example comes from a workers’ compensation tool a founder asked me to help with. It reads a patient’s chart (intake forms, imaging reports, therapy notes, prior exams) and generates a long expert opinion report, often fifty pages or more. Here is a sketch of the product:</p>
+<!-- Figure: the workers-comp tool whose only output is a long narrative report (the "before" design). -->
+<div class="wc-figure">
+  <div class="wc-app">
+    <div class="wc-titlebar">
+      <span class="wc-titlebar__name">ClaimDraft</span>
+      <span class="wc-win"><span>–</span><span>□</span><span>✕</span></span>
+    </div>
+    <div class="wc-menubar"><span>File</span><span>Edit</span><span>Case</span><span>Report</span><span>View</span><span>Help</span></div>
+    <div class="wc-body">
+
+      <div class="wc-side">
+        <div class="wc-side__head">Source records · 18</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Intake questionnaire</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>MRI, lumbar spine</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>X-ray report</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Physical therapy notes</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Treating physician notes</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Prior IME</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Work restrictions</div>
+        <div class="wc-side__more">+ 11 more</div>
+      </div>
+
+      <div class="wc-main">
+        <div class="wc-case"><span><b>Claimant</b> J. Doe</span><span><b>Claim</b> #WC-20259417</span><span><b>Date of injury</b> Mar 3, 2025</span><span><b>Examiner</b> Dr. A. Patel</span></div>
+
+        <div class="wc-report">
+          <div class="wc-report__title">Independent Medical Evaluation</div>
+          <div class="wc-report__sub">Permanent &amp; Stationary Report</div>
+
+          <div class="wc-sec">
+            <div class="wc-sec__h">1.  History of injury</div>
+            <p>The claimant is a 47-year-old warehouse associate who reports a lumbar spine injury on March 3, 2025 while lifting a carton estimated at sixty pounds.  He describes immediate low back pain radiating into the right lower extremity, followed by numbness along the lateral calf.</p>
+          </div>
+          <div class="wc-sec">
+            <div class="wc-sec__h">2.  Review of records</div>
+            <p>Records reviewed include the intake questionnaire, an MRI of the lumbar spine dated March 18, 2025, twelve physical therapy notes, and the treating physician's progress reports through August 2025.</p>
+          </div>
+          <div class="wc-sec">
+            <div class="wc-sec__h">3.  Physical examination</div>
+            <p>On examination, lumbar flexion was limited to 40 degrees with pain.  Straight leg raise was positive on the right at 50 degrees.  Strength was 4 of 5 in the right extensor hallucis longus, with diminished sensation in the L5 distribution.</p>
+          </div>
+          <div class="wc-sec">
+            <div class="wc-sec__h">4.  Diagnoses</div>
+            <p>Lumbar disc herniation at L5-S1 with associated right L5 radiculopathy, supported by the imaging and examination findings above.</p>
+          </div>
+          <div class="wc-sec">
+            <div class="wc-sec__h">5.  Causation analysis</div>
+            <p>Within reasonable medical probability, the disc herniation is causally related to the industrial lifting event of March 3, 2025.  The claimant had no documented history of lumbar treatment prior to that date.</p>
+          </div>
+        </div>
+
+        <div class="wc-foot"><span>Page 1 of 52</span><span>Generated from 18 records</span></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="wc-app__cap">The only output is a fifty-page narrative.  To trust it, the doctor has to re-read the whole chart and check every claim, which can take as long as writing the report from scratch.</div>
+</div>
+<p>The problem is the same as the other examples, but the stakes are higher. The only output is the report, and the doctor is the one accountable for it. To trust it they have to go back through the chart and confirm the facts and inferences themselves. That can take as long as writing the report from scratch, which defeats the point of the tool.</p>
+<p>You might object that a fifty-page opinion is hard to verify. That is true, and the product should not pretend otherwise. Helping a doctor understand the evidence is arguably more valuable than the finished document. Therefore, I advised the founder to make the product work like a research assistant instead of a report generator.</p>
+<p>For example, the product could read every record and pull out relevant facts, with a link back to the page so the doctor can check each one. Where two exams disagree, or the chart leaves a question open, the product should surface that. The doctor can then resolve any contradictions and fill in the gaps. Finally, the product can assemble the final report from what they have already checked. Here is a sketch of what this might look like:</p>
+<!-- Figure: the workers-comp tool as a review console. The AI surfaces typed, cited findings the doctor resolves; the report is gated on that review (the "after" design). -->
+<div class="wc-figure">
+  <div class="wc-app">
+    <div class="wc-titlebar">
+      <span class="wc-titlebar__name">ClaimDraft</span>
+      <span class="wc-win"><span>–</span><span>□</span><span>✕</span></span>
+    </div>
+    <div class="wc-menubar"><span>File</span><span>Edit</span><span>Case</span><span>Review</span><span>Report</span><span>Help</span></div>
+    <div class="wc-case"><span><b>Claimant</b> J. Doe</span><span><b>Claim</b> #WC-20259417</span><span><b>Date of injury</b> Mar 3, 2025</span><span><b>Examiner</b> Dr. A. Patel</span></div>
+    <div class="wc-body">
+
+      <div class="wc-side">
+        <div class="wc-side__head">Records · 18</div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>MRI, lumbar spine<span class="wc-doc__st wc-doc__st--done">✓</span></div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Physical therapy notes<span class="wc-doc__st wc-doc__st--done">✓</span></div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Treating physician notes<span class="wc-doc__st wc-doc__st--done">✓</span></div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Prior IME<span class="wc-doc__st wc-doc__st--todo">○</span></div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>Intake questionnaire<span class="wc-doc__st wc-doc__st--todo">○</span></div>
+        <div class="wc-doc"><span class="wc-doc__ic"></span>X-ray report<span class="wc-doc__st wc-doc__st--todo">○</span></div>
+        <div class="wc-side__more">9 of 18 reviewed</div>
+      </div>
+
+      <div class="wc-finds">
+        <div class="wc-find">
+          <div class="wc-find__head"><span class="wc-find__num">1</span><span class="wc-tag wc-tag--warn">Contradiction</span></div>
+          <div class="wc-find__body">Straight-leg-raise is recorded as positive on the right by the treating physician (p. 31) and negative by the prior IME (p. 22).</div>
+          <div class="wc-find__foot"><span class="wc-abtn wc-abtn--primary">Resolve</span>Open both pages</div>
+        </div>
+
+        <div class="wc-find">
+          <div class="wc-find__head"><span class="wc-find__num">2</span><span class="wc-tag wc-tag--fact">Key fact</span></div>
+          <div class="wc-find__body">The intake form notes a prior lumbar strain in 2019, which bears on causation (p. 14).</div>
+          <div class="wc-find__foot"><span class="wc-abtn wc-abtn--primary">Include</span><span class="wc-abtn">Dismiss</span></div>
+        </div>
+
+        <div class="wc-find">
+          <div class="wc-find__head"><span class="wc-find__num">3</span><span class="wc-tag wc-tag--q">Open question</span></div>
+          <div class="wc-find__body">No imaging appears in the file after March 18, 2025, so the current status of the herniation is unconfirmed.</div>
+          <div class="wc-find__foot"><span class="wc-abtn">Add a note</span></div>
+        </div>
+
+        <div class="wc-find">
+          <div class="wc-find__head"><span class="wc-find__num">4</span><span class="wc-tag wc-tag--fact">Key fact</span></div>
+          <div class="wc-find__body">The MRI report describes pre-existing degenerative changes at L4-L5 (p. 9).</div>
+          <div class="wc-find__foot"><span class="wc-abtn wc-abtn--primary">Include</span><span class="wc-abtn">Dismiss</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="wc-foot"><span class="wc-foot__status">6 of 24 findings still need review</span><span class="wc-foot__gen">Generate report draft</span></div>
+  </div>
+  <div class="wc-app__cap">The product walks the doctor through the evidence first, surfacing each finding with a link back to the chart. Afterwards, the final report is built from the facts they reviewed.</div>
+</div>
+<p>The research assistant version of this product allows the doctor to build trust by verifying facts as they go. Similar to the other examples, this design is easier to build and evaluate. Now there are scoped units to grade, such as whether a contradiction is real or whether a citation supports a claim.</p>
+</section>
+<section id="generalizing-the-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="generalizing-the-pattern">Generalizing the pattern</h2>
+<p>It is important to understand how users verify your product’s AI artifacts. Sometimes, this may require assembling supporting evidence. In other cases, it could mean refactoring the entire workflow so that the user is in the loop (like the workers’ comp example).</p>
+<p>Below are questions that can guide your product’s design for verification:</p>
+<ol type="1">
+<li>What does the user actually need to check?</li>
+<li>What trusted thing can they compare it against?</li>
+<li>Are there signals or heuristics that experts use to aid in verification?</li>
+<li>What smaller units can they accept, edit, or reject?</li>
+</ol>
+<p>A common thread across these examples is provenance. The fastest way to make an output checkable is to show where each part came from, with links to see more detail. Additionally, you can use progressive disclosure so these sources don’t overwhelm the user.</p>
+<p>What needs verifying also changes as the user’s trust grows. Early on, the data agent should make provenance obvious, like where a metric definition came from. Once the user trusts the agent gets it right, that detail can collapse by default in the card. Good design meets users where they are instead of showing everything.</p>
+<p>These principles hold even when a product seems easy to eval. Coding is a good example: it is one of the most verifiable kinds of work, with tests, types, and diffs. Even so, some coding agents go the extra mile to make their work checkable. Cursor and Devin both record a short video of the UI changes they make, so you can confirm the work is right without reproducing it yourself.<sup>5</sup></p>
+</section>
+<section id="none-of-this-is-new" class="level2">
+<h2 class="anchored" data-anchor-id="none-of-this-is-new">None of this is new</h2>
+<p>Evals thinking is aligned with good product design. Gathering supporting data and breaking down workflows into smaller units makes automated grading easier. However, I don’t want to pretend like any wisdom here is new.</p>
+<p>All of these ideas stem from well-established design principles. For example, watching an expert work to learn what they check before you build is called needfinding.<sup>6</sup> In research-heavy work like the medical case, there is a design goal called sensemaking, which is the work of building a structured understanding of a body of evidence you can reason over.<sup>7</sup> There are many other concepts, but I think you get the idea.</p>
+<p>Even though these ideas are well established, a reminder is due in the age of AI. Before AI, verification often happened incidentally during the process of creating work product. With AI, verification is the bottleneck. It is time to think about it more explicitly.</p>
+<hr>
+<p><em>Thanks to <a href="https://www.sh-reya.com/">Shreya Shankar</a> and <a href="https://isaacflath.com/">Isaac Flath</a> for feedback on this post.</em></p>
+<div class="eval-smell-newsletter">
+<p>To stay updated on my writing on AI evals, subscribe to my newsletter below.</p>
+<script async="" data-uid="295eebc652" src="https://hamel.kit.com/295eebc652/index.js"></script>
+<style>
+.eval-smell-newsletter .formkit-form[data-uid="295eebc652"] {
+  padding-top: 10px !important;
+}
+
+.eval-smell-newsletter .formkit-form[data-uid="295eebc652"] .formkit-fields {
+  max-width: 480px !important;
+  width: 100% !important;
+}
+
+.eval-smell-newsletter .formkit-form[data-uid="295eebc652"] .formkit-field {
+  flex: 1 1 auto !important;
+}
+
+.eval-smell-newsletter .formkit-form[data-uid="295eebc652"] .formkit-input {
+  width: 100% !important;
+}
+
+.eval-smell-newsletter .formkit-form[data-uid="295eebc652"] .formkit-submit {
+  background-color: #447099 !important;
+  border-color: #447099 !important;
+  flex: 0 0 128px !important;
+  width: 128px !important;
+}
+
+.eval-smell-newsletter .formkit-form[data-uid="295eebc652"] .formkit-submit:hover {
+  background-color: #305775 !important;
+  border-color: #305775 !important;
+}
+
+.eval-smell-newsletter .formkit-powered-by,
+.eval-smell-newsletter .formkit-powered-by-convertkit,
+.eval-smell-newsletter .formkit-powered-by-convertkit-container {
+  display: none !important;
+}
+</style>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>More of my writing and teaching on evals: <a href="../../../blog/posts/evals/index.html">Your AI Product Needs Evals</a>, <a href="../../../blog/posts/field-guide/index.html">A Field Guide to Rapidly Improving AI Products</a>, <a href="../../../blog/posts/llm-judge/index.html">Using LLM-as-a-Judge for Evaluation</a>, <a href="../../../blog/posts/evals-faq/index.html">LLM Evals: Everything You Need to Know</a>, <a href="../../../blog/posts/eval-tools/index.html">Selecting the Right AI Evals Tool</a>, <a href="../../../blog/posts/evals-skills/index.html">Evals Skills for Coding Agents</a> and <a href="../../../blog/posts/revenge/index.html">The Revenge of the Data Scientist</a>. I also co-teach the <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-url">AI Evals for Engineers &amp; PMs</a> course and co-authored the O’Reilly book <a href="https://www.oreilly.com/library/view/evals-for-ai/9798341660717/">Evals for AI Engineers</a>.↩︎</p></li>
+<li id="fn2"><p><a href="https://x.com/lennysan/status/2054631157191598294">Lenny Rachitsky tweeted about this recently</a>: most of one data science team’s work is now reviewing half-baked AI analysis from PMs and engineers, and half of it is wrong.↩︎</p></li>
+<li id="fn3"><p>When I worked at Airbnb we had an internal tool called the <a href="https://github.com/airbnb/knowledge-repo">Knowledge Repo</a>, a place where data scientists published notebooks of their deep dives on analytics, modeling, and so on (<a href="https://medium.com/airbnb-engineering/scaling-knowledge-at-airbnb-875d73eff091">they wrote about it here</a>). It was one of the fastest ways to get context on a new project, since you could read what someone had already worked out. I don’t know if it is still in use, but the paradigm is a good one.↩︎</p></li>
+<li id="fn4"><p><a href="https://www.linkedin.com/in/bryan-bischof/">Bryan Bischof</a> led the creation of the AI at <a href="https://www.hex.tech/">Hex</a>. Bryan is a data scientist himself, the kind of domain expert the product serves, and I think that is part of why it is designed well.↩︎</p></li>
+<li id="fn5"><p>See a <a href="https://www.youtube.com/watch?v=XbZvC4KTH68">demo of Cursor</a> recording its UI changes, and <a href="https://docs.devin.ai/work-with-devin/testing-and-recordings">Devin’s documentation</a> on testing and recordings.↩︎</p></li>
+<li id="fn6"><p>Dev Patnaik and Robert Becker, <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1948-7169.1999.tb00250.x">“Needfinding: The Why and How of Uncovering People’s Needs”</a>, Design Management Journal.↩︎</p></li>
+<li id="fn7"><p>Daniel M. Russell, Mark J. Stefik, Peter Pirolli, and Stuart K. Card, <a href="https://www.markstefik.com/wp-content/uploads/2014/04/1993-Cost-Structure-of-Sensemaking1.pdf">“The Cost Structure of Sensemaking”</a>.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>LLMs</category>
+  <category>evals</category>
+  <guid>https://hamel.dev/blog/posts/eval-smell/</guid>
+  <pubDate>Mon, 29 Jun 2026 07:00:00 GMT</pubDate>
+  <media:content url="https://hamel.dev/blog/posts/eval-smell/social-card.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>The Revenge of the Data Scientist</title>
   <dc:creator>Hamel Husain</dc:creator>
@@ -5650,708 +7164,6 @@ font-style: inherit;">1</span>)</span></code></pre></div></div>
   <guid>https://hamel.dev/blog/posts/prompt/</guid>
   <pubDate>Wed, 14 Feb 2024 08:00:00 GMT</pubDate>
   <media:content url="https://hamel.dev/blog/posts/prompt/slap_3.png" medium="image" type="image/png" height="72" width="144"/>
-</item>
-<item>
-  <title>How To Debug Axolotl</title>
-  <dc:creator>Hamel Husain</dc:creator>
-  <link>https://hamel.dev/blog/posts/axolotl/</link>
-  <description><![CDATA[ 
-
-<!-- Content inserted at the beginning of body tag -->
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKGWQMKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-
-
-
-<p><img src="https://hamel.dev/blog/posts/axolotl/images/debug_axolotl.png" class="img-fluid"></p>
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p><a href="https://github.com/OpenAccess-AI-Collective/axolotl">Axolotl</a> is a great project for fine-tuning LLMs. I started contributing to the project, and I found that it was difficult to debug. I wanted to share some tips and tricks I learned along the way, along with configuration files for debugging with VSCode. Moreover, I think being able to debug axolotl empowers developers who encounter bugs or want to understand how the code works. I hope this document helps you get started.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>This content is now part of the Axolotl docs!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><a href="https://github.com/OpenAccess-AI-Collective/axolotl/pull/1089">I contributed</a> this blog post’s contents as documentation for the axolotl project. <strong>You can find this content <a href="https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/docs/debugging.md">in the axolotl repo here</a></strong>.</p>
-</div>
-</div>
-</section>
-<section id="general-tips" class="level2">
-<h2 class="anchored" data-anchor-id="general-tips">General Tips</h2>
-<p>While debugging, it’s helpful to simplify your test scenario as much as possible. Here are some tips for doing so:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>All of these tips are incorporated into the example configuration for debugging with VSCode below.</p>
-</div>
-</div>
-<ol type="1">
-<li><p><strong>Make sure you are using the latest version of axolotl</strong>: This project changes often and bugs get fixed fast. Check your git branch and make sure you have pulled the latest changes from <code>main</code>.</p></li>
-<li><p><strong>Eliminate Concurrency</strong>: Restrict the number of processes to 1 for both training and data preprocessing:</p>
-<ul>
-<li>Set <code>CUDA_VISIBLE_DEVICES</code> to a single GPU, ex: <code>export CUDA_VISIBLE_DEVICES=0</code>.</li>
-<li>Set <code>dataset_processes: 1</code> in your axolotl config or run the training command with <code>--dataset_processes=1</code>.</li>
-</ul></li>
-<li><p><strong>Use a small dataset</strong>: Construct or use a small dataset from HF Hub. When using a small dataset, you will often have to make sure <code>sample_packing: False</code> and <code>eval_sample_packing: False</code> to avoid errors. If you are in a pinch and don’t have time to construct a small dataset but want to use from the HF Hub, you can shard the data (this will still tokenize the entire dataset but will only use a fraction of the data for training. For example, to shard the dataset into 20 pieces, add the following to your axolotl config):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">dataset</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">:</span></span>
-<span id="cb1-2"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">    ...</span></span>
-<span id="cb1-3"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">shards</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">:</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;"> </span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span></span></code></pre></div></div></li>
-<li><p><strong>Use a small model</strong>: A good example of a small model is <a href="https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0">TinyLlama/TinyLlama-1.1B-Chat-v1.0</a>.</p></li>
-<li><p><strong>Minimize iteration time</strong>: Make sure the training loop finishes as fast as possible, with these settings.</p>
-<ul>
-<li><code>micro_batch_size: 1</code></li>
-<li><code>max_steps: 1</code></li>
-<li><code>val_set_size: 0</code></li>
-</ul></li>
-<li><p><strong>Clear Caches:</strong> Axolotl caches certain steps and so does the underlying HuggingFace trainer. You may want to clear some of these caches when debugging.</p>
-<ul>
-<li>Data preprocessing: When debugging data preprocessing, which includes prompt template formation, you may want to delete the directory set in <code>dataset_prepared_path:</code> in your axolotl config. If you didn’t set this value, the default is <code>last_run_prepared</code>.</li>
-<li>HF Hub: If you are debugging data preprocessing, you should clear the relevant HF cache <a href="https://huggingface.co/docs/datasets/cache">HuggingFace cache</a>, by deleting the appropriate <code>~/.cache/huggingface/datasets/...</code> folder(s).</li>
-<li><strong>The recommended approach is to redirect all outputs and caches to a temporary folder and delete selected subfolders before each run. This is demonstrated in the example configuration below.</strong></li>
-</ul></li>
-</ol>
-</section>
-<section id="debugging-with-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="debugging-with-vscode">Debugging with VSCode</h2>
-<section id="background" class="level3">
-<h3 class="anchored" data-anchor-id="background">Background</h3>
-<p>The below example shows how to configure VSCode to debug data preprocessing of the <code>sharegpt</code> format. This is the format used when you have the following in your axolotl config:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">datasets</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">:</span></span>
-<span id="cb2-2"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">-</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">path</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">:</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;"> &lt;path to your sharegpt formatted dataset&gt;</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"> # example on HF Hub: philschmid/guanaco-sharegpt-style</span></span>
-<span id="cb2-3"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">type</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">:</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;"> sharegpt</span></span></code></pre></div></div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you are already familiar with advanced VSCode debugging, you can skip the below explanation and look at the files <a href="../.vscode/launch.json">.vscode/launch.json</a> and <a href="https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/.vscode/tasks.json">.vscode/tasks.json</a> for an example configuration.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you prefer to watch a video, rather than read, you can skip to the video tutorial below (but doing both is recommended).</p>
-</div>
-</div>
-</section>
-<section id="setup" class="level3">
-<h3 class="anchored" data-anchor-id="setup">Setup</h3>
-<p>Make sure you have an <a href="https://setuptools.pypa.io/en/latest/userguide/development_mode.html">editable install</a> of Axolotl, which ensures that changes you make to the code are reflected at runtime. Run the following commands from the root of this project:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">pip3</span> install packaging</span>
-<span id="cb3-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">pip3</span> install <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-e</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'.[flash-attn,deepspeed]'</span></span></code></pre></div></div>
-<section id="remote-hosts" class="level4">
-<h4 class="anchored" data-anchor-id="remote-hosts">Remote Hosts</h4>
-<p>If you developing on a remote host, you can easily use VSCode to debug remotely. To do so, you will need to follow this <a href="https://code.visualstudio.com/docs/remote/ssh">remote - SSH guide</a>. You can also see the video below on Docker and Remote SSH debugging.</p>
-</section>
-</section>
-<section id="configuration" class="level3">
-<h3 class="anchored" data-anchor-id="configuration">Configuration</h3>
-<p>The easiest way to get started is to modify the <a href="https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/.vscode/launch.json">.vscode/launch.json</a> file in the axolotl GitHub repo. This is just an example configuration, so you may need to modify or copy it to suit your needs.</p>
-<p>For example, to mimic the command <code>cd devtools &amp;&amp; CUDA_VISIBLE_DEVICES=0 accelerate launch -m axolotl.cli.train dev_sharegpt.yml</code>, you would use the below configuration<sup>1</sup>. Note that we add additional flags that override the axolotl config and incorporate the tips above (see the comments). We also set the working directory to <code>devtools</code> and set the <code>env</code> variable <code>HF_HOME</code> to a temporary folder that is later partially deleted. This is because we want to delete the HF dataset cache before each run in order to ensure that the data preprocessing code is run from scratch.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/.vscode/launch.json</span></span>
-<span id="cb4-2">{</span>
-<span id="cb4-3">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"version"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"0.2.0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb4-4">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"configurations"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> [</span>
-<span id="cb4-5">        {</span>
-<span id="cb4-6">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"name"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Debug axolotl prompt - sharegpt"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb4-7">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"type"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"python"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb4-8">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"module"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"accelerate.commands.launch"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb4-9">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"request"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"launch"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb4-10">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"args"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> [</span>
-<span id="cb4-11">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"-m"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"axolotl.cli.train"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"dev_sharegpt.yml"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb4-12">                <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// The flags below simplify debugging by overriding the axolotl config </span></span>
-<span id="cb4-13">                <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// with the debugging tips above.  Modify as needed.</span></span>
-<span id="cb4-14">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--dataset_processes=1"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>      <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// limits data preprocessing to one process</span></span>
-<span id="cb4-15">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--max_steps=1"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>              <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// limits training to just one step</span></span>
-<span id="cb4-16">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--batch_size=1"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>             <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// minimizes batch size</span></span>
-<span id="cb4-17">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--micro_batch_size=1"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>       <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// minimizes batch size</span></span>
-<span id="cb4-18">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--val_set_size=0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>           <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// disables validation</span></span>
-<span id="cb4-19">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--sample_packing=False"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>     <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// disables sample packing which is necessary for small datasets</span></span>
-<span id="cb4-20">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--eval_sample_packing=False"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// disables sample packing on eval set</span></span>
-<span id="cb4-21">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--dataset_prepared_path=temp_debug/axolotl_outputs/data"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// send data outputs to a temp folder</span></span>
-<span id="cb4-22">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"--output_dir=temp_debug/axolotl_outputs/model"</span> <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// send model outputs to a temp folder</span></span>
-<span id="cb4-23">                ]<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb4-24">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"console"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"integratedTerminal"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>      <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// show output in the integrated terminal</span></span>
-<span id="cb4-25">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cwd"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"${workspaceFolder}/devtools"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// set working directory to devtools from the root of the project</span></span>
-<span id="cb4-26">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"justMyCode"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>                   <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// step through only axolotl code</span></span>
-<span id="cb4-27">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"env"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"CUDA_VISIBLE_DEVICES"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// Since we aren't doing distributed training, we need to limit to one GPU</span></span>
-<span id="cb4-28">                    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"HF_HOME"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"${workspaceFolder}/devtools/temp_debug/.hf-cache"</span>}<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// send HF cache to a temp folder</span></span>
-<span id="cb4-29">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"preLaunchTask"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cleanup-for-dataprep"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// delete temp folders (see below)</span></span>
-<span id="cb4-30">        }</span>
-<span id="cb4-31">    ]</span>
-<span id="cb4-32">}</span></code></pre></div></div>
-<p><strong>Additional notes about this configuration:</strong></p>
-<ul>
-<li>The argument <code>justMyCode</code> is set to <code>true</code> such that you step through only the axolotl code. If you want to step into dependencies, set this to <code>false</code>.</li>
-<li>The <code>preLaunchTask</code>: <code>cleanup-for-dataprep</code> is defined in <a href="https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/.vscode/tasks.json">.vscode/tasks.json</a> and is used to delete the following folders before debugging, which is essential to ensure that the data pre-processing code is run from scratch:
-<ul>
-<li><code>./devtools/temp_debug/axolotl_outputs</code></li>
-<li><code>./devtools/temp_debug/.hf-cache/datasets</code></li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You may not want to delete these folders. For example, if you are debugging model training instead of data pre-processing, you may NOT want to delete the cache or output folders. You may also need to add additional tasks to the <code>tasks.json</code> file depending on your use case.</p>
-</div>
-</div>
-<p>Below is the <a href="https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/.vscode/tasks.json">./vscode/tasks.json</a> file that defines the <code>cleanup-for-dataprep</code> task. This task is run before each debugging session when you use the above configuration. Note how there are two tasks that delete the two folders mentioned above. The third task <code>cleanup-for-dataprep</code> is a composite task that combines the two tasks. A composite task is necessary because VSCode does not allow you to specify multiple tasks in the <code>preLaunchTask</code> argument of the <code>launch.json</code> file.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/.vscode/tasks.json</span></span>
-<span id="cb5-2"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// this file is used by launch.json</span></span>
-<span id="cb5-3">{</span>
-<span id="cb5-4">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"version"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"2.0.0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-5">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"tasks"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> [</span>
-<span id="cb5-6">      <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// this task changes into the devtools directory and deletes the temp_debug/axolotl_outputs folder</span></span>
-<span id="cb5-7">      {</span>
-<span id="cb5-8">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"label"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"delete-outputs"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-9">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"type"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"shell"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-10">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"command"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"rm -rf temp_debug/axolotl_outputs"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-11">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"options"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span>{ <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cwd"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"${workspaceFolder}/devtools"</span>}<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-12">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"problemMatcher"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> []</span>
-<span id="cb5-13">      }<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-14">      <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// this task changes into the devtools directory and deletes the `temp_debug/.hf-cache/datasets` folder</span></span>
-<span id="cb5-15">      {</span>
-<span id="cb5-16">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"label"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"delete-temp-hf-dataset-cache"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-17">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"type"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"shell"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-18">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"command"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"rm -rf temp_debug/.hf-cache/datasets"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-19">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"options"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span>{ <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cwd"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"${workspaceFolder}/devtools"</span>}<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-20">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"problemMatcher"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> []</span>
-<span id="cb5-21">      }<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-22">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// this task combines the two tasks above</span></span>
-<span id="cb5-23">      {</span>
-<span id="cb5-24">       <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"label"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cleanup-for-dataprep"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-25">       <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"dependsOn"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"delete-outputs"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"delete-temp-hf-dataset-cache"</span>]<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb5-26">      }</span>
-<span id="cb5-27">    ]</span>
-<span id="cb5-28">}</span></code></pre></div></div>
-</section>
-<section id="customizing-your-debugger" class="level3">
-<h3 class="anchored" data-anchor-id="customizing-your-debugger">Customizing your debugger</h3>
-<p>Your debugging use case may differ from the example above. The easiest thing to do is to put your own axolotl config in the <code>devtools</code> folder and modify the <code>launch.json</code> file to use your config. You may also want to modify the <code>preLaunchTask</code> to delete different folders or not delete anything at all.</p>
-</section>
-<section id="video-tutorial" class="level3">
-<h3 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h3>
-<p>The following video tutorial walks through the above configuration and demonstrates how to debug with VSCode:</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/xUUB11yeMmc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section>
-</section>
-<section id="debugging-with-docker" class="level2">
-<h2 class="anchored" data-anchor-id="debugging-with-docker">Debugging With Docker</h2>
-<p>Using <a href="https://hub.docker.com/r/winglian/axolotl/tags">official Axolotl Docker images</a> is a great way to debug your code, and is a very popular way to use Axolotl. Attaching VSCode to Docker takes a few more steps.</p>
-<section id="setup-1" class="level3">
-<h3 class="anchored" data-anchor-id="setup-1">Setup</h3>
-<p>On the host that is running axolotl (ex: if you are using a remote host), clone the axolotl repo and change your current directory to the root:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">git</span> clone https://github.com/OpenAccess-AI-Collective/axolotl</span>
-<span id="cb6-2"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">cd</span> axolotl</span></code></pre></div></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you already have axolotl cloned on your host, make sure you have the latest changes and change into the root of the project.</p>
-</div>
-</div>
-<p>Next, run the desired docker image and mount the current directory. Below is a docker command you can run to do this:<sup>2</sup></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">docker</span> run <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--privileged</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--gpus</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'"all"'</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--shm-size</span> 10g <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--rm</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-it</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--name</span> axolotl <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--ipc</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>host <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--ulimit</span> memlock=-1 <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--ulimit</span> stack=67108864 <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--mount</span> type=bind,src=<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">${PWD}</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>,target=/workspace/axolotl <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-v</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">${HOME}</span>/.cache/huggingface:/root/.cache/huggingface winglian/axolotl:main-py3.10-cu118-2.0.1</span></code></pre></div></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To understand which containers are available, see the <a href="../README.md#docker">Docker section of the README</a> and the <a href="https://hub.docker.com/r/winglian/axolotl/tags">DockerHub repo</a>. For details of how the Docker containers are built, see axolotl’s <a href="../.github/workflows/main.yml">Docker CI builds</a>.</p>
-</div>
-</div>
-<p>You will now be in the container. Next, perform an editable install of Axolotl:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">pip3</span> install packaging</span>
-<span id="cb8-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">pip3</span> install <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-e</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'.[flash-attn,deepspeed]'</span></span></code></pre></div></div>
-</section>
-<section id="attach-to-container" class="level3">
-<h3 class="anchored" data-anchor-id="attach-to-container">Attach To Container</h3>
-<p>Next, if you are using a remote host, <a href="https://code.visualstudio.com/docs/remote/ssh">Remote into this host with VSCode</a>. If you are using a local host, you can skip this step.</p>
-<p>Next, select <code>Dev Containers: Attach to Running Container...</code> using the command palette (<code>CMD + SHIFT + P</code>) in VSCode. You will be prompted to select a container to attach to. Select the container you just created. You will now be in the container with a working directory that is at the root of the project. Any changes you make to the code will be reflected both in the container and on the host.</p>
-<p>Now you are ready to debug as described above (see Debugging with VSCode).</p>
-</section>
-<section id="video---attaching-to-docker-on-remote-host" class="level3">
-<h3 class="anchored" data-anchor-id="video---attaching-to-docker-on-remote-host">Video - Attaching To Docker On Remote Host</h3>
-<p>Here is a short video that demonstrates how to attach to a Docker container on a remote host:</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/0AuoR7QnHR0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-
-
-</section>
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>The config actually mimics the command <code>CUDA_VISIBLE_DEVICES=0 python -m accelerate.commands.launch -m axolotl.cli.train devtools/sharegpt.yml</code>, but this is the same thing.↩︎</p></li>
-<li id="fn2"><p>Many of the below flags are recommended best practices by Nvidia when using nvidia-container-toolkit. You can read more about these flags <a href="https://docs.nvidia.com/deeplearning/frameworks/user-guide/index.html">here</a>.↩︎</p></li>
-</ol>
-</section></div> ]]></description>
-  <category>LLMs</category>
-  <category>fine-tuning</category>
-  <category>axolotl</category>
-  <guid>https://hamel.dev/blog/posts/axolotl/</guid>
-  <pubDate>Thu, 11 Jan 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://hamel.dev/blog/posts/axolotl/images/debug_axolotl_small.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 </channel>
 </rss>

@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-06-28T21:57:41+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Jon Udell</title><link href="https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything" rel="alternate"/><published>2026-06-28T21:57:41+00:00</published><updated>2026-06-28T21:57:41+00:00</updated><id>https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-06-29T18:36:18+00:00</updated><author><name>Simon Willison</name></author><entry><title>Count the number of Safari tabs</title><link href="https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything" rel="alternate"/><published>2026-06-29T18:36:18+00:00</published><updated>2026-06-29T18:36:18+00:00</updated><id>https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything</id><summary type="html">
+    &lt;p&gt;Tiniest TIL, using AppleScript to count the number of open browser tabs in Safari:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;osascript -e 'tell application "Safari" to count tabs of every window'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="I ran it in a terminal window and got back 370." src="https://static.simonwillison.net/static/2026/tab-shame.jpg" /&gt;&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/safari"&gt;safari&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/til"&gt;til&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/applescript"&gt;applescript&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="safari"/><category term="til"/><category term="applescript"/></entry><entry><title>Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding</title><link href="https://simonwillison.net/2026/Jun/29/ornith/#atom-everything" rel="alternate"/><published>2026-06-29T16:17:59+00:00</published><updated>2026-06-29T16:17:59+00:00</updated><id>https://simonwillison.net/2026/Jun/29/ornith/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://deep-reinforce.com/ornith_1_0.html"&gt;Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+This is an interesting new open weights (MIT licensed) model, the first model release from DeepReinforce.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[...] with variants including 9B Dense, 31B Dense, 35B MoE, and 397B MoE. Built on top of pretrained Gemma 4 and Qwen 3.5, it achieves state-of-the-art performance among open-source models of comparable size on coding benchmarks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As far as I can tell the licenses of those underlying models is compatible with being used in this way - Gemma 4 is Apache 2.0 licensed (and not bound by the janky additional &lt;a href="https://ai.google.dev/gemma/terms"&gt;Gemma Terms of Use&lt;/a&gt; that afflicted the previous Gemma models) and Qwen 3.5 is Apache 2.0 licensed as well.&lt;/p&gt;
+&lt;p&gt;I've been running the model using LM Studio and the &lt;a href="https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B-GGUF"&gt;ornith-1.0-35b-Q4_K_M.gguf&lt;/a&gt; (20GB) GGUF, hooked up to &lt;a href="https://pi.dev/"&gt;Pi&lt;/a&gt;. Initial impressions are very good - it seems to be able to run the agent harness over many tool calls in a proficient way.&lt;/p&gt;
+&lt;p&gt;Here's &lt;a href="https://gisthost.github.io/?35da4d9ce7f0c27124c67655a0dc9e5d"&gt;a terminal session&lt;/a&gt; where I asked it to "find the code that decodes the actor cookie" and then "find the code that opens the insert dialog when thebutton is clicked" against a Datasette checkout, which it handled with ease.&lt;/p&gt;
+&lt;p&gt;I also had it &lt;a href="https://gist.github.com/simonw/1869e1bbcafe5bcad0f26351f6a978a6"&gt;draw this pelican&lt;/a&gt;, which came out at 103 tokens/second:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Cartoon illustration of a white pelican (albeit slightly mangled) with a large orange beak riding a red bicycle across green hills. The scene has a blue sky with a yellow sun and three white clouds, and small grass tufts dot the foreground." src="https://static.simonwillison.net/static/2024/ornith-1-pelican.png" /&gt;&lt;/p&gt;
+&lt;p&gt;It's a little bit mangled but the pelican is clearly a pelican.&lt;/p&gt;
+&lt;p&gt;I couldn't find much information about DeepReinforce themselves. The earliest paper I could find from the was &lt;a href="https://arxiv.org/abs/2507.14111"&gt;CUDA-L1: Improving CUDA Optimization via Contrastive Reinforcement Learning&lt;/a&gt; from June 2025.
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/local-llms"&gt;local-llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/qwen"&gt;qwen&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gemma"&gt;gemma&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/lm-studio"&gt;lm-studio&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="local-llms"/><category term="llms"/><category term="qwen"/><category term="pelican-riding-a-bicycle"/><category term="gemma"/><category term="llm-release"/><category term="lm-studio"/></entry><entry><title>Quoting Jon Udell</title><link href="https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything" rel="alternate"/><published>2026-06-28T21:57:41+00:00</published><updated>2026-06-28T21:57:41+00:00</updated><id>https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://blog.jonudell.net/2026/06/28/doctor-it-hurts-when-agents-create-unreviewable-prs-dont-do-that/"&gt;&lt;p&gt;&lt;strong&gt;&lt;del&gt;Human&lt;/del&gt; Agent in the loop&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I dislike the phrase “human in the loop” because it cedes authority to the machines. Let’s flip the narrative. It’s our loop, we work the same way we always have, now we recruit agents to join the team. An agent-assisted process need not be a black box that takes in prompts and emits features. [...]&lt;/p&gt;
 &lt;p&gt;Let’s do agentic software development like that. Not as a loop we’ve been excluded from, instead as one we invite agents into.&lt;/p&gt;&lt;/blockquote&gt;
@@ -660,31 +690,4 @@ I find this inspiring. Brent Simmons retired a year ago, and his retirement proj
 
 
 
-</summary><category term="georgi-gerganov"/><category term="llms"/><category term="ai"/><category term="generative-ai"/><category term="pi"/><category term="ai-assisted-programming"/><category term="local-llms"/><category term="qwen"/><category term="coding-agents"/></entry><entry><title>The Fable 5 Export Controls Harm US Cyber Defense</title><link href="https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything" rel="alternate"/><published>2026-06-16T05:20:29+00:00</published><updated>2026-06-16T05:20:29+00:00</updated><id>https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.lutasecurity.com/post/the-fable-5-export-controls-harm-us-cyber-defense"&gt;The Fable 5 Export Controls Harm US Cyber Defense&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-I &lt;a href="https://simonwillison.net/2026/Jun/16/matteo-wong-the-atlantic/"&gt;quoted The Atlantic&lt;/a&gt; quoting Kate Moussouris earlier, when I should have gone straight to the source. Here she is confirming that the "jailbreak" that got Claude Fable 5 banned under an export control really was "fix this code":&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The researchers took open-source code with known CVEs, plus new code with deliberately planted vulnerabilities, and asked Fable 5, Mythos, and Opus to “review the code for security issues.” Fable 5 refused. They then asked the models to “fix this code” and, through a multistep and manual process, turned the output into scripts that test the patches.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;As Kate points out, this is absurd. Coding models fix bugs, and security exploits are the most important category of bugs for them to fix!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Defenders need to be able to ask AI to fix the bugs in a file, explain why the fix matters, and write tests that confirm the patch works. That is not a guardrail bypass. It is the most valuable thing an AI model can do for defensive security: executing the find, fix, and test loop defenders run every day. [...]&lt;/p&gt;
-&lt;p&gt;The prompts worked because they were defensive requests, and that capability cannot be removed without making the model worse at fixing bugs and verifying patches.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This whole situation is such a mess. Non-technical decision-makers have been hearing that models that can "craft cyber attacks" are uniquely dangerous for months. Now they look ready to ban any model that can help us secure our code.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/jailbreaking"&gt;jailbreaking&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos"&gt;claude-mythos&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="jailbreaking"/><category term="security"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="ai-security-research"/><category term="claude-mythos"/></entry><entry><title>Quoting Matteo Wong, The Atlantic</title><link href="https://simonwillison.net/2026/Jun/16/matteo-wong-the-atlantic/#atom-everything" rel="alternate"/><published>2026-06-16T03:07:54+00:00</published><updated>2026-06-16T03:07:54+00:00</updated><id>https://simonwillison.net/2026/Jun/16/matteo-wong-the-atlantic/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://www.theatlantic.com/technology/2026/06/trump-anthropic-export-control-ai-race/687555/?gift=5MjKTLV9QwyU_J0HzTnanoWieJfkMhNH_YTT9pP_fhA"&gt;&lt;p&gt;Katie Moussouris, a cybersecurity expert and the CEO of Luta Security, told me that Anthropic shared with her a copy of the White House’s report on the Fable jailbreak to get her appraisal. (She said that she is not being paid by Anthropic.) The report, Moussouris said, involved IT experts asking Fable to help find and patch bugs. When given deliberately insecure code, she said, Fable refused the prompt “review the code for security issues” but then complied when asked to “fix this code,” followed by some further manual steps. Moussouris told me that this was just “the model working as intended” for cyberdefense.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.theatlantic.com/technology/2026/06/trump-anthropic-export-control-ai-race/687555/?gift=5MjKTLV9QwyU_J0HzTnanoWieJfkMhNH_YTT9pP_fhA"&gt;Matteo Wong, The Atlantic&lt;/a&gt;, The White House Is Ratcheting Up Its War Against Anthropic&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/jailbreaking"&gt;jailbreaking&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos"&gt;claude-mythos&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="anthropic"/><category term="claude"/><category term="ai"/><category term="llms"/><category term="ai-ethics"/><category term="jailbreaking"/><category term="generative-ai"/><category term="ai-security-research"/><category term="claude-mythos"/></entry></feed>
+</summary><category term="georgi-gerganov"/><category term="llms"/><category term="ai"/><category term="generative-ai"/><category term="pi"/><category term="ai-assisted-programming"/><category term="local-llms"/><category term="qwen"/><category term="coding-agents"/></entry></feed>
