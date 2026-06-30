@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-06-30T17:39:23+00:00</updated><author><name>Simon Willison</name></author><entry><title>The AI Compass</title><link href="https://simonwillison.net/2026/Jun/30/the-ai-compass/#atom-everything" rel="alternate"/><published>2026-06-30T17:39:23+00:00</published><updated>2026-06-30T17:39:23+00:00</updated><id>https://simonwillison.net/2026/Jun/30/the-ai-compass/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-06-30T22:15:35+00:00</updated><author><name>Simon Willison</name></author><entry><title>Nano Banana 2 Lite</title><link href="https://simonwillison.net/2026/Jun/30/nano-banana-2-lite/#atom-everything" rel="alternate"/><published>2026-06-30T22:15:35+00:00</published><updated>2026-06-30T22:15:35+00:00</updated><id>https://simonwillison.net/2026/Jun/30/nano-banana-2-lite/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://deepmind.google/models/gemini-image/flash-lite/"&gt;Nano Banana 2 Lite&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Also known as Gemini 3.1 Flash Lite Image (&lt;code&gt;gemini-3.1-flash-lite-image&lt;/code&gt; &lt;a href="https://ai.google.dev/gemini-api/docs/image-generation"&gt;in their API&lt;/a&gt;), this is the "fastest and cheapest Gemini image model, engineered for velocity and scale".&lt;/p&gt;
+&lt;p&gt;I &lt;a href="https://aistudio.google.com/app/prompts/new_chat?model=gemini-3.1-flash-lite-image"&gt;used AI studio&lt;/a&gt; to run this prompt:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Do a where's Waldo style image but it's where is the raccoon holding a ham radio&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="Densely illustrated &amp;quot;Where's Waldo&amp;quot;-style cartoon of a woodland festival filled with anthropomorphic animals (bears, foxes, badgers, rabbits, squirrels, owls) under a banner reading &amp;quot;FOREE'S FESTIVAL&amp;quot; and another reading &amp;quot;FOREST FIVAL,&amp;quot; with bunting flags strung between trees, a Ferris wheel on the right, market stalls including one labeled &amp;quot;ACORN FAIR,&amp;quot; signs reading &amp;quot;BANDSTAND,&amp;quot; &amp;quot;HAM RADIO MEET&amp;quot; (appearing twice), and a stage where a bear plays guitar, a raccoon uses a ham radio, a badger plays drums, an owl looks on, and a fox plays trumpet, with crowds of animals wandering forest paths between trees and mountains in the background." src="https://static.simonwillison.net/static/2026/nano-banana-2-lite-raccoon.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I like that one better than &lt;a href="https://simonwillison.net/2026/Apr/21/gpt-image-2/#nano-banana-2-and-pro"&gt;the results I got from the other Nano Banana models&lt;/a&gt; when I tried this back in April. It spelled Forest Festival wrong in two different ways though.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48735444"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/google"&gt;google&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gemini"&gt;gemini&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/text-to-image"&gt;text-to-image&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/nano-banana"&gt;nano-banana&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="google"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="gemini"/><category term="text-to-image"/><category term="llm-release"/><category term="nano-banana"/></entry><entry><title>What's new in Claude Sonnet 5</title><link href="https://simonwillison.net/2026/Jun/30/claude-sonnet-5/#atom-everything" rel="alternate"/><published>2026-06-30T21:23:02+00:00</published><updated>2026-06-30T21:23:02+00:00</updated><id>https://simonwillison.net/2026/Jun/30/claude-sonnet-5/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5"&gt;What&amp;#x27;s new in Claude Sonnet 5&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Claude Sonnet 5 came out &lt;a href="https://www.anthropic.com/news/claude-sonnet-5"&gt;this morning&lt;/a&gt;. I always head straight for the "what's new" developer docs because they tend to have more actionable information than the official announcement post.&lt;/p&gt;
+&lt;p&gt;Anthropic say of Sonnet 5 that "its performance is close to that of Opus 4.8, but at lower prices". The &lt;a href="https://www-cdn.anthropic.com/9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e/Claude%20Sonnet%205%20System%20Card.pdf"&gt;system card&lt;/a&gt; helps explain how they were able to release the model without being blocked by the US government:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sonnet 5 is significantly less capable at cyber tasks than Mythos 5: its safeguards are thus similar to those we apply to Opus 4.7 and Opus 4.8 (models that are more capable than Sonnet 5 but much less capable than Mythos 5).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Of note from the "what's new" API changes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sampling parameters &lt;code&gt;temperature&lt;/code&gt;, &lt;code&gt;top_p&lt;/code&gt;, &lt;code&gt;top_k&lt;/code&gt; are no longer supported.&lt;/li&gt;
+&lt;li&gt;It has a 1 million token context window and 128,000 maximum output tokens.&lt;/li&gt;
+&lt;li&gt;It features "the same set of tools and platform features as Claude Sonnet 4.6"&lt;/li&gt;
+&lt;li&gt;Adaptive thinking is on by default, unless you specify &lt;code&gt;"thinking": {type: "disabled"}&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The pricing is the same as Sonnet 4.6: $3/million input, $15/million input, with an introductory discount to $2/$10 until 31st August. But...&lt;/li&gt;
+&lt;li&gt;The model has a new tokenizer, where "The same input text produces approximately 30% more tokens than on Claude Sonnet 4.6." - effectively a 30% price increase.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I used my &lt;a href="https://tools.simonwillison.net/claude-token-counter"&gt;Claude Token Counter&lt;/a&gt; tool to try out the new tokenizer. Here are my results for several larger documents:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Document&lt;/th&gt;
+      &lt;th&gt;Sonnet 4.6&lt;/th&gt;
+      &lt;th&gt;Opus 4.7&lt;/th&gt;
+      &lt;th&gt;Sonnet 5&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://github.com/simonw/udhr-markdown/blob/main/declarations/eng.md"&gt;Universal Declaration of Human Rights (English)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;2,356&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;3,347&lt;/b&gt;&lt;br&gt;1.42x&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;3,341&lt;/b&gt;&lt;br&gt;1.42x&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://github.com/simonw/udhr-markdown/blob/main/declarations/spa.md"&gt;Universal Declaration of Human Rights (Spanish)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;3,572&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;4,753&lt;/b&gt;&lt;br&gt;1.33x&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;4,747&lt;/b&gt;&lt;br&gt;1.33x&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://github.com/simonw/udhr-markdown/blob/main/declarations/cmn_hans.md"&gt;Universal Declaration of Human Rights (Chinese, Mandarin Simplified)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;3,334&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;3,366&lt;/b&gt;&lt;br&gt;1.01x&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;3,360&lt;/b&gt;&lt;br&gt;1.01x&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="https://github.com/simonw/sqlite-utils/blob/79117b9d110d72f46dab5fe2cda412ff4789ab55/sqlite_utils/db.py"&gt;sqlite_utils/db.py&lt;/a&gt; (4,279 lines of Python)&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;44,014&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;56,118&lt;/b&gt;&lt;br&gt;1.28x&lt;/td&gt;
+      &lt;td&gt;&lt;b&gt;56,113&lt;/b&gt;&lt;br&gt;1.27x&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;So the new token is roughly 1.4x times more expensive for English, 1.33x for Spanish, 1.28x for Python code and effectively the same cost for Simplified Mandarin.&lt;/p&gt;
+&lt;p&gt;Here's &lt;a href="https://gist.github.com/simonw/a89e756b621a31e8ffc210e3428efa77"&gt;the pelican&lt;/a&gt;. It's nothing to write home about. Sonnet 5 thinks it looks like a goose.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Illustration of a white goose riding a bicycle, with one wing extended forward to grip the handlebar, set against a plain white background with a brown ground line." src="https://static.simonwillison.net/static/2026/sonnet-5-pelican.png" /&gt;
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48736605"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-pricing"&gt;llm-pricing&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry><entry><title>The AI Compass</title><link href="https://simonwillison.net/2026/Jun/30/the-ai-compass/#atom-everything" rel="alternate"/><published>2026-06-30T17:39:23+00:00</published><updated>2026-06-30T17:39:23+00:00</updated><id>https://simonwillison.net/2026/Jun/30/the-ai-compass/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://bambamramfan.github.io/ai-compass/"&gt;The AI Compass&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 This political compass style quiz &lt;a href="https://bambamramfan.tumblr.com/post/820505178072580096/the-ai-compass"&gt;by bambamramfan&lt;/a&gt; is pretty neat - answer 29 questions about AI and AI ethics to see which of the 30 archetypes you best fit.&lt;/p&gt;
@@ -778,29 +862,4 @@ The announcement says this is "for AI agents" but (as is pretty common these day
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openrouter"&gt;openrouter&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-in-china"&gt;ai-in-china&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/glm"&gt;glm&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/><category term="openrouter"/><category term="ai-in-china"/><category term="glm"/></entry><entry><title>Quoting Charity Majors</title><link href="https://simonwillison.net/2026/Jun/17/charity-majors/#atom-everything" rel="alternate"/><published>2026-06-17T17:12:41+00:00</published><updated>2026-06-17T17:12:41+00:00</updated><id>https://simonwillison.net/2026/Jun/17/charity-majors/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://charitydotwtf.substack.com/p/ai-demands-more-engineering-discipline#footnote-2"&gt;&lt;p&gt;What happened in 2025 was this: &lt;strong&gt;the economics of code production were turned upside down&lt;/strong&gt;. Instead of being very hard, time-consuming, and expensive to generate code, it became effectively free and instant. Lines of code went from being treasured, reused, cared for and carefully curated, to being disposable and regenerable, practically overnight.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://charitydotwtf.substack.com/p/ai-demands-more-engineering-discipline#footnote-2"&gt;Charity Majors&lt;/a&gt;, AI demands more engineering discipline. Not less&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/charity-majors"&gt;charity-majors&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="charity-majors"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>&lt;click-to-play&gt; — a still that plays</title><link href="https://simonwillison.net/2026/Jun/17/click-to-play-component/#atom-everything" rel="alternate"/><published>2026-06-17T03:56:10+00:00</published><updated>2026-06-17T03:56:10+00:00</updated><id>https://simonwillison.net/2026/Jun/17/click-to-play-component/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/click-to-play-component"&gt;&amp;lt;click-to-play&amp;gt; — a still that plays&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;A progressive enchantment Web Component that turns this markup:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;click-to-play&amp;gt;
-  &amp;lt;a href="URL to GIF"&amp;gt;
-    &amp;lt;img src="URL to first frame" alt="..."&amp;gt;
-  &amp;lt;/a&amp;gt;
-&amp;lt;/click-to-play&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Into a still frame with a click to play button which loads the GIF on demand. For when you don't want big GIFs to be loaded unless people want to play them.&lt;/p&gt;
-&lt;p&gt;Here's &lt;a href="https://simonwillison.net/2026/Jun/16/datasette/"&gt;an example&lt;/a&gt; that demonstrates the new row editing tools in Datasette - in fact I built this Web Component for that post.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/gif"&gt;gif&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/javascript"&gt;javascript&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/progressive-enhancement"&gt;progressive-enhancement&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/web-components"&gt;web-components&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="gif"/><category term="javascript"/><category term="progressive-enhancement"/><category term="web-components"/></entry></feed>
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/><category term="openrouter"/><category term="ai-in-china"/><category term="glm"/></entry></feed>
