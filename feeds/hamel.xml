@@ -454,12 +454,18 @@
 </div>
 <script>
 (function(){
-  // "Open as notebook" jumps to the Notebook tab of the surrounding Quarto tabset
+  // In the slide deck this advances to the notebook slide. In the blog post it
+  // keeps the original behavior of selecting the Notebook tab.
   var btns = document.querySelectorAll(".da-fig .da-btn");
   btns.forEach(function(b){
     if(b.textContent.toLowerCase().indexOf("notebook") === -1) return;
     b.style.cursor = "pointer";
-    b.addEventListener("click", function(){
+    b.addEventListener("click", function(event){
+      event.preventDefault();
+      if(window.Reveal && b.closest(".reveal")){
+        window.Reveal.next();
+        return;
+      }
       var tabs = document.querySelectorAll('[role="tab"]');
       for(var i = 0; i < tabs.length; i++){
         if(tabs[i].textContent.trim() === "Notebook"){ tabs[i].click(); break; }
@@ -604,8 +610,8 @@
 
 /* per-cell hint that AI can be invoked on this specific cell; revealed on hover
    so it doesn't clutter every cell at rest */
-.nb-aibtn { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; color: var(--nb-ai); background: #f5f1fe; border: 1px solid #e7dcfb; border-radius: 6px; padding: 2px 8px; opacity: 0; transition: opacity .12s; }
-.nb-cell--code .nb-cell__body:hover .nb-aibtn { opacity: 1; }
+.nb-aibtn { margin-left: auto; flex: none; display: none; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; line-height: 1.25; white-space: nowrap; color: var(--nb-ai); background: #f5f1fe; border: 1px solid #e7dcfb; border-radius: 6px; padding: 2px 8px; }
+.nb-cell--code.is-cell-active .nb-aibtn { display: inline-flex; }
 .nb-aibtn .nb-aikbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; color: #a99ad6; }
 
 /* markdown cell rendering */
@@ -673,24 +679,35 @@
   .nb__bar { flex-wrap: nowrap; gap: 7px; }
   .nb__sidebtn, .nb__file { display: none; }
   .nb__runall, .nb__publish { flex: none; padding: 4px 9px; }
+  .nb-codecell__bar { gap: 6px; min-width: 0; }
+  .nb-codecell__hint { display: none; }
+  .nb-aibtn { padding: 3px 7px; }
+  .nb-aibtn .nb-aikbd { display: none; }
+  .nb__scroll { max-height: min(720px, calc(100vh - 180px)); padding: 48px 0 14px; }
 
-  /* the sidebar stays on screen as a thin collapsed rail on the right; tapping
-     it expands the full panel as an overlay, leaving the cells all but the rail */
+  /* the assistant opens from a floating pill instead of a permanent rail, so the
+     cells keep the full notebook width on phones */
   .nb__main,
   .nb:not(.is-side-open) .nb__main,
-  .nb.is-side-open .nb__main { grid-template-columns: 1fr 42px; position: relative; }
+  .nb.is-side-open .nb__main { grid-template-columns: 1fr; position: relative; }
   .nb__rail {
-    display: flex; flex-direction: column; align-items: center; gap: 11px;
-    padding: 13px 0; background: #f6f7f9; border: 0; border-left: 1px solid #eceef1;
-    color: #6b7079; cursor: pointer; -webkit-appearance: none; appearance: none;
+    position: absolute; right: 10px; top: 10px; z-index: 6;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 32px; padding: 0 11px;
+    background: #fff; border: 1px solid #ded6fb; border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(40, 32, 80, 0.16);
+    color: var(--nb-ai); cursor: pointer; -webkit-appearance: none; appearance: none;
   }
-  .nb__rail:hover { background: #f0f1f4; }
-  .nb__rail__ic svg { width: 16px; height: 16px; display: block; }
-  .nb.is-side-open .nb__rail { background: #eef3fd; color: var(--nb-accent); border-left-color: #cfe0fb; }
+  .nb__rail::after { content: "Ask AI"; font-size: 11.5px; font-weight: 600; }
+  .nb__rail:hover { background: #fbf9ff; }
+  .nb__rail__ic svg { display: none; }
+  .nb__rail__ic::before { content: "\2726"; font-size: 12px; line-height: 1; }
+  .nb.is-side-open .nb__rail { opacity: 0; pointer-events: none; }
 
   .nb__side {
     position: absolute; top: 0; right: 0; bottom: 0;
-    width: min(86%, 296px); z-index: 8;
+    width: 100%; z-index: 8;
+    border-left: 0;
     box-shadow: -12px 0 30px rgba(20, 22, 28, 0.20);
   }
   /* keep it mounted in both states (so it can slide), driven by two mutually
@@ -709,11 +726,15 @@
   }
 }
 
-/* touch devices have no hover, so hover-only affordances never appear; keep the
-   per-cell "Ask AI" button reachable by revealing it */
-@media (hover: none) {
-  .nb-cell--code .nb-cell__body .nb-aibtn { opacity: 1; }
+@media (max-width: 360px) {
+  .nb-cell__tools .nb-tool:nth-last-child(-n+2) { display: none; }
+  .nb-chip--py { font-size: 0; }
+  .nb-chip--py::before { content: "PY"; font-size: 10px; }
+  .nb-aibtn { width: 24px; height: 22px; padding: 0; gap: 0; justify-content: center; font-size: 0; }
+  .nb-aibtn::before { content: "\2726"; font-size: 11px; line-height: 1; }
 }
+
+/* the per-cell AI action appears only after a code cell is selected */
 </style>
 
 <div class="nb is-side-open">
@@ -1029,7 +1050,7 @@ m<span class="tk-pn">.</span>plot<span class="tk-pn">.</span><span class="tk-fn"
         </div>
       </div>
 
-      <button class="nb__rail" aria-label="Open contents and assistant">
+      <button class="nb__rail" aria-label="Open assistant">
         <span class="nb__rail__ic"><svg viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.6" y="2.6" width="12.8" height="10.8" rx="2" stroke="currentColor" stroke-width="1.4"></rect><line x1="10.3" y1="2.6" x2="10.3" y2="13.4" stroke="currentColor" stroke-width="1.4"></line></svg></span>
       </button>
     </div>
@@ -1132,9 +1153,24 @@ m<span class="tk-pn">.</span>plot<span class="tk-pn">.</span><span class="tk-fn"
     });
   });
 
+  var codeCells = nb.querySelectorAll(".nb-cell--code");
+  function activateCodeCell(cell){
+    codeCells.forEach(function(x){ x.classList.toggle("is-cell-active", x === cell); });
+  }
+  codeCells.forEach(function(cell){
+    cell.addEventListener("click", function(){ activateCodeCell(cell); });
+  });
+  nb.addEventListener("click", function(e){
+    if(!e.target.closest(".nb-cell--code")) activateCodeCell(null);
+  });
+
   // mark this notebook's "live" controls as no-ops; the shared page-level
   // handler (see _fig-styles.qmd) shows the "just a mockup" note on click
   var EGG_SEL = ".nb__runall, .nb__publish, .nb-codecell__bar .nb-tool, .nb-aibtn, .nb__ai-field, .nb__prov a";
+  nb.querySelectorAll(".nb-aibtn").forEach(function(el){
+    el.setAttribute("role", "button");
+    el.setAttribute("aria-label", "Ask AI about this cell");
+  });
   nb.querySelectorAll(EGG_SEL).forEach(function(el){ el.classList.add("mockup-noop"); });
 })();
 </script>
