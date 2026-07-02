@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-06-30T23:58:15+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Anthropic</title><link href="https://simonwillison.net/2026/Jun/30/anthropic/#atom-everything" rel="alternate"/><published>2026-06-30T23:58:15+00:00</published><updated>2026-06-30T23:58:15+00:00</updated><id>https://simonwillison.net/2026/Jun/30/anthropic/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-02T17:07:14+00:00</updated><author><name>Simon Willison</name></author><entry><title>Understand to participate</title><link href="https://simonwillison.net/2026/Jul/2/understand-to-participate/#atom-everything" rel="alternate"/><published>2026-07-02T17:07:14+00:00</published><updated>2026-07-02T17:07:14+00:00</updated><id>https://simonwillison.net/2026/Jul/2/understand-to-participate/#atom-everything</id><summary type="html">
+    &lt;p&gt;I saw Geoffrey Litt speak at &lt;a href="https://www.ai.engineer/worldsfair/2026"&gt;AIE&lt;/a&gt; yesterday, and one framing he used particularly resonated with me:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Understand to participate&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Geoffrey was talking about the challenge of collaborating with coding agents as they construct increasingly large and sophisticated changes, and the need to avoid taking on &lt;a href="https://simonwillison.net/tags/cognitive-debt/"&gt;cognitive debt&lt;/a&gt; as your understanding drifts from how the code actually works.&lt;/p&gt;
+&lt;p&gt;His argument is that you need to understand the code to a depth that enables you to participate further with the model:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can learn what the agent is doing to make sure you can be an active participant in the creative process. [...]&lt;/p&gt;
+&lt;p&gt;You need a rich set of concepts in your mind to think creatively and fluently about how to move something forward. If you're lacking that fluency, your ability to participate in the project is meaningfully limited.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The AIE talks are all recorded - all 300+ of them! - and should be trickling out over the next three weeks. Geoffrey's is one that I recommend catching on YouTube.&lt;/p&gt;
+&lt;p&gt;Geoffrey also published &lt;a href="https://twitter.com/geoffreylitt/status/2072522251300409556"&gt;a thread version of his talk&lt;/a&gt; on Twitter.&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/geoffrey-litt"&gt;geoffrey-litt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/cognitive-debt"&gt;cognitive-debt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="geoffrey-litt"/><category term="coding-agents"/><category term="cognitive-debt"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>Quoting Anthropic</title><link href="https://simonwillison.net/2026/Jun/30/anthropic/#atom-everything" rel="alternate"/><published>2026-06-30T23:58:15+00:00</published><updated>2026-06-30T23:58:15+00:00</updated><id>https://simonwillison.net/2026/Jun/30/anthropic/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://twitter.com/anthropicai/status/2072106151890809341"&gt;&lt;p&gt;We’ve received notice that the Department of Commerce has lifted export controls on Claude Fable 5 and Mythos 5.&lt;/p&gt;
 &lt;p&gt;We'll begin restoring access tomorrow, and will share an update soon.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://twitter.com/anthropicai/status/2072106151890809341"&gt;Anthropic&lt;/a&gt;, on Twitter&lt;/p&gt;
@@ -832,16 +848,4 @@ The announcement says this is "for AI agents" but (as is pretty common these day
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/iframes"&gt;iframes&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/javascript"&gt;javascript&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sandboxing"&gt;sandboxing&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/content-security-policy"&gt;content-security-policy&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="iframes"/><category term="javascript"/><category term="projects"/><category term="sandboxing"/><category term="ai"/><category term="datasette"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="content-security-policy"/></entry><entry><title>datasette-acl 0.6a0</title><link href="https://simonwillison.net/2026/Jun/18/datasette-acl/#atom-everything" rel="alternate"/><published>2026-06-18T19:03:13+00:00</published><updated>2026-06-18T19:03:13+00:00</updated><id>https://simonwillison.net/2026/Jun/18/datasette-acl/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-acl/releases/tag/0.6a0"&gt;datasette-acl 0.6a0&lt;/a&gt;&lt;/p&gt;
-        &lt;blockquote&gt;
-&lt;p&gt;This release expands &lt;code&gt;datasette-acl&lt;/code&gt; from table-only permissions toward a general resource-sharing system.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Alex Garcia did most of the work for this release - we're fleshing out the plugin that will allow multi-user Datasette instances finely grained control over who can access which resources within Datasette.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/alex-garcia"&gt;alex-garcia&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="datasette"/><category term="alex-garcia"/></entry></feed>
+</summary><category term="iframes"/><category term="javascript"/><category term="projects"/><category term="sandboxing"/><category term="ai"/><category term="datasette"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="content-security-policy"/></entry></feed>
