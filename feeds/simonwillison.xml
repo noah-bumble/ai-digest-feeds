@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-03T14:50:50+00:00</updated><author><name>Simon Willison</name></author><entry><title>June 2026 newsletter</title><link href="https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything" rel="alternate"/><published>2026-07-03T14:50:50+00:00</published><updated>2026-07-03T14:50:50+00:00</updated><id>https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-03T21:25:52+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Josh W. Comeau</title><link href="https://simonwillison.net/2026/Jul/3/josh-w-comeau/#atom-everything" rel="alternate"/><published>2026-07-03T21:25:52+00:00</published><updated>2026-07-03T21:25:52+00:00</updated><id>https://simonwillison.net/2026/Jul/3/josh-w-comeau/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://bsky.app/profile/joshwcomeau.com/post/3mkxyqgrp2d2t"&gt;&lt;p&gt;I just launched my third course, Whimsical Animations, and so far, it’s on track to sell roughly ⅓ as many copies as a typical course launch.&lt;/p&gt;
+&lt;p&gt;It’s a similar story with my two existing courses. Sales are down significantly from last year.&lt;/p&gt;
+&lt;p&gt;There are likely a lot of reasons for this, but I think the biggest is AI. There’s sort of a double whammy with AI:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Many people are wondering whether developer jobs will even exist in a few months, so they’re reluctant to spend time/money learning new dev skills.&lt;/li&gt;
+&lt;li&gt;Even if they do want to learn new dev skills, LLMs can provide personalized tutoring, so there’s less incentive to buy a paid course.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[...] I’ve spoken to a few course creators now, and we’re all seeing the same trend. Revenue down 50%+. Fewer people engaging with our content. People switching to LLMs, which slurp up all of our work and regurgitate it, without consent or compensation.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://bsky.app/profile/joshwcomeau.com/post/3mkxyqgrp2d2t"&gt;Josh W. Comeau&lt;/a&gt;, via &lt;a href="https://whitep4nth3r.com/blog/goodbye-forever-probably/"&gt;Salma Alam-Naylor&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/careers"&gt;careers&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai-ethics"/><category term="llms"/><category term="ai"/><category term="generative-ai"/><category term="careers"/></entry><entry><title>Fable's judgement</title><link href="https://simonwillison.net/2026/Jul/3/judgement/#atom-everything" rel="alternate"/><published>2026-07-03T18:51:06+00:00</published><updated>2026-07-03T18:51:06+00:00</updated><id>https://simonwillison.net/2026/Jul/3/judgement/#atom-everything</id><summary type="html">
+    &lt;p&gt;One of the most interesting tips I got from &lt;a href="https://www.ai.engineer/worldsfair/schedule?session=asn_slot_2026_06_30_main_stage_1230_2026_06_08t09_35_43_039z"&gt;the Fireside Chat&lt;/a&gt; I hosted with Cat Wu and Thariq Shihipar from the Claude Code team at AIE on Wednesday was to let Fable (and to a certain extent Opus) use their own judgement rather than dictating how they should work.&lt;/p&gt;
+&lt;p&gt;The example they gave was testing. You can tell Fable "only use automated testing for larger features, don't update and run tests for small copy or design changes" - but it's better to just tell Fable to use its own judgement when deciding to write tests instead.&lt;/p&gt;
+&lt;p&gt;Jesse Vincent just gave me a related tip to help avoid burning too many of those valuable Fable tokens in the few days we have left before the prices go up. Tell Fable to use other models for smaller tasks, applying its own judgement about which model to use.&lt;/p&gt;
+&lt;p&gt;I prompted Claude Code just now with:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;For all coding tasks use your judgement to decide an appropriate lower power model and run that in a subagent&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Claude saved this memory file in &lt;code&gt;~/.claude/projects/name-of-project/memory/delegate-coding-to-subagents.md&lt;/code&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;---
+name: delegate-coding-to-subagents
+description: Simon wants coding tasks delegated to subagents running an appropriately lower-power model
+metadata: 
+  node_type: memory
+  type: feedback
+  originSessionId: 30068d78-43a9-4fb1-bb29-9799e18c526a
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Stated by Simon on 2026-07-03: "For all coding tasks use your judgement to
+decide an appropriate lower power model and run that in a subagent."&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why:&lt;/strong&gt; cost/efficiency — implementation work rarely needs the top-tier
+model; judgment, review, and synthesis stay with the main loop.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How to apply:&lt;/strong&gt; when a task in this project is primarily writing/editing
+code, spawn an Agent with a model override (sonnet for substantive
+implementation, haiku for trivial/mechanical edits) and a self-contained
+prompt; review the result in the main loop before committing. Design,
+auditing, data synthesis, and anything judgment-heavy stays in the main
+model. See also [[project-goals]].&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So far it seems to be working well. I'm getting a &lt;em&gt;ton&lt;/em&gt; of work done and my Fable allowance is shrinking less quickly than before.&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/prompt-engineering"&gt;prompt-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="claude"/><category term="ai"/><category term="claude-code"/><category term="llms"/><category term="prompt-engineering"/><category term="coding-agents"/><category term="generative-ai"/><category term="claude-mythos-fable"/><category term="anthropic"/></entry><entry><title>June 2026 newsletter</title><link href="https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything" rel="alternate"/><published>2026-07-03T14:50:50+00:00</published><updated>2026-07-03T14:50:50+00:00</updated><id>https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything</id><summary type="html">
     &lt;p&gt;The June edition of my &lt;a href="https://github.com/sponsors/simonw/"&gt;sponsors-only monthly newsletter&lt;/a&gt; is out. If you are a sponsor (or if you start a sponsorship now) you can &lt;a href="https://github.com/simonw-private/monthly/blob/main/2026-06-june.md"&gt;access it here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This month:&lt;/p&gt;
 &lt;ul&gt;
@@ -754,99 +805,4 @@ git commit -m &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/browsers"&gt;browsers&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/transformers-js"&gt;transformers-js&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/webgl"&gt;webgl&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/vibe-coding"&gt;vibe-coding&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/onnx"&gt;onnx&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="browsers"/><category term="transformers-js"/><category term="webgl"/><category term="vibe-coding"/><category term="coding-agents"/><category term="claude-code"/><category term="onnx"/></entry><entry><title>sqlite-utils 4.0rc1 adds migrations and nested transactions</title><link href="https://simonwillison.net/2026/Jun/21/sqlite-utils-40rc1/#atom-everything" rel="alternate"/><published>2026-06-21T23:35:47+00:00</published><updated>2026-06-21T23:35:47+00:00</updated><id>https://simonwillison.net/2026/Jun/21/sqlite-utils-40rc1/#atom-everything</id><summary type="html">
-    &lt;p&gt;&lt;a href="https://sqlite-utils.datasette.io/en/latest/"&gt;sqlite-utils&lt;/a&gt; is my combined Python library and CLI tool for working with SQLite databases. It provides an extensive set of higher-level operations on top of Python's default &lt;a href="https://docs.python.org/3/library/sqlite3.html"&gt;sqlite3 package&lt;/a&gt;, including support for &lt;a href="https://sqlite-utils.datasette.io/en/latest/cli.html#transforming-tables"&gt;complex table transformations&lt;/a&gt;, automatic table creation &lt;a href="https://sqlite-utils.datasette.io/en/latest/cli.html#inserting-json-data"&gt;from JSON data&lt;/a&gt; and a whole lot more.&lt;/p&gt;
-&lt;p&gt;I released &lt;a href="https://sqlite-utils.datasette.io/en/latest/changelog.html#rc1-2026-06-21"&gt;sqlite-utils 4.0rc1&lt;/a&gt;, the first release candidate for sqlite-utils v4. The major version bump indicates some (minor) backwards incompatible changes, so I'm interested in having people try this out before I commit to a stable release.&lt;/p&gt;
-&lt;h4 id="new-feature-migrations"&gt;New feature: migrations&lt;/h4&gt;
-&lt;p&gt;There are two significant new features in this RC compared to the previous 4.0 alphas.&lt;/p&gt;
-&lt;p&gt;The first is support for &lt;strong&gt;database migrations&lt;/strong&gt;. This isn't a completely new implementation - it's a slightly modified port of the &lt;a href="https://github.com/simonw/sqlite-migrate"&gt;sqlite-migrate&lt;/a&gt; package I released a few years ago. I think that package has proved itself over time, so I'm now ready to bundle it with &lt;code&gt;sqlite-utils&lt;/code&gt; directly.&lt;/p&gt;
-&lt;p&gt;Here's what a set of migrations in a &lt;code&gt;migrations.py&lt;/code&gt; file looks like:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-k"&gt;from&lt;/span&gt; &lt;span class="pl-s1"&gt;sqlite_utils&lt;/span&gt; &lt;span class="pl-k"&gt;import&lt;/span&gt; &lt;span class="pl-v"&gt;Database&lt;/span&gt;, &lt;span class="pl-v"&gt;Migrations&lt;/span&gt;
-
-&lt;span class="pl-s1"&gt;migrations&lt;/span&gt; &lt;span class="pl-c1"&gt;=&lt;/span&gt; &lt;span class="pl-en"&gt;Migrations&lt;/span&gt;(&lt;span class="pl-s"&gt;"creatures"&lt;/span&gt;)
-
-&lt;span class="pl-en"&gt;@&lt;span class="pl-en"&gt;migrations&lt;/span&gt;()&lt;/span&gt;
-&lt;span class="pl-k"&gt;def&lt;/span&gt; &lt;span class="pl-en"&gt;create_table&lt;/span&gt;(&lt;span class="pl-s1"&gt;db&lt;/span&gt;):
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;[&lt;span class="pl-s"&gt;"creatures"&lt;/span&gt;].&lt;span class="pl-c1"&gt;create&lt;/span&gt;(
-        {&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-s1"&gt;int&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s1"&gt;str&lt;/span&gt;, &lt;span class="pl-s"&gt;"species"&lt;/span&gt;: &lt;span class="pl-s1"&gt;str&lt;/span&gt;},
-        &lt;span class="pl-s1"&gt;pk&lt;/span&gt;&lt;span class="pl-c1"&gt;=&lt;/span&gt;&lt;span class="pl-s"&gt;"id"&lt;/span&gt;,
-    )
-
-&lt;span class="pl-en"&gt;@&lt;span class="pl-en"&gt;migrations&lt;/span&gt;()&lt;/span&gt;
-&lt;span class="pl-k"&gt;def&lt;/span&gt; &lt;span class="pl-en"&gt;add_weight&lt;/span&gt;(&lt;span class="pl-s1"&gt;db&lt;/span&gt;):
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;[&lt;span class="pl-s"&gt;"creatures"&lt;/span&gt;].&lt;span class="pl-c1"&gt;add_column&lt;/span&gt;(&lt;span class="pl-s"&gt;"weight"&lt;/span&gt;, &lt;span class="pl-s1"&gt;float&lt;/span&gt;)&lt;/pre&gt;
-&lt;p&gt;This defines a set of two migrations, one creating the &lt;code&gt;creatures&lt;/code&gt; table and another adding a column to it.&lt;/p&gt;
-&lt;p&gt;You can then run those migrations either using Python:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-s1"&gt;db&lt;/span&gt; &lt;span class="pl-c1"&gt;=&lt;/span&gt; &lt;span class="pl-en"&gt;Database&lt;/span&gt;(&lt;span class="pl-s"&gt;"creatures.db"&lt;/span&gt;)
-&lt;span class="pl-s1"&gt;migrations&lt;/span&gt;.&lt;span class="pl-c1"&gt;apply&lt;/span&gt;(&lt;span class="pl-s1"&gt;db&lt;/span&gt;)&lt;/pre&gt;
-&lt;p&gt;Or with the command-line &lt;code&gt;migrate&lt;/code&gt; command:&lt;/p&gt;
-&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;sqlite-utils migrate creatures.db migrations.py&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The system is deliberately small: it doesn't provide reverse migrations, so any mistakes you make should be fixed by deploying a fresh migration to undo them.&lt;/p&gt;
-&lt;p&gt;Its predecessor has been used by &lt;a href="https://llm.datasette.io/"&gt;LLM&lt;/a&gt; and various other projects for several years, so I'm confident that the design is stable and works well.&lt;/p&gt;
-&lt;p&gt;The new migrations feature &lt;a href="https://sqlite-utils.datasette.io/en/latest/migrations.html"&gt;is documented here&lt;/a&gt;.&lt;/p&gt;
-&lt;h4 id="new-feature-db-atomic-transactions"&gt;New feature: db.atomic() transactions&lt;/h4&gt;
-&lt;p&gt;This feature is a lot less exercised than migrations, so it deserves more attention from testers.&lt;/p&gt;
-&lt;p&gt;Previously, &lt;code&gt;sqlite-utils&lt;/code&gt; mostly left transaction management up to its users, via a &lt;code&gt;with db.conn:&lt;/code&gt; construct that reused the &lt;code&gt;sqlite3&lt;/code&gt; mechanism directly.&lt;/p&gt;
-&lt;p&gt;SQLite supports nested transactions in the form of savepoints, so I wanted an abstraction that could make those as easy to use as possible.&lt;/p&gt;
-&lt;p&gt;I borrowed the terminology "atomic" from Django and Peewee. Here's what the new API looks like:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-k"&gt;with&lt;/span&gt; &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;atomic&lt;/span&gt;():
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;table&lt;/span&gt;(&lt;span class="pl-s"&gt;"dogs"&lt;/span&gt;).&lt;span class="pl-c1"&gt;insert&lt;/span&gt;({&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-c1"&gt;1&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s"&gt;"Cleo"&lt;/span&gt;}, &lt;span class="pl-s1"&gt;pk&lt;/span&gt;&lt;span class="pl-c1"&gt;=&lt;/span&gt;&lt;span class="pl-s"&gt;"id"&lt;/span&gt;)
-    &lt;span class="pl-k"&gt;try&lt;/span&gt;:
-        &lt;span class="pl-k"&gt;with&lt;/span&gt; &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;atomic&lt;/span&gt;():
-            &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;table&lt;/span&gt;(&lt;span class="pl-s"&gt;"dogs"&lt;/span&gt;).&lt;span class="pl-c1"&gt;insert&lt;/span&gt;({&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-c1"&gt;2&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s"&gt;"Pancakes"&lt;/span&gt;})
-            &lt;span class="pl-k"&gt;raise&lt;/span&gt; &lt;span class="pl-en"&gt;ValueError&lt;/span&gt;(&lt;span class="pl-s"&gt;"skip this one"&lt;/span&gt;)
-    &lt;span class="pl-k"&gt;except&lt;/span&gt; &lt;span class="pl-v"&gt;ValueError&lt;/span&gt;:
-        &lt;span class="pl-k"&gt;pass&lt;/span&gt;
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;table&lt;/span&gt;(&lt;span class="pl-s"&gt;"dogs"&lt;/span&gt;).&lt;span class="pl-c1"&gt;insert&lt;/span&gt;({&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-c1"&gt;3&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s"&gt;"Marnie"&lt;/span&gt;})&lt;/pre&gt;
-&lt;p&gt;More details &lt;a href="https://sqlite-utils.datasette.io/en/latest/python-api.html#transactions-with-db-atomic"&gt;in the documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;h4 id="backwards-incompatible-changes"&gt;Backwards incompatible changes&lt;/h4&gt;
-&lt;p&gt;The backwards incompatible changes in v4 were described in the alpha release notes. For &lt;a href="https://sqlite-utils.datasette.io/en/latest/changelog.html#a0-2025-05-08"&gt;4.0a0&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Upsert operations now use SQLite's &lt;code&gt;INSERT ... ON CONFLICT SET&lt;/code&gt; syntax on all SQLite versions later than 3.23.1. This is a very slight breaking change for apps that depend on the previous &lt;code&gt;INSERT OR IGNORE&lt;/code&gt; followed by &lt;code&gt;UPDATE&lt;/code&gt; behavior. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/652"&gt;#652&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Python library users can opt-in to the previous implementation by passing &lt;code&gt;use_old_upsert=True&lt;/code&gt; to the &lt;code&gt;Database()&lt;/code&gt; constructor, see &lt;a href="https://sqlite-utils.datasette.io/en/latest/python-api.html#python-api-old-upsert"&gt;Alternative upserts using INSERT OR IGNORE&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Dropped support for Python 3.8, added support for Python 3.13. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/646"&gt;#646&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;
-&lt;code&gt;sqlite-utils tui&lt;/code&gt; is now provided by the &lt;a href="https://github.com/simonw/sqlite-utils-tui"&gt;sqlite-utils-tui&lt;/a&gt; plugin. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/648"&gt;#648&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Test suite now also runs against SQLite 3.23.1, the last version (from 2018-04-10) before the new &lt;code&gt;INSERT ... ON CONFLICT SET&lt;/code&gt; syntax was added. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/654"&gt;#654&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;And for &lt;a href="https://sqlite-utils.datasette.io/en/latest/changelog.html#a1-2025-11-23"&gt;4.0a1&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;strong&gt;Breaking change&lt;/strong&gt;: The &lt;code&gt;db.table(table_name)&lt;/code&gt; method now only works with tables. To access a SQL view use &lt;code&gt;db.view(view_name)&lt;/code&gt; instead. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/657"&gt;#657&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;table.insert_all()&lt;/code&gt; and &lt;code&gt;table.upsert_all()&lt;/code&gt; methods can now accept an iterator of lists or tuples as an alternative to dictionaries. The first item should be a list/tuple of column names. See &lt;a href="https://sqlite-utils.datasette.io/en/latest/python-api.html#python-api-insert-lists"&gt;Inserting data from a list or tuple iterator&lt;/a&gt; for details. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/672"&gt;#672&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Breaking change&lt;/strong&gt;: The default floating point column type has been changed from &lt;code&gt;FLOAT&lt;/code&gt; to &lt;code&gt;REAL&lt;/code&gt;, which is the correct SQLite type for floating point values. This affects auto-detected columns when inserting data. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/645"&gt;#645&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Now uses &lt;code&gt;pyproject.toml&lt;/code&gt; in place of &lt;code&gt;setup.py&lt;/code&gt; for packaging. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/675"&gt;#675&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Tables in the Python API now do a much better job of remembering the primary key and other schema details from when they were first created. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/655"&gt;#655&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Breaking change&lt;/strong&gt;: The &lt;code&gt;table.convert()&lt;/code&gt; and &lt;code&gt;sqlite-utils convert&lt;/code&gt; mechanisms no longer skip values that evaluate to &lt;code&gt;False&lt;/code&gt;. Previously the &lt;code&gt;--skip-false&lt;/code&gt; option was needed, this has been removed. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/542"&gt;#542&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Breaking change&lt;/strong&gt;: Tables created by this library now wrap table and column names in &lt;code&gt;"double-quotes"&lt;/code&gt; in the schema. Previously they would use &lt;code&gt;[square-braces]&lt;/code&gt;. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/677"&gt;#677&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;--functions&lt;/code&gt; CLI argument now accepts a path to a Python file in addition to accepting a string full of Python code. It can also now be specified multiple times. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/659"&gt;#659&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Breaking change:&lt;/strong&gt; Type detection is now the default behavior for the &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;upsert&lt;/code&gt; CLI commands when importing CSV or TSV data. Previously all columns were treated as &lt;code&gt;TEXT&lt;/code&gt; unless the &lt;code&gt;--detect-types&lt;/code&gt; flag was passed. Use the new &lt;code&gt;--no-detect-types&lt;/code&gt; flag to restore the old behavior. The &lt;code&gt;SQLITE_UTILS_DETECT_TYPES&lt;/code&gt; environment variable has been removed. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/679"&gt;#679&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h4 id="try-it-out"&gt;Try it out&lt;/h4&gt;
-&lt;p&gt;You can install the new RC like this:&lt;/p&gt;
-&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;pip install sqlite-utils==4.0rc1&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Or try the CLI version directly with &lt;code&gt;uvx&lt;/code&gt; like this:&lt;/p&gt;
-&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;uvx --with sqlite-utils==4.0rc1 sqlite-utils --help&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Come chat with us about it in the &lt;a href="https://discord.gg/Ass7bCAMDw"&gt;sqlite-utils Discord channel&lt;/a&gt;, or file any bugs in &lt;a href="https://github.com/simonw/sqlite-utils/issues"&gt;GitHub Issues&lt;/a&gt;.&lt;/p&gt;
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/migrations"&gt;migrations&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/annotated-release-notes"&gt;annotated-release-notes&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="migrations"/><category term="projects"/><category term="sqlite"/><category term="sqlite-utils"/><category term="annotated-release-notes"/></entry><entry><title>sqlite-utils 4.0rc1</title><link href="https://simonwillison.net/2026/Jun/21/sqlite-utils/#atom-everything" rel="alternate"/><published>2026-06-21T23:30:04+00:00</published><updated>2026-06-21T23:30:04+00:00</updated><id>https://simonwillison.net/2026/Jun/21/sqlite-utils/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/sqlite-utils/releases/tag/4.0rc1"&gt;sqlite-utils 4.0rc1&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;See &lt;a href="https://simonwillison.net/2026/Jun/21/sqlite-utils-40rc1/"&gt;sqlite-utils 4.0rc1 adds migrations and nested transactions&lt;/a&gt;.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="sqlite-utils"/></entry></feed>
+</summary><category term="browsers"/><category term="transformers-js"/><category term="webgl"/><category term="vibe-coding"/><category term="coding-agents"/><category term="claude-code"/><category term="onnx"/></entry></feed>
