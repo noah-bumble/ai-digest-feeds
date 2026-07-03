@@ -11,7 +11,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;Commit the spec, then build it using red/green TDD in a series of sensible commits (each with passing tests and updated docs) - occasionally manually test it using the OpenAI API key in your environment&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Here's the &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/README.md"&gt;resulting README file&lt;/a&gt; and the &lt;a href="https://github.com/simonw/llm-coding-agent/commits/0.1a0"&gt;sequence of commits&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here's &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/spec.md"&gt;the spec&lt;/a&gt;, the &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/README.md"&gt;resulting README file&lt;/a&gt;, and the &lt;a href="https://github.com/simonw/llm-coding-agent/commits/0.1a0"&gt;sequence of commits&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I've shipped a slop-alpha to PyPI, so you can run the new agent like this:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;uvx --prerelease=allow --with llm-coding-agent llm code
 &lt;/code&gt;&lt;/pre&gt;
