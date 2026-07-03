@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-02T19:33:12+00:00</updated><author><name>Simon Willison</name></author><entry><title>llm-coding-agent 0.1a0</title><link href="https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything" rel="alternate"/><published>2026-07-02T19:33:12+00:00</published><updated>2026-07-02T19:33:12+00:00</updated><id>https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-03T14:50:50+00:00</updated><author><name>Simon Willison</name></author><entry><title>June 2026 newsletter</title><link href="https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything" rel="alternate"/><published>2026-07-03T14:50:50+00:00</published><updated>2026-07-03T14:50:50+00:00</updated><id>https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything</id><summary type="html">
+    &lt;p&gt;The June edition of my &lt;a href="https://github.com/sponsors/simonw/"&gt;sponsors-only monthly newsletter&lt;/a&gt; is out. If you are a sponsor (or if you start a sponsorship now) you can &lt;a href="https://github.com/simonw-private/monthly/blob/main/2026-06-june.md"&gt;access it here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Claude Fable 5, GPT-5.6, and US export restrictions&lt;/li&gt;
+&lt;li&gt;GLM-5.2 is the new best open weights model&lt;/li&gt;
+&lt;li&gt;Tokenmaxxing is so over&lt;/li&gt;
+&lt;li&gt;Datasette Apps&lt;/li&gt;
+&lt;li&gt;sqlite-utils and shot-scraper and Datasette&lt;/li&gt;
+&lt;li&gt;Miscellaneous WASM projects&lt;/li&gt;
+&lt;li&gt;Other model releases&lt;/li&gt;
+&lt;li&gt;What I'm using&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here's &lt;a href="https://github.com/simonw/monthly-newsletter-archive/blob/main/2026-05-may.md"&gt;a copy of the May newsletter&lt;/a&gt; as a preview of what you'll get. Pay $10/month to stay a month ahead of the free copy!&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/newsletter"&gt;newsletter&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="newsletter"/></entry><entry><title>llm-coding-agent 0.1a0</title><link href="https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything" rel="alternate"/><published>2026-07-02T19:33:12+00:00</published><updated>2026-07-02T19:33:12+00:00</updated><id>https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm-coding-agent/releases/tag/0.1a0"&gt;llm-coding-agent 0.1a0&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;Another Fable 5 experiment. Now that my &lt;a href="https://llm.datasette.io/"&gt;LLM library&lt;/a&gt; has evolved into more of an agent framework it's time to see what a simple coding agent would look like built on it.&lt;/p&gt;
@@ -830,23 +849,4 @@ git commit -m &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="sqlite-utils"/></entry><entry><title>Temporary Cloudflare Accounts for AI agents</title><link href="https://simonwillison.net/2026/Jun/21/temporary-cloudflare-accounts/#atom-everything" rel="alternate"/><published>2026-06-21T22:01:04+00:00</published><updated>2026-06-21T22:01:04+00:00</updated><id>https://simonwillison.net/2026/Jun/21/temporary-cloudflare-accounts/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://blog.cloudflare.com/temporary-accounts/"&gt;Temporary Cloudflare Accounts for AI agents&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-The announcement says this is "for AI agents" but (as is pretty common these days) the AI hook isn't really necessary, this is an interesting feature for everyone else as well.&lt;/p&gt;
-&lt;p&gt;Short version: you can now create a Cloudflare Workers project and run this, without even creating a Cloudflare account:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npx wrangler deploy --temporary
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Cloudflare will deploy the application to a new, ephemeral project which will stay live for 60 minutes.&lt;/p&gt;
-&lt;p&gt;I &lt;a href="https://gist.github.com/simonw/264bd6b8a39fc34c91c9c867454c64b9"&gt;had GPT-5.5 xhigh&lt;/a&gt; in Codex Desktop &lt;a href="https://github.com/simonw/cloudflare-redirect-resolver"&gt;build this test application&lt;/a&gt; providing a tool for following HTTP redirects and returning the final destination. The temporary deployment worked as advertised.&lt;/p&gt;
-&lt;p&gt;Running the deployment spits out the URL to a page for claiming the new project, for if you want it to last for more than 60 minutes. Here's what that claim screen looks like:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Screenshot of a Cloudflare account claim page. A red banner at top reads &amp;quot;This claim link expires in 49:26&amp;quot;. Below, a card titled &amp;quot;Educated Celery&amp;quot; with the text &amp;quot;Claim this account to take ownership of cloudflare-redirect-resolver and all its resources.&amp;quot; and a blue &amp;quot;Claim Account&amp;quot; button. A worker entry shows &amp;quot;cloudflare-redirect-resolver&amp;quot; with the URL &amp;quot;cloudflare-redirect-resolver.educated-celery.workers.dev&amp;quot;." src="https://static.simonwillison.net/static/2026/cloudflare-claim.jpg" /&gt;
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48608394"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/cloudflare"&gt;cloudflare&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="cloudflare"/></entry></feed>
+</summary><category term="sqlite-utils"/></entry></feed>
