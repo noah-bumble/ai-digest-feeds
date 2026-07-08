@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-07T19:32:57+00:00</updated><author><name>Simon Willison</name></author><entry><title>sqlite-utils 4.0, now with database schema migrations</title><link href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything" rel="alternate"/><published>2026-07-07T19:32:57+00:00</published><updated>2026-07-07T19:32:57+00:00</updated><id>https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-08T20:03:34+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Kenton Varda</title><link href="https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything" rel="alternate"/><published>2026-07-08T20:03:34+00:00</published><updated>2026-07-08T20:03:34+00:00</updated><id>https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://twitter.com/kentonvarda/status/2074924213983740233"&gt;&lt;p&gt;I just declared a moratorium against AI-written change descriptions (e.g. PR and commit messages, also issues/tickets) from my team.&lt;/p&gt;
+&lt;p&gt;AI was writing change descriptions that were worse than useless to me as I tried to review PRs: outlining details of the code that could easily be seen by looking at the code, but omitting the higher-level framing needed to understand broadly what the code is doing.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://twitter.com/kentonvarda/status/2074924213983740233"&gt;Kenton Varda&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/kenton-varda"&gt;kenton-varda&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="kenton-varda"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>sqlite-utils 4.0, now with database schema migrations</title><link href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything" rel="alternate"/><published>2026-07-07T19:32:57+00:00</published><updated>2026-07-07T19:32:57+00:00</updated><id>https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything</id><summary type="html">
     &lt;p&gt;This morning I released &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0"&gt;sqlite-utils 4.0&lt;/a&gt;, the 124th release of that project and the first major version bump since &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v3-0"&gt;3.0&lt;/a&gt; in November 2020. In addition to some small but significant breaking changes (described in &lt;a href="https://sqlite-utils.datasette.io/en/stable/upgrading.html"&gt;this upgrade guide&lt;/a&gt;), this version introduces three major features: &lt;strong&gt;database migrations&lt;/strong&gt;, &lt;strong&gt;nested transactions&lt;/strong&gt; (via a new &lt;code&gt;db.atomic()&lt;/code&gt; method), and support for &lt;strong&gt;compound foreign keys&lt;/strong&gt;.&lt;/p&gt;
 &lt;h4 id="database-schema-migrations-using-sqlite-utils"&gt;Database schema migrations using sqlite-utils&lt;/h4&gt;
 &lt;p&gt;Schema migrations define a sequence of changes to be made to a SQLite database, plus a mechanism for tracking which migrations have been applied and applying any that are found to be pending.&lt;/p&gt;
@@ -957,16 +966,4 @@ I learned about this initiative from DJ Patil this morning:&lt;/p&gt;
 
 
 
-</summary><category term="careers"/></entry><entry><title>Quoting Dean W. Ball</title><link href="https://simonwillison.net/2026/Jun/26/dean-w-ball/#atom-everything" rel="alternate"/><published>2026-06-26T22:25:46+00:00</published><updated>2026-06-26T22:25:46+00:00</updated><id>https://simonwillison.net/2026/Jun/26/dean-w-ball/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://www.hyperdimensional.co/p/what-should-be-done"&gt;&lt;p&gt;This is a bad state of affairs. Consider, in particular, some industry dynamics:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Frontier models are trained at an enormous cost, and a significant fraction of that cost is recouped in the few post-release months that they are broadly available. After that period elapses, the models become sub-frontier, competition emerges, and margins compress. Every week of delay is eating into the narrow window that labs have to make their accounting work.&lt;/li&gt;
-&lt;li&gt;The ongoing AI infrastructure buildout—the one that is, according to former US AI Czar David Sacks, &lt;a href="https://fortune.com/2026/05/04/trump-ai-czar-david-sacks-american-gdp-economy/"&gt;essential to the US economy&lt;/a&gt;, assumes a functionally global total addressable market for US AI services. No one is building $100 billion dollar data centers to serve frontier models to whatever 100 companies the US government will allow access. [...]&lt;/li&gt;
-&lt;/ol&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.hyperdimensional.co/p/what-should-be-done"&gt;Dean W. Ball&lt;/a&gt;, 35 thoughts on what has happened and what America should do&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="anthropic"/><category term="generative-ai"/><category term="openai"/><category term="ai"/><category term="llms"/></entry></feed>
+</summary><category term="careers"/></entry></feed>
