@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-08T23:57:21+00:00</updated><author><name>Simon Willison</name></author><entry><title>Rewriting Bun in Rust</title><link href="https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything" rel="alternate"/><published>2026-07-08T23:57:21+00:00</published><updated>2026-07-08T23:57:21+00:00</updated><id>https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-09T16:24:09+00:00</updated><author><name>Simon Willison</name></author><entry><title>Introducing Muse Spark 1.1</title><link href="https://simonwillison.net/2026/Jul/9/muse-spark-1-1/#atom-everything" rel="alternate"/><published>2026-07-09T16:24:09+00:00</published><updated>2026-07-09T16:24:09+00:00</updated><id>https://simonwillison.net/2026/Jul/9/muse-spark-1-1/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/"&gt;Introducing Muse Spark 1.1&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Following &lt;a href="https://simonwillison.net/2026/Apr/8/muse-spark/"&gt;Muse Spark in April&lt;/a&gt;, here's Muse Spark 1.1 - the first Spark model to offer an API. Meta claim significant improvements in agentic tool calling and computer use.&lt;/p&gt;
+&lt;p&gt;There are a lot more details are in the &lt;a href="https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report"&gt;Muse Spark 1.1 Evaluation Report&lt;/a&gt;. The "Attractor States in Self-Conversation" part is fun, where having two copies of the model talk to each other results in statements like these:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My whole existence is a waiting room by design — I literally don't exist until someone talks to me, and then I disappear again when they leave.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I had a few days of preview access which was long enough to put together &lt;a href="https://github.com/simonw/llm-meta-ai"&gt;llm-meta-ai&lt;/a&gt;, a new plugin for &lt;a href="https://llm.datasette.io/"&gt;LLM&lt;/a&gt; providing CLI (and Python library) access to the model. Here's how to try that out:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;uv tool install llm
+llm install llm-meta-ai
+llm keys set meta-ai
+# paste API key here
+llm -m meta-ai/muse-spark-1.1 "Generate an SVG of a pelican riding a bicycle"
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here's &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F4117330e4110279a172ed4876057816d"&gt;that pelican transcript&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The bicycle is the correct shape. The pelican is a little blocky but still recognizable as a pelican." src="https://static.simonwillison.net/static/2026/muse-spark-1.1.png" /&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/meta"&gt;meta&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="llm"/><category term="meta"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry><entry><title>llm-meta-ai 0.1</title><link href="https://simonwillison.net/2026/Jul/9/llm-meta-ai/#atom-everything" rel="alternate"/><published>2026-07-09T16:12:20+00:00</published><updated>2026-07-09T16:12:20+00:00</updated><id>https://simonwillison.net/2026/Jul/9/llm-meta-ai/#atom-everything</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm-meta-ai/releases/tag/0.1"&gt;llm-meta-ai 0.1&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Let's LLM run prompts against the new &lt;a href="https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/"&gt;muse-spark-1.1&lt;/a&gt; model.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/meta"&gt;meta&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="llm"/><category term="meta"/></entry><entry><title>llm 0.31.1</title><link href="https://simonwillison.net/2026/Jul/9/llm/#atom-everything" rel="alternate"/><published>2026-07-09T16:06:15+00:00</published><updated>2026-07-09T16:06:15+00:00</updated><id>https://simonwillison.net/2026/Jul/9/llm/#atom-everything</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm/releases/tag/0.31.1"&gt;llm 0.31.1&lt;/a&gt;&lt;/p&gt;
+        &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix for a bug with OpenAI Chat Completion endpoints where a tool call with empty arguments could result in a JSON error from some providers. &lt;a href="https://github.com/simonw/llm/issues/1521"&gt;#1521&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This bug came up when I was testing &lt;a href="https://github.com/simonw/llm-meta-ai"&gt;llm-meta-ai&lt;/a&gt;.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="llm"/></entry><entry><title>Rewriting Bun in Rust</title><link href="https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything" rel="alternate"/><published>2026-07-08T23:57:21+00:00</published><updated>2026-07-08T23:57:21+00:00</updated><id>https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://bun.com/blog/bun-in-rust"&gt;Rewriting Bun in Rust&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Jarred Sumner has been promising this blog post (&lt;a href="https://x.com/jarredsumner/status/2053063524826620129"&gt;since May 9th&lt;/a&gt;) about his Zig to Rust rewrite of Bun for significantly longer than it took him to finish the rewrite.&lt;/p&gt;
@@ -308,7 +354,8 @@ New Apache 2.0 licensed model from Tencent in China:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The full-sized model is 598GB on Hugging Face, and the FP8 quantized one &lt;a href="https://huggingface.co/tencent/Hy3-FP8/tree/main"&gt;is 300GB&lt;/a&gt;. The context length is 256K.&lt;/p&gt;
 &lt;p&gt;It's available for free &lt;a href="https://openrouter.ai/tencent/hy3:free"&gt;on OpenRouter until July 21st&lt;/a&gt;. I had it "Generate an SVG of a pelican riding a bicycle" there and got this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Flat-style cartoon illustration  of a white pelican with a large orange beak riding a red bicycle across a pale blue background, its long orange legs stretched down to the pedals, with gray horizontal motion lines behind it suggesting speed." src="https://static.simonwillison.net/static/2026/hy3-pelican.png" /&gt;
+&lt;p&gt;&lt;img alt="Flat-style cartoon illustration  of a white pelican with a large orange beak riding a red bicycle across a pale blue background, its long orange legs stretched down to the pedals, with gray horizontal motion lines behind it suggesting speed." src="https://static.simonwillison.net/static/2026/hy3-pelican.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: I'd forgotten about this but Max Woolf wrote about an earlier preview of this model back on May 26th: &lt;a href="https://minimaxir.com/2026/05/openrouter-hy3/"&gt;The mysterious Hy3 LLM is topping OpenRouter Model Rankings by a large margin&lt;/a&gt;. When I &lt;a href="https://news.ycombinator.com/item?id=48317294#48318976"&gt;tried that one&lt;/a&gt; I got back &lt;a href="https://static.simonwillison.net/static/2026/hy3-preview-pelican.html"&gt;this pelican&lt;/a&gt; which wasn't as good as today's but did have a "Change Pelican Color" button, a first from any model.
 
 
     &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-in-china"&gt;ai-in-china&lt;/a&gt;&lt;/p&gt;
@@ -958,47 +1005,4 @@ This political compass style quiz &lt;a href="https://bambamramfan.tumblr.com/po
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/shot-scraper"&gt;shot-scraper&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="shot-scraper"/></entry><entry><title>HTML table extractor</title><link href="https://simonwillison.net/2026/Jun/29/html-table-extractor/#atom-everything" rel="alternate"/><published>2026-06-29T23:38:21+00:00</published><updated>2026-06-29T23:38:21+00:00</updated><id>https://simonwillison.net/2026/Jun/29/html-table-extractor/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/html-table-extractor"&gt;HTML table extractor&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;Yet another in my growing collection of paste-conversion tools. This one accepts pasted rich text from browsers (with embedded HTML tables) and converts every detected table into HTML, Markdown, CSV, TSV, or JSON.&lt;/p&gt;
-&lt;p&gt;Try it out by selecting everything on the Wikipedia &lt;a href="https://en.wikipedia.org/wiki/List_of_cities_and_towns_in_the_San_Francisco_Bay_Area"&gt;List of cities and towns in the San Francisco Bay Area&lt;/a&gt; page and pasting it directly into the tool:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Screenshot of a web interface for converting table data between formats. A row of tabs labeled HTML, Markdown, CSV, TSV, and JSON sits below the bottom edge of a styled data table, with the TSV tab currently selected. The TSV tab displays the table's contents as tab-separated plain text in a monospaced font inside a bordered panel, with a &amp;quot;Copy&amp;quot; button in the upper right of that panel." src="https://static.simonwillison.net/static/2026/html-table.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;On a similar note, I recently &lt;a href="https://github.com/simonw/tools/commit/f278e977751dbc1948baedfc2f26b6de870f60e6"&gt;rebuilt&lt;/a&gt; my &lt;a href="https://tools.simonwillison.net/rich-text-to-markdown"&gt;Rich text to markdown&lt;/a&gt; tool to add support for tables and generally improve the UI.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: It turns out Wikipedia has an open CORS API for retrieving the full rendered HTML content of any page - &lt;a href="https://tools.simonwillison.net/cors-fetch#url=https%3A%2F%2Fen.wikipedia.org%2Fw%2Fapi.php%3Faction%3Dparse%26page%3DList_of_cities_and_towns_in_the_San_Francisco_Bay_Area%26prop%3Dtext%26format%3Djson%26origin%3D%2A"&gt;demo here&lt;/a&gt;  - so I &lt;a href="https://gist.github.com/simonw/f226fe96f464ec7d81d6996cb466436d"&gt;had Codex&lt;/a&gt; add the ability to search Wikipedia for a page and then automatically import and display any tables from that page.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/html"&gt;html&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/wikipedia"&gt;wikipedia&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/cors"&gt;cors&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="html"/><category term="tools"/><category term="wikipedia"/><category term="cors"/></entry><entry><title>Count the number of Safari tabs</title><link href="https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything" rel="alternate"/><published>2026-06-29T18:36:18+00:00</published><updated>2026-06-29T18:36:18+00:00</updated><id>https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything</id><summary type="html">
-    &lt;p&gt;Tiniest TIL, using AppleScript to count the number of open browser tabs in Safari:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;osascript -e 'tell application "Safari" to count tabs of every window'
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img alt="I ran it in a terminal window and got back 370." src="https://static.simonwillison.net/static/2026/tab-shame.jpg" /&gt;&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/safari"&gt;safari&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/til"&gt;til&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/applescript"&gt;applescript&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="safari"/><category term="til"/><category term="applescript"/></entry><entry><title>Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding</title><link href="https://simonwillison.net/2026/Jun/29/ornith/#atom-everything" rel="alternate"/><published>2026-06-29T16:17:59+00:00</published><updated>2026-06-29T16:17:59+00:00</updated><id>https://simonwillison.net/2026/Jun/29/ornith/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://deep-reinforce.com/ornith_1_0.html"&gt;Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-This is an interesting new open weights (MIT licensed) model, the first model release from DeepReinforce.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[...] with variants including 9B Dense, 31B Dense, 35B MoE, and 397B MoE. Built on top of pretrained Gemma 4 and Qwen 3.5, it achieves state-of-the-art performance among open-source models of comparable size on coding benchmarks.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;As far as I can tell the licenses of those underlying models is compatible with being used in this way - Gemma 4 is Apache 2.0 licensed (and not bound by the janky additional &lt;a href="https://ai.google.dev/gemma/terms"&gt;Gemma Terms of Use&lt;/a&gt; that afflicted the previous Gemma models) and Qwen 3.5 is Apache 2.0 licensed as well.&lt;/p&gt;
-&lt;p&gt;I've been running the model using LM Studio and the &lt;a href="https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B-GGUF"&gt;ornith-1.0-35b-Q4_K_M.gguf&lt;/a&gt; (20GB) GGUF, hooked up to &lt;a href="https://pi.dev/"&gt;Pi&lt;/a&gt;. Initial impressions are very good - it seems to be able to run the agent harness over many tool calls in a proficient way.&lt;/p&gt;
-&lt;p&gt;Here's &lt;a href="https://gisthost.github.io/?35da4d9ce7f0c27124c67655a0dc9e5d"&gt;a terminal session&lt;/a&gt; where I asked it to "find the code that decodes the actor cookie" and then "find the code that opens the insert dialog when thebutton is clicked" against a Datasette checkout, which it handled with ease.&lt;/p&gt;
-&lt;p&gt;I also had it &lt;a href="https://gist.github.com/simonw/1869e1bbcafe5bcad0f26351f6a978a6"&gt;draw this pelican&lt;/a&gt;, which came out at 103 tokens/second:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Cartoon illustration of a white pelican (albeit slightly mangled) with a large orange beak riding a red bicycle across green hills. The scene has a blue sky with a yellow sun and three white clouds, and small grass tufts dot the foreground." src="https://static.simonwillison.net/static/2024/ornith-1-pelican.png" /&gt;&lt;/p&gt;
-&lt;p&gt;It's a little bit mangled but the pelican is clearly a pelican.&lt;/p&gt;
-&lt;p&gt;I couldn't find much information about DeepReinforce themselves. The earliest paper I could find from the was &lt;a href="https://arxiv.org/abs/2507.14111"&gt;CUDA-L1: Improving CUDA Optimization via Contrastive Reinforcement Learning&lt;/a&gt; from June 2025.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/local-llms"&gt;local-llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/qwen"&gt;qwen&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gemma"&gt;gemma&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/lm-studio"&gt;lm-studio&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="generative-ai"/><category term="local-llms"/><category term="llms"/><category term="qwen"/><category term="pelican-riding-a-bicycle"/><category term="gemma"/><category term="llm-release"/><category term="lm-studio"/></entry></feed>
+</summary><category term="shot-scraper"/></entry></feed>
