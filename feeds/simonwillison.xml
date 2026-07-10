@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-09T19:46:38+00:00</updated><author><name>Simon Willison</name></author><entry><title>The new GPT-5.6 family: Luna, Terra, Sol</title><link href="https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything" rel="alternate"/><published>2026-07-09T19:46:38+00:00</published><updated>2026-07-09T19:46:38+00:00</updated><id>https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-10T01:05:57+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting OpenAI</title><link href="https://simonwillison.net/2026/Jul/10/openai/#atom-everything" rel="alternate"/><published>2026-07-10T01:05:57+00:00</published><updated>2026-07-10T01:05:57+00:00</updated><id>https://simonwillison.net/2026/Jul/10/openai/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex"&gt;&lt;p&gt;[...] Work on web and mobile runs in the cloud. Work in the desktop app can also use local files and desktop apps with your permission. At launch, cloud Work conversations do not appear in desktop Work; desktop Work threads and local files remain on that computer.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex"&gt;OpenAI&lt;/a&gt;, trying (unsuccessfully) to clarify ChatGPT Work&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/chatgpt"&gt;chatgpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="openai"/><category term="chatgpt"/><category term="ai"/></entry><entry><title>The new GPT-5.6 family: Luna, Terra, Sol</title><link href="https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything" rel="alternate"/><published>2026-07-09T19:46:38+00:00</published><updated>2026-07-09T19:46:38+00:00</updated><id>https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything</id><summary type="html">
     &lt;p&gt;OpenAI's latest flagship model &lt;a href="https://openai.com/index/gpt-5-6/"&gt;hit general availability this morning&lt;/a&gt;, and comes in three sizes: Luna, Terra, and Sol (from smallest to largest).&lt;/p&gt;
 &lt;p&gt;The new models are priced per 1M input/output tokens as Luna $1/$6, Terra $2.50/$15, Sol $5/$30. For comparison, the Claude Opus series are $5/$25 and the Claude Fable 5 is $10/$50, but price-per-million tokens doesn't tell us much now that the number of reasoning tokens can differ so much between models for the same task.&lt;/p&gt;
 
@@ -902,131 +910,4 @@ This political compass style quiz &lt;a href="https://bambamramfan.tumblr.com/po
 
 
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="ai-ethics"/></entry><entry><title>Have your agent record video demos of its work with shot-scraper video</title><link href="https://simonwillison.net/2026/Jun/30/shot-scraper-video/#atom-everything" rel="alternate"/><published>2026-06-30T16:54:26+00:00</published><updated>2026-06-30T16:54:26+00:00</updated><id>https://simonwillison.net/2026/Jun/30/shot-scraper-video/#atom-everything</id><summary type="html">
-    &lt;p&gt;&lt;a href="https://shot-scraper.datasette.io/en/stable/video.html"&gt;shot-scraper video&lt;/a&gt; is a new command introduced in today's &lt;a href="https://github.com/simonw/shot-scraper/releases/tag/1.10"&gt;shot-scraper 1.10&lt;/a&gt; release which accepts a &lt;code&gt;storyboard.yml&lt;/code&gt; file defining a routine to run against a web application and uses Playwright to record a video of that routine. I've written before about the importance of &lt;a href="https://simonwillison.net/2026/Feb/10/showboat-and-rodney/#proving-code-actually-works"&gt;having coding agents produce demos&lt;/a&gt; of their work; this is my latest attempt at enabling them to do that.&lt;/p&gt;
-&lt;p&gt;Here's an example video created using &lt;code&gt;shot-scraper video&lt;/code&gt;, exercising a &lt;a href="https://github.com/simonw/datasette/pull/2813"&gt;still in development&lt;/a&gt; feature adding the ability to create new tables in Datasette from pasted CSV, TSV or JSON data:&lt;/p&gt;
-&lt;div style="max-width: 100%; margin-bottom: 0.4em"&gt;
-    &lt;video controls="controls" preload="none" aria-label="Video demo of the new CSV import for Datasette" poster="https://static.simonwillison.net/static/2026/datasette-bulk-insert-demo.jpg" loop="loop" style="width: 100%; height: auto;" muted="muted"&gt;
-        &lt;source src="https://static.simonwillison.net/static/2026/datasette-bulk-insert-demo.mp4" type="video/mp4" /&gt;
-    &lt;/video&gt;
-&lt;/div&gt;
-&lt;p&gt;That video was created by running this command:&lt;/p&gt;
-&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;shot-scraper video datasette-bulk-insert-storyboard.yml \
-  --auth datasette-demo-auth.json --mp4&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;(That &lt;code&gt;--auth&lt;/code&gt; JSON file &lt;a href="https://gist.github.com/simonw/287b26aff53fcb72942b19f5b69d7e5c"&gt;contains a cookie&lt;/a&gt;, as &lt;a href="https://shot-scraper.datasette.io/en/stable/authentication.html"&gt;described here&lt;/a&gt; in the documentation.)&lt;/p&gt;
-&lt;p&gt;Here's the &lt;code&gt;datasette-bulk-insert-storyboard.yml&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class="highlight highlight-source-yaml"&gt;&lt;pre&gt;&lt;span class="pl-ent"&gt;output&lt;/span&gt;: &lt;span class="pl-s"&gt;/tmp/datasette-bulk-insert-demo.webm&lt;/span&gt;
-&lt;span class="pl-ent"&gt;server&lt;/span&gt;:
-  - &lt;span class="pl-s"&gt;uv&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;--directory&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;/Users/simon/Dropbox/dev/datasette&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;run&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;datasette&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;-p&lt;/span&gt;
-  - &lt;span class="pl-c1"&gt;6419&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;--root&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;--secret&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;1&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-  - &lt;span class="pl-s"&gt;/tmp/demo.db&lt;/span&gt;
-&lt;span class="pl-ent"&gt;url&lt;/span&gt;: &lt;span class="pl-s"&gt;http://127.0.0.1:6419/demo/tasks&lt;/span&gt;
-&lt;span class="pl-ent"&gt;viewport&lt;/span&gt;:
-  &lt;span class="pl-ent"&gt;width&lt;/span&gt;: &lt;span class="pl-c1"&gt;1280&lt;/span&gt;
-  &lt;span class="pl-ent"&gt;height&lt;/span&gt;: &lt;span class="pl-c1"&gt;720&lt;/span&gt;
-&lt;span class="pl-ent"&gt;cursor&lt;/span&gt;: &lt;span class="pl-c1"&gt;true&lt;/span&gt;
-&lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;button[data-table-action="insert-row"]&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;
-&lt;span class="pl-ent"&gt;javascript&lt;/span&gt;: &lt;span class="pl-s"&gt;|&lt;/span&gt;
-&lt;span class="pl-s"&gt;  (() =&amp;gt; {&lt;/span&gt;
-&lt;span class="pl-s"&gt;    let clipboardText = "";&lt;/span&gt;
-&lt;span class="pl-s"&gt;    Object.defineProperty(navigator, "clipboard", {&lt;/span&gt;
-&lt;span class="pl-s"&gt;      configurable: true,&lt;/span&gt;
-&lt;span class="pl-s"&gt;      get: () =&amp;gt; ({&lt;/span&gt;
-&lt;span class="pl-s"&gt;        writeText: async (text) =&amp;gt; {&lt;/span&gt;
-&lt;span class="pl-s"&gt;          clipboardText = String(text);&lt;/span&gt;
-&lt;span class="pl-s"&gt;        },&lt;/span&gt;
-&lt;span class="pl-s"&gt;        readText: async () =&amp;gt; clipboardText,&lt;/span&gt;
-&lt;span class="pl-s"&gt;      }),&lt;/span&gt;
-&lt;span class="pl-s"&gt;    });&lt;/span&gt;
-&lt;span class="pl-s"&gt;  })();&lt;/span&gt;
-&lt;span class="pl-s"&gt;&lt;/span&gt;&lt;span class="pl-ent"&gt;scenes&lt;/span&gt;:
-  - &lt;span class="pl-ent"&gt;name&lt;/span&gt;: &lt;span class="pl-s"&gt;Bulk insert existing table rows&lt;/span&gt;
-    &lt;span class="pl-ent"&gt;do&lt;/span&gt;:
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.8&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;button[data-table-action="insert-row"]&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;#row-edit-dialog[open]&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.5&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.row-edit-bulk-insert&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.row-edit-bulk-textarea&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.5&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.row-edit-copy-template&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;text=Copied&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.8&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;fill&lt;/span&gt;:
-          &lt;span class="pl-ent"&gt;into&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.row-edit-bulk-textarea&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-          &lt;span class="pl-ent"&gt;text&lt;/span&gt;: &lt;span class="pl-s"&gt;|&lt;/span&gt;
-&lt;span class="pl-s"&gt;            title,owner,status,priority,notes&lt;/span&gt;
-&lt;span class="pl-s"&gt;            Prepare release video,Ana,doing,1,Recorded with shot-scraper&lt;/span&gt;
-&lt;span class="pl-s"&gt;            Check pasted CSV import,Ben,review,3,Previewed before inserting&lt;/span&gt;
-&lt;span class="pl-s"&gt;            Share the branch demo,Chen,queued,2,Bulk insert creates three rows&lt;/span&gt;
-&lt;span class="pl-s"&gt;&lt;/span&gt;      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.8&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.row-edit-save&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;text=Previewing 3 rows.&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;1.2&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.row-edit-save&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;text=3 rows inserted.&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;1.0&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.row-edit-cancel&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;text=Prepare release video&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;1.0&lt;/span&gt;
-  - &lt;span class="pl-ent"&gt;name&lt;/span&gt;: &lt;span class="pl-s"&gt;Create a table from pasted CSV&lt;/span&gt;
-    &lt;span class="pl-ent"&gt;open&lt;/span&gt;: &lt;span class="pl-s"&gt;http://127.0.0.1:6419/demo&lt;/span&gt;
-    &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;details.actions-menu-links summary&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;
-    &lt;span class="pl-ent"&gt;do&lt;/span&gt;:
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.8&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;details.actions-menu-links summary&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;button[data-database-action="create-table"]&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;#table-create-dialog[open]&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.5&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;fill&lt;/span&gt;:
-          &lt;span class="pl-ent"&gt;into&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.table-create-table-name&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-          &lt;span class="pl-ent"&gt;text&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;launch_metrics&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.table-create-from-data&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.table-create-data-textarea&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.5&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;fill&lt;/span&gt;:
-          &lt;span class="pl-ent"&gt;into&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.table-create-data-textarea&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-          &lt;span class="pl-ent"&gt;text&lt;/span&gt;: &lt;span class="pl-s"&gt;|&lt;/span&gt;
-&lt;span class="pl-s"&gt;            metric_id,name,score,recorded_on&lt;/span&gt;
-&lt;span class="pl-s"&gt;            m001,Activation rate,87.5,2026-06-29&lt;/span&gt;
-&lt;span class="pl-s"&gt;            m002,Retention check,72.25,2026-06-30&lt;/span&gt;
-&lt;span class="pl-s"&gt;            m003,CSV import health,95,2026-07-01&lt;/span&gt;
-&lt;span class="pl-s"&gt;&lt;/span&gt;      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;0.8&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.table-create-save&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;text=Previewing 3 rows.&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;1.2&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;click&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;.table-create-save&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for_url&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;**/demo/launch_metrics&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;wait_for&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;text=Activation rate&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;
-      - &lt;span class="pl-ent"&gt;pause&lt;/span&gt;: &lt;span class="pl-c1"&gt;1.2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The &lt;a href="https://shot-scraper.datasette.io/en/stable/video.html"&gt;video command documentation&lt;/a&gt; includes simpler examples, but for the purpose of this post I thought I'd go with something more comprehensive.&lt;/p&gt;
-&lt;p&gt;That demo YAML storyboard was constructed entirely by GPT-5.5 xhigh running in Codex Desktop, using the following prompt run inside my &lt;code&gt;~/dev/datasette&lt;/code&gt; checkout of &lt;a href="https://github.com/simonw/datasette/commits/b759ea548606bc9bf9a4bf0e33e2d57ead7e0ab8/"&gt;this branch&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Review the changes on this branch.&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;cd to ~/dev/shot-scraper and run the command "uv run shot-scraper video --help"&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Now use that new video command to record a video demo of the new features from this branch, including running a "uv run datasette -p 6419 --root --secret 1 /tmp/demo.db" development server so you can record the video against a demo DB that you first create.&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Now that I've released the feature the prompt could say "&lt;code&gt;run uvx shot-scraper video --help&lt;/code&gt;" instead and it should achieve the same result.&lt;/p&gt;
-&lt;p&gt;I really like this pattern where the &lt;code&gt;--help&lt;/code&gt; output for a command provides enough detail that a coding agent can use it - it works kind of like bundling a &lt;code&gt;SKILL.md&lt;/code&gt; file directly inside the tool. I used the same pattern for &lt;a href="https://simonwillison.net/2026/Feb/10/showboat-and-rodney/"&gt;showboat and rodney&lt;/a&gt;.&lt;/p&gt;
-&lt;h4 id="how-i-built-this"&gt;How I built this&lt;/h4&gt;
-&lt;p&gt;&lt;code&gt;shot-scraper video&lt;/code&gt; started as an experimental prototype. &lt;code&gt;shot-scraper&lt;/code&gt; is built on top of &lt;a href="https://playwright.dev/"&gt;Playwright&lt;/a&gt;, and the key feature it needed was for Playwright to be able to record video of browser sessions with enough control to create the desired demo.&lt;/p&gt;
-&lt;p&gt;I first tried this a few years ago and found that the Playwright-produced videos included additional chrome that was useful for debugging a test failure but unwanted for a product demo.&lt;/p&gt;
-&lt;p&gt;They fixed that a while ago, but there were still some minor blockers. In particular I was getting &lt;a href="https://github.com/simonw/shot-scraper/pull/194/changes/c2f3b3a52ba84f2adcf3ad6da4d39c2570328584#issuecomment-4724459369"&gt;a few white frames at the start of the videos&lt;/a&gt;, since the recording mechanism kicked in before the first URL was loaded by the browser.&lt;/p&gt;
-&lt;p&gt;Playwright 1.59 added a new &lt;a href="https://playwright.dev/python/docs/api/class-screencast"&gt;screencast mechanism&lt;/a&gt; providing much more finely grained control over video recording. This was very nearly what I needed, but the resulting videos were fixed at 800px wide.&lt;/p&gt;
-&lt;p&gt;I found a &lt;a href="https://github.com/microsoft/playwright/pull/41183"&gt;landed PR fixing that&lt;/a&gt; but it wasn't yet in a release. Then yesterday they shipped it in &lt;a href="https://github.com/microsoft/playwright-python/releases/tag/v1.61.0"&gt;playwright-python 1.61.0&lt;/a&gt; and I was finally unblocked to finish implementing the feature!&lt;/p&gt;
-&lt;p&gt;The code itself was all written by GPT-5.5 xhigh in Codex Desktop. I had it write the documentation as well which gave me a very useful frame for reviewing the design - much of the iteration on the feature came from reviewing that documentation, spotting things that were redundant, inconsistent or confusing, and requesting (or dictating) a better design.&lt;/p&gt;
-&lt;p&gt;The YAML format itself was mostly defined by the coding agent. I had it &lt;a href="https://github.com/simonw/shot-scraper/blob/1.10/shot_scraper/video.py#L24"&gt;use Pydantic&lt;/a&gt; to both define and validate the format, partly to make the design easier to review.&lt;/p&gt;
-&lt;p&gt;This is a great example of the kind of feature that I almost certainly wouldn't have taken on without coding agent support. I filed the &lt;a href="https://github.com/simonw/shot-scraper/issues/142"&gt;original issue&lt;/a&gt; in February 2024, and had difficulty finding the necessary time to solve this in amongst all of my other projects.&lt;/p&gt;
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/yaml"&gt;yaml&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/playwright"&gt;playwright&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/shot-scraper"&gt;shot-scraper&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pydantic"&gt;pydantic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="projects"/><category term="python"/><category term="yaml"/><category term="ai"/><category term="datasette"/><category term="playwright"/><category term="shot-scraper"/><category term="generative-ai"/><category term="llms"/><category term="pydantic"/><category term="coding-agents"/><category term="agentic-engineering"/></entry></feed>
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="ai-ethics"/></entry></feed>
