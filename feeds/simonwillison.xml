@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-10T01:05:57+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting OpenAI</title><link href="https://simonwillison.net/2026/Jul/10/openai/#atom-everything" rel="alternate"/><published>2026-07-10T01:05:57+00:00</published><updated>2026-07-10T01:05:57+00:00</updated><id>https://simonwillison.net/2026/Jul/10/openai/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-10T17:05:26+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Nilay Patel</title><link href="https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything" rel="alternate"/><published>2026-07-10T17:05:26+00:00</published><updated>2026-07-10T17:05:26+00:00</updated><id>https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://youtu.be/v4vkwUf4AMw?t=2427"&gt;&lt;p&gt;The reality is to make augmented reality glasses, you need to put a camera next to your eyes that is continuously recording everything you see and processing that to put information over it.&lt;/p&gt;
+&lt;p&gt;There is not another way around it. And there's certainly not a chip that can fit in the stem of a glasses that is both powerful enough and power miserly enough to do that in real time.&lt;/p&gt;
+&lt;p&gt;You have to send that data to a cloud. You gotta do it. [...] Or you can build something the size of a Vision Pro with a battery pack that lives somewhere else. Those are the current choices in this world.&lt;/p&gt;
+&lt;p&gt;And it means if you want to build the product that everyone thinks is the next thing, you are going to have to invade people's privacy.&lt;/p&gt;
+&lt;p&gt;And maybe you shouldn't. Like, there's an incredible argument for, nope, you shouldn't do that. Nope, the trade-offs required to make this product are so high at a societal level that we should stop it.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://youtu.be/v4vkwUf4AMw?t=2427"&gt;Nilay Patel&lt;/a&gt;, The Vergecast&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/augmented-reality"&gt;augmented-reality&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/nilay-patel"&gt;nilay-patel&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/privacy"&gt;privacy&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai-ethics"/><category term="augmented-reality"/><category term="nilay-patel"/><category term="privacy"/><category term="ai"/></entry><entry><title>Quoting OpenAI</title><link href="https://simonwillison.net/2026/Jul/10/openai/#atom-everything" rel="alternate"/><published>2026-07-10T01:05:57+00:00</published><updated>2026-07-10T01:05:57+00:00</updated><id>https://simonwillison.net/2026/Jul/10/openai/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex"&gt;&lt;p&gt;[...] Work on web and mobile runs in the cloud. Work in the desktop app can also use local files and desktop apps with your permission. At launch, cloud Work conversations do not appear in desktop Work; desktop Work threads and local files remain on that computer.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex"&gt;OpenAI&lt;/a&gt;, trying (unsuccessfully) to clarify ChatGPT Work&lt;/p&gt;
 
@@ -895,19 +907,4 @@ Claude Sonnet 5 came out &lt;a href="https://www.anthropic.com/news/claude-sonne
 
 
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry><entry><title>The AI Compass</title><link href="https://simonwillison.net/2026/Jun/30/the-ai-compass/#atom-everything" rel="alternate"/><published>2026-06-30T17:39:23+00:00</published><updated>2026-06-30T17:39:23+00:00</updated><id>https://simonwillison.net/2026/Jun/30/the-ai-compass/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://bambamramfan.github.io/ai-compass/"&gt;The AI Compass&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-This political compass style quiz &lt;a href="https://bambamramfan.tumblr.com/post/820505178072580096/the-ai-compass"&gt;by bambamramfan&lt;/a&gt; is pretty neat - answer 29 questions about AI and AI ethics to see which of the 30 archetypes you best fit.&lt;/p&gt;
-&lt;p&gt;I'm impressed that my answers on my first time through the quiz categorized me as "The Garage Tinkerer", patron saint myself!&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://static.simonwillison.net/static/2026/garage-tinkerer.jpg"   style="display: block; width: 100%; max-width: 400px; margin: 0 auto;" alt="Screenshot of a quiz result screen on a dark background. The top half shows a square scatter-plot quadrant chart with axes labeled GOOD (top), BAD (bottom), OVERHYPED (left of center) and TRANSFORMATIVE (right of center), filled with colored regions and scattered dots; a glowing white-ringed teal dot marks the user&amp;#39;s position in the upper-right (good/transformative) area. Below, a card reads: &amp;quot;YOU ARE...&amp;quot; / &amp;quot;The Garage Tinkerer&amp;quot; / &amp;quot;patron saint: Simon Willison&amp;quot; / &amp;quot;You&amp;#39;re running local models, building little tools, and having a genuinely great time. You don&amp;#39;t care about the discourse — you care about making the thing do cool stuff. The technology is interesting and everyone arguing about it would be happier if they just opened a terminal.&amp;quot;"&gt;&lt;/p&gt;
-&lt;p&gt;It's implemented as a single page React app using the &lt;code&gt;&amp;lt;script type="text/babel"&amp;gt;&lt;/code&gt; trick to avoid the necessary build step. &lt;a href="https://github.com/bambamramfan/ai-compass/blob/main/index.html"&gt;Here's the code&lt;/a&gt;.
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://bsky.app/profile/erisianrite.com/post/3mphwpqgd4c2y"&gt;@erisianrite.com&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="ai-ethics"/></entry></feed>
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry></feed>
