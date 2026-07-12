@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-11T23:50:20+00:00</updated><author><name>Simon Willison</name></author><entry><title>sqlite-utils 4.1</title><link href="https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything" rel="alternate"/><published>2026-07-11T23:50:20+00:00</published><updated>2026-07-11T23:50:20+00:00</updated><id>https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-12T21:20:07+00:00</updated><author><name>Simon Willison</name></author><entry><title>Fable gets another bump</title><link href="https://simonwillison.net/2026/Jul/12/bump/#atom-everything" rel="alternate"/><published>2026-07-12T21:20:07+00:00</published><updated>2026-07-12T21:20:07+00:00</updated><id>https://simonwillison.net/2026/Jul/12/bump/#atom-everything</id><summary type="html">
+    &lt;p&gt;One of the consequences of GPT-5.6 Sol being clearly a Fable/Mythos class model is that Anthropic have, once again, &lt;a href="https://x.com/claudeai/status/2076351399999557669"&gt;bumped the date&lt;/a&gt; that Fable stops being available in their Claude Max plans:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We're extending Claude Fable 5 access on all paid plans, as well as keeping Claude Code’s weekly rate limits 50% higher, through July 19.&lt;/p&gt;
+&lt;p&gt;As before, you can use up to half of your weekly usage limit on Fable 5. After that, you can continue using Fable 5 with usage credits, or switch to another model to keep working within your remaining limits.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Anthropic's original rationale for this was compute constraints - they wanted a better idea of both demand and compute availability before committing to keeping the new model cheap for subscribers.&lt;/p&gt;
+&lt;p&gt;OpenAI appear confident that they won't need to restrict access to GPT-5.6 in the same way. Here's Tibo &lt;a href="https://twitter.com/thsottiaux/status/2076365965915467978"&gt;this morning&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The last 48 hours of Codex and ChatGPT Work have been intense! Three important updates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Temporarily removing the 5 hour usage limit restriction for all Plus, Business and Pro plans&lt;/li&gt;
+&lt;li&gt;Rolling out changes that will make GPT 5.6 Sol more efficient across the board and that will be reflected in less usage being used so that it can take you further. Exact impact to be quantified and shared&lt;/li&gt;
+&lt;li&gt;We hit 6M active users, and are landing a usage reset in the next hour&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At this point I think Anthropic should change track and keep Fable permanently available on those plans. OpenAI are winning users simply due to the uncertainty that surrounds Fable access.&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt"&gt;gpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="anthropic"/><category term="generative-ai"/><category term="gpt"/><category term="openai"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/></entry><entry><title>sqlite-utils 4.1</title><link href="https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything" rel="alternate"/><published>2026-07-11T23:50:20+00:00</published><updated>2026-07-11T23:50:20+00:00</updated><id>https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/sqlite-utils/releases/tag/4.1"&gt;sqlite-utils 4.1&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;The first dot-release since &lt;a href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/"&gt;4.0 a few days ago&lt;/a&gt;, introducing a number of minor new features.&lt;/p&gt;
@@ -884,22 +906,4 @@ modifying existing files.&lt;/p&gt;
 
 
 
-</summary><category term="anthropic"/><category term="claude"/><category term="generative-ai"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/></entry><entry><title>Nano Banana 2 Lite</title><link href="https://simonwillison.net/2026/Jun/30/nano-banana-2-lite/#atom-everything" rel="alternate"/><published>2026-06-30T22:15:35+00:00</published><updated>2026-06-30T22:15:35+00:00</updated><id>https://simonwillison.net/2026/Jun/30/nano-banana-2-lite/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://deepmind.google/models/gemini-image/flash-lite/"&gt;Nano Banana 2 Lite&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Also known as Gemini 3.1 Flash Lite Image (&lt;code&gt;gemini-3.1-flash-lite-image&lt;/code&gt; &lt;a href="https://ai.google.dev/gemini-api/docs/image-generation"&gt;in their API&lt;/a&gt;), this is the "fastest and cheapest Gemini image model, engineered for velocity and scale".&lt;/p&gt;
-&lt;p&gt;I &lt;a href="https://aistudio.google.com/app/prompts/new_chat?model=gemini-3.1-flash-lite-image"&gt;used AI studio&lt;/a&gt; to run this prompt:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Do a where's Waldo style image but it's where is the raccoon holding a ham radio&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="Densely illustrated &amp;quot;Where's Waldo&amp;quot;-style cartoon of a woodland festival filled with anthropomorphic animals (bears, foxes, badgers, rabbits, squirrels, owls) under a banner reading &amp;quot;FOREE'S FESTIVAL&amp;quot; and another reading &amp;quot;FOREST FIVAL,&amp;quot; with bunting flags strung between trees, a Ferris wheel on the right, market stalls including one labeled &amp;quot;ACORN FAIR,&amp;quot; signs reading &amp;quot;BANDSTAND,&amp;quot; &amp;quot;HAM RADIO MEET&amp;quot; (appearing twice), and a stage where a bear plays guitar, a raccoon uses a ham radio, a badger plays drums, an owl looks on, and a fox plays trumpet, with crowds of animals wandering forest paths between trees and mountains in the background." src="https://static.simonwillison.net/static/2026/nano-banana-2-lite-raccoon.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;I like that one better than &lt;a href="https://simonwillison.net/2026/Apr/21/gpt-image-2/#nano-banana-2-and-pro"&gt;the results I got from the other Nano Banana models&lt;/a&gt; when I tried this back in April. It spelled Forest Festival wrong in two different ways though.
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48735444"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/google"&gt;google&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gemini"&gt;gemini&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/text-to-image"&gt;text-to-image&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/nano-banana"&gt;nano-banana&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="google"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="gemini"/><category term="text-to-image"/><category term="llm-release"/><category term="nano-banana"/></entry></feed>
+</summary><category term="anthropic"/><category term="claude"/><category term="generative-ai"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/></entry></feed>
