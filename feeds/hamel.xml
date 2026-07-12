@@ -1514,9 +1514,8 @@ m<span class="tk-pn">.</span>plot<span class="tk-pn">.</span><span class="tk-fn"
 <p>All of these ideas stem from well-established design principles. For example, watching an expert work to learn what they check before you build is called needfinding.<sup>6</sup> In research-heavy work like the medical case, there is a design goal called sensemaking, which is the work of building a structured understanding of a body of evidence you can reason over.<sup>7</sup> There are many other concepts, but I think you get the idea.</p>
 <p>Even though these ideas are well established, a reminder is due in the age of AI. Before AI, verification often happened incidentally during the process of creating work product. With AI, verification is the bottleneck. It is time to think about it more explicitly.</p>
 <hr>
-<p><em>Thanks to <a href="https://www.sh-reya.com/">Shreya Shankar</a> and <a href="https://isaacflath.com/">Isaac Flath</a> for feedback on this post.</em></p>
 <div class="eval-smell-newsletter">
-<p>To stay updated on my writing on AI evals, subscribe to my newsletter below.</p>
+<p>To stay updated on my writing, subscribe to my newsletter below.</p>
 <script async="" data-uid="295eebc652" src="https://hamel.kit.com/295eebc652/index.js"></script>
 <style>
 .eval-smell-newsletter .formkit-form[data-uid="295eebc652"] {
@@ -1555,8 +1554,14 @@ m<span class="tk-pn">.</span>plot<span class="tk-pn">.</span><span class="tk-fn"
 }
 </style>
 </div>
+<section id="video-walkthrough" class="level4">
+<h4 class="anchored" data-anchor-id="video-walkthrough">Video Walkthrough</h4>
+<p>I recorded a short video walking through these examples. If you’d rather watch than read, here it is:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/0ASUz7gFRcw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><em>Thanks to <a href="https://www.sh-reya.com/">Shreya Shankar</a> and <a href="https://isaacflath.com/">Isaac Flath</a> for feedback on this post.</em></p>
 
 
+</section>
 </section>
 
 
