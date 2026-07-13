@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-12T23:57:14+00:00</updated><author><name>Simon Willison</name></author><entry><title>Directly Responsible Individuals (DRI)</title><link href="https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything" rel="alternate"/><published>2026-07-12T23:57:14+00:00</published><updated>2026-07-12T23:57:14+00:00</updated><id>https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-13T22:34:41+00:00</updated><author><name>Simon Willison</name></author><entry><title>DOOMQL</title><link href="https://simonwillison.net/2026/Jul/13/doomql/#atom-everything" rel="alternate"/><published>2026-07-13T22:34:41+00:00</published><updated>2026-07-13T22:34:41+00:00</updated><id>https://simonwillison.net/2026/Jul/13/doomql/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/petergpt/doomql"&gt;DOOMQL&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Peter Gostev built this using GPT-5.6 Sol. This is a &lt;em&gt;lot&lt;/em&gt; of fun: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DOOMQL started with a deliberately unreasonable question: what if SQLite were the game engine, not merely the place where a game stores data?&lt;/p&gt;
+&lt;p&gt;The result is a small, original Doom-like game in which SQL owns movement, collision, enemies, combat, progression and every RGB pixel on screen.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It's implemented as a Python terminal script - I tried it out like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /tmp
+git clone https://github.com/petergpt/doomql
+cd doomql
+uv run host/doomql.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="Screenshot of a macOS terminal window titled &amp;quot;doomql — python3.14 ◂ uv run host/doomql.py — 134×31&amp;quot; showing a retro Doom-style game rendered as text-mode pixel art. The scene is a pixelated first-person corridor with gray paneled walls, dark red doors on the far left and right, a floating cyan-and-gold coin pickup on the right side, a white crosshair near the center, and a dark weapon barrel rising from the bottom center. A status bar below the scene reads &amp;quot;HP 100/100 AMMO 037 SCORE 00225 INDEX MISSING TICK 0028450&amp;quot;, followed by an orange line &amp;quot;FIND THE INDEX TOKEN&amp;quot; and a cyan controls line &amp;quot;WASD MOVE J/L OR ARROWS TURN SPACE FIRE E USE P PAUSE CTRL-C EXIT&amp;quot;." src="https://static.simonwillison.net/static/2026/doomql-window.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Here's &lt;a href="https://github.com/petergpt/doomql/blob/main/sql/003_render.sql"&gt;the huge SQL query&lt;/a&gt; that implements a full ray tracer in SQLite using a recursive CTE.&lt;/p&gt;
+&lt;p&gt;Running the above script creates a &lt;code&gt;/tmp/doomql/.doomql/doomql.sqlite&lt;/code&gt; SQLite database, which you can explore using Datasette like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;uvx --prerelease=allow  --with datasette-apps datasette \
+  /tmp/doomql/.doomql/doomql.sqlite \
+  -p 4444 --root --secret 1 --internal internal.db
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;--with datasette-apps&lt;/code&gt; option installs the new &lt;a href="https://simonwillison.net/2026/Jun/18/datasette-apps/"&gt;Datasette Apps&lt;/a&gt; plugin, which supports creating custom HTML+JavaScript apps that can run SQL queries directly within the Datasette interface.&lt;/p&gt;
+&lt;p&gt;I created a new app, pasted the copy-paste prompt into Claude chat (Fable 5) &lt;a href="https://claude.ai/share/c793280c-2ef1-4555-a7c2-31281abfdf78"&gt;and told it&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Build an app that displays the current state of the screen using the frame_pixels view with its x, y, r, g, b columns. have it refresh once a second.&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This got me a working HTML+JavaScript app inside Datasette that could reflect the current state while I played the game in my terminal. Then I added:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;add a minimap&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And now my Datasette App looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of a dark-themed web app running a retro Doom-style game rendered from SQL queries. The page header reads &amp;quot;DOOMQL&amp;quot; with buttons &amp;quot;All apps&amp;quot;, &amp;quot;Edit app&amp;quot;, &amp;quot;Pin&amp;quot;, and &amp;quot;Full screen&amp;quot;. Inside the game panel, the title &amp;quot;DOOMQL&amp;quot; sits above the subtitle &amp;quot;auto-refreshing once a second · frame and tactical map straight from SQL&amp;quot;. The left side shows a pixelated first-person corridor view with gray walls, dark red doors, a floating cyan-and-gold coin pickup, a white crosshair, and a weapon barrel at bottom center. A status bar below reads &amp;quot;HP 100/100 AMMO 037 SCORE 00225 INDEX MISSING TICK 0027847&amp;quot;. On the right, a panel titled &amp;quot;TACTICAL MAP&amp;quot; shows a top-down grid map with a player triangle, a red enemy circle, yellow pickup dots, red wall markers, and a green exit square, with a legend reading &amp;quot;you&amp;quot;, &amp;quot;enemy&amp;quot;, &amp;quot;pickup&amp;quot;, &amp;quot;locked door&amp;quot;, &amp;quot;door&amp;quot;, &amp;quot;exit&amp;quot;. Below the game view, an orange banner reads &amp;quot;FIND THE INDEX TOKEN&amp;quot;, followed by the cyan line &amp;quot;READ-ONLY VIEWER · SELECT x, y, r, g, b FROM frame_pixels&amp;quot;. At the bottom, a green &amp;quot;RUNNING&amp;quot; badge appears beside the stats &amp;quot;160×54 · 8,640 pixels · 3 hostiles · query 89 ms · refreshing every 1 s&amp;quot;." src="https://static.simonwillison.net/static/2026/doomql-datasette-app.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Here's &lt;a href="https://gist.github.com/simonw/7c78184476fccd4b70b02f7f9048dffa"&gt;the HTML app code&lt;/a&gt; - paste that into your own Datasette instance (using the &lt;code&gt;uvx --with datasette-apps&lt;/code&gt; recipe from above) to try it yourself.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://twitter.com/petergostev/status/2076692164310884468"&gt;@petergostev&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/games"&gt;games&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sql"&gt;sql&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt"&gt;gpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette-apps"&gt;datasette-apps&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="games"/><category term="sql"/><category term="sqlite"/><category term="ai"/><category term="datasette"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="gpt"/><category term="datasette-apps"/></entry><entry><title>datasette code-frequency chart on GitHub</title><link href="https://simonwillison.net/2026/Jul/13/datasette-code-frequency/#atom-everything" rel="alternate"/><published>2026-07-13T21:45:27+00:00</published><updated>2026-07-13T21:45:27+00:00</updated><id>https://simonwillison.net/2026/Jul/13/datasette-code-frequency/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/simonw/datasette/graphs/code-frequency"&gt;datasette code-frequency chart on GitHub&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Out of curiosity I decided to see if I could find a useful illustration of the impact of coding agents and Opus 4.5 class models on my own output. The best I've found so far is this GitHub chart of frequency of code changes to my &lt;a href="https://datasette.io/"&gt;Datasette&lt;/a&gt; open source project:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of a GitHub &amp;quot;Code frequency&amp;quot; bar chart, subtitled &amp;quot;Additions and deletions per week&amp;quot;, showing green addition bars and red deletion bars per week from 2018 through 2026, with a y-axis labeled Frequency ranging from -20k to 30k. Activity comes in sporadic bursts: the largest spike is 37,022 additions with -9,528 deletions in 2026, followed by 14,638 additions with -6,584 deletions in late 2025, 15,998 additions in early 2018, and a standout deletion spike of -10,658 in mid-2020, with quieter periods of smaller weekly changes in between." src="https://static.simonwillison.net/static/2026/datasette-code-frequency.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The big spike in activity at the end aligns with Opus 4.8, GPT-5.5, Fable 5 and GPT-5.6 Sol.
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="github"/><category term="ai"/><category term="datasette"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="coding-agents"/></entry><entry><title>Directly Responsible Individuals (DRI)</title><link href="https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything" rel="alternate"/><published>2026-07-12T23:57:14+00:00</published><updated>2026-07-12T23:57:14+00:00</updated><id>https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://handbook.gitlab.com/handbook/people-group/directly-responsible-individuals/"&gt;Directly Responsible Individuals (DRI)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 I went looking for a definition of "Directly Responsible Individuals" and the best I found was in the GitLab handbook. Apparently the term originated at Apple, where it's used to describe the person who is "ultimately accountable for the success or failure of a specific project, initiative, or activity".&lt;/p&gt;
@@ -823,89 +876,4 @@ model. See also [[project-goals]].&lt;/p&gt;
 
 
 
-</summary><category term="claude"/><category term="ai"/><category term="claude-code"/><category term="llms"/><category term="prompt-engineering"/><category term="coding-agents"/><category term="generative-ai"/><category term="claude-mythos-fable"/><category term="anthropic"/></entry><entry><title>June 2026 newsletter</title><link href="https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything" rel="alternate"/><published>2026-07-03T14:50:50+00:00</published><updated>2026-07-03T14:50:50+00:00</updated><id>https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything</id><summary type="html">
-    &lt;p&gt;The June edition of my &lt;a href="https://github.com/sponsors/simonw/"&gt;sponsors-only monthly newsletter&lt;/a&gt; is out. If you are a sponsor (or if you start a sponsorship now) you can &lt;a href="https://github.com/simonw-private/monthly/blob/main/2026-06-june.md"&gt;access it here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This month:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Claude Fable 5, GPT-5.6, and US export restrictions&lt;/li&gt;
-&lt;li&gt;GLM-5.2 is the new best open weights model&lt;/li&gt;
-&lt;li&gt;Tokenmaxxing is so over&lt;/li&gt;
-&lt;li&gt;Datasette Apps&lt;/li&gt;
-&lt;li&gt;sqlite-utils and shot-scraper and Datasette&lt;/li&gt;
-&lt;li&gt;Miscellaneous WASM projects&lt;/li&gt;
-&lt;li&gt;Other model releases&lt;/li&gt;
-&lt;li&gt;What I'm using&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here's &lt;a href="https://github.com/simonw/monthly-newsletter-archive/blob/main/2026-05-may.md"&gt;a copy of the May newsletter&lt;/a&gt; as a preview of what you'll get. Pay $10/month to stay a month ahead of the free copy!&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/newsletter"&gt;newsletter&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="newsletter"/></entry><entry><title>llm-coding-agent 0.1a0</title><link href="https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything" rel="alternate"/><published>2026-07-02T19:33:12+00:00</published><updated>2026-07-02T19:33:12+00:00</updated><id>https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm-coding-agent/releases/tag/0.1a0"&gt;llm-coding-agent 0.1a0&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;Another Fable 5 experiment. Now that my &lt;a href="https://llm.datasette.io/"&gt;LLM library&lt;/a&gt; has evolved into more of an agent framework it's time to see what a simple coding agent would look like built on it.&lt;/p&gt;
-&lt;p&gt;I started a &lt;a href="https://github.com/simonw/llm-coding-agent/tree/2466fa03ba8e5122c3bfa93d52167d33bce40ac6"&gt;new Python library&lt;/a&gt; using my &lt;a href="https://github.com/simonw/python-lib-template-repository"&gt;python-lib-template-repository&lt;/a&gt; GitHub template repository, then ran these two prompts (here's the &lt;a href="https://claude.ai/code/session_01TEUBvBbMipbFSoqjMiJ7ha"&gt;Claude Code for web transcript&lt;/a&gt;):&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Write a spec.md for this project - it will depend on the latest “llm” alpha from PyPI and implement a Claude code style coding agent complete with tools for reading and editing files and executing commands&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Then:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Commit the spec, then build it using red/green TDD in a series of sensible commits (each with passing tests and updated docs) - occasionally manually test it using the OpenAI API key in your environment&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/spec.md"&gt;the spec&lt;/a&gt;, the &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/README.md"&gt;resulting README file&lt;/a&gt;, and the &lt;a href="https://github.com/simonw/llm-coding-agent/commits/0.1a0"&gt;sequence of commits&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I've shipped a slop-alpha to PyPI, so you can run the new agent like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;uvx --prerelease=allow --with llm-coding-agent llm code
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It's pretty good for a first attempt! Here's the (Fable-authored) &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/README.md"&gt;README&lt;/a&gt;, which lists recipes like &lt;code&gt;llm code --yolo&lt;/code&gt; and &lt;code&gt;llm code --allow "pytest*" --allow "git diff*"&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;It also presents &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/README.md#codingagent"&gt;a Python API&lt;/a&gt; based around a &lt;code&gt;CodingAgent(model="gpt-5.5", root="/path", approve=True).run("Fix the failing test in tests/test_parser.py")&lt;/code&gt; class which I didn't ask for but I'm delighted to see implemented.&lt;/p&gt;
-&lt;p&gt;Here's the suite of tools &lt;a href="https://github.com/simonw/llm-coding-agent/blob/0.1a0/llm_coding_agent/tools.py#L22"&gt;it implemented&lt;/a&gt;, listed using &lt;code&gt;uvx ... llm tools&lt;/code&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;CodingTools_edit_file(path: str, old_string: str, new_string: str, replace_all: bool = False) -&amp;gt; str&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Replace an exact string in a file.&lt;/p&gt;
-&lt;p&gt;old_string must match the file contents exactly (including
-whitespace) and must identify a unique location unless replace_all
-is true. Returns a diff of the change so it can be verified.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;CodingTools_execute_command(command: str, timeout: int = 120) -&amp;gt; str&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Run a shell command in the session root directory.&lt;/p&gt;
-&lt;p&gt;Returns combined stdout and stderr followed by an Exit code line.
-timeout is in seconds (maximum 600); on timeout the whole process
-tree is killed.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;CodingTools_list_files(pattern: str = '**/*', path: str = '.') -&amp;gt; str&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;List files matching a glob pattern, newest first.&lt;/p&gt;
-&lt;p&gt;Skips hidden directories, node_modules, __pycache__ and (in a git
-repository) anything covered by .gitignore. Returns at most 200
-paths relative to the searched directory.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;CodingTools_read_file(path: str, offset: int = 0, limit: int = 2000) -&amp;gt; str&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Read a text file, returning numbered lines like cat -n.&lt;/p&gt;
-&lt;p&gt;Paths are relative to the session root. Use offset (0-based first
-line) and limit (max lines) to page through files too large to read
-in one call.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;CodingTools_search_files(pattern: str, path: str = '.', glob: str = None, max_results: int = 100) -&amp;gt; str&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Search file contents for a regular expression.&lt;/p&gt;
-&lt;p&gt;Returns matches as path:line_number:line, capped at max_results.
-Use glob (e.g. "*.py") to restrict which files are searched.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;CodingTools_write_file(path: str, content: str) -&amp;gt; str&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Create or overwrite a file with the given content.&lt;/p&gt;
-&lt;p&gt;Parent directories are created as needed. Prefer edit_file for
-modifying existing files.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I tried it out by running &lt;code&gt;llm code --yolo&lt;/code&gt; and then prompting:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;mkdir /tmp/demo and then in that folder create a simple swiftui CLI app for telling the time in ascii art&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's &lt;a href="https://gist.github.com/simonw/750009007050124cd1b390cfe8488e41"&gt;the transcript&lt;/a&gt;, in which GPT-5.5 reasoning notes that "SwiftUI isn't suitable for a true CLI" and then builds an app that outputs this on &lt;code&gt;swift run AsciiTime&lt;/code&gt;:&lt;/p&gt;
-&lt;pre style="font-size: 9px"&gt;
-      █    █████         ████     █             █     ███   
-     ██    █        █        █   ██      █     ██    █   █  
-      █    ████           ███     █             █       █   
-      █        █    █        █    █      █      █      █    
-     ███   ████          ████    ███           ███   █████
-&lt;/pre&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-tool-use"&gt;llm-tool-use&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="projects"/><category term="ai"/><category term="generative-ai"/><category term="llm"/><category term="llm-tool-use"/><category term="coding-agents"/><category term="claude-code"/><category term="claude-mythos-fable"/></entry></feed>
+</summary><category term="claude"/><category term="ai"/><category term="claude-code"/><category term="llms"/><category term="prompt-engineering"/><category term="coding-agents"/><category term="generative-ai"/><category term="claude-mythos-fable"/><category term="anthropic"/></entry></feed>
