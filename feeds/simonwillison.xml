@@ -5,6 +5,7 @@
         &lt;p&gt;I finally found a cache-friendly recipe for using &lt;code&gt;uvx tool-name&lt;/code&gt; in GitHub Actions workflows that I like.&lt;/p&gt;
 &lt;p&gt;The trick is setting a &lt;code&gt;UV_EXCLUDE_NEWER: "2026-07-12"&lt;/code&gt; environment variable at the start of the workflow and then using that as part of the GitHub Actions cache key. This means any &lt;code&gt;uvx tool-name&lt;/code&gt; commands will resolve to the most recent version as-of that date, and you can bust the cache and upgrade the tools by bumping the date in the future.&lt;/p&gt;
 &lt;p&gt;My goal here is to use Python tools in GitHub Actions without every run of the workflow hitting PyPI to download a fresh copy of the tool and its dependencies.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: Here's an existing &lt;a href="https://github.com/astral-sh/setup-uv/issues/745"&gt;issue&lt;/a&gt; against the &lt;code&gt;astral-sh/setup-uv&lt;/code&gt; repository requesting that they switch the default to cache rather than purge wheels from PyPI.&lt;/p&gt;
     
     
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/packaging"&gt;packaging&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pypi"&gt;pypi&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/github-actions"&gt;github-actions&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/uv"&gt;uv&lt;/a&gt;&lt;/p&gt;
