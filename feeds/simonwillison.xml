@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-14T19:44:11+00:00</updated><author><name>Simon Willison</name></author><entry><title>lobste.rs is now running on SQLite</title><link href="https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything" rel="alternate"/><published>2026-07-14T19:44:11+00:00</published><updated>2026-07-14T19:44:11+00:00</updated><id>https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-14T22:43:35+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting GitHub Changeling</title><link href="https://simonwillison.net/2026/Jul/14/github-changeling/#atom-everything" rel="alternate"/><published>2026-07-14T22:43:35+00:00</published><updated>2026-07-14T22:43:35+00:00</updated><id>https://simonwillison.net/2026/Jul/14/github-changeling/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://github.blog/changelog/2026-07-14-dependabot-version-updates-introduce-default-package-cooldown/"&gt;&lt;p&gt;Dependabot now waits until a new release has been available on its registry for at least three days before opening a version update pull request. This cooldown is now the default and requires no configuration.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://github.blog/changelog/2026-07-14-dependabot-version-updates-introduce-default-package-cooldown/"&gt;GitHub Changeling&lt;/a&gt;, embracing &lt;a href="https://simonwillison.net/tags/dependency-cooldowns/"&gt;dependency cooldowns&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/dependency-cooldowns"&gt;dependency-cooldowns&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/packaging"&gt;packaging&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="dependency-cooldowns"/><category term="packaging"/><category term="security"/><category term="github"/></entry><entry><title>simonw/pedalican</title><link href="https://simonwillison.net/2026/Jul/14/pedalican/#atom-everything" rel="alternate"/><published>2026-07-14T22:29:45+00:00</published><updated>2026-07-14T22:29:45+00:00</updated><id>https://simonwillison.net/2026/Jul/14/pedalican/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/simonw/pedalican"&gt;simonw/pedalican&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Clearly I wasn't paying attention when these were &lt;a href="https://twitter.com/OpenAIDevs/status/2050301642717950166"&gt;first announced&lt;/a&gt; back in May, but today I accidentally activated a "pet" in Codex Desktop - a little animated robot, reminiscent of &lt;a href="https://en.wikipedia.org/wiki/Office_Assistant"&gt;Clippy&lt;/a&gt; - and then learned you can create your own.&lt;/p&gt;
+&lt;p&gt;So I did, and now I have a cute little pelican on a bicycle bouncing around my desktop giving me updates on my Codex tasks.&lt;/p&gt;
+&lt;p&gt;&lt;video
+    controls
+    preload="none"
+    poster="https://static.simonwillison.net/static/2026/pedalican-first-frame.jpg"
+    width="1542"
+    height="834"
+    style="display: block; width: 100%; height: auto;"
+  &gt;
+    &lt;source src="https://static.simonwillison.net/static/2026/pedalican.mp4" type="video/mp4"&gt;
+    Your browser does not support HTML5 video.
+  &lt;/video&gt;
+&lt;/p&gt;
+&lt;p&gt;The most interesting thing about this process was watching how the custom pet was created. I told it I wanted a custom pet that was a pelican riding a bicycle and GPT-5.6 Sol xhigh did the rest of the work, using several rounds with &lt;a href="https://developers.openai.com/api/docs/models/gpt-image-2"&gt;gpt-image-2&lt;/a&gt; to generate the necessary sprite assets.&lt;/p&gt;
+&lt;p&gt;I had it make &lt;a href="https://github.com/simonw/pedalican-pet/blob/main/notes-on-creating-a-pet.md"&gt;extensive notes&lt;/a&gt; and record all of the &lt;a href="https://github.com/simonw/pedalican-pet/tree/main/run"&gt;intermediary steps&lt;/a&gt;. My GItHub repo includes every generated image and combined sprite sheet, plus GIFs for each of the animation loops such as this one, called &lt;a href="https://github.com/simonw/pedalican-pet/blob/main/run/qa/previews/waving.gif"&gt;waving.gif&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A cute pelican on a bicycle waving its wing" src="https://static.simonwillison.net/static/2026/waving.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;That GIF was compiled from &lt;a href="https://github.com/simonw/pedalican-pet/blob/main/run/api-generation/waving.png"&gt;a single image&lt;/a&gt; generated by &lt;code&gt;gpt-image-2&lt;/code&gt; that looked like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Four frames of the animation presented on a bright magenta background" src="https://static.simonwillison.net/static/2026/waving.webp" /&gt;&lt;/p&gt;
+&lt;p&gt;And &lt;em&gt;that&lt;/em&gt; image was created by executing &lt;a href="https://github.com/simonw/pedalican-pet/blob/main/run/prompts/rows/waving.md"&gt;this prompt&lt;/a&gt; against the initial generated &lt;a href="https://github.com/simonw/pedalican-pet/blob/main/run/api-generation/base.png"&gt;character reference image&lt;/a&gt;, which was created with &lt;a href="https://github.com/simonw/pedalican-pet/blob/main/run/prompts/base-pet.md"&gt;this prompt&lt;/a&gt;, which has this structure:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Create one clean full-body reference sprite for Codex pet Pedalican.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Pet identity: A compact adorable baby pelican with a round cream-white body, soft coral-orange bill and feet, riding a tiny sky-blue bicycle [...]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Place a single centered pose on a perfectly flat pure magenta #FF00FF chroma-key background. Keep the full pet visible, compact, readable at 192x208, and easy to animate. [...]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've been looking out for example of ways to use image generation to create simple game-ready sprites, so I spent some time digging into this mechanism to see how it works.&lt;/p&gt;
+&lt;p&gt;The key implementation details are open source - these two skills in particular, both Apache 2.0 licensed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/hatch-pet"&gt;hatch-pet&lt;/a&gt; from &lt;code&gt;openai/skills&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/openai/codex/tree/f90e7deea6a715bbd153044af6f475eefa749177/codex-rs/skills/src/assets/samples/imagegen"&gt;imagegen&lt;/a&gt; from &lt;code&gt;openai/codex&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And yes, GPT-5.6 Sol did come up with the name "Pedalican". I like it!
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/prompt-engineering"&gt;prompt-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/text-to-image"&gt;text-to-image&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/codex"&gt;codex&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="prompt-engineering"/><category term="generative-ai"/><category term="llms"/><category term="text-to-image"/><category term="pelican-riding-a-bicycle"/><category term="codex"/></entry><entry><title>lobste.rs is now running on SQLite</title><link href="https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything" rel="alternate"/><published>2026-07-14T19:44:11+00:00</published><updated>2026-07-14T19:44:11+00:00</updated><id>https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://lobste.rs/s/ko1ji1/lobste_rs_is_now_running_on_sqlite"&gt;lobste.rs is now running on SQLite&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Community site &lt;a href="https://lobste.rs"&gt;Lobsters&lt;/a&gt; has been planning a migration away from MariaDB &lt;a href="https://github.com/lobsters/lobsters/issues/539#issuecomment-4959857588"&gt;since August 2018&lt;/a&gt; - originally targeting PostgreSQL, but last year they decided to &lt;a href="https://github.com/lobsters/lobsters/issues/539#issuecomment-2964114295"&gt;investigate SQLite&lt;/a&gt; instead.&lt;/p&gt;
@@ -810,33 +859,4 @@ New Apache 2.0 licensed model from Tencent in China:&lt;/p&gt;
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/annotated-release-notes"&gt;annotated-release-notes&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-pricing"&gt;llm-pricing&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt"&gt;gpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="projects"/><category term="sqlite"/><category term="sqlite-utils"/><category term="annotated-release-notes"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="coding-agents"/><category term="claude-code"/><category term="agentic-engineering"/><category term="gpt"/><category term="claude-mythos-fable"/></entry><entry><title>sqlite-utils 4.0rc2</title><link href="https://simonwillison.net/2026/Jul/5/sqlite-utils/#atom-everything" rel="alternate"/><published>2026-07-05T00:47:38+00:00</published><updated>2026-07-05T00:47:38+00:00</updated><id>https://simonwillison.net/2026/Jul/5/sqlite-utils/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/sqlite-utils/releases/tag/4.0rc2"&gt;sqlite-utils 4.0rc2&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;See &lt;a href="https://simonwillison.net/2026/Jul/5/sqlite-utils-fable/"&gt;sqlite-utils 4.0rc2, mostly written by Claude Fable (for about $149.25)&lt;/a&gt;.&lt;/p&gt;
-    
-    
-
-</summary></entry><entry><title>Building a World Map with only 500 bytes</title><link href="https://simonwillison.net/2026/Jul/4/building-a-world-map-with-only-500-bytes/#atom-everything" rel="alternate"/><published>2026-07-04T23:09:02+00:00</published><updated>2026-07-04T23:09:02+00:00</updated><id>https://simonwillison.net/2026/Jul/4/building-a-world-map-with-only-500-bytes/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.experimentlog.com/blog/building-a-world-map-with-only-500-bytes"&gt;Building a World Map with only 500 bytes&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Iwo Kadziela (assisted by Codex) figured out a way to generate a credible ASCII world map using 445 bytes of data:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A map of the world rendered as black asterisk ASCII characters, it looks very good" src="https://static.simonwillison.net/static/2026/world-map-ascii.png" /&gt;&lt;/p&gt;
-&lt;p&gt;The key trick is to use deflate compression, which is then wired together using this neat snippet of JavaScript. I didn't know you could use &lt;code&gt;fetch()&lt;/code&gt; with &lt;code&gt;data:&lt;/code&gt; URIs like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;fetch('data:;base64,1ZpLsgIxCEXnrM...==').then(
-  r =&amp;gt; r.body.pipeThrough(new DecompressionStream('deflate-raw'))
-).then(
-  s =&amp;gt; new Response(s).text()
-).then(
-  t =&amp;gt; b.innerHTML = '&amp;lt;pre style=font-size:.65vw&amp;gt;' + t
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48747762"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ascii-art"&gt;ascii-art&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/data-urls"&gt;data-urls&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/javascript"&gt;javascript&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ascii-art"/><category term="data-urls"/><category term="javascript"/></entry></feed>
+</summary><category term="projects"/><category term="sqlite"/><category term="sqlite-utils"/><category term="annotated-release-notes"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="coding-agents"/><category term="claude-code"/><category term="agentic-engineering"/><category term="gpt"/><category term="claude-mythos-fable"/></entry></feed>
