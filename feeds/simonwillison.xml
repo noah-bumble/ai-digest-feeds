@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-13T22:34:41+00:00</updated><author><name>Simon Willison</name></author><entry><title>DOOMQL</title><link href="https://simonwillison.net/2026/Jul/13/doomql/#atom-everything" rel="alternate"/><published>2026-07-13T22:34:41+00:00</published><updated>2026-07-13T22:34:41+00:00</updated><id>https://simonwillison.net/2026/Jul/13/doomql/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-14T00:56:20+00:00</updated><author><name>Simon Willison</name></author><entry><title>Using uvx in GitHub Actions in a cache-friendly way</title><link href="https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything" rel="alternate"/><published>2026-07-14T00:56:20+00:00</published><updated>2026-07-14T00:56:20+00:00</updated><id>https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;TIL:&lt;/strong&gt; &lt;a href="https://til.simonwillison.net/github-actions/uvx-github-actions-cache"&gt;Using uvx in GitHub Actions in a cache-friendly way&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I finally found a cache-friendly recipe for using &lt;code&gt;uvx tool-name&lt;/code&gt; in GitHub Actions workflows that I like.&lt;/p&gt;
+&lt;p&gt;The trick is setting a &lt;code&gt;UV_EXCLUDE_NEWER: "2026-07-12"&lt;/code&gt; environment variable at the start of the workflow and then using that as part of the GitHub Actions cache key. This means any &lt;code&gt;uvx tool-name&lt;/code&gt; commands will resolve to the most recent version as-of that date, and you can bust the cache and upgrade the tools by bumping the date in the future.&lt;/p&gt;
+&lt;p&gt;My goal here is to use Python tools in GitHub Actions without every run of the workflow hitting PyPI to download a fresh copy of the tool and its dependencies.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/packaging"&gt;packaging&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pypi"&gt;pypi&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/github-actions"&gt;github-actions&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/uv"&gt;uv&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="packaging"/><category term="pypi"/><category term="python"/><category term="github-actions"/><category term="uv"/></entry><entry><title>DOOMQL</title><link href="https://simonwillison.net/2026/Jul/13/doomql/#atom-everything" rel="alternate"/><published>2026-07-13T22:34:41+00:00</published><updated>2026-07-13T22:34:41+00:00</updated><id>https://simonwillison.net/2026/Jul/13/doomql/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/petergpt/doomql"&gt;DOOMQL&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Peter Gostev built this using GPT-5.6 Sol. This is a &lt;em&gt;lot&lt;/em&gt; of fun: &lt;/p&gt;
@@ -840,40 +851,4 @@ Armin reports on a weird problem he ran into while hacking on Pi:&lt;/p&gt;
 
 
 
-</summary><category term="ai-ethics"/><category term="llms"/><category term="ai"/><category term="generative-ai"/><category term="careers"/><category term="josh-comeau"/></entry><entry><title>Fable's judgement</title><link href="https://simonwillison.net/2026/Jul/3/judgement/#atom-everything" rel="alternate"/><published>2026-07-03T18:51:06+00:00</published><updated>2026-07-03T18:51:06+00:00</updated><id>https://simonwillison.net/2026/Jul/3/judgement/#atom-everything</id><summary type="html">
-    &lt;p&gt;One of the most interesting tips I got from &lt;a href="https://www.ai.engineer/worldsfair/schedule?session=asn_slot_2026_06_30_main_stage_1230_2026_06_08t09_35_43_039z"&gt;the Fireside Chat&lt;/a&gt; I hosted with Cat Wu and Thariq Shihipar from the Claude Code team at AIE on Wednesday was to let Fable (and to a certain extent Opus) use their own judgement rather than dictating how they should work.&lt;/p&gt;
-&lt;p&gt;The example they gave was testing. You can tell Fable "only use automated testing for larger features, don't update and run tests for small copy or design changes" - but it's better to just tell Fable to use its own judgement when deciding to write tests instead.&lt;/p&gt;
-&lt;p&gt;Jesse Vincent just gave me a related tip to help avoid burning too many of those valuable Fable tokens in the few days we have left before the prices go up. Tell Fable to use other models for smaller tasks, applying its own judgement about which model to use.&lt;/p&gt;
-&lt;p&gt;I prompted Claude Code just now with:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;For all coding tasks use your judgement to decide an appropriate lower power model and run that in a subagent&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Claude saved this memory file in &lt;code&gt;~/.claude/projects/name-of-project/memory/delegate-coding-to-subagents.md&lt;/code&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;pre&gt;&lt;code&gt;---
-name: delegate-coding-to-subagents
-description: Simon wants coding tasks delegated to subagents running an appropriately lower-power model
-metadata: 
-  node_type: memory
-  type: feedback
-  originSessionId: 30068d78-43a9-4fb1-bb29-9799e18c526a
----
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Stated by Simon on 2026-07-03: "For all coding tasks use your judgement to
-decide an appropriate lower power model and run that in a subagent."&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Why:&lt;/strong&gt; cost/efficiency — implementation work rarely needs the top-tier
-model; judgment, review, and synthesis stay with the main loop.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;How to apply:&lt;/strong&gt; when a task in this project is primarily writing/editing
-code, spawn an Agent with a model override (sonnet for substantive
-implementation, haiku for trivial/mechanical edits) and a self-contained
-prompt; review the result in the main loop before committing. Design,
-auditing, data synthesis, and anything judgment-heavy stays in the main
-model. See also [[project-goals]].&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;So far it seems to be working well. I'm getting a &lt;em&gt;ton&lt;/em&gt; of work done and my Fable allowance is shrinking less quickly than before.&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/prompt-engineering"&gt;prompt-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="claude"/><category term="ai"/><category term="claude-code"/><category term="llms"/><category term="prompt-engineering"/><category term="coding-agents"/><category term="generative-ai"/><category term="claude-mythos-fable"/><category term="anthropic"/></entry></feed>
+</summary><category term="ai-ethics"/><category term="llms"/><category term="ai"/><category term="generative-ai"/><category term="careers"/><category term="josh-comeau"/></entry></feed>
