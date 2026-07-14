@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-14T18:04:23+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Armin Ronacher</title><link href="https://simonwillison.net/2026/Jul/14/armin-ronacher/#atom-everything" rel="alternate"/><published>2026-07-14T18:04:23+00:00</published><updated>2026-07-14T18:04:23+00:00</updated><id>https://simonwillison.net/2026/Jul/14/armin-ronacher/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-14T19:44:11+00:00</updated><author><name>Simon Willison</name></author><entry><title>lobste.rs is now running on SQLite</title><link href="https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything" rel="alternate"/><published>2026-07-14T19:44:11+00:00</published><updated>2026-07-14T19:44:11+00:00</updated><id>https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://lobste.rs/s/ko1ji1/lobste_rs_is_now_running_on_sqlite"&gt;lobste.rs is now running on SQLite&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Community site &lt;a href="https://lobste.rs"&gt;Lobsters&lt;/a&gt; has been planning a migration away from MariaDB &lt;a href="https://github.com/lobsters/lobsters/issues/539#issuecomment-4959857588"&gt;since August 2018&lt;/a&gt; - originally targeting PostgreSQL, but last year they decided to &lt;a href="https://github.com/lobsters/lobsters/issues/539#issuecomment-2964114295"&gt;investigate SQLite&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;This weekend they completed the migration, and now consider it stable enough that it looks like this is the permanent architecture for the site going forward:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SQLite seems to have passed with flying colors: cpu usage is down, memory usage is down, site seems to be snappier at least for me, 1/2 the vps cost once mariadb vps is taken down&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The Lobsters Rails application now runs on a single VPS, with a primary content SQLite database file that's around 3.8GB. &lt;a href="https://lobste.rs/s/ko1ji1/lobste_rs_is_now_running_on_sqlite#c_c9ydhs"&gt;There's also&lt;/a&gt; a 1.1GB cache database, a 218MB queue database, and a still growing 555MB rack_attack database used by the &lt;a href="https://github.com/rack/rack-attack"&gt;Rack::Attack&lt;/a&gt; middleware for blocking and throttling abusive requests.&lt;/p&gt;
+&lt;p&gt;There are plenty more details in both the linked thread and this &lt;a href="https://github.com/lobsters/lobsters/pull/1927"&gt;SQLite migration PR&lt;/a&gt; by Thomas Dziedzic, which added 735 lines and removed 593 lines across 30 commits and 188 files. That PR built on top of previous PRs &lt;a href="https://github.com/lobsters/lobsters/pull/1705"&gt;#1705&lt;/a&gt;, &lt;a href="https://github.com/lobsters/lobsters/pull/1871"&gt;#1871&lt;/a&gt;, and &lt;a href="https://github.com/lobsters/lobsters/pull/1924"&gt;#1924&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a really useful case study, and a great reminder that you can get a whole lot done with a single server and SQLite in 2026.
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/migrations"&gt;migrations&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ops"&gt;ops&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/rails"&gt;rails&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/lobsters"&gt;lobsters&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="migrations"/><category term="ops"/><category term="rails"/><category term="sqlite"/><category term="lobsters"/></entry><entry><title>Quoting Armin Ronacher</title><link href="https://simonwillison.net/2026/Jul/14/armin-ronacher/#atom-everything" rel="alternate"/><published>2026-07-14T18:04:23+00:00</published><updated>2026-07-14T18:04:23+00:00</updated><id>https://simonwillison.net/2026/Jul/14/armin-ronacher/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://lucumr.pocoo.org/2026/7/13/the-tower-keeps-rising/"&gt;&lt;p&gt;The shared language of a software project is not English or Python but it is the common understanding of what its concepts mean, where the boundaries are, which invariants matter, who owns what, and why the system has the shape it does. This language is rarely written down in one place. It lives partly in documentation and code, but also in code review, conversations, arguments, and the experience of having to explain a change to somebody else.&lt;/p&gt;
 &lt;p&gt;Before agents, some of this shared understanding was maintained by friction. If I wanted to change your storage layer, I usually had to read your code, ask you questions, and perhaps coordinate with another team whose service depended on it. This was slow, and much of that slowness was waste but not all of it was. Some of it was the process by which your understanding became mine, and by which both of us discovered whether we still agreed about how the system worked. This friction synchronizes people.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://lucumr.pocoo.org/2026/7/13/the-tower-keeps-rising/"&gt;Armin Ronacher&lt;/a&gt;, The Tower Keeps Rising&lt;/p&gt;
@@ -8,7 +25,16 @@
 
 
 
-</summary><category term="ai"/><category term="software-engineering"/><category term="llms"/><category term="coding-agents"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="armin-ronacher"/><category term="agentic-engineering"/></entry><entry><title>Using uvx in GitHub Actions in a cache-friendly way</title><link href="https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything" rel="alternate"/><published>2026-07-14T00:56:20+00:00</published><updated>2026-07-14T00:56:20+00:00</updated><id>https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything</id><summary type="html">
+</summary><category term="ai"/><category term="software-engineering"/><category term="llms"/><category term="coding-agents"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="armin-ronacher"/><category term="agentic-engineering"/></entry><entry><title>datasette 1.0a37</title><link href="https://simonwillison.net/2026/Jul/14/datasette/#atom-everything" rel="alternate"/><published>2026-07-14T16:31:41+00:00</published><updated>2026-07-14T16:31:41+00:00</updated><id>https://simonwillison.net/2026/Jul/14/datasette/#atom-everything</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/datasette/releases/tag/1.0a37"&gt;datasette 1.0a37&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;A minor release. Performance and &lt;a href="https://docs.datasette.io/en/latest/authentication.html#authentication-permissions-explained"&gt;documentation&lt;/a&gt; improvements to the permissions system, plus I reverted a cosmetic API change which caused almost every existing plugin test suite to break.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="datasette"/></entry><entry><title>Using uvx in GitHub Actions in a cache-friendly way</title><link href="https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything" rel="alternate"/><published>2026-07-14T00:56:20+00:00</published><updated>2026-07-14T00:56:20+00:00</updated><id>https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;TIL:&lt;/strong&gt; &lt;a href="https://til.simonwillison.net/github-actions/uvx-github-actions-cache"&gt;Using uvx in GitHub Actions in a cache-friendly way&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;I finally found a cache-friendly recipe for using &lt;code&gt;uvx tool-name&lt;/code&gt; in GitHub Actions workflows that I like.&lt;/p&gt;
@@ -813,37 +839,4 @@ Iwo Kadziela (assisted by Codex) figured out a way to generate a credible ASCII 
 
 
 
-</summary><category term="ascii-art"/><category term="data-urls"/><category term="javascript"/></entry><entry><title>Better Models: Worse Tools</title><link href="https://simonwillison.net/2026/Jul/4/better-models-worse-tools/#atom-everything" rel="alternate"/><published>2026-07-04T22:53:52+00:00</published><updated>2026-07-04T22:53:52+00:00</updated><id>https://simonwillison.net/2026/Jul/4/better-models-worse-tools/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/"&gt;Better Models: Worse Tools&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Armin reports on a weird problem he ran into while hacking on Pi:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The short version is that newer Claude models sometimes call Pi’s edit tool with extra, invented fields in the nested &lt;code&gt;edits[]&lt;/code&gt; array. And not Haiku or some small model: Opus 4.8. The edit itself is usually correct but the arguments do not match the schema as the model invents made-up keys and Pi thus rejects the tool call and asks to try again.&lt;/p&gt;
-&lt;p&gt;That alone is not too surprising as models emit malformed tool calls sometimes. Particularly small ones. What surprised me is that this is getting worse with newer Anthropic models as both Opus 4.8 and Sonnet 5 show it but none of the older models. In other words, the SOTA models of the family are worse at this specific tool schema than their older siblings.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Armin theorizes that this is because more recent Anthropic models have been specifically trained (presumably via Reinforcement Learning) to better use the edit tools that are baked into Claude Code. This has the unfortunate effect that other coding harnesses, such as Pi, may find that their own custom edit tools are more likely to be used incorrectly.&lt;/p&gt;
-&lt;p&gt;Claude's edit tool &lt;a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool#str-replace"&gt;uses search and replace&lt;/a&gt;. OpenAI's Codex &lt;a href="https://developers.openai.com/api/docs/guides/tools-apply-patch"&gt;uses an apply_patch mechanism instead&lt;/a&gt;, and OpenAI have talked in the past about how their models are trained to use that tool effectively.&lt;/p&gt;
-&lt;p&gt;Does this mean third-party coding harnesses like Pi should implement multiple edit tools just so they can use the one with the best performance for the underlying model the user has selected?
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/armin-ronacher"&gt;armin-ronacher&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-tool-use"&gt;llm-tool-use&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pi"&gt;pi&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="armin-ronacher"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="llm-tool-use"/><category term="coding-agents"/><category term="pi"/></entry><entry><title>Open Source AI Gap Map</title><link href="https://simonwillison.net/2026/Jul/3/open-source-ai-gap-map/#atom-everything" rel="alternate"/><published>2026-07-03T22:04:31+00:00</published><updated>2026-07-03T22:04:31+00:00</updated><id>https://simonwillison.net/2026/Jul/3/open-source-ai-gap-map/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://map.currentai.org"&gt;Open Source AI Gap Map&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;a href="https://www.currentai.org"&gt;Current AI&lt;/a&gt; is "a global partnership building a public option for AI", founded as a non-profit at the AI Action Summit in Paris in February 2025 and backed by serious capital ($400m already committed).&lt;/p&gt;
-&lt;p&gt;They &lt;a href="https://www.currentai.org/blogs/introducing-the-gap-map-v0-1"&gt;launched their Gap Map&lt;/a&gt; a couple of days ago - an attempt at indexing the current state of open source AI:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The Gap Map v0.1 details 421 products in depth: 266 software tools and libraries, 85 models, 50 datasets, and 20 hardware projects, produced by 228 organizations. These products are organized into 14 categories across 3 layers of the stack (model components, product / UX, and infrastructure). The remaining 24,400 artifacts constitute the uncategorized long tail of the open source AI ecosystem, and will carry no score until they are researched and cited.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The map itself is interesting to explore, but I'm more excited about the underlying data - released under an MIT license in the &lt;a href="https://github.com/currentai-org/os-ai-map"&gt;currentai-org/os-ai-map&lt;/a&gt; GitHub account: 1,184 YAML files plus the notebooks, schemas and other scripts used to help gather them.&lt;/p&gt;
-&lt;p&gt;Since the files are on GitHub you can use Datasette Lite to explore some of them - here are &lt;a href="https://lite.datasette.io/?csv=https://github.com/currentai-org/os-ai-map/blob/main/warehouse/catalog/goodailist/repos.csv#/data/repos?_sort_desc=stars"&gt;16,185 GitHub repos the project is tracking&lt;/a&gt; as a CSV file loaded into Datasette Lite.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/open-source"&gt;open-source&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette-lite"&gt;datasette-lite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/local-llms"&gt;local-llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="open-source"/><category term="ai"/><category term="datasette-lite"/><category term="generative-ai"/><category term="local-llms"/><category term="llms"/></entry></feed>
+</summary><category term="ascii-art"/><category term="data-urls"/><category term="javascript"/></entry></feed>
