@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-14T00:56:20+00:00</updated><author><name>Simon Willison</name></author><entry><title>Using uvx in GitHub Actions in a cache-friendly way</title><link href="https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything" rel="alternate"/><published>2026-07-14T00:56:20+00:00</published><updated>2026-07-14T00:56:20+00:00</updated><id>https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-14T18:04:23+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Armin Ronacher</title><link href="https://simonwillison.net/2026/Jul/14/armin-ronacher/#atom-everything" rel="alternate"/><published>2026-07-14T18:04:23+00:00</published><updated>2026-07-14T18:04:23+00:00</updated><id>https://simonwillison.net/2026/Jul/14/armin-ronacher/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://lucumr.pocoo.org/2026/7/13/the-tower-keeps-rising/"&gt;&lt;p&gt;The shared language of a software project is not English or Python but it is the common understanding of what its concepts mean, where the boundaries are, which invariants matter, who owns what, and why the system has the shape it does. This language is rarely written down in one place. It lives partly in documentation and code, but also in code review, conversations, arguments, and the experience of having to explain a change to somebody else.&lt;/p&gt;
+&lt;p&gt;Before agents, some of this shared understanding was maintained by friction. If I wanted to change your storage layer, I usually had to read your code, ask you questions, and perhaps coordinate with another team whose service depended on it. This was slow, and much of that slowness was waste but not all of it was. Some of it was the process by which your understanding became mine, and by which both of us discovered whether we still agreed about how the system worked. This friction synchronizes people.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://lucumr.pocoo.org/2026/7/13/the-tower-keeps-rising/"&gt;Armin Ronacher&lt;/a&gt;, The Tower Keeps Rising&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/software-engineering"&gt;software-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/armin-ronacher"&gt;armin-ronacher&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="software-engineering"/><category term="llms"/><category term="coding-agents"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="armin-ronacher"/><category term="agentic-engineering"/></entry><entry><title>Using uvx in GitHub Actions in a cache-friendly way</title><link href="https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything" rel="alternate"/><published>2026-07-14T00:56:20+00:00</published><updated>2026-07-14T00:56:20+00:00</updated><id>https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;TIL:&lt;/strong&gt; &lt;a href="https://til.simonwillison.net/github-actions/uvx-github-actions-cache"&gt;Using uvx in GitHub Actions in a cache-friendly way&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;I finally found a cache-friendly recipe for using &lt;code&gt;uvx tool-name&lt;/code&gt; in GitHub Actions workflows that I like.&lt;/p&gt;
@@ -837,19 +846,4 @@ Armin reports on a weird problem he ran into while hacking on Pi:&lt;/p&gt;
 
 
 
-</summary><category term="open-source"/><category term="ai"/><category term="datasette-lite"/><category term="generative-ai"/><category term="local-llms"/><category term="llms"/></entry><entry><title>Quoting Josh W. Comeau</title><link href="https://simonwillison.net/2026/Jul/3/josh-w-comeau/#atom-everything" rel="alternate"/><published>2026-07-03T21:25:52+00:00</published><updated>2026-07-03T21:25:52+00:00</updated><id>https://simonwillison.net/2026/Jul/3/josh-w-comeau/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://bsky.app/profile/joshwcomeau.com/post/3mkxyqgrp2d2t"&gt;&lt;p&gt;I just launched my third course, Whimsical Animations, and so far, it’s on track to sell roughly ⅓ as many copies as a typical course launch.&lt;/p&gt;
-&lt;p&gt;It’s a similar story with my two existing courses. Sales are down significantly from last year.&lt;/p&gt;
-&lt;p&gt;There are likely a lot of reasons for this, but I think the biggest is AI. There’s sort of a double whammy with AI:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Many people are wondering whether developer jobs will even exist in a few months, so they’re reluctant to spend time/money learning new dev skills.&lt;/li&gt;
-&lt;li&gt;Even if they do want to learn new dev skills, LLMs can provide personalized tutoring, so there’s less incentive to buy a paid course.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;[...] I’ve spoken to a few course creators now, and we’re all seeing the same trend. Revenue down 50%+. Fewer people engaging with our content. People switching to LLMs, which slurp up all of our work and regurgitate it, without consent or compensation.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://bsky.app/profile/joshwcomeau.com/post/3mkxyqgrp2d2t"&gt;Josh W. Comeau&lt;/a&gt;, via &lt;a href="https://whitep4nth3r.com/blog/goodbye-forever-probably/"&gt;Salma Alam-Naylor&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/careers"&gt;careers&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/josh-comeau"&gt;josh-comeau&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai-ethics"/><category term="llms"/><category term="ai"/><category term="generative-ai"/><category term="careers"/><category term="josh-comeau"/></entry></feed>
+</summary><category term="open-source"/><category term="ai"/><category term="datasette-lite"/><category term="generative-ai"/><category term="local-llms"/><category term="llms"/></entry></feed>
