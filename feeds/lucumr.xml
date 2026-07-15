@@ -6,7 +6,7 @@
   <link href="https://lucumr.pocoo.org/feed.atom" rel="self" />
   <description>Armin Ronacher's personal blog about programming, games and random thoughts that come to his mind.</description>
   <language>en</language>
-  <updated>2026-07-15T06:45:36.441748+00:00</updated>
+  <updated>2026-07-15T15:29:34.413431+00:00</updated>
   <author>
     <name>Armin Ronacher</name>
   </author>
@@ -74,7 +74,7 @@ even acquire the part of the shared model that the change once would have forced
 us to learn.</p>
 <p>As I said many times before: agents do not feel pain, only humans do.  Agents
 now let us act in parts of the system where we would previously have needed
-other people and in code bases where the people would have revolved.</p>
+other people and in code bases where the people would have revolted.</p>
 <p>When I look at some vibecoded scaled-up projects the codebases become Babel not
 because nobody can communicate, but because nobody needs to.  Every developer
 has a tireless translator that can explain a corner of the tower and make
