@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-16T15:35:25+00:00</updated><author><name>Simon Willison</name></author><entry><title>Inkling: Our open-weights model</title><link href="https://simonwillison.net/2026/Jul/16/inkling/#atom-everything" rel="alternate"/><published>2026-07-16T15:35:25+00:00</published><updated>2026-07-16T15:35:25+00:00</updated><id>https://simonwillison.net/2026/Jul/16/inkling/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-16T17:45:59+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Thibault Sottiaux</title><link href="https://simonwillison.net/2026/Jul/16/bad-codex-bug/#atom-everything" rel="alternate"/><published>2026-07-16T17:45:59+00:00</published><updated>2026-07-16T17:45:59+00:00</updated><id>https://simonwillison.net/2026/Jul/16/bad-codex-bug/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://twitter.com/thsottiaux/status/2077630111499882637"&gt;&lt;p&gt;On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. &lt;/p&gt;
+&lt;p&gt;What we have  found is that this most commonly occurs when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Full access mode is enabled and codex is run without sandboxing protections, including without auto review being enabled&lt;/li&gt;
+&lt;li&gt;The model attempts  to override the $HOME env var to define a temporary directory.&lt;/li&gt;
+&lt;li&gt;The model makes an honest mistake and mistakenly deletes $HOME instead.&lt;/li&gt;
+&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://twitter.com/thsottiaux/status/2077630111499882637"&gt;Thibault Sottiaux&lt;/a&gt;, describing a pretty gnarly Codex bug&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/codex"&gt;codex&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="codex"/><category term="coding-agents"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>Inkling: Our open-weights model</title><link href="https://simonwillison.net/2026/Jul/16/inkling/#atom-everything" rel="alternate"/><published>2026-07-16T15:35:25+00:00</published><updated>2026-07-16T15:35:25+00:00</updated><id>https://simonwillison.net/2026/Jul/16/inkling/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://thinkingmachines.ai/news/introducing-inkling/"&gt;Inkling: Our open-weights model&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Mira Murati's Thinking Machines Lab just released their first open-weights model. Inkling is "a Mixture-of-Experts transformer with 975B total parameters, 41B active" - an Apache-2.0 licensed multimodal model trained on 45 trillion tokens of text, images, audio and video.&lt;/p&gt;
@@ -776,21 +790,4 @@ OpenAI &lt;em&gt;finally&lt;/em&gt; upgraded the model used by ChatGPT voice mod
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="sqlite-utils"/></entry><entry><title>github-code Web Component</title><link href="https://simonwillison.net/2026/Jul/7/github-code-component/#atom-everything" rel="alternate"/><published>2026-07-07T16:18:16+00:00</published><updated>2026-07-07T16:18:16+00:00</updated><id>https://simonwillison.net/2026/Jul/7/github-code-component/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/github-code-component"&gt;github-code Web Component&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;An experimental Web Component built using GPT-5.5 and &lt;a href="https://gist.github.com/simonw/0e3db21947b5ae7e29e8a4f69a0b0617"&gt;the following prompt&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;let's build a Web Component for embedding code from GitHub&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;github-code href="https://github.com/simonw/sqlite-ast/blob/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py#L9-L18"&amp;gt;&amp;lt;/github-code&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;It takes URLs like that, converts them to https://raw.githubusercontent.com/simonw/sqlite-ast/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py, then uses fetch() to fetch them and displays the specified range of lines - with line numbers, no syntax highlighting though&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Show me a preview web browser so I can see your work&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's what it looks like embedded on this page:&lt;/p&gt;
-&lt;p&gt;&lt;github-code href="https://github.com/simonw/sqlite-ast/blob/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py#L9-L18"&gt;&lt;/github-code&gt;&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/web-components"&gt;web-components&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt"&gt;gpt&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="github"/><category term="web-components"/><category term="gpt"/></entry></feed>
+</summary><category term="sqlite-utils"/></entry></feed>
