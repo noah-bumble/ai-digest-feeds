@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-16T13:26:10+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Linus Torvalds</title><link href="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything" rel="alternate"/><published>2026-07-16T13:26:10+00:00</published><updated>2026-07-16T13:26:10+00:00</updated><id>https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-16T15:35:25+00:00</updated><author><name>Simon Willison</name></author><entry><title>Inkling: Our open-weights model</title><link href="https://simonwillison.net/2026/Jul/16/inkling/#atom-everything" rel="alternate"/><published>2026-07-16T15:35:25+00:00</published><updated>2026-07-16T15:35:25+00:00</updated><id>https://simonwillison.net/2026/Jul/16/inkling/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://thinkingmachines.ai/news/introducing-inkling/"&gt;Inkling: Our open-weights model&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Mira Murati's Thinking Machines Lab just released their first open-weights model. Inkling is "a Mixture-of-Experts transformer with 975B total parameters, 41B active" - an Apache-2.0 licensed multimodal model trained on 45 trillion tokens of text, images, audio and video.&lt;/p&gt;
+&lt;p&gt;They're also promising Inkling-Small, a 276B (12B active) model, but that's still being tested and the weights will be released "once that work is complete".&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://thinkingmachines.ai/model-card/inkling/"&gt;model card&lt;/a&gt; is much shorter than I've come to expect from US AI labs. It links to even shorter &lt;a href="https://thinkingmachines.ai/training-data-documentation/"&gt;Training Data Documentation&lt;/a&gt; with almost nothing of interest in it - it's best summarized by these two paragraphs:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The datasets Thinking Machines Lab uses to develop its AI services includes content that is in the public domain as well as content that may be subject to intellectual property protection.&lt;/p&gt;
+&lt;p&gt;Thinking Machines Lab’s services were developed using publicly available content obtained from the open internet and publicly accessible data repositories. Certain datasets were also obtained from third parties.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By Thinking Machines' own admission, this is not a frontier model. It's instead intended as a strong base model for fine-tuning using their own &lt;a href="https://thinkingmachines.ai/tinker/"&gt;Tinker training platform&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Inkling is not the strongest overall model available today, open or closed. Instead, a combination of qualities makes it a good open-weights base for customization: multimodal capabilities, efficient thinking, and availability on Tinker for fine-tuning.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There's a lot to like about this release. It's Apache-2.0 licensed, and looks competitive with the open weight models coming out of China - it's good to see the US open weights ecosystem gain a new viable contender to join NVIDIA Nemotron and Gemma 4.&lt;/p&gt;
+&lt;p&gt;Here's its attempt at an SVG pelican riding a bicycle, which I generated using this &lt;code&gt;curl&lt;/code&gt; command against the Thinking Machines API:&lt;/p&gt;
+&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;curl &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;https://tinker.thinkingmachines.dev/services/tinker-prod/oai/api/v1/chat/completions&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; \
+  -H &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;Authorization: Bearer &lt;span class="pl-smi"&gt;$TINKER_API_KEY&lt;/span&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; \
+  -H &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;Content-Type: application/json&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; \
+  -d &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;{&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "model": "thinkingmachines/Inkling",&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "messages": [&lt;/span&gt;
+&lt;span class="pl-s"&gt;      {"role": "user", "content": "Generate an SVG of a pelican riding a bicycle"}&lt;/span&gt;
+&lt;span class="pl-s"&gt;    ],&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "stream": false&lt;/span&gt;
+&lt;span class="pl-s"&gt;  }&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Full &lt;a href="https://gist.github.com/simonw/8117ac4376371dd3fc2b5dbce27e0855"&gt;response here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="See image description below" src="https://static.simonwillison.net/static/2026/inkling-pelican.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Since it's a multi-modal model I had it describe its own image (after I rendered it to a JPG) by sending this JSON:&lt;/p&gt;
+&lt;div class="highlight highlight-source-json"&gt;&lt;pre&gt;{
+  &lt;span class="pl-ent"&gt;"model"&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;thinkingmachines/Inkling&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;,
+  &lt;span class="pl-ent"&gt;"messages"&lt;/span&gt;: [{
+    &lt;span class="pl-ent"&gt;"role"&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;user&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;,
+    &lt;span class="pl-ent"&gt;"content"&lt;/span&gt;: [
+      {&lt;span class="pl-ent"&gt;"type"&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;image_url&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;, &lt;span class="pl-ent"&gt;"image_url"&lt;/span&gt;: {&lt;span class="pl-ent"&gt;"url"&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;data:image/jpeg;base64,$BASE_64_JPEG&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;}},
+      {&lt;span class="pl-ent"&gt;"type"&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;text&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;, &lt;span class="pl-ent"&gt;"text"&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;Describe this image in detail&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;},
+    ],
+  }],
+  &lt;span class="pl-ent"&gt;"stream"&lt;/span&gt;: &lt;span class="pl-c1"&gt;false&lt;/span&gt;
+}&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here's &lt;a href="https://gist.github.com/simonw/dccebd0581f5c4056c5b0ca5bdc38cd9#reasoning_content"&gt;the full response&lt;/a&gt;. It thought it had drawn a "stork or seagull":&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a cheerful, flat-vector cartoon illustration featuring a white bird riding a bicycle across a green landscape.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Bird:&lt;/strong&gt; The central figure is a stylized white bird—resembling a stork or seagull—with a plump, rounded body. It has a long, prominent orange beak that is slightly open, revealing a black line for the mouth. Its eye is small and black with a tiny white highlight. The bird has black wing and tail feathers with white edges, and thin orange legs ending in black feet that rest on the bicycle's orange pedals.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Bicycle:&lt;/strong&gt; The bike has a simple black frame with two large wheels featuring black tires, gray inner rims, and black spokes arranged in a cross pattern. The handlebars are black, and there are bright orange pedals attached to a black crank. A white seat is visible behind the bird's body.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Setting:&lt;/strong&gt; The scene is set against a clear, light blue sky. There are two fluffy white clouds—one on the left side and a smaller one near the bird's head on the right. A bright, solid yellow sun shines in the upper right corner. At the bottom, there are rolling green hills with a smooth, curved top edge where the bicycle rests.&lt;/p&gt;
+&lt;p&gt;The overall style is playful, simple, and colorful, with clean lines and a bright, sunny atmosphere.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48924912"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/training-data"&gt;training-data&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="training-data"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry><entry><title>Quoting Linus Torvalds</title><link href="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything" rel="alternate"/><published>2026-07-16T13:26:10+00:00</published><updated>2026-07-16T13:26:10+00:00</updated><id>https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://lore.kernel.org/linux-media/CAHk-=wi4zC+Ze8e+p3tMv8TtG_80KzsZ1syL9anBtmEh5Z40vg@mail.gmail.com/"&gt;&lt;p&gt;I realize that some people really dislike AI, but this is an area where I'm willing to absolutely put my foot down as the top-level maintainer.&lt;/p&gt;
 &lt;p&gt;Linux is not one of those anti-AI projects, and if somebody has issues with that, they can do the open-source thing and fork it.&lt;/p&gt;
 &lt;p&gt;Or just walk away.&lt;/p&gt;
@@ -735,13 +793,4 @@ OpenAI &lt;em&gt;finally&lt;/em&gt; upgraded the model used by ChatGPT voice mod
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/web-components"&gt;web-components&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt"&gt;gpt&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="github"/><category term="web-components"/><category term="gpt"/></entry><entry><title>sqlite-utils 4.0</title><link href="https://simonwillison.net/2026/Jul/7/sqlite-utils/#atom-everything" rel="alternate"/><published>2026-07-07T15:42:43+00:00</published><updated>2026-07-07T15:42:43+00:00</updated><id>https://simonwillison.net/2026/Jul/7/sqlite-utils/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/sqlite-utils/releases/tag/4.0"&gt;sqlite-utils 4.0&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;See &lt;a href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/"&gt;sqlite-utils 4.0, now with database schema migrations&lt;/a&gt; for details.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="sqlite-utils"/></entry></feed>
+</summary><category term="github"/><category term="web-components"/><category term="gpt"/></entry></feed>
