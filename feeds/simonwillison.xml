@@ -28,7 +28,7 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
 
 &lt;p&gt;Full &lt;a href="https://gist.github.com/simonw/8117ac4376371dd3fc2b5dbce27e0855"&gt;response here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="See image description below" src="https://static.simonwillison.net/static/2026/inkling-pelican.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;Since it's a multi-modal model I had it describe its own image (after I rendered it to a JPG) by sending this JSON:&lt;/p&gt;
+&lt;p&gt;Since it's a multi-modal model I had it describe its own image (after I rendered it to a JPEG) by sending this JSON:&lt;/p&gt;
 &lt;div class="highlight highlight-source-json"&gt;&lt;pre&gt;{
   &lt;span class="pl-ent"&gt;"model"&lt;/span&gt;: &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;thinkingmachines/Inkling&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;,
   &lt;span class="pl-ent"&gt;"messages"&lt;/span&gt;: [{
