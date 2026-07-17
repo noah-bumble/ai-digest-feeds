@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-16T20:19:30+00:00</updated><author><name>Simon Willison</name></author><entry><title>Kimi K3, and what we can still learn from the pelican benchmark</title><link href="https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything" rel="alternate"/><published>2026-07-16T20:19:30+00:00</published><updated>2026-07-16T20:19:30+00:00</updated><id>https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-16T23:34:16+00:00</updated><author><name>Simon Willison</name></author><entry><title>Firefox in WebAssembly</title><link href="https://simonwillison.net/2026/Jul/16/firefox-in-webassembly/#atom-everything" rel="alternate"/><published>2026-07-16T23:34:16+00:00</published><updated>2026-07-16T23:34:16+00:00</updated><id>https://simonwillison.net/2026/Jul/16/firefox-in-webassembly/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://developer.puter.com/labs/firefox-wasm/"&gt;Firefox in WebAssembly&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+This is absurdly cool: Puter compiled Firefox to WebAssembly such that the whole browser runs in another browser.&lt;/p&gt;
+&lt;p&gt;Here's my blog, running in Firefox, running in WebAssembly, running in Chrome:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A Chrome window. The tab has the Firefox UI and has loaded my blog. On the right is the Chrome network panel showing that it loaded resources that include a 233MB gecko.wasm and an 18MB chrome-assets.tar.zst" src="https://static.simonwillison.net/static/2026/firefox-wasm.webp" /&gt;&lt;/p&gt;
+&lt;p&gt;They chose Firefox/Gecko because it has strong single-process support. The project used an estimated $25,000 worth of Claude Opus and Fable tokens, but took advantage of a Claude Max subscription plan so cost much less in actual dollars.&lt;/p&gt;
+&lt;p&gt;The demo funnels all traffic over a WebSocket protocol (using the &lt;a href="https://github.com/MercuryWorkshop/wisp-protocol"&gt;Wisp protocol&lt;/a&gt;) through Puter's server - a requirement to get this kind of thing to work because code running in browsers can't open arbitrary network connections.&lt;/p&gt;
+&lt;p&gt;(That proxying sounds expensive! The team &lt;a href="https://news.ycombinator.com/item?id=48926939#48936563"&gt;had to scale the servers up&lt;/a&gt; to handle the traffic during the Hacker News conversation about the project.)&lt;/p&gt;
+&lt;p&gt;Puter claim this supports end-to-end encryption and that looks to be true - I inspected the WebSocket messages and traffic to my own HTTPS site was encrypted whereas requests and responses to &lt;code&gt;http://www.example.com/&lt;/code&gt; were in cleartext.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/HeyPuter/firefox-wasm"&gt;Here's the repo&lt;/a&gt; for &lt;code&gt;firefox-wasm&lt;/code&gt;. &lt;a href="https://github.com/theogbob/WebkitWasm"&gt;theogbob/WebkitWasm&lt;/a&gt; is a similar project that compiles WebKit to WASM, but that one doesn't currently have an accessible online demo.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48926939"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/browsers"&gt;browsers&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/firefox"&gt;firefox&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/webassembly"&gt;webassembly&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="browsers"/><category term="firefox"/><category term="ai"/><category term="webassembly"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="claude"/><category term="claude-mythos-fable"/></entry><entry><title>Kimi K3, and what we can still learn from the pelican benchmark</title><link href="https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything" rel="alternate"/><published>2026-07-16T20:19:30+00:00</published><updated>2026-07-16T20:19:30+00:00</updated><id>https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything</id><summary type="html">
     &lt;p&gt;Chinese AI lab Moonshot AI &lt;a href="https://www.kimi.com/blog/kimi-k3"&gt;announced Kimi K3&lt;/a&gt; this morning, describing it as their "most capable model to date, with 2.8 trillion parameters". It's currently available via their website and API, but an open weight release is promised "by July 27, 2026".&lt;/p&gt;
 &lt;p&gt;Moonshot are calling this the first "open 3T-class model" (I guess they're rounding 2.8 trillion up to 3 trillion), taking the crown from &lt;a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"&gt;DeepSeek's 1.6T v4 Pro&lt;/a&gt;. Their &lt;a href="https://www.kimi.com/blog/kimi-k3#full-benchmark-table"&gt;self-reported benchmarks&lt;/a&gt; have K3 mostly beating Claude Opus 4.8 max and GPT-5.5 high, while losing out to Claude Fable 5 and GPT-5.6 Sol.&lt;/p&gt;
 &lt;p&gt;A few highlights from the &lt;a href="https://twitter.com/ArtificialAnlys/status/2077832874183860404"&gt;Artificial Analysis report&lt;/a&gt; on the model:&lt;/p&gt;
@@ -123,7 +142,18 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
 
 
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="training-data"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry><entry><title>Quoting Linus Torvalds</title><link href="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything" rel="alternate"/><published>2026-07-16T13:26:10+00:00</published><updated>2026-07-16T13:26:10+00:00</updated><id>https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything</id><summary type="html">
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="training-data"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry><entry><title>Mermaid to ASCII art (mermaid-ascii)</title><link href="https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything" rel="alternate"/><published>2026-07-16T14:57:39+00:00</published><updated>2026-07-16T14:57:39+00:00</updated><id>https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/mermaid-ascii"&gt;Mermaid to ASCII art (mermaid-ascii)&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;After building the &lt;a href="https://simonwillison.net/2026/Jul/16/grok-mermaid/"&gt;Mermaid to ASCII tool based on Grok Build's Rust code&lt;/a&gt; I learned that there's an older, more fully-featured Go library called &lt;a href="https://github.com/AlexanderGrooff/mermaid-ascii"&gt;AlexanderGrooff/mermaid-ascii&lt;/a&gt; that implements a similar pattern, so I had Claude Fable 5 compile that one to WebAssembly as well so I could compare the two.&lt;/p&gt;
+&lt;p&gt;This one includes support for colors!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of a Mermaid diagram editor web app. A row of tab buttons reads: Flowchart, Multiple links, Subgraphs, Multi-line labels, Colors (selected, highlighted blue), Sequence, Alt fragment, Loop + note, Parallel. Below is a text input area containing: &amp;quot;graph LR / Build:::good --&amp;gt; Test:::good / Test --&amp;gt; Deploy:::warn / Deploy --&amp;gt; Rollback:::bad / classDef good color:#3fb950 / classDef warn color:#e3b341 / classDef bad color:#ff7b72&amp;quot;. A control row shows an unchecked &amp;quot;ASCII only&amp;quot; checkbox, &amp;quot;Padding X: 5&amp;quot;, &amp;quot;Padding Y: 5&amp;quot;, &amp;quot;Box padding: 1&amp;quot;, and buttons &amp;quot;Copy as text&amp;quot; and &amp;quot;Copy link to this diagram&amp;quot;. At the bottom on a black background is the rendered left-to-right flowchart with four connected boxes: &amp;quot;Build&amp;quot; (green text), &amp;quot;Test&amp;quot; (green text), &amp;quot;Deploy&amp;quot; (yellow text), &amp;quot;Rollback&amp;quot; (red text), each linked by arrows." src="https://static.simonwillison.net/static/2026/mermaid-ascii.webp" /&gt;&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/go"&gt;go&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/webassembly"&gt;webassembly&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/mermaid"&gt;mermaid&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="go"/><category term="tools"/><category term="webassembly"/><category term="mermaid"/></entry><entry><title>Quoting Linus Torvalds</title><link href="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything" rel="alternate"/><published>2026-07-16T13:26:10+00:00</published><updated>2026-07-16T13:26:10+00:00</updated><id>https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://lore.kernel.org/linux-media/CAHk-=wi4zC+Ze8e+p3tMv8TtG_80KzsZ1syL9anBtmEh5Z40vg@mail.gmail.com/"&gt;&lt;p&gt;I realize that some people really dislike AI, but this is an area where I'm willing to absolutely put my foot down as the top-level maintainer.&lt;/p&gt;
 &lt;p&gt;Linux is not one of those anti-AI projects, and if somebody has issues with that, they can do the open-source thing and fork it.&lt;/p&gt;
 &lt;p&gt;Or just walk away.&lt;/p&gt;
@@ -639,198 +669,4 @@ OpenAI &lt;em&gt;finally&lt;/em&gt; upgraded the model used by ChatGPT voice mod
 
 
 
-</summary><category term="text-to-speech"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="multi-modal-output"/><category term="llm-release"/><category term="speech-to-text"/></entry><entry><title>Quoting Kenton Varda</title><link href="https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything" rel="alternate"/><published>2026-07-08T20:03:34+00:00</published><updated>2026-07-08T20:03:34+00:00</updated><id>https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://twitter.com/kentonvarda/status/2074924213983740233"&gt;&lt;p&gt;I just declared a moratorium against AI-written change descriptions (e.g. PR and commit messages, also issues/tickets) from my team.&lt;/p&gt;
-&lt;p&gt;AI was writing change descriptions that were worse than useless to me as I tried to review PRs: outlining details of the code that could easily be seen by looking at the code, but omitting the higher-level framing needed to understand broadly what the code is doing.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://twitter.com/kentonvarda/status/2074924213983740233"&gt;Kenton Varda&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/kenton-varda"&gt;kenton-varda&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="kenton-varda"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>sqlite-utils 4.0, now with database schema migrations</title><link href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything" rel="alternate"/><published>2026-07-07T19:32:57+00:00</published><updated>2026-07-07T19:32:57+00:00</updated><id>https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything</id><summary type="html">
-    &lt;p&gt;This morning I released &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0"&gt;sqlite-utils 4.0&lt;/a&gt;, the 124th release of that project and the first major version bump since &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v3-0"&gt;3.0&lt;/a&gt; in November 2020. In addition to some small but significant breaking changes (described in &lt;a href="https://sqlite-utils.datasette.io/en/stable/upgrading.html"&gt;this upgrade guide&lt;/a&gt;), this version introduces three major features: &lt;strong&gt;database migrations&lt;/strong&gt;, &lt;strong&gt;nested transactions&lt;/strong&gt; (via a new &lt;code&gt;db.atomic()&lt;/code&gt; method), and support for &lt;strong&gt;compound foreign keys&lt;/strong&gt;.&lt;/p&gt;
-&lt;h4 id="database-schema-migrations-using-sqlite-utils"&gt;Database schema migrations using sqlite-utils&lt;/h4&gt;
-&lt;p&gt;Schema migrations define a sequence of changes to be made to a SQLite database, plus a mechanism for tracking which migrations have been applied and applying any that are found to be pending.&lt;/p&gt;
-&lt;p&gt;Migrations are defined in Python files using the &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html"&gt;sqlite-utils Python library&lt;/a&gt;, which includes a powerful &lt;code&gt;table.transform()&lt;/code&gt; method providing &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#transforming-a-table"&gt;enhanced alter table capabilities&lt;/a&gt; that are not supported by SQLite's &lt;code&gt;ALTER TABLE&lt;/code&gt; statement.&lt;/p&gt;
-&lt;p&gt;(&lt;code&gt;table.transform()&lt;/code&gt; implements the pattern &lt;a href="https://www.sqlite.org/lang_altertable.html#otheralter"&gt;recommended by the SQLite documentation&lt;/a&gt; - create a new temporary table with the new schema, copy across the data, then drop the old table and rename the temporary one in its place.)&lt;/p&gt;
-&lt;p&gt;Here's an example migration file which creates a table called &lt;code&gt;creatures&lt;/code&gt;, adds an additional column to it in a second step, then changes the types of two of the columns in a third:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-k"&gt;from&lt;/span&gt; &lt;span class="pl-s1"&gt;sqlite_utils&lt;/span&gt; &lt;span class="pl-k"&gt;import&lt;/span&gt; &lt;span class="pl-v"&gt;Migrations&lt;/span&gt;
-
-&lt;span class="pl-s1"&gt;migrations&lt;/span&gt; &lt;span class="pl-c1"&gt;=&lt;/span&gt; &lt;span class="pl-en"&gt;Migrations&lt;/span&gt;(&lt;span class="pl-s"&gt;"creatures"&lt;/span&gt;)
-
-&lt;span class="pl-en"&gt;@&lt;span class="pl-en"&gt;migrations&lt;/span&gt;()&lt;/span&gt;
-&lt;span class="pl-k"&gt;def&lt;/span&gt; &lt;span class="pl-en"&gt;create_table&lt;/span&gt;(&lt;span class="pl-s1"&gt;db&lt;/span&gt;):
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;[&lt;span class="pl-s"&gt;"creatures"&lt;/span&gt;].&lt;span class="pl-c1"&gt;create&lt;/span&gt;(
-        {&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-s1"&gt;int&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s1"&gt;str&lt;/span&gt;, &lt;span class="pl-s"&gt;"species"&lt;/span&gt;: &lt;span class="pl-s1"&gt;str&lt;/span&gt;},
-        &lt;span class="pl-s1"&gt;pk&lt;/span&gt;&lt;span class="pl-c1"&gt;=&lt;/span&gt;&lt;span class="pl-s"&gt;"id"&lt;/span&gt;,
-    )
-
-&lt;span class="pl-en"&gt;@&lt;span class="pl-en"&gt;migrations&lt;/span&gt;()&lt;/span&gt;
-&lt;span class="pl-k"&gt;def&lt;/span&gt; &lt;span class="pl-en"&gt;add_weight&lt;/span&gt;(&lt;span class="pl-s1"&gt;db&lt;/span&gt;):
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;[&lt;span class="pl-s"&gt;"creatures"&lt;/span&gt;].&lt;span class="pl-c1"&gt;add_column&lt;/span&gt;(&lt;span class="pl-s"&gt;"weight"&lt;/span&gt;, &lt;span class="pl-s1"&gt;float&lt;/span&gt;)
-
-&lt;span class="pl-en"&gt;@&lt;span class="pl-en"&gt;migrations&lt;/span&gt;()&lt;/span&gt;
-&lt;span class="pl-k"&gt;def&lt;/span&gt; &lt;span class="pl-en"&gt;change_column_types&lt;/span&gt;(&lt;span class="pl-s1"&gt;db&lt;/span&gt;):
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;[&lt;span class="pl-s"&gt;"creatures"&lt;/span&gt;].&lt;span class="pl-c1"&gt;transform&lt;/span&gt;(&lt;span class="pl-s1"&gt;types&lt;/span&gt;&lt;span class="pl-c1"&gt;=&lt;/span&gt;{&lt;span class="pl-s"&gt;"species"&lt;/span&gt;: &lt;span class="pl-s1"&gt;int&lt;/span&gt;, &lt;span class="pl-s"&gt;"weight"&lt;/span&gt;: &lt;span class="pl-s1"&gt;str&lt;/span&gt;})&lt;/pre&gt;
-&lt;p&gt;Save that as &lt;code&gt;migrations.py&lt;/code&gt; and run it against a fresh database like this:&lt;/p&gt;
-&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;uvx sqlite-utils migrate data.db migrations.py&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then if you check the schema of that database:&lt;/p&gt;
-&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;uvx sqlite-utils schema data.db&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;You'll see this SQL:&lt;/p&gt;
-&lt;div class="highlight highlight-source-sql"&gt;&lt;pre&gt;&lt;span class="pl-k"&gt;CREATE&lt;/span&gt; &lt;span class="pl-k"&gt;TABLE&lt;/span&gt; "&lt;span class="pl-en"&gt;_sqlite_migrations&lt;/span&gt;" (
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;id&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;INTEGER&lt;/span&gt; &lt;span class="pl-k"&gt;PRIMARY KEY&lt;/span&gt;,
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;migration_set&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;TEXT&lt;/span&gt;,
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;name&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;TEXT&lt;/span&gt;,
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;applied_at&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;TEXT&lt;/span&gt;
-);
-&lt;span class="pl-k"&gt;CREATE&lt;/span&gt; &lt;span class="pl-k"&gt;UNIQUE INDEX&lt;/span&gt; "&lt;span class="pl-en"&gt;idx__sqlite_migrations_migration_set_name&lt;/span&gt;"
-    &lt;span class="pl-k"&gt;ON&lt;/span&gt; &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;_sqlite_migrations&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; (&lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;migration_set&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;, &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;name&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt;);
-&lt;span class="pl-k"&gt;CREATE&lt;/span&gt; &lt;span class="pl-k"&gt;TABLE&lt;/span&gt; "&lt;span class="pl-en"&gt;creatures&lt;/span&gt;" (
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;id&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;INTEGER&lt;/span&gt; &lt;span class="pl-k"&gt;PRIMARY KEY&lt;/span&gt;,
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;name&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;TEXT&lt;/span&gt;,
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;species&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;INTEGER&lt;/span&gt;,
-   &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;"&lt;/span&gt;weight&lt;span class="pl-pds"&gt;"&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-k"&gt;TEXT&lt;/span&gt;
-);&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The &lt;code&gt;_sqlite_migrations&lt;/code&gt; table is used to keep track of which migration functions have been run. The &lt;code&gt;creatures&lt;/code&gt; table above is the schema after all three migrations have been applied.&lt;/p&gt;
-&lt;p&gt;To see a list of migrations, both pending and applied, run this:&lt;/p&gt;
-&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;uvx sqlite-utils migrate data.db migrations.py --list&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Output:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Migrations for: creatures
-
-  Applied:
-    create_table - 2026-07-07 17:58:41.360051+00:00
-    add_weight - 2026-07-07 17:58:41.360608+00:00
-    change_column_types - 2026-07-07 18:01:15.802000+00:00
-
-  Pending:
-    (none)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If you don't specify a migrations file, the &lt;code&gt;sqlite-utils migrate data.db&lt;/code&gt; command will scan the current directory and its subdirectories for files called &lt;code&gt;migrations.py&lt;/code&gt; and apply any &lt;code&gt;Migrations()&lt;/code&gt; instances it finds in them.&lt;/p&gt;
-&lt;p&gt;You can also execute migrations &lt;a href="https://sqlite-utils.datasette.io/en/stable/migrations.html#applying-migrations-in-python"&gt;from Python code&lt;/a&gt; using the &lt;code&gt;migrations.apply(db)&lt;/code&gt; method, which is useful for building tools that manage their own database schemas over multiple versions. My own &lt;a href="https://llm.datasette.io/"&gt;LLM tool&lt;/a&gt; has been using a version of this pattern for several years now, as shown in &lt;a href="https://github.com/simonw/llm/blob/0.31/llm/embeddings_migrations.py"&gt;llm/embeddings_migrations.py&lt;/a&gt;.&lt;/p&gt;
-&lt;h4 id="prior-art"&gt;Prior art&lt;/h4&gt;
-&lt;p&gt;My favorite implementation of this pattern remains &lt;a href="https://docs.djangoproject.com/en/6.0/topics/migrations/"&gt;Django's Migrations&lt;/a&gt;, developed by Andrew Godwin based on his earlier project &lt;a href="https://github.com/andrewgodwin/south"&gt;South&lt;/a&gt;. Fun fact: Andrew, Russ Keith-Magee, and I presented our competing approaches to schema migrations for Django on the &lt;a href="https://www.youtube.com/watch?v=VSq8m00p1FM"&gt;Schema Evolution panel&lt;/a&gt; at the very first DjangoCon back in 2008! My attempt was called &lt;a href="https://simonwillison.net/2008/Sep/3/dmigrations/"&gt;dmigrations&lt;/a&gt;, developed with a team at Global Radio in London.&lt;/p&gt;
-&lt;p&gt;Django's migrations can be automatically generated from model definitions and include the ability to roll back to a previous version. The &lt;code&gt;sqlite-utils&lt;/code&gt; approach is deliberately simpler: unlike Django, &lt;code&gt;sqlite-utils&lt;/code&gt; encourages programmatic table creation rather than a model definition ORM, so there isn't anything we can use to automatically generate migrations.&lt;/p&gt;
-&lt;p&gt;I decided to skip rollback, since in my experience it's a feature that is rarely used. With a SQLite project, an easy way to achieve rollback is to create a copy of your database file before you apply the migrations!&lt;/p&gt;
-&lt;h4 id="migrating-from-sqlite-migrate"&gt;Migrating from sqlite-migrate&lt;/h4&gt;
-&lt;p&gt;The design of &lt;code&gt;sqlite-utils&lt;/code&gt; migrations is three years old now - I had originally released it as a separate package called &lt;a href="https://github.com/simonw/sqlite-migrate"&gt;sqlite-migrate&lt;/a&gt;, which never quite graduated beyond a beta release.&lt;/p&gt;
-&lt;p&gt;I've used that package in enough places now that I'm confident in the design, so I've decided to promote it to a feature of &lt;code&gt;sqlite-utils&lt;/code&gt; to make it available by default to all of the other tools in the growing sqlite-utils/Datasette/LLM ecosystem.&lt;/p&gt;
-&lt;p&gt;I made &lt;a href="https://github.com/simonw/sqlite-migrate/releases/tag/0.2"&gt;one last release&lt;/a&gt; of &lt;code&gt;sqlite-migrate&lt;/code&gt;, which switches it to depend on &lt;code&gt;sqlite-utils&amp;gt;=4&lt;/code&gt; and replaces the &lt;code&gt;__init__.py&lt;/code&gt; file with the following:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-k"&gt;from&lt;/span&gt; &lt;span class="pl-s1"&gt;sqlite_utils&lt;/span&gt; &lt;span class="pl-k"&gt;import&lt;/span&gt; &lt;span class="pl-v"&gt;Migrations&lt;/span&gt;
-
-&lt;span class="pl-s1"&gt;__all__&lt;/span&gt; &lt;span class="pl-c1"&gt;=&lt;/span&gt; [&lt;span class="pl-s"&gt;"Migrations"&lt;/span&gt;]&lt;/pre&gt;
-&lt;p&gt;Any existing project that depends on &lt;code&gt;sqlite-migrate&lt;/code&gt; should continue to work without alterations.&lt;/p&gt;
-&lt;h4 id="everything-else-in-sqlite-utils-4-0"&gt;Everything else in sqlite-utils 4.0&lt;/h4&gt;
-&lt;p&gt;Here are the release notes for this version, with some inline annotations:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The 4.0 release includes some minor backwards-incompatible fixes (hence the major version number bump) and introduces three major new features:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;a href="https://sqlite-utils.datasette.io/en/stable/migrations.html#migrations"&gt;Database migrations&lt;/a&gt;, providing a structured mechanism for evolving a project’s schema over time. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/752"&gt;#752&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I think of migrations as the signature new feature, hence this blog post.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-atomic"&gt;Nested transaction support&lt;/a&gt; via &lt;code&gt;db.atomic()&lt;/code&gt;, plus numerous improvements to how transactions work across the library. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/755"&gt;#755&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;sqlite-utils&lt;/code&gt; has long had a confused relationship with database transactions, partly because when I started designing the library back in 2018 I didn't yet have a great feel for how those worked in SQLite itself.&lt;/p&gt;
-&lt;p&gt;Adding migrations to the core library made me determined to finally crack this nut, since transactions make migration systems a whole lot safer and easier to reason about.&lt;/p&gt;
-&lt;p&gt;I ended up building this around a &lt;code&gt;db.atomic()&lt;/code&gt; context manager which looks like this:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-k"&gt;with&lt;/span&gt; &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;atomic&lt;/span&gt;():
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;table&lt;/span&gt;(&lt;span class="pl-s"&gt;"dogs"&lt;/span&gt;).&lt;span class="pl-c1"&gt;insert&lt;/span&gt;({&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-c1"&gt;1&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s"&gt;"Cleo"&lt;/span&gt;}, &lt;span class="pl-s1"&gt;pk&lt;/span&gt;&lt;span class="pl-c1"&gt;=&lt;/span&gt;&lt;span class="pl-s"&gt;"id"&lt;/span&gt;)
-    &lt;span class="pl-s1"&gt;db&lt;/span&gt;.&lt;span class="pl-c1"&gt;table&lt;/span&gt;(&lt;span class="pl-s"&gt;"dogs"&lt;/span&gt;).&lt;span class="pl-c1"&gt;insert&lt;/span&gt;({&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-c1"&gt;2&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s"&gt;"Pancakes"&lt;/span&gt;})&lt;/pre&gt;
-&lt;p&gt;SQLite supports &lt;a href="https://sqlite.org/lang_savepoint.html"&gt;Savepoints&lt;/a&gt;, and as a result &lt;code&gt;db.atomic()&lt;/code&gt; can be nested to carry out transactions inside of transactions. It's pretty neat!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Support for &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-compound-foreign-keys"&gt;compound foreign keys&lt;/a&gt;, including creation, transformation and introspection through &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-introspection-foreign-keys"&gt;table.foreign_keys&lt;/a&gt;. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/594"&gt;#594&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This came about when I asked a coding agent to review all open issues and PRs for things that should be included in a 4.0 release since they would represent breaking changes if I added them later, and it correctly identified that compound foreign keys were exactly that kind of feature.&lt;/p&gt;
-&lt;p&gt;I started with a breaking change to the &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-introspection-foreign-keys"&gt;table.foreign_keys&lt;/a&gt; introspection method, and then decided to see if Claude Fable 5 could handle the more fiddly job of integrating compound foreign key &lt;em&gt;creation&lt;/em&gt; into the library. The API design it helped create felt &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#compound-foreign-keys"&gt;exactly right to me&lt;/a&gt; - consistent with how the rest of the library worked already.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Other notable changes include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Upserts now use SQLite’s &lt;code&gt;INSERT ... ON CONFLICT ... DO UPDATE SET&lt;/code&gt; syntax, detect existing table primary keys automatically and reject records that are missing required primary key values. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/652"&gt;#652&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This was the change that first pushed me to consider a breaking-change 4.0 version bump. I built this to help support &lt;a href="https://github.com/simonw/sqlite-chronicle"&gt;sqlite-chronicle&lt;/a&gt;, which uses triggers to keep track of rows in a table that have been inserted, updated or deleted.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;code&gt;db.query()&lt;/code&gt; now executes immediately and rejects statements that do not return rows; use &lt;code&gt;db.execute()&lt;/code&gt; for writes and DDL.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Probably the &lt;a href="https://sqlite-utils.datasette.io/en/stable/upgrading.html#python-api-changes"&gt;most disruptive breaking change&lt;/a&gt; - I've had to update a few places in my own code to switch from &lt;code&gt;db.query()&lt;/code&gt; to &lt;code&gt;db.execute()&lt;/code&gt; as a result.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;CSV and TSV imports now detect column types by default, while inserts into existing tables preserve those tables’ column types. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/679"&gt;#679&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The &lt;code&gt;sqlite-utils insert data.db creatures creatures.csv --detect-types&lt;/code&gt; flag was a later addition to allow column types (text, integer, real) to be automatically detected based on the data in a CSV. It should be the default, and releasing a 4.0 means I can make it so.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;code&gt;table.extract()&lt;/code&gt; and &lt;code&gt;extracts=&lt;/code&gt; no longer create lookup table records for all-&lt;code&gt;null&lt;/code&gt; values. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/186"&gt;#186&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The oldest issue addressed by this release - the underlying bug was opened (by me) in October 2020.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;See &lt;a href="https://sqlite-utils.datasette.io/en/stable/upgrading.html#upgrading-3-to-4"&gt;Upgrading from 3.x to 4.0&lt;/a&gt; for details on backwards-incompatible changes.&lt;/p&gt;
-&lt;p&gt;The detailed release notes for the features and fixes shipped during the 4.0 pre-release cycle are available in &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0a0"&gt;4.0a0&lt;/a&gt;, &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0a1"&gt;4.0a1&lt;/a&gt;, &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc1"&gt;4.0rc1&lt;/a&gt;, &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc2"&gt;4.0rc2&lt;/a&gt;, &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc3"&gt;4.0rc3&lt;/a&gt; and &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc4"&gt;4.0rc4&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The upgrade guide was entirely written by Claude Fable 5, Claude Opus 4.8 and GPT-5.5. The same is true of the release notes.&lt;/p&gt;
-&lt;p&gt;This is the kind of documentation I've slowly become comfortable outsourcing to the robots. It doesn't need to convince people of anything, or express any opinions - its job is to be as accurate and detailed as possible. I've reviewed the release notes closely and can confirm they are accurate and comprehensive.&lt;/p&gt;
-&lt;h4 id="claude-fable-5-helped-a-lot"&gt;Claude Fable 5 helped a lot&lt;/h4&gt;
-&lt;p&gt;I released the first alpha of sqlite-utils 4.0 &lt;a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#a0-2025-05-08"&gt;over a year ago&lt;/a&gt;. I've been dragging my heels on the stable release because of the amount of work it would take to track down and clean up the many other minor design flaws that a major version number allowed me to take on.&lt;/p&gt;
-&lt;p&gt;Assistance from Claude Fable 5 (and to a lesser extent Opus 4.8 and GPT-5.5) gave me just the boost I needed to overcome inertia and make the most of the time I could afford to spend on this library.&lt;/p&gt;
-&lt;p&gt;Fable has &lt;em&gt;really good taste&lt;/em&gt; in API design, and is &lt;a href="https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/"&gt;relentlessly proactive&lt;/a&gt; if you give it a more open goal. My most successful prompt was a review task that I issued against what I thought was the last release candidate:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;review the changes on main since the last tagged 3.x release - I am about to ship them as sqlite-utils 4.0, a stable version that promises no backwards-incompatible fixes for a very long time.&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;review the changelog and upgrade guide, and write yourself scratch scripts to try out all of the new features in v4 - save those scripts but don't commit them&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I tried this with GPT-5.5 xhigh in Codex Desktop and Fable 5 in Claude Code.&lt;/p&gt;
-&lt;p&gt;GPT-5.5 &lt;a href="https://gist.github.com/simonw/823fdecc031371d56dce39537adc0096"&gt;wrote 5 Python scripts&lt;/a&gt; and didn't turn up anything particularly interesting - its &lt;a href="https://github.com/simonw/sqlite-utils/issues/769#issuecomment-4899982463"&gt;final report is here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Fable 5 &lt;a href="https://gist.github.com/simonw/95800bf584f8e437f1cf0d48d9ef81e6"&gt;wrote 12 scripts&lt;/a&gt;, identified 4 release blockers and 10 additional issues &lt;a href="https://github.com/simonw/sqlite-utils/issues/769#issuecomment-4900034150"&gt;in its report&lt;/a&gt;, and built a neat &lt;a href="https://gist.githubusercontent.com/simonw/95800bf584f8e437f1cf0d48d9ef81e6/raw/c43918b36a129bba1d2f2a129117aa11c85146c0/12_bug_repros.py"&gt;combined repro script&lt;/a&gt;, which, when run, output the following:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;=== 1. Failed db.execute() write leaves an implicit transaction open ===
-  in_transaction after failed write: True
-  BUG: table 'other' silently lost when connection closed
-
-=== 2. Leading ';' bypasses the query() first-token scanner ===
-  BUG: raised OperationalError: no such savepoint: sqlite_utils_query
-  BUG: row persisted despite rollback (count=1)
-
-=== 3. Rejected write PRAGMA via query() still takes effect ===
-  BUG: user_version=5 after 'rejected' statement (docs say no effect)
-
-=== 4. Implicit compound FK resolves pk columns in table order, not PK order ===
-  BUG: other_columns reported as ('b', 'a'), should be ('a', 'b')
-  BUG: transform of valid data raised IntegrityError: FOREIGN KEY constraint failed
-
-=== 5. ForeignKey (now a dataclass) is no longer hashable ===
-  BUG: cannot use 'sqlite_utils.db.ForeignKey' as a set element (unhashable type: 'ForeignKey')
-
-=== 6. Mixed ForeignKey objects and tuples in foreign_keys= rejected ===
-  BUG: foreign_keys= should be a list of tuples
-
-=== 7. insert --csv into an EXISTING table transforms its column types ===
-  BUG: existing zip '01234' is now 1234 (column type: int)
-
-=== 8. insert(pk=, alter=True) regression: InvalidColumns before alter runs ===
-  BUG: InvalidColumns: Invalid primary key column ['id'] for table t with columns ['a']
-
-=== 9. migrate --stop-before an already-applied migration applies everything ===
-  BUG: m2 was applied despite --stop-before m1 (m1 already applied)
-
-=== 10. ensure_autocommit_on() silently commits an open transaction ===
-  BUG: row survived rollback (count=1) - transaction was committed
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I found myself agreeing with almost all of them. Here's &lt;a href="https://github.com/simonw/sqlite-utils/pull/779"&gt;the PR with 16 commits&lt;/a&gt; where we worked through them in turn.&lt;/p&gt;
-&lt;p&gt;There's no doubt in my mind that sqlite-utils 4.0 is a significantly higher-quality release than if I had built it without the assistance of the latest frontier models.&lt;/p&gt;
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/schema-migrations"&gt;schema-migrations&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/annotated-release-notes"&gt;annotated-release-notes&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="schema-migrations"/><category term="projects"/><category term="sqlite"/><category term="ai"/><category term="sqlite-utils"/><category term="annotated-release-notes"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="anthropic"/><category term="claude"/><category term="agentic-engineering"/><category term="claude-mythos-fable"/></entry></feed>
+</summary><category term="text-to-speech"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="multi-modal-output"/><category term="llm-release"/><category term="speech-to-text"/></entry></feed>
