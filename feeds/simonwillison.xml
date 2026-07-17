@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-17T02:58:07+00:00</updated><author><name>Simon Willison</name></author><entry><title>Spot birds not golf</title><link href="https://simonwillison.net/2026/Jul/17/spot-birds-not-golf/#atom-everything" rel="alternate"/><published>2026-07-17T02:58:07+00:00</published><updated>2026-07-17T02:58:07+00:00</updated><id>https://simonwillison.net/2026/Jul/17/spot-birds-not-golf/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-17T13:43:53+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Kimi K3</title><link href="https://simonwillison.net/2026/Jul/17/kimi-k3/#atom-everything" rel="alternate"/><published>2026-07-17T13:43:53+00:00</published><updated>2026-07-17T13:43:53+00:00</updated><id>https://simonwillison.net/2026/Jul/17/kimi-k3/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://news.ycombinator.com/item?id=48935342#48936515"&gt;&lt;p&gt;Is there something I can actually help you with today?&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://news.ycombinator.com/item?id=48935342#48936515"&gt;Kimi K3&lt;/a&gt;, after refusing to leak its system prompt&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/kimi"&gt;kimi&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-personality"&gt;ai-personality&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="kimi"/><category term="ai-personality"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>Spot birds not golf</title><link href="https://simonwillison.net/2026/Jul/17/spot-birds-not-golf/#atom-everything" rel="alternate"/><published>2026-07-17T02:58:07+00:00</published><updated>2026-07-17T02:58:07+00:00</updated><id>https://simonwillison.net/2026/Jul/17/spot-birds-not-golf/#atom-everything</id><summary type="html">
     &lt;p&gt;Suggestion for hyperscalers feeling pressure over data center water use:&lt;/p&gt;
 &lt;p&gt;Buy up a few exclusive country clubs, convert the golf courses into public parks, pay for guides and binoculars to get the previous members into birdwatching - help them embrace a more sustainable hobby!&lt;/p&gt;
 &lt;p&gt;Google &lt;a href="https://sustainability.google/reports/google-2026-environmental-report/"&gt;used 10.9 billion gallons in 2025&lt;/a&gt;, so about 30 million gallons per day.&lt;/p&gt;
@@ -618,43 +626,4 @@ llm -m meta-ai/muse-spark-1.1 "Generate an SVG of a pelican riding a bicycle"
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="llm"/></entry><entry><title>Rewriting Bun in Rust</title><link href="https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything" rel="alternate"/><published>2026-07-08T23:57:21+00:00</published><updated>2026-07-08T23:57:21+00:00</updated><id>https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://bun.com/blog/bun-in-rust"&gt;Rewriting Bun in Rust&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Jarred Sumner has been promising this blog post (&lt;a href="https://x.com/jarredsumner/status/2053063524826620129"&gt;since May 9th&lt;/a&gt;) about his Zig to Rust rewrite of Bun for significantly longer than it took him to finish the rewrite.&lt;/p&gt;
-&lt;p&gt;Honestly, it was worth the wait. This is a detailed description of an extremely sophisticated piece of agentic engineering, featuring dynamic workflows, trial runs, adversarial review and all sorts of other interesting tricks.&lt;/p&gt;
-&lt;p&gt;Jarred spends the first half of the post praising Zig for getting Bun this far. Then we get to a core idea in the piece, emphasis mine:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Our bugfix list felt bad and I was tired of going to sleep worrying about crashes in Bun. I don't blame Zig for that - other users of Zig don't have the bugs we had, and mixing GC with manually-managed memory is an uncommon enough thing for software to need that no language really designs for it. We wouldn't have gotten this far if not for Zig, and I'll always be grateful. &lt;strong&gt;Until very recently, programming language choice was a one-way decision for a project like Bun.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Everyone knows you should never stop the world and rewrite a large piece of software from the ground up. Joel Spolsky highlighted that in &lt;a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/"&gt;Things You Should Never Do, Part I&lt;/a&gt; back in April 2000!&lt;/p&gt;
-&lt;p&gt;Coding agents powered by today's frontier models change that equation.&lt;/p&gt;
-&lt;p&gt;Why pick Rust? It all came down to those challenges with memory management:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A large percentage of bugs from that list are use-after-free, double-free, and "forgot to free" in an error path. In safe Rust, these are compiler errors and RAII-like automatic cleanup with &lt;code&gt;Drop&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;A crucial enabling factor for the rewrite was that the Bun test suite was written in TypeScript, which meant it could act as &lt;a href="https://simonwillison.net/tags/conformance-suites/"&gt;a conformance suite&lt;/a&gt;. This allowed an agent harness to automate much of the initial port from Bun to Rust, initially as an experiment to try out an earlier version of the model we now have access to as Mythos/Fable.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;At first, I didn't expect it to work. A few days in, a high % of the test suite started passing and I saw how much the new Rust code matched up with the original Zig codebase. My opinion went from "this is worth trying" to "I'm going to merge this". [...]&lt;/p&gt;
-&lt;p&gt;For most of those 11 days (and after), I monitored workflows - manually reading the outputs to check for issues and bugs, and prompting Claude to edit the loop to fix things.&lt;/p&gt;
-&lt;p&gt;How do you review a PR with +1 million lines added? How do you start to build the confidence needed to responsibly merge large quantities of LLM-authored code?&lt;/p&gt;
-&lt;p&gt;A language-independent test suite with a million assertions, adversarial code review and when something does go wrong, fixing the process that generates the code instead of hand-fixing the code.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The new implementation of Bun has been live in Claude Code for nearly a month now:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun. Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;A perk of working at Anthropic is that you don't have to pay for your tokens - handy when the estimated cost is $165,000!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Pre-merge, this took 5.9 billion uncached input tokens, 690 million output tokens, and 72 billion cached input token reads — around $165,000 at API pricing.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This whole thing is a fascinating case study in taking on wildly ambitious projects with the help of coordinated parallel agents.
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48837877"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/rust"&gt;rust&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/zig"&gt;zig&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/bun"&gt;bun&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/conformance-suites"&gt;conformance-suites&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="rust"/><category term="zig"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="anthropic"/><category term="bun"/><category term="conformance-suites"/><category term="agentic-engineering"/><category term="claude-mythos-fable"/></entry></feed>
+</summary><category term="llm"/></entry></feed>
