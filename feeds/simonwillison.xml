@@ -33,6 +33,7 @@ Here's an entertaining perspective from Nik Suresh on the AI mania that is overw
 &lt;pre&gt;&lt;code&gt;strings ~/.local/bin/claude | grep -m1 'Bun v1'
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For me this outputs &lt;code&gt;Bun v1.4.0 (macOS arm64)&lt;/code&gt;. The most recent release of &lt;a href="https://github.com/oven-sh/bun/releases"&gt;Bun on GitHub&lt;/a&gt; is currently &lt;a href="https://github.com/oven-sh/bun/releases/tag/bun-v1.3.14"&gt;v1.3.14&lt;/a&gt; from May 12th, so that v1.4.0 version number in Claude supports them shipping a preview of a not-yet-released Bun version.&lt;/p&gt;
+&lt;p&gt;(&lt;strong&gt;Update&lt;/strong&gt;: The Rust version &lt;em&gt;has&lt;/em&gt; been released as &lt;a href="https://bun.com/docs/installation#canary-builds"&gt;Bun canary&lt;/a&gt; - running &lt;code&gt;bun upgrade --canary&lt;/code&gt; will install &lt;a href="https://github.com/oven-sh/bun/releases/tag/canary"&gt;this release&lt;/a&gt;.)&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;strings ~/.local/bin/claude | grep -Eo 'src/[[:alnum:]_./-]+\.rs'
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This outputs a list of &lt;a href="https://gist.github.com/simonw/c92fb0f67b114ac26e3b95a09ddccfdc"&gt;563 filenames&lt;/a&gt;, starting with these:&lt;/p&gt;
@@ -41,6 +42,15 @@ src/runtime/bake/production.rs
 src/bundler/bundle_v2.rs
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It looks like Bun in Rust is indeed being run in production across millions of different devices. Like Jarred said, "Boring is good".&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: Here's a neat trick &lt;a href="https://twitter.com/ajanraj25/status/2078825794701242697"&gt;from Ajan Raj&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cat &amp;gt; /tmp/bun-version.ts &amp;lt;&amp;lt;'EOF'
+console.log("embedded bun:", Bun.version);
+process.exit(0);
+EOF
+BUN_OPTIONS="--preload=/tmp/bun-version.ts" claude --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This outputs &lt;code&gt;1.4.0&lt;/code&gt; for me.&lt;/p&gt;
+&lt;p&gt;Here's &lt;a href="https://github.com/oven-sh/bun/commit/b18bf6d1d0a92238f240bfd125f0e3b3461b9243#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519"&gt;the commit from May 17th&lt;/a&gt; that updated the version in &lt;code&gt;package.json&lt;/code&gt; to 1.4.0. That version hasn't been changed since then, but also hasn't yet made it into a tagged release outside of &lt;code&gt;canary&lt;/code&gt;.&lt;/p&gt;
 
     &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/bun"&gt;bun&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/rust"&gt;rust&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/jarred-sumner"&gt;jarred-sumner&lt;/a&gt;&lt;/p&gt;
 
