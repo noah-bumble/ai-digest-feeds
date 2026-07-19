@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-18T17:19:10+00:00</updated><author><name>Simon Willison</name></author><entry><title>SQLite Query Explainer</title><link href="https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/#atom-everything" rel="alternate"/><published>2026-07-18T17:19:10+00:00</published><updated>2026-07-18T17:19:10+00:00</updated><id>https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-19T05:06:21+00:00</updated><author><name>Simon Willison</name></author><entry><title>AI Mania Is Eviscerating Global Decision-Making</title><link href="https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything" rel="alternate"/><published>2026-07-19T05:06:21+00:00</published><updated>2026-07-19T05:06:21+00:00</updated><id>https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/"&gt;AI Mania Is Eviscerating Global Decision-Making&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Here's an entertaining perspective from Nik Suresh on the AI mania that is overwhelming the large companies that he consults with. It's crammed with spicy anecdotes from anonymous sources.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In one extreme case, I have seen an executive confess that they had never even used ChatGPT or any AI tool in their life, immediately after producing a technical strategy for an organisation with $2B+ in revenue which was entirely centered around AI.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here's a report from an engineer at a company with a token leaderboard:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Checking out a parallel copy of our Go repository and telling the AI to rewrite the whole thing in Zig while I work on something else just so I can keep my job.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I particularly enjoyed this report of a conversation with a skeptical executive at an over-enthusiastic company:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I asked &lt;em&gt;why&lt;/em&gt; this was being repeated without opposition. Was it just sales fluff?&lt;/p&gt;
+&lt;p&gt;The answer was a lot more interesting. It was &lt;em&gt;partially&lt;/em&gt; ridiculous sales material being delivered to an easily excitable audience, but this was not the dominant factor constraining honesty. Executives at their &lt;em&gt;customers&lt;/em&gt; were saying absurd things about achieving 100x productivity, and this meant that if any executive at the &lt;em&gt;vendor&lt;/em&gt; said that these gains were not plausible, it would undermine the credibility of the customer’s executive, be perceived as an attack (or heresy), and possibly result in an enterprise contract cancellation. And getting enterprise contracts cancelled because you wanted to opine on something that doesn’t really matter to your organisation’s mission is a great way to get fired.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=48964185"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-misuse"&gt;ai-misuse&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="ai-ethics"/><category term="ai-misuse"/></entry><entry><title>Claude Code uses Bun written in Rust now</title><link href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything" rel="alternate"/><published>2026-07-19T03:54:09+00:00</published><updated>2026-07-19T03:54:09+00:00</updated><id>https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything</id><summary type="html">
+    &lt;p&gt;In &lt;a href="https://bun.com/blog/bun-in-rust"&gt;Rewriting Bun in Rust&lt;/a&gt; Jarred Sumner made the following claim:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun. Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I decided to have a poke at my own Claude Code installation to see if I could find evidence that it was using Bun written in Rust.&lt;/p&gt;
+&lt;p&gt;I found these two commands convincing:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;strings ~/.local/bin/claude | grep -m1 'Bun v1'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For me this outputs &lt;code&gt;Bun v1.4.0 (macOS arm64)&lt;/code&gt;. The most recent release of &lt;a href="https://github.com/oven-sh/bun/releases"&gt;Bun on GitHub&lt;/a&gt; is currently &lt;a href="https://github.com/oven-sh/bun/releases/tag/bun-v1.3.14"&gt;v1.3.14&lt;/a&gt; from May 12th, so that v1.4.0 version number in Claude supports them shipping a preview of a not-yet-released Bun version.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;strings ~/.local/bin/claude | grep -Eo 'src/[[:alnum:]_./-]+\.rs'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This outputs a list of &lt;a href="https://gist.github.com/simonw/c92fb0f67b114ac26e3b95a09ddccfdc"&gt;563 filenames&lt;/a&gt;, starting with these:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;src/runtime/bake/dev_server/mod.rs
+src/runtime/bake/production.rs
+src/bundler/bundle_v2.rs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It looks like Bun in Rust is indeed being run in production across millions of different devices. Like Jarred said, "Boring is good".&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/bun"&gt;bun&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/rust"&gt;rust&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/jarred-sumner"&gt;jarred-sumner&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="bun"/><category term="rust"/><category term="anthropic"/><category term="claude-code"/><category term="jarred-sumner"/></entry><entry><title>SQLite Query Explainer</title><link href="https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/#atom-everything" rel="alternate"/><published>2026-07-18T17:19:10+00:00</published><updated>2026-07-18T17:19:10+00:00</updated><id>https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/#atom-everything</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/sqlite-query-explainer"&gt;SQLite Query Explainer&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;Julia Evan's, in &lt;a href="https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/"&gt;Learning a few things about running SQLite&lt;/a&gt;:&lt;/p&gt;
@@ -581,24 +628,4 @@ I went looking for a definition of "Directly Responsible Individuals" and the be
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/annotated-release-notes"&gt;annotated-release-notes&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="projects"/><category term="python"/><category term="sqlite"/><category term="sqlite-utils"/><category term="annotated-release-notes"/><category term="ai-assisted-programming"/></entry><entry><title>Quoting Nilay Patel</title><link href="https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything" rel="alternate"/><published>2026-07-10T17:05:26+00:00</published><updated>2026-07-10T17:05:26+00:00</updated><id>https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://youtu.be/v4vkwUf4AMw?t=2427"&gt;&lt;p&gt;The reality is to make augmented reality glasses, you need to put a camera next to your eyes that is continuously recording everything you see and processing that to put information over it.&lt;/p&gt;
-&lt;p&gt;There is not another way around it. And there's certainly not a chip that can fit in the stem of a glasses that is both powerful enough and power miserly enough to do that in real time.&lt;/p&gt;
-&lt;p&gt;You have to send that data to a cloud. You gotta do it. [...] Or you can build something the size of a Vision Pro with a battery pack that lives somewhere else. Those are the current choices in this world.&lt;/p&gt;
-&lt;p&gt;And it means if you want to build the product that everyone thinks is the next thing, you are going to have to invade people's privacy.&lt;/p&gt;
-&lt;p&gt;And maybe you shouldn't. Like, there's an incredible argument for, nope, you shouldn't do that. Nope, the trade-offs required to make this product are so high at a societal level that we should stop it.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://youtu.be/v4vkwUf4AMw?t=2427"&gt;Nilay Patel&lt;/a&gt;, The Vergecast&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/augmented-reality"&gt;augmented-reality&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/nilay-patel"&gt;nilay-patel&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/privacy"&gt;privacy&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai-ethics"/><category term="augmented-reality"/><category term="nilay-patel"/><category term="privacy"/><category term="ai"/></entry><entry><title>Quoting OpenAI</title><link href="https://simonwillison.net/2026/Jul/10/openai/#atom-everything" rel="alternate"/><published>2026-07-10T01:05:57+00:00</published><updated>2026-07-10T01:05:57+00:00</updated><id>https://simonwillison.net/2026/Jul/10/openai/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex"&gt;&lt;p&gt;[...] Work on web and mobile runs in the cloud. Work in the desktop app can also use local files and desktop apps with your permission. At launch, cloud Work conversations do not appear in desktop Work; desktop Work threads and local files remain on that computer.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex"&gt;OpenAI&lt;/a&gt;, trying (unsuccessfully) to clarify ChatGPT Work&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/chatgpt"&gt;chatgpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="openai"/><category term="chatgpt"/><category term="ai"/></entry></feed>
+</summary><category term="projects"/><category term="python"/><category term="sqlite"/><category term="sqlite-utils"/><category term="annotated-release-notes"/><category term="ai-assisted-programming"/></entry></feed>
