@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-20T03:47:59+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Sam Altman</title><link href="https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything" rel="alternate"/><published>2026-07-20T03:47:59+00:00</published><updated>2026-07-20T03:47:59+00:00</updated><id>https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-20T17:09:19+00:00</updated><author><name>Simon Willison</name></author><entry><title>Who’s Afraid of Chinese Models?</title><link href="https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything" rel="alternate"/><published>2026-07-20T17:09:19+00:00</published><updated>2026-07-20T17:09:19+00:00</updated><id>https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://stratechery.com/2026/whos-afraid-of-chinese-models/"&gt;Who’s Afraid of Chinese Models?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Interesting proposal from Ben Thompson that both addresses the hypocrisy of labs outlawing distillation against their models despite training on unlicensed data, and could help US open models compete more effectively with their Chinese counterparts:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The U.S. should pass a law that (1) makes explicit that collecting data for training models is fair use, and (2) bars terms of service that forbid distillation, for U.S. companies at a minimum. Stopping distillation — which is literally just querying the API — is nearly impossible; the U.S. should go the other way and lean into a new copyright policy that both indemnifies the labs and also guarantees that what they learned fuels further innovation for everyone else.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ben also theorizes that Alibaba's decision to release Qwen 3.8 Max as open weights - a reversal from their decision &lt;a href="https://qwen.ai/blog?id=qwen3.7"&gt;not to release Qwen 3.7 Max&lt;/a&gt; in May - may have been influenced by a &lt;a href="http://english.scio.gov.cn/topnews/2026-07/18/content_118605932.html"&gt;recent speech&lt;/a&gt; by Xi Jinping, who said:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We should seize this rare, historic opportunity to encourage open source, openness, collaboration and sharing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://daringfireball.net/linked/2026/07/20/thompson-chinese-models-distillation"&gt;John Gruber&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/training-data"&gt;training-data&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/qwen"&gt;qwen&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-in-china"&gt;ai-in-china&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="training-data"/><category term="qwen"/><category term="ai-ethics"/><category term="ai-in-china"/></entry><entry><title>Quoting Sam Altman</title><link href="https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything" rel="alternate"/><published>2026-07-20T03:47:59+00:00</published><updated>2026-07-20T03:47:59+00:00</updated><id>https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://twitter.com/techemails/status/2078854346683678927"&gt;&lt;p&gt;We have been having extensive discussions around open source strategy. We will discuss it more at our next board meeting, but one thing we’d like to do soon is to create a language model with the approximate capability of GPT-3 that can run locally on consumer hardware and release that. We’d like to do it soon, before Stability or someone else does. In general, we think this helps discourage others from releasing similarly-powerful models, and makes it harder for new efforts to get funded.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://twitter.com/techemails/status/2078854346683678927"&gt;Sam Altman&lt;/a&gt;, Email to OpenAI's board, October 1, 2022 - exposed in Musk v. Altman (2026)&lt;/p&gt;
 
@@ -100,7 +119,7 @@ An update from the &lt;code&gt;@claudeai&lt;/code&gt; account on Twitter:&lt;/p&
 </summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="claude-mythos-fable"/></entry><entry><title>nascheme/quixote</title><link href="https://simonwillison.net/2026/Jul/18/quixote/#atom-everything" rel="alternate"/><published>2026-07-18T05:27:49+00:00</published><updated>2026-07-18T05:27:49+00:00</updated><id>https://simonwillison.net/2026/Jul/18/quixote/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/nascheme/quixote"&gt;nascheme/quixote&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-A certain vintage if Python web nerd might be delighted to learn that the most recent commit to the Quixote web framework was &lt;a href="(https://github.com/nascheme/quixote/commit/7f775cf9d1e7e80fcbb2706b4a1d971e55ca74a3)"&gt;six hours ago&lt;/a&gt;.&lt;/p&gt;
+A certain vintage of Python web nerd might be delighted to learn that the most recent commit to the Quixote web framework was &lt;a href="(https://github.com/nascheme/quixote/commit/7f775cf9d1e7e80fcbb2706b4a1d971e55ca74a3)"&gt;six hours ago&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/nascheme/quixote/commit/d6b73c5768c2d041b68b54cc71863604249abc18"&gt;oldest commit&lt;/a&gt; in that repo is from 21 years ago, and that was the initial import of Quixote 2.4 from Subversion into Git.
 
 
@@ -571,19 +590,4 @@ I went looking for a definition of "Directly Responsible Individuals" and the be
 
 
 
-</summary><category term="anthropic"/><category term="generative-ai"/><category term="gpt"/><category term="openai"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/><category term="llm-pricing"/></entry><entry><title>sqlite-utils 4.1.1</title><link href="https://simonwillison.net/2026/Jul/12/sqlite-utils/#atom-everything" rel="alternate"/><published>2026-07-12T20:55:30+00:00</published><updated>2026-07-12T20:55:30+00:00</updated><id>https://simonwillison.net/2026/Jul/12/sqlite-utils/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/sqlite-utils/releases/tag/4.1.1"&gt;sqlite-utils 4.1.1&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;Mainly a fix for an edge case that regular Claude chat spotted while &lt;a href="https://claude.ai/share/564b187d-d126-47ea-9b59-07c16ade0b70"&gt;experimenting with the 4.1 release&lt;/a&gt; to answer a question about ON DELETE.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;table.transform()&lt;/code&gt; now raises a &lt;code&gt;TransactionError&lt;/code&gt; if called while a transaction is open with &lt;code&gt;PRAGMA foreign_keys&lt;/code&gt; enabled and the table is referenced by foreign keys with destructive &lt;code&gt;ON DELETE&lt;/code&gt; actions - &lt;code&gt;CASCADE&lt;/code&gt;, &lt;code&gt;SET NULL&lt;/code&gt; or &lt;code&gt;SET DEFAULT&lt;/code&gt;. The pragma cannot be changed inside a transaction, so previously dropping the old table as part of the transform could fire those actions and silently delete or modify referencing rows. See &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-transform-foreign-keys-transactions"&gt;Foreign keys and transactions&lt;/a&gt; for details and workarounds. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/794"&gt;#794&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;The &lt;a href="https://sqlite-utils.datasette.io/en/stable/cli.html"&gt;CLI&lt;/a&gt; and &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html"&gt;Python API&lt;/a&gt; documentation now cross-reference each other: CLI sections link to the equivalent Python API functionality and Python API sections link back to the corresponding CLI command. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/791"&gt;#791&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="sqlite"/><category term="sqlite-utils"/></entry></feed>
+</summary><category term="anthropic"/><category term="generative-ai"/><category term="gpt"/><category term="openai"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/><category term="llm-pricing"/></entry></feed>
