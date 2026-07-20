@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-19T05:06:21+00:00</updated><author><name>Simon Willison</name></author><entry><title>AI Mania Is Eviscerating Global Decision-Making</title><link href="https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything" rel="alternate"/><published>2026-07-19T05:06:21+00:00</published><updated>2026-07-19T05:06:21+00:00</updated><id>https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-20T03:47:59+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Sam Altman</title><link href="https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything" rel="alternate"/><published>2026-07-20T03:47:59+00:00</published><updated>2026-07-20T03:47:59+00:00</updated><id>https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://twitter.com/techemails/status/2078854346683678927"&gt;&lt;p&gt;We have been having extensive discussions around open source strategy. We will discuss it more at our next board meeting, but one thing we’d like to do soon is to create a language model with the approximate capability of GPT-3 that can run locally on consumer hardware and release that. We’d like to do it soon, before Stability or someone else does. In general, we think this helps discourage others from releasing similarly-powerful models, and makes it harder for new efforts to get funded.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://twitter.com/techemails/status/2078854346683678927"&gt;Sam Altman&lt;/a&gt;, Email to OpenAI's board, October 1, 2022 - exposed in Musk v. Altman (2026)&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sam-altman"&gt;sam-altman&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai-ethics"/><category term="sam-altman"/><category term="generative-ai"/><category term="openai"/><category term="ai"/><category term="llms"/></entry><entry><title>AI Mania Is Eviscerating Global Decision-Making</title><link href="https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything" rel="alternate"/><published>2026-07-19T05:06:21+00:00</published><updated>2026-07-19T05:06:21+00:00</updated><id>https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/"&gt;AI Mania Is Eviscerating Global Decision-Making&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Here's an entertaining perspective from Nik Suresh on the AI mania that is overwhelming the large companies that he consults with. It's crammed with spicy anecdotes from anonymous sources.&lt;/p&gt;
@@ -578,64 +586,4 @@ I went looking for a definition of "Directly Responsible Individuals" and the be
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="sqlite"/><category term="sqlite-utils"/></entry><entry><title>sqlite-utils 4.1</title><link href="https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything" rel="alternate"/><published>2026-07-11T23:50:20+00:00</published><updated>2026-07-11T23:50:20+00:00</updated><id>https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/sqlite-utils/releases/tag/4.1"&gt;sqlite-utils 4.1&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;The first dot-release since &lt;a href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/"&gt;4.0 a few days ago&lt;/a&gt;, introducing a number of minor new features.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;sqlite-utils insert&lt;/code&gt; and &lt;code&gt;sqlite-utils upsert&lt;/code&gt; now accept a &lt;code&gt;--code&lt;/code&gt; option for &lt;a href="https://sqlite-utils.datasette.io/en/stable/cli.html#cli-insert-code"&gt;providing a block of Python code&lt;/a&gt; (or a path to a &lt;code&gt;.py&lt;/code&gt; file) that defines a &lt;code&gt;rows()&lt;/code&gt; function or &lt;code&gt;rows&lt;/code&gt; iterable of rows to insert, as an alternative to importing from a file. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/684"&gt;#684&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;sqlite-utils&lt;/code&gt; already had features that allow you to pass blocks of Python code as CLI arguments, for example &lt;a href="https://sqlite-utils.datasette.io/en/stable/cli.html#converting-data-in-columns"&gt;this one&lt;/a&gt; for the &lt;code&gt;sqlite-utils convert&lt;/code&gt; command:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-s1"&gt;sqlite&lt;/span&gt;&lt;span class="pl-c1"&gt;-&lt;/span&gt;&lt;span class="pl-s1"&gt;utils&lt;/span&gt; &lt;span class="pl-s1"&gt;convert&lt;/span&gt; &lt;span class="pl-s1"&gt;content&lt;/span&gt;.&lt;span class="pl-c1"&gt;db&lt;/span&gt; &lt;span class="pl-s1"&gt;articles&lt;/span&gt; &lt;span class="pl-s1"&gt;headline&lt;/span&gt; '
-&lt;span class="pl-s1"&gt;def&lt;/span&gt; &lt;span class="pl-en"&gt;convert&lt;/span&gt;(&lt;span class="pl-s1"&gt;value&lt;/span&gt;):
-    &lt;span class="pl-k"&gt;return&lt;/span&gt; &lt;span class="pl-s1"&gt;value&lt;/span&gt;.&lt;span class="pl-c1"&gt;upper&lt;/span&gt;()'&lt;/pre&gt;
-&lt;p&gt;Allowing blocks of code to &lt;a href="https://sqlite-utils.datasette.io/en/stable/cli.html#inserting-rows-generated-by-python-code"&gt;generate new rows directly&lt;/a&gt; was on obvious extension of that pattern:&lt;/p&gt;
-&lt;pre&gt;&lt;span class="pl-s1"&gt;sqlite&lt;/span&gt;&lt;span class="pl-c1"&gt;-&lt;/span&gt;&lt;span class="pl-s1"&gt;utils&lt;/span&gt; &lt;span class="pl-s1"&gt;insert&lt;/span&gt; &lt;span class="pl-s1"&gt;data&lt;/span&gt;.&lt;span class="pl-c1"&gt;db&lt;/span&gt; &lt;span class="pl-s1"&gt;creatures&lt;/span&gt; &lt;span class="pl-c1"&gt;-&lt;/span&gt;&lt;span class="pl-c1"&gt;-&lt;/span&gt;&lt;span class="pl-s1"&gt;code&lt;/span&gt; '
-&lt;span class="pl-s1"&gt;def&lt;/span&gt; &lt;span class="pl-en"&gt;rows&lt;/span&gt;():
-    &lt;span class="pl-k"&gt;yield&lt;/span&gt; {&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-c1"&gt;1&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s"&gt;"Cleo"&lt;/span&gt;}
-    &lt;span class="pl-k"&gt;yield&lt;/span&gt; {&lt;span class="pl-s"&gt;"id"&lt;/span&gt;: &lt;span class="pl-c1"&gt;2&lt;/span&gt;, &lt;span class="pl-s"&gt;"name"&lt;/span&gt;: &lt;span class="pl-s"&gt;"Suna"&lt;/span&gt;}
-' &lt;span class="pl-c1"&gt;-&lt;/span&gt;&lt;span class="pl-c1"&gt;-&lt;/span&gt;&lt;span class="pl-s1"&gt;pk&lt;/span&gt; &lt;span class="pl-s1"&gt;id&lt;/span&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;sqlite-utils insert&lt;/code&gt; and &lt;code&gt;sqlite-utils upsert&lt;/code&gt; now accept &lt;code&gt;--type column-name type&lt;/code&gt; to &lt;a href="https://sqlite-utils.datasette.io/en/stable/cli.html#cli-insert-csv-tsv-column-types"&gt;override the type automatically chosen when the table is created&lt;/a&gt;. This is useful for CSV or TSV columns such as ZIP codes that look like integers but should be stored as &lt;code&gt;TEXT&lt;/code&gt; to preserve leading zeros. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/131"&gt;#131&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;A long-standing feature request which turned out to be a &lt;a href="https://github.com/SAY-5/sqlite-utils/commit/d2ac3765ed9f0516bb0cbc2508a5c3907fb6a71a"&gt;simple implementation&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;New &lt;code&gt;table.drop_index(name)&lt;/code&gt; method and &lt;code&gt;sqlite-utils drop-index&lt;/code&gt; command for dropping an index by name. Both accept &lt;code&gt;ignore=True&lt;/code&gt;/&lt;code&gt;--ignore&lt;/code&gt; to ignore a missing index. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/626"&gt;#626&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sqlite-utils query&lt;/code&gt; can now read the SQL query from standard input by passing &lt;code&gt;-&lt;/code&gt; in place of the query, for example &lt;code&gt;echo "select * from dogs" | sqlite-utils query dogs.db -&lt;/code&gt;. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/765"&gt;#765&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Two more small features. I had Codex review all open issues and highlight the easiest ones!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;sqlite-utils upsert&lt;/code&gt; can now infer the primary key of an existing table, so &lt;code&gt;--pk&lt;/code&gt; can be omitted when upserting into a table that already has a primary key.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Another Codex suggestion, an obvious missing CLI feature from a Python library improvement that shipped in the 4.0 release.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;table.transform()&lt;/code&gt; and &lt;code&gt;table.transform_sql()&lt;/code&gt; now accept &lt;code&gt;strict=True&lt;/code&gt; or &lt;code&gt;strict=False&lt;/code&gt; to change a table’s &lt;a href="https://www.sqlite.org/stricttables.html"&gt;SQLite strict mode&lt;/a&gt;. Omitting the option preserves the existing mode. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/787"&gt;#787&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;sqlite-utils transform&lt;/code&gt; command now accepts &lt;code&gt;--strict&lt;/code&gt; and &lt;code&gt;--no-strict&lt;/code&gt; to change a table’s strict mode. (&lt;a href="https://github.com/simonw/sqlite-utils/issues/787"&gt;#787&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;These two were inspired by &lt;a href="https://evanhahn.com/prefer-strict-tables-in-sqlite/"&gt;Prefer STRICT tables in SQLite&lt;/a&gt; by Evan Hahn, which did the rounds &lt;a href="https://news.ycombinator.com/item?id=48873940"&gt;on Hacker News&lt;/a&gt; today. Evan pointed out that:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Unfortunately, I don’t think there’s a way to ALTER a table to make it strict. I think you have to copy the data out of the non-strict table into the strict one.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That's exactly what the &lt;a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#transforming-a-table"&gt;sqlite-utils transform mechanism&lt;/a&gt; does, so I extended it to add the ability to switch tables from strict to non-strict and vice-versa.&lt;/p&gt;
-&lt;p&gt;Here's &lt;a href="https://gist.github.com/simonw/ab8256b81646ad967a601975e206de64"&gt;the GPT-5.6 Sol xhigh Codex transcript&lt;/a&gt; I used to implement those new strict table features. One of the most useful prompts I ran was this one:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;use uv run python -c and manually exercise the new .transform(strict=) option, see if you can find any edge-cases or bugs&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Effectively telling the model to manually test its work, outside of the automated tests it had already written. This turned up two minor issues that we then fixed.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite-utils"&gt;sqlite-utils&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/annotated-release-notes"&gt;annotated-release-notes&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="projects"/><category term="python"/><category term="sqlite"/><category term="sqlite-utils"/><category term="annotated-release-notes"/><category term="ai-assisted-programming"/></entry></feed>
+</summary><category term="sqlite"/><category term="sqlite-utils"/></entry></feed>
