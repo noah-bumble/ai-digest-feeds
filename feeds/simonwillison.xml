@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-20T17:09:19+00:00</updated><author><name>Simon Willison</name></author><entry><title>Who’s Afraid of Chinese Models?</title><link href="https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything" rel="alternate"/><published>2026-07-20T17:09:19+00:00</published><updated>2026-07-20T17:09:19+00:00</updated><id>https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-20T19:24:05+00:00</updated><author><name>Simon Willison</name></author><entry><title>Reverse-engineering is cheap now</title><link href="https://simonwillison.net/2026/Jul/20/cheap-reverse-engineering/#atom-everything" rel="alternate"/><published>2026-07-20T19:24:05+00:00</published><updated>2026-07-20T19:24:05+00:00</updated><id>https://simonwillison.net/2026/Jul/20/cheap-reverse-engineering/#atom-everything</id><summary type="html">
+    &lt;p&gt;I keep hearing anecdotes from people who used coding agents to reverse-engineer and automate devices in their homes.&lt;/p&gt;
+&lt;p&gt;I think this is an interesting illustration of the impact of the reduced cost of writing code.&lt;/p&gt;
+&lt;p&gt;Prior to agents, it was entirely possible to reverse-engineer home devices. The problem was the ROI - was it really worth all of that effort? More importantly, any experienced programmer knows that undocumented, unstable APIs like that may well change or break in the future. Is that initial work worth the effort if you're committing yourself to a frustrating cycle of maintenance in the future?&lt;/p&gt;
+&lt;p&gt;Coding agents change that equation entirely. The effort to get a simple automation working has dropped, as has the cost of trying and failing to get it to work. Since the code is so cheap, the idea of having to maintain it in the future - or throw it away and start again - carries way less psychological baggage.&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/reverse-engineering"&gt;reverse-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="reverse-engineering"/><category term="coding-agents"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>Who’s Afraid of Chinese Models?</title><link href="https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything" rel="alternate"/><published>2026-07-20T17:09:19+00:00</published><updated>2026-07-20T17:09:19+00:00</updated><id>https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://stratechery.com/2026/whos-afraid-of-chinese-models/"&gt;Who’s Afraid of Chinese Models?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Interesting proposal from Ben Thompson that both addresses the hypocrisy of labs outlawing distillation against their models despite training on unlicensed data, and could help US open models compete more effectively with their Chinese counterparts:&lt;/p&gt;
@@ -568,26 +578,4 @@ I went looking for a definition of "Directly Responsible Individuals" and the be
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/shot-scraper"&gt;shot-scraper&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="shot-scraper"/></entry><entry><title>Fable gets another bump</title><link href="https://simonwillison.net/2026/Jul/12/bump/#atom-everything" rel="alternate"/><published>2026-07-12T21:20:07+00:00</published><updated>2026-07-12T21:20:07+00:00</updated><id>https://simonwillison.net/2026/Jul/12/bump/#atom-everything</id><summary type="html">
-    &lt;p&gt;One of the consequences of GPT-5.6 Sol being clearly a Fable/Mythos class model is that Anthropic have, once again, &lt;a href="https://x.com/claudeai/status/2076351399999557669"&gt;bumped the date&lt;/a&gt; that Fable stops being available in their Claude Max plans:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;We're extending Claude Fable 5 access on all paid plans, as well as keeping Claude Code’s weekly rate limits 50% higher, through July 19.&lt;/p&gt;
-&lt;p&gt;As before, you can use up to half of your weekly usage limit on Fable 5. After that, you can continue using Fable 5 with usage credits, or switch to another model to keep working within your remaining limits.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Anthropic's original rationale for this was compute constraints - they wanted a better idea of both demand and compute availability before committing to keeping the new model cheap for subscribers.&lt;/p&gt;
-&lt;p&gt;OpenAI appear confident that they won't need to restrict access to GPT-5.6 in the same way. Here's Thibault Sottiaux &lt;a href="https://twitter.com/thsottiaux/status/2076365965915467978"&gt;this morning&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The last 48 hours of Codex and ChatGPT Work have been intense! Three important updates:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Temporarily removing the 5 hour usage limit restriction for all Plus, Business and Pro plans&lt;/li&gt;
-&lt;li&gt;Rolling out changes that will make GPT 5.6 Sol more efficient across the board and that will be reflected in less usage being used so that it can take you further. Exact impact to be quantified and shared&lt;/li&gt;
-&lt;li&gt;We hit 6M active users, and are landing a usage reset in the next hour&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;At this point I think Anthropic should change track and keep Fable permanently available on those plans. OpenAI are winning users simply due to the uncertainty that surrounds Fable access.&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt"&gt;gpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-pricing"&gt;llm-pricing&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="anthropic"/><category term="generative-ai"/><category term="gpt"/><category term="openai"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/><category term="llm-pricing"/></entry></feed>
+</summary><category term="shot-scraper"/></entry></feed>
