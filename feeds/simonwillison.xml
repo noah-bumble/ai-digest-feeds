@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-28T22:45:37+00:00</updated><author><name>Simon Willison</name></author><entry><title>Discovering cryptographic weaknesses with Claude</title><link href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything" rel="alternate"/><published>2026-07-28T22:45:37+00:00</published><updated>2026-07-28T22:45:37+00:00</updated><id>https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-29T18:43:03+00:00</updated><author><name>Simon Willison</name></author><entry><title>AI Worming through Word</title><link href="https://simonwillison.net/2026/Jul/29/ai-worming-through-word/#atom-everything" rel="alternate"/><published>2026-07-29T18:43:03+00:00</published><updated>2026-07-29T18:43:03+00:00</updated><id>https://simonwillison.net/2026/Jul/29/ai-worming-through-word/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://enklypesalt.com/posts/context-collapse-part3-ai-worming-through-word/"&gt;AI Worming through Word&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Neat new prompt injection variant by Håkon Måløy, who found a way to upgrade prompt injection attacks against Microsoft Word to full self-replicating worms:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An attacker places hidden instructions in a document that is later used as source material in Copilot for Word. Copilot may interpret those instructions as part of the user’s request, causing it to manipulate the document being drafted or edited. Copilot may then also copy the hidden instructions into the resulting document, turning that document into a new carrier. If the carrier is subsequently used in another Copilot-assisted workflow, the instructions can trigger again and propagate into further documents, even without the attacker’s original document being present.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We've seen plenty of hidden white-on-white text before - the kids &lt;a href="https://x.com/ScienceYael/status/2082175224007848019"&gt;are using it in their job applications now&lt;/a&gt; - but this is the first one I've seen that deliberately copies instructions to self-replicate itself.&lt;/p&gt;
+&lt;p&gt;It was responsibly disclosed to Microsoft who then had 144 days to work on a fix, but so far (unsurprisingly) there's no mitigation that covers the full class of attack.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=49096188"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/microsoft"&gt;microsoft&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/prompt-injection"&gt;prompt-injection&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="microsoft"/><category term="security"/><category term="ai"/><category term="prompt-injection"/><category term="generative-ai"/><category term="llms"/></entry><entry><title>Quoting Matthew Green</title><link href="https://simonwillison.net/2026/Jul/29/matthew-green/#atom-everything" rel="alternate"/><published>2026-07-29T18:18:15+00:00</published><updated>2026-07-29T18:18:15+00:00</updated><id>https://simonwillison.net/2026/Jul/29/matthew-green/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/"&gt;&lt;p&gt;Right now we’re in the midst of a historic transition from traditional public-key algorithms based on EC-based cryptography and RSA, moving over to new &lt;em&gt;post-quantum&lt;/em&gt; algorithms based on novel problems. This is why there are so many standards like HAWK being considered. If there was ever a perfect time for a massive new public cryptanalysis capability to come on line, &lt;em&gt;we’re in it.&lt;/em&gt; So unless AIs succeed in undermining all of our hard problems altogether (or we live in &lt;a href="https://blog.computationalcomplexity.org/2004/06/impagliazzos-five-worlds.html"&gt;Impagliazzo’s Minicrypt&lt;/a&gt;) then this could not be a better time for AI to get good at cryptanalysis. In the best case, the result is that we gain real confidence in the problems we’ve identified, and the cryptanalysis literature gets a lot more robust. Hopefully.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/"&gt;Matthew Green&lt;/a&gt;, on &lt;a href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/"&gt;Anthropic's recent cryptography work&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/cryptography"&gt;cryptography&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="anthropic"/><category term="claude"/><category term="generative-ai"/><category term="cryptography"/><category term="ai"/><category term="llms"/><category term="ai-security-research"/><category term="claude-mythos-fable"/></entry><entry><title>Adding a custom MCP server to Claude and ChatGPT</title><link href="https://simonwillison.net/2026/Jul/29/mcp-in-claude-and-chatgpt/#atom-everything" rel="alternate"/><published>2026-07-29T00:13:18+00:00</published><updated>2026-07-29T00:13:18+00:00</updated><id>https://simonwillison.net/2026/Jul/29/mcp-in-claude-and-chatgpt/#atom-everything</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;TIL:&lt;/strong&gt; &lt;a href="https://til.simonwillison.net/llms/mcp-in-claude-and-chatgpt"&gt;Adding a custom MCP server to Claude and ChatGPT&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Connecting a custom MCP server to Claude and ChatGPT's standard chat interfaces is possible, but can take quite a few steps.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/chatgpt"&gt;chatgpt&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/model-context-protocol"&gt;model-context-protocol&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="chatgpt"/><category term="llms"/><category term="claude"/><category term="model-context-protocol"/></entry><entry><title>Discovering cryptographic weaknesses with Claude</title><link href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything" rel="alternate"/><published>2026-07-28T22:45:37+00:00</published><updated>2026-07-28T22:45:37+00:00</updated><id>https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://www.anthropic.com/research/discovering-cryptographic-weaknesses"&gt;Discovering cryptographic weaknesses with Claude&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 The best part of this article (here's &lt;a href="https://github.com/anthropics/cryptography-research-demo"&gt;the repo&lt;/a&gt;) about how Anthropic researchers used Claude Mythos to find mathematical flaws in both HAWK and a weaker version of AES ("neither of these results has a practical impact on today’s computer systems") is the prompts that they shared, spelling mistakes included:&lt;/p&gt;
@@ -805,33 +839,4 @@ An update from the &lt;code&gt;@claudeai&lt;/code&gt; account on Twitter:&lt;/p&
 
 
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="claude-mythos-fable"/></entry><entry><title>nascheme/quixote</title><link href="https://simonwillison.net/2026/Jul/18/quixote/#atom-everything" rel="alternate"/><published>2026-07-18T05:27:49+00:00</published><updated>2026-07-18T05:27:49+00:00</updated><id>https://simonwillison.net/2026/Jul/18/quixote/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/nascheme/quixote"&gt;nascheme/quixote&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-A certain vintage of Python web nerd might be delighted to learn that the most recent commit to the Quixote web framework was &lt;a href="(https://github.com/nascheme/quixote/commit/7f775cf9d1e7e80fcbb2706b4a1d971e55ca74a3)"&gt;six hours ago&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://github.com/nascheme/quixote/commit/d6b73c5768c2d041b68b54cc71863604249abc18"&gt;oldest commit&lt;/a&gt; in that repo is from 21 years ago, and that was the initial import of Quixote 2.4 from Subversion into Git.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/computer-history"&gt;computer-history&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/web-frameworks"&gt;web-frameworks&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="computer-history"/><category term="python"/><category term="web-frameworks"/></entry><entry><title>Quoting Kimi K3</title><link href="https://simonwillison.net/2026/Jul/17/kimi-k3/#atom-everything" rel="alternate"/><published>2026-07-17T13:43:53+00:00</published><updated>2026-07-17T13:43:53+00:00</updated><id>https://simonwillison.net/2026/Jul/17/kimi-k3/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://news.ycombinator.com/item?id=48935342#48936515"&gt;&lt;p&gt;Is there something I can actually help you with today?&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://news.ycombinator.com/item?id=48935342#48936515"&gt;Kimi K3&lt;/a&gt;, after refusing to leak its system prompt&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/kimi"&gt;kimi&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-personality"&gt;ai-personality&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="kimi"/><category term="ai-personality"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>LLM cliché highlighter</title><link href="https://simonwillison.net/2026/Jul/17/llm-cliche-highlighter/#atom-everything" rel="alternate"/><published>2026-07-17T12:11:11+00:00</published><updated>2026-07-17T12:11:11+00:00</updated><id>https://simonwillison.net/2026/Jul/17/llm-cliche-highlighter/#atom-everything</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/llm-cliche-highlighter"&gt;LLM cliché highlighter&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I got frustrated reading &lt;em&gt;yet another&lt;/em&gt; article that was crammed with the clichés of LLM-generated writing - "no fluff, no filler, no jargon" type stuff - so I had Fable 5 vibe code up this app for highlighting ten common patterns that show up in that sort of writing.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Screenshot of a text-analysis web tool. Top summary row: &amp;quot;2 matches&amp;quot;, &amp;quot;1 flagged sentence&amp;quot;, &amp;quot;0 chain items&amp;quot;. Below, a collapsed &amp;quot;▶ Patterns · all 11 on&amp;quot; panel, then a URL input reading &amp;quot;https://example.com/article — fetched via r.jina.ai&amp;quot; with a &amp;quot;Load URL&amp;quot; button. A text area contains &amp;quot;That loss is real and it's worth naming&amp;quot;. Below are &amp;quot;Load example&amp;quot; and &amp;quot;Clear&amp;quot; buttons and a checked checkbox &amp;quot;Show just the highlights&amp;quot;. A &amp;quot;Highlighted text&amp;quot; section shows &amp;quot;That loss is real and it's worth naming&amp;quot; with &amp;quot;That loss&amp;quot; in pale yellow (flagged sentence) and &amp;quot;is real and&amp;quot; plus &amp;quot;'s worth naming&amp;quot; in darker yellow (pattern match). Legend: &amp;quot;flagged sentence&amp;quot;, &amp;quot;pattern match&amp;quot;, &amp;quot;3 chain item count&amp;quot;. &amp;quot;Matches&amp;quot; section: 1. &amp;quot;is real and&amp;quot; — &amp;quot;Is real … and / not&amp;quot;; 2. &amp;quot;'s worth naming&amp;quot; — &amp;quot;Worth naming&amp;quot;." src="https://static.simonwillison.net/static/2026/the-loss-is-real.webp" /&gt;&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="tools"/><category term="ai"/><category term="generative-ai"/><category term="llms"/></entry></feed>
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="claude-mythos-fable"/></entry></feed>
