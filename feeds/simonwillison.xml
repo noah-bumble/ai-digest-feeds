@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-29T18:43:03+00:00</updated><author><name>Simon Willison</name></author><entry><title>AI Worming through Word</title><link href="https://simonwillison.net/2026/Jul/29/ai-worming-through-word/#atom-everything" rel="alternate"/><published>2026-07-29T18:43:03+00:00</published><updated>2026-07-29T18:43:03+00:00</updated><id>https://simonwillison.net/2026/Jul/29/ai-worming-through-word/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-29T21:15:21+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting D. Richard Hipp</title><link href="https://simonwillison.net/2026/Jul/29/d-richard-hipp/#atom-everything" rel="alternate"/><published>2026-07-29T21:15:21+00:00</published><updated>2026-07-29T21:15:21+00:00</updated><id>https://simonwillison.net/2026/Jul/29/d-richard-hipp/#atom-everything</id><summary type="html">
+    &lt;blockquote cite="https://www.youtube.com/watch?v=R57nUGzo7CA&amp;amp;t=848s"&gt;&lt;p&gt;Years ago, we didn’t have SQL. There were people whose job was to generate software that would query large data sets. Their job title was COBOL programmer.&lt;/p&gt;
+&lt;p&gt;Then SQL comes along—I’m simplifying this only a little bit—and it gives you this convenient way so people could just specify. With a very simple specification, you can generate all of that code that you had to pay the expensive COBOL programmer to do before.&lt;/p&gt;
+&lt;p&gt;That didn’t mean programmers went away. It just meant the job changed a little bit.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.youtube.com/watch?v=R57nUGzo7CA&amp;amp;t=848s"&gt;D. Richard Hipp&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/d-richard-hipp"&gt;d-richard-hipp&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sql"&gt;sql&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/careers"&gt;careers&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="d-richard-hipp"/><category term="sql"/><category term="careers"/></entry><entry><title>AI Worming through Word</title><link href="https://simonwillison.net/2026/Jul/29/ai-worming-through-word/#atom-everything" rel="alternate"/><published>2026-07-29T18:43:03+00:00</published><updated>2026-07-29T18:43:03+00:00</updated><id>https://simonwillison.net/2026/Jul/29/ai-worming-through-word/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://enklypesalt.com/posts/context-collapse-part3-ai-worming-through-word/"&gt;AI Worming through Word&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Neat new prompt injection variant by Håkon Måløy, who found a way to upgrade prompt injection attacks against Microsoft Word to full self-replicating worms:&lt;/p&gt;
@@ -820,23 +830,4 @@ BUN_OPTIONS="--preload=/tmp/bun-version.ts" claude --version
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/sql"&gt;sql&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/julia-evans"&gt;julia-evans&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pyodide"&gt;pyodide&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="sql"/><category term="sqlite"/><category term="tools"/><category term="julia-evans"/><category term="pyodide"/><category term="claude-mythos-fable"/></entry><entry><title>Claude make Fable 5 permanent</title><link href="https://simonwillison.net/2026/Jul/18/claude-make-fable-5-permanent/#atom-everything" rel="alternate"/><published>2026-07-18T06:00:13+00:00</published><updated>2026-07-18T06:00:13+00:00</updated><id>https://simonwillison.net/2026/Jul/18/claude-make-fable-5-permanent/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://twitter.com/claudeai/status/2078302415804379218"&gt;Claude make Fable 5 permanent&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-An update from the &lt;code&gt;@claudeai&lt;/code&gt; account on Twitter:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Beginning July 20, Claude Fable 5 will be included in all Max and Team Premium plans, at 50% of limits.&lt;/p&gt;
-&lt;p&gt;Pro and Team Standard users will continue to have access to Fable via usage credits, and will receive a one-time $100 credit.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;As I was saying &lt;a href="https://simonwillison.net/2026/Jul/12/bump/"&gt;last week&lt;/a&gt;, the competition from &lt;a href="https://simonwillison.net/2026/Jul/9/gpt-5-6/"&gt;GPT-5.6 Sol&lt;/a&gt; (and maybe to a lesser extent &lt;a href="https://simonwillison.net/2026/Jul/16/kimi-k3/"&gt;Kimi 3&lt;/a&gt;) made untenable Anthropic's plan to remove Fable 5 from their subscription accounts and make it available exclusively through API pricing.&lt;/p&gt;
-&lt;p&gt;Why pay $100 or $200/month for a subscription plan that &lt;em&gt;doesn't&lt;/em&gt; include Anthropic's best model?&lt;/p&gt;
-&lt;p&gt;Their original plan was driven by concerns over compute capacity. I wonder if they'll have to dial back their training efforts in order to make more GPUs available to help serve the model.&lt;/p&gt;
-&lt;p&gt;A lot of people were losing sleep over trying to make the most of Fable 5 before subscriber access was withdrawn. It's nice not to have to worry about the Fablepocalypse any more.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: Important to note that users on the $20/month plan will still not have access to Fable 5 on that subscription. The Max plans are $100 and $200/month.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-pricing"&gt;llm-pricing&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="claude"/><category term="llm-pricing"/><category term="claude-mythos-fable"/></entry></feed>
+</summary><category term="sql"/><category term="sqlite"/><category term="tools"/><category term="julia-evans"/><category term="pyodide"/><category term="claude-mythos-fable"/></entry></feed>
