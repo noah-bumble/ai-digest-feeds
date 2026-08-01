@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-07-31T23:59:44+00:00</updated><author><name>Simon Willison</name></author><entry><title>deepseek-ai/DeepSeek-V4-Flash-0731</title><link href="https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/#atom-everything" rel="alternate"/><published>2026-07-31T23:59:44+00:00</published><updated>2026-07-31T23:59:44+00:00</updated><id>https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-01T20:34:49+00:00</updated><author><name>Simon Willison</name></author><entry><title>Ten advances in mathematics and theoretical computer science</title><link href="https://simonwillison.net/2026/Aug/1/ten-advances-in-mathematics/#atom-everything" rel="alternate"/><published>2026-08-01T20:34:49+00:00</published><updated>2026-08-01T20:34:49+00:00</updated><id>https://simonwillison.net/2026/Aug/1/ten-advances-in-mathematics/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://openai.com/index/ten-advances-in-mathematics/"&gt;Ten advances in mathematics and theoretical computer science&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+A few days ago it was Anthropic &lt;a href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/"&gt;discovering cryptographic weaknesses with Claude&lt;/a&gt; using Mythos Preview, spending $100,000 on tokens and with prompts that included "again we are not looking for low hanging fruit, we want proper research to find genuinly hard findings."&lt;/p&gt;
+&lt;p&gt;Now it's OpenAI's turn to flex. They set "an internal version of Astra, our next major model" on finding solutions to ten mathematical problems that "have seen no progress on the main result for at least a decade". They claim to have spent less than $2,000 at GPT-5.6 Sol token prices on each one.&lt;/p&gt;
+&lt;p&gt;(No news on how many problems they spent $2,000 on &lt;em&gt;without&lt;/em&gt; reaching a solution though.)&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://github.com/openai/ten-proofs"&gt;openai/ten-proofs&lt;/a&gt; repository has Lean 4 formalizations of their results, and there's also &lt;a href="https://cdn.openai.com/pdf/ten-proofs-oai.pdf"&gt;a paper&lt;/a&gt; describing the solutions and an additional &lt;a href="https://cdn.openai.com/pdf/reasoning-walkthroughs.pdf"&gt;LLM-generated PDF&lt;/a&gt; where the model "reconstructs how the proof came together" based on the unpublished reasoning traces.&lt;/p&gt;
+&lt;p&gt;That's a decent level of transparency, but I want to see the prompts they used!&lt;/p&gt;
+&lt;p&gt;A lot of mathematicians online are experiencing a collective burst of &lt;a href="https://simonwillison.net/2026/Feb/15/deep-blue/"&gt;Deep Blue&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;OpenAI's results reminds me of what Terence Tao described as "big mathematics" in &lt;a href="https://spectrum.ieee.org/ai-in-mathematics"&gt;IEEE Spectrum in June&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Unlike some of his peers, Tao is neither dismissive of AI nor fearful. Instead, he sees it as the catalyst for a fundamental shift in the discipline—a transition toward what he calls “big mathematics.” He envisions a future of large-scale, decentralized collaborations between humans and machines, where complex mathematical tasks can be diced and sliced, with humans claiming the creative parts and AI doing the lion’s share of the technical grunt work.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=49132058"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/mathematics"&gt;mathematics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/deep-blue"&gt;deep-blue&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="mathematics"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="deep-blue"/></entry><entry><title>deepseek-ai/DeepSeek-V4-Flash-0731</title><link href="https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/#atom-everything" rel="alternate"/><published>2026-07-31T23:59:44+00:00</published><updated>2026-07-31T23:59:44+00:00</updated><id>https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/#atom-everything</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"&gt;deepseek-ai/DeepSeek-V4-Flash-0731&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 The latest release in DeepSeek's V4 family, "with substantially enhanced agentic capabilities". It's 304 billion parameters - 167GB on Hugging Face - but it appears to punch &lt;em&gt;well&lt;/em&gt; above its weight.&lt;/p&gt;
@@ -222,7 +243,16 @@ I've been working with Jesse Vincent's &lt;a href="https://primeradiant.com"&gt;
 
 
 
-</summary><category term="projects"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="llm"/><category term="evals"/><category term="jesse-vincent"/></entry><entry><title>datasette-agent 0.4a0</title><link href="https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything" rel="alternate"/><published>2026-07-31T14:14:23+00:00</published><updated>2026-07-31T14:14:23+00:00</updated><id>https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything</id><summary type="html">
+</summary><category term="projects"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="llm"/><category term="evals"/><category term="jesse-vincent"/></entry><entry><title>Slack Emoji Maker</title><link href="https://simonwillison.net/2026/Jul/31/slack-emoji-maker/#atom-everything" rel="alternate"/><published>2026-07-31T20:18:05+00:00</published><updated>2026-07-31T20:18:05+00:00</updated><id>https://simonwillison.net/2026/Jul/31/slack-emoji-maker/#atom-everything</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/slack-emoji-maker"&gt;Slack Emoji Maker&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I wanted to create a new Slack emoji, and their tool recommends a square that's 128x128 and has a transparent background... so I &lt;a href="https://github.com/simonw/tools/pull/305"&gt;had Fable build me&lt;/a&gt; this simple image editor against those requirements.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/slack"&gt;slack&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="tools"/><category term="slack"/></entry><entry><title>datasette-agent 0.4a0</title><link href="https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything" rel="alternate"/><published>2026-07-31T14:14:23+00:00</published><updated>2026-07-31T14:14:23+00:00</updated><id>https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-agent/releases/tag/0.4a0"&gt;datasette-agent 0.4a0&lt;/a&gt;&lt;/p&gt;
         &lt;blockquote&gt;
@@ -662,20 +692,4 @@ Martin Alderson's commentary on the &lt;a href="https://simonwillison.net/2026/J
 
 
 
-</summary><category term="security"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="hugging-face"/><category term="ai-security-research"/><category term="openai-hugging-face-incident"/></entry><entry><title>Quoting Seth Larson</title><link href="https://simonwillison.net/2026/Jul/23/seth-larson/#atom-everything" rel="alternate"/><published>2026-07-23T04:50:36+00:00</published><updated>2026-07-23T04:50:36+00:00</updated><id>https://simonwillison.net/2026/Jul/23/seth-larson/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://blog.pypi.org/posts/2026-07-22-releases-now-reject-new-files-after-14-days/"&gt;&lt;p&gt;The Python Package Index (PyPI) now rejects new files being uploaded to releases that are older than 14 days. This restriction was &lt;a href="https://github.com/pypi/warehouse/pull/19727"&gt;put in place&lt;/a&gt; to prevent old and long-stable releases from being poisoned in case publishing tokens or workflows of PyPI projects were compromised. As far as we are aware this has not yet been abused, but there is no technical reason beyond that attackers weren't aware it was possible.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://blog.pypi.org/posts/2026-07-22-releases-now-reject-new-files-after-14-days/"&gt;Seth Larson&lt;/a&gt;, PyPI blog&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/packaging"&gt;packaging&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/supply-chain"&gt;supply-chain&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pypi"&gt;pypi&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/seth-michael-larson"&gt;seth-michael-larson&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="packaging"/><category term="python"/><category term="supply-chain"/><category term="pypi"/><category term="seth-michael-larson"/></entry><entry><title>Quoting Thomas Ptacek</title><link href="https://simonwillison.net/2026/Jul/22/thomas-ptacek/#atom-everything" rel="alternate"/><published>2026-07-22T23:59:01+00:00</published><updated>2026-07-22T23:59:01+00:00</updated><id>https://simonwillison.net/2026/Jul/22/thomas-ptacek/#atom-everything</id><summary type="html">
-    &lt;blockquote cite="https://twitter.com/tqbf/status/2080045032162173329"&gt;&lt;p&gt;I genuinely believe that if you took an open weights model from 2025 and built a pentest harness for it, it could do this kind of sandbox escape and scan/hack in most networks. This is only surprising because you assume OpenAI has sounder sandboxes.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://twitter.com/tqbf/status/2080045032162173329"&gt;Thomas Ptacek&lt;/a&gt;, doesn't think &lt;a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/#resist-the-temptation-to-write-this-off-as-a-stunt"&gt;this even needs&lt;/a&gt; a frontier model&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/thomas-ptacek"&gt;thomas-ptacek&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sandboxing"&gt;sandboxing&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai-hugging-face-incident"&gt;openai-hugging-face-incident&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="thomas-ptacek"/><category term="openai"/><category term="security"/><category term="generative-ai"/><category term="ai-security-research"/><category term="ai"/><category term="llms"/><category term="sandboxing"/><category term="openai-hugging-face-incident"/></entry></feed>
+</summary><category term="security"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="hugging-face"/><category term="ai-security-research"/><category term="openai-hugging-face-incident"/></entry></feed>
