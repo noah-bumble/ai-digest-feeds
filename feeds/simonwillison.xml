@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-04T00:42:45+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Steve Yegge</title><link href="https://simonwillison.net/2026/Aug/4/steve-yegge/#atom-everything" rel="alternate"/><published>2026-08-04T00:42:45+00:00</published><updated>2026-08-04T00:42:45+00:00</updated><id>https://simonwillison.net/2026/Aug/4/steve-yegge/#atom-everything</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-04T19:10:09+00:00</updated><author><name>Simon Willison</name></author><entry><title>PipeNetwork/minimax-h3-mlx</title><link href="https://simonwillison.net/2026/Aug/4/minimax-h3-mlx/#atom-everything" rel="alternate"/><published>2026-08-04T19:10:09+00:00</published><updated>2026-08-04T19:10:09+00:00</updated><id>https://simonwillison.net/2026/Aug/4/minimax-h3-mlx/#atom-everything</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/PipeNetwork/minimax-h3-mlx"&gt;PipeNetwork/minimax-h3-mlx&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+MiniMax released &lt;a href="https://huggingface.co/MiniMaxAI/MiniMax-H3"&gt;MiniMax-H3&lt;/a&gt; two days ago - they describe it as a "a general-purpose, omni-modal generative system", which in practice means it accepts text, images, audio and video and can use them to generate up to 15 second video clips with audio included.&lt;/p&gt;
+&lt;p&gt;This Python package ports it to MLX for running on Apple Silicon.&lt;/p&gt;
+&lt;p&gt;I got it running on my M5 Max MacBook Pro. I cloned the repo and ran the model like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# First download the models
+uvx --from huggingface_hub hf download MiniMaxAI/MiniMax-H3 \
+  --include 'FL2VA/*' --exclude 'FL2VA/transformer/*'
+uvx --from huggingface_hub hf download pipenetwork/MiniMax-H3-MLX-8bit
+
+# Now run the prompt
+uv run --with mlx-vlm \
+  --with-requirements requirements.txt python scripts/generate.py \
+  "a rainbow colored skunk leaps over a mossy log in a supermarket" \
+  -o skunk.mp4 \
+  -c ~/.cache/huggingface/hub/models--MiniMaxAI--MiniMax-H3/snapshots/fa9c8ab1eaa21c8ae25e7e40b83b2e6002f340af/FL2VA \
+  -t ~/.cache/huggingface/hub/models--pipenetwork--MiniMax-H3-MLX-8bit/snapshots/3ac52081470b0488921c3ec3ba84a39097bf2361
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here's the video I got for the prompt:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;a rainbow colored skunk leaps over a mossy log in a supermarket&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;video
+    controls loop
+    preload="none"
+    poster="https://static.simonwillison.net/static/2026/skunk.jpg"
+    width="1344"
+    height="768"
+    style="display: block; width: 100%; height: auto;"
+  &gt;
+    &lt;source src="https://static.simonwillison.net/static/2026/skunk.web.mp4" type="video/mp4"&gt;
+    Your browser does not support HTML5 video.
+  &lt;/video&gt;
+&lt;/p&gt;
+
+&lt;p&gt;It downloaded ~115 GB of model files, and the video generation took just under 45 minutes.&lt;/p&gt;
+&lt;p&gt;The video is impressive, but the audio is weird speech-like garbage, because I didn't provide any prompt guidance as to what the audio should be. The &lt;a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md"&gt;prompting guide&lt;/a&gt; (which I didn't read prior to this experiment) has a whole bunch of information on how to get this to work.
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/mlx"&gt;mlx&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/text-to-video"&gt;text-to-video&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/minimax"&gt;minimax&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="mlx"/><category term="text-to-video"/><category term="minimax"/></entry><entry><title>Quoting Steve Yegge</title><link href="https://simonwillison.net/2026/Aug/4/steve-yegge/#atom-everything" rel="alternate"/><published>2026-08-04T00:42:45+00:00</published><updated>2026-08-04T00:42:45+00:00</updated><id>https://simonwillison.net/2026/Aug/4/steve-yegge/#atom-everything</id><summary type="html">
     &lt;blockquote cite="https://yegge.ai/essays/the-shape-of-things-to-come/"&gt;&lt;p&gt;&lt;a href="https://yegge.ai/gastown.html"&gt;Gas Town&lt;/a&gt; was intended to be reusable, but I only ever wound up using it to build itself. Gas Town fell apart at the seams with Opus 4.7. Up through 4.6 it was working brilliantly. With 4.7 we saw the introduction of the "just two more things" tic, which prevented Opus from ever converging on being ready to do real work—it always wanted to fiddle with Gas Town itself. The Opus tic never went away, so Gas Town effectively burned down. It had other problems, too, but 4.7 was the final straw.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://yegge.ai/essays/the-shape-of-things-to-come/"&gt;Steve Yegge&lt;/a&gt;, The Shape of Things to Come&lt;/p&gt;
 
@@ -610,20 +654,4 @@ The best part of this article (here's &lt;a href="https://github.com/anthropics/
 
 
 
-</summary><category term="ai-security-research"/><category term="openai"/><category term="sandboxing"/><category term="security"/><category term="openai-hugging-face-incident"/></entry><entry><title>uv 0.12.0</title><link href="https://simonwillison.net/2026/Jul/28/uv/#atom-everything" rel="alternate"/><published>2026-07-28T21:51:38+00:00</published><updated>2026-07-28T21:51:38+00:00</updated><id>https://simonwillison.net/2026/Jul/28/uv/#atom-everything</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/astral-sh/uv/releases/tag/0.12.0"&gt;uv 0.12.0&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Some interesting breaking changes in this release of &lt;code&gt;uv&lt;/code&gt;, in particular to the default project produced by the &lt;code&gt;uv init&lt;/code&gt; command.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://docs.astral.sh/uv/concepts/projects/init/"&gt;uv init&lt;/a&gt; is the &lt;code&gt;uv&lt;/code&gt; shortcut for creating a new project. The previous version of &lt;code&gt;uv&lt;/code&gt;, version 0.11.x, produced &lt;a href="https://github.com/simonw/uv-init-demos/tree/29656a55ec733a632005abfd7b89dea5c04fa10b/uv-init"&gt;this directory&lt;/a&gt; when you ran &lt;code&gt;uv init uv-init&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Here's &lt;a href="https://github.com/simonw/uv-init-demos/tree/9111a2bb85741f034eee2fd63efe13ef98b37a14/uv-init"&gt;what you get with uv 0.12&lt;/a&gt;. I have a GitHub repository that &lt;a href="https://simonwillison.net/2025/Dec/24/uv-init-demos/"&gt;automatically snapshots&lt;/a&gt; the output of &lt;code&gt;uv init&lt;/code&gt;, so you can also &lt;a href="https://github.com/simonw/uv-init-demos/commit/9111a2bb85741f034eee2fd63efe13ef98b37a14#diff-e036881d034aedd813010ffa96464995ae5b0339213d6f4ab492f97442c5bdd4"&gt;see the full diff&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="GitHub diff view. uv-init/main.py is an old __name__==&amp;quot;__main__&amp;quot; file that has been entirely deleted. The pyproject.toml now has an authors list and a new project.scripts block defining uv-init as uv_init:main - and a new build-system block that uses uv_build as the build-backend. A new src/uv_init/__init__.py file contains a main() method with a -&amp;gt; None type annotation that prints Hello from uv-init." src="https://static.simonwillison.net/static/2026/uv-diff.webp" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;uv init&lt;/code&gt; now defaults to a &lt;code&gt;src/&lt;/code&gt; shaped package, instead of dropping &lt;code&gt;main.py&lt;/code&gt; in the root of the project. It also configures the &lt;a href="https://docs.astral.sh/uv/concepts/build-backend/"&gt;uv_build backend&lt;/a&gt; for building wheels and &lt;code&gt;.tar.gz&lt;/code&gt; distribution files when you run &lt;code&gt;uv build&lt;/code&gt;. Finally, it sets up &lt;code&gt;uv-init&lt;/code&gt; as a script alias which, when run with &lt;code&gt;uv run uv-init&lt;/code&gt;, executes a new &lt;code&gt;main()&lt;/code&gt; function in &lt;code&gt;src/uv_init/__init__.py&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I've so far avoided using &lt;a href="https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/"&gt;src layout&lt;/a&gt; in my own projects just out of inertia. I think it's time I switched.&lt;/p&gt;
-&lt;p&gt;I wonder when &lt;code&gt;uv&lt;/code&gt; will be judged ready for a 1.0 release?
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/packaging"&gt;packaging&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/uv"&gt;uv&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="packaging"/><category term="python"/><category term="uv"/></entry></feed>
+</summary><category term="ai-security-research"/><category term="openai"/><category term="sandboxing"/><category term="security"/><category term="openai-hugging-face-incident"/></entry></feed>
