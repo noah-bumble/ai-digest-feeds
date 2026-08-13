@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-12T15:08:47+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Florian Herrengt</title><link href="https://simonwillison.net/2026/Aug/12/florian-herrengt/" rel="alternate"/><published>2026-08-12T15:08:47+00:00</published><updated>2026-08-12T15:08:47+00:00</updated><id>https://simonwillison.net/2026/Aug/12/florian-herrengt/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-12T23:59:23+00:00</updated><author><name>Simon Willison</name></author><entry><title>DeepSeek V4 Pro 0813 (on OpenRouter)</title><link href="https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/" rel="alternate"/><published>2026-08-12T23:59:23+00:00</published><updated>2026-08-12T23:59:23+00:00</updated><id>https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://openrouter.ai/deepseek/deepseek-v4-pro-0813"&gt;DeepSeek V4 Pro 0813 (on OpenRouter)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+The latest DeepSeek Pro model is now available, via API only. I had to link to OpenRouter because DeepSeek don't have any obvious announcement page for their new model.&lt;/p&gt;
+&lt;p&gt;I haven't been able to confirm if they plan to release the open weights, but given the weights are available for both April's &lt;a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"&gt;deepseek-ai/DeepSeek-V4-Pro&lt;/a&gt; and July's &lt;a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"&gt;deepseek-ai/DeepSeek-V4-Flash-0731&lt;/a&gt; it seems likely.&lt;/p&gt;
+&lt;p&gt;Interestingly I got &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fc1108a380593547c2def5863bca63160"&gt;&lt;em&gt;very&lt;/em&gt; different looking pelicans&lt;/a&gt; for the three different reasoning levels of low, medium, and high. I've not noticed this kind of difference from any other model:&lt;/p&gt;
+&lt;p&gt;Low:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flat vector illustration of a white pelican with a large orange beak, wearing a straw hat with an orange band, riding a teal road bicycle in profile, set against a pale cream circle with a dashed outline and small motion marks trailing behind." src="https://static.simonwillison.net/static/2026/deepseek-pro-low.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Medium:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A similar cartoon pelican cycling, drawn in a looser outlined style: the bird's body is mostly white line art, its orange beak pouch hangs open under a yellow cap, a long red tongue streams backwards towards a yellow sun, and a small blue fish sits on a tray by the handlebars of a green bicycle whose wheels are drawn as broken yellow arcs." src="https://static.simonwillison.net/static/2026/deepseek-pro-medium.png" /&gt;&lt;/p&gt;
+&lt;p&gt;High:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The pelican again, this time on a red bicycle against a pale blue background, with a bright yellow beak and pouch, a purple pennant flag on the back, a wicker front basket holding a small fish, and black musical notes floating in the top right corner." src="https://static.simonwillison.net/static/2026/deepseek-pro-high.png" /&gt;&lt;/p&gt;
+&lt;p&gt;In terms of benchmarks... as far as I can tell those were released to the Official DeepSeek WeChat Group, then copied and pasted into &lt;a href="https://www.reddit.com/r/LocalLLaMA/comments/1vmi0fg/removed_by_moderator/"&gt;a post on Reddit&lt;/a&gt; which was deleted by the moderators for being "low-effort", then copied into &lt;a href="https://news.ycombinator.com/item?id=49274600#49275180"&gt;this ASCII-art table on Hacker News&lt;/a&gt;.
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/deepseek"&gt;deepseek&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-in-china"&gt;ai-in-china&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="pelican-riding-a-bicycle"/><category term="deepseek"/><category term="llm-release"/><category term="ai-in-china"/></entry><entry><title>Quoting Florian Herrengt</title><link href="https://simonwillison.net/2026/Aug/12/florian-herrengt/" rel="alternate"/><published>2026-08-12T15:08:47+00:00</published><updated>2026-08-12T15:08:47+00:00</updated><id>https://simonwillison.net/2026/Aug/12/florian-herrengt/</id><summary type="html">
     &lt;blockquote cite="https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html"&gt;&lt;p&gt;But then users start to report a weird bug. It's the 4th time your team has been trying to fix it. I mean... asking AI to fix it. Unfortunately, it seems like not even Fable can figure it out.&lt;/p&gt;
 &lt;p&gt;You go talk to the person who worked on this feature.&lt;/p&gt;
 &lt;p&gt;"So where does the data come from?"&lt;/p&gt;
@@ -845,19 +864,4 @@ uv run --with mlx-vlm \
 
 
 
-</summary><category term="steve-yegge"/><category term="coding-agents"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>Don't be a meat proxy</title><link href="https://simonwillison.net/2026/Aug/3/dont-be-a-meat-proxy/" rel="alternate"/><published>2026-08-03T23:45:04+00:00</published><updated>2026-08-03T23:45:04+00:00</updated><id>https://simonwillison.net/2026/Aug/3/dont-be-a-meat-proxy/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://gruhn.me/blog/2026-08-03/"&gt;Don&amp;#x27;t be a meat proxy&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Niklas Gruhn coins an excellent new term - &lt;strong&gt;meat proxy&lt;/strong&gt; - for people who blindly copy and paste the output of AI systems to their peers.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;By all means, prompt AI. But don't just relay the output. Read it, understand it, validate it, and then write a response in your own words (a decent certificate that you've done the prior steps). Making that effort is value you can add.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://lobste.rs/s/hfbqr3/don_t_be_meat_proxy#c_svolls"&gt;Lobste.rs&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/definitions"&gt;definitions&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-misuse"&gt;ai-misuse&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="definitions"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="ai-misuse"/></entry></feed>
+</summary><category term="steve-yegge"/><category term="coding-agents"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry></feed>
