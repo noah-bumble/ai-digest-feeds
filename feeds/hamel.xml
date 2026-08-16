@@ -1751,6 +1751,7 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <item>
   <title>Evals Skills for Coding Agents</title>
   <dc:creator>Hamel Husain</dc:creator>
+  <dc:creator>Shreya Shankar</dc:creator>
   <link>https://hamel.dev/blog/posts/evals-skills/</link>
   <description><![CDATA[ 
 
@@ -1763,22 +1764,26 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 
 
 <p><img src="https://hamel.dev/blog/posts/evals-skills/cover-original.png" class="img-fluid"></p>
-<p>Today, I’m publishing <a href="https://github.com/hamelsmu/evals-skills">evals-skills</a>, a set of skills for AI product evals<sup>1</sup>. They guard against common mistakes I’ve seen helping 50+ companies and teaching 4,000+ students in our <a href="https://maven.com/parlance-labs/evals">course</a>.</p>
+<p>Today, Shreya Shankar and I are publishing <a href="https://github.com/ai-evals-course/evals-skills">evals skills</a>, a set of skills for AI product evals<sup>1</sup>.</p>
+<p>Eval tools often get in the way. They nudge you toward <a href="../../../blog/posts/evals-faq/index.html#q-should-i-use-ready-to-use-evaluation-metrics">generic off-the-shelf metrics</a> and <a href="https://parlance-labs.com/blog/posts/auto-evals.html">fully automated evals</a> before you’ve looked at your data. These skills help you avoid common mistakes we’ve seen helping 50+ companies and teaching students in our <a href="https://maven.com/parlance-labs/evals">AI Evals course</a>.</p>
 <section id="why-skills-for-evals" class="level2">
-<h2 class="anchored" data-anchor-id="why-skills-for-evals">Why Skills for Evals</h2>
-<p>Coding agents now instrument applications, run experiments, analyze data, and build interfaces. I’ve been pointing them at evals.</p>
-<p>OpenAI’s Harness Engineering <a href="https://openai.com/index/harness-engineering/">article</a> makes the case well. They built a product entirely with Codex agents — three engineers, five months, ~1 million lines of code — and found that <strong>improving the infrastructure around the agent</strong> mattered more than improving the model. The agents queried traces to verify their own work. Documentation tells the agent what to do. Telemetry tells it whether it worked. Evals tell it whether the output is good.</p>
-<p>All major eval vendors now ship an MCP server<sup>2</sup>. The tedious parts: instrumenting your app, orchestrating experiments and building annotation tools now fall to coding agents.</p>
-<p>But an agent with an eval platform still needs to know what to do with it. Say a support bot tells a customer “your plan includes free returns” when it doesn’t. Another says “I’ve canceled your order” when nobody asked. Both are hallucinations, but one gets a fact wrong and the other makes up a user action. If you lump them together in a generic “hallucination score,” you’ll miss errors.</p>
-<p>These skills fill the gaps. They complement the vendor MCP servers: those give your agent access to traces and experiments, these teach it what to do with them.</p>
+<h2 class="anchored" data-anchor-id="why-skills-for-evals">Why skills for evals</h2>
+<p>There are many <a href="../../../blog/posts/revenge/index.html">easily avoidable footguns</a> in evals. These skills help you avoid them.</p>
+<p>The skills have two entry points. <strong>eval-audit</strong> is the diagnostic, and <strong>error-discovery</strong> assists with data analysis you need to do before creating an eval.</p>
+<p>If you’re new to evals, start with <strong>eval-audit</strong>. It inspects your current setup, or the lack of one. Then it runs diagnostic checks across six areas and produces a prioritized list of problems with next steps. The audit isn’t a complete solution, but it will catch common problems.</p>
+<p>The <strong>error-discovery</strong> skill builds a customized annotation interface and helps you sample traces intelligently. Shreya does a live walkthrough of using this skill <a href="https://youtu.be/tqUDjc1HzO4">here</a>.</p>
 </section>
 <section id="the-skills" class="level2">
-<h2 class="anchored" data-anchor-id="the-skills">The Skills</h2>
-<p>If you’re new to evals or inheriting an existing eval pipeline, start with <strong>eval-audit</strong>. It inspects your current setup (or lack of one), runs diagnostic checks across six areas, and produces a prioritized list of problems with next steps. Install the skills or give your agent this prompt:</p>
+<h2 class="anchored" data-anchor-id="the-skills">The skills</h2>
+<p>Install the skills:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/evals-skills</span></code></pre></div></div>
+<p>Then give your agent this prompt:</p>
 <blockquote class="blockquote">
-<p>Install the eval skills plugin from https://github.com/hamelsmu/evals-skills, then run /evals-skills:eval-audit on my eval pipeline. Investigate each diagnostic area using a separate subagent in parallel, then synthesize the findings into a single report. Use other skills in the plugin as recommended by the audit.</p>
+<p>Run eval-audit on my eval pipeline. Investigate each diagnostic area using a separate subagent in parallel, then synthesize the findings into a single report. Use other skills as recommended by the audit.</p>
 </blockquote>
-<p>If you’re experienced with evals, you can skip the audit and pick the skill you need:</p>
+<p>If you’re experienced with evals, skip the audit and pick the skill you need:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 35%">
@@ -1792,35 +1797,43 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 </thead>
 <tbody>
 <tr class="odd">
+<td>eval-audit</td>
+<td>Audit an eval pipeline and surface problems with prioritized severity</td>
+</tr>
+<tr class="even">
 <td>error-analysis</td>
-<td>Read traces, categorize failures, build a vocabulary of what’s broken</td>
+<td>Entry point for error analysis requests. Routes to the skill that matches your situation</td>
+</tr>
+<tr class="odd">
+<td>error-discovery</td>
+<td>Build a review app, select diverse samples, and organize your notes into failure modes</td>
 </tr>
 <tr class="even">
 <td>generate-synthetic-data</td>
-<td>Create diverse test inputs when real data is sparse</td>
+<td>Create diverse synthetic test inputs using dimension-based tuple generation</td>
 </tr>
 <tr class="odd">
 <td>write-judge-prompt</td>
-<td>Design binary Pass/Fail LLM-as-Judge evaluators</td>
+<td>Design LLM-as-Judge evaluators for subjective quality criteria</td>
 </tr>
 <tr class="even">
 <td>validate-evaluator</td>
-<td>Calibrate judges against human labels using TPR/TNR and bias correction</td>
+<td>Calibrate LLM judges against human labels using data splits, TPR/TNR, and bias correction</td>
 </tr>
 <tr class="odd">
 <td>evaluate-rag</td>
-<td>Evaluate retrieval and generation quality separately</td>
+<td>Evaluate retrieval and generation quality in RAG pipelines</td>
 </tr>
 <tr class="even">
 <td>build-review-interface</td>
-<td>Generate annotation interfaces for human trace review</td>
+<td>Build custom annotation interfaces for human trace review</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
-<p>These skills are a starting point and only encode common mistakes that generalize across projects. Skills grounded in your stack, your domain, and your data will outperform them. Start here, then write your own.</p>
-<p>👉 The repo is here: <a href="https://github.com/hamelsmu/evals-skills">github.com/hamelsmu/evals-skills</a> 👈</p>
-<p>If these skills help you, I’d love to hear from you! You can find me on <a href="https://x.com/hamelhusain">X</a> or email me through my <a href="https://ai.hamel.dev">newsletter</a>.</p>
+<p>These skills are only a starting point. To make them better, tune them to be more specific to your data and domain.</p>
+<p>The repo is <a href="https://github.com/ai-evals-course/evals-skills">ai-evals-course/evals-skills</a>.</p>
+<p>You can find me on <a href="https://x.com/hamelhusain">X</a> or email me through my <a href="https://ai.hamel.dev">newsletter</a>.</p>
 
 
 </section>
@@ -1830,7 +1843,6 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 
 <ol>
 <li id="fn1"><p>Not foundation model benchmarks like MMLU or HELM that measure general LLM capabilities. Product evals measure whether <em>your</em> pipeline works on <em>your</em> task with <em>your</em> data. If you aren’t familiar with product-specific AI evals, check out my <a href="../../../blog/posts/evals-faq/index.html">AI Evals FAQ</a>.↩︎</p></li>
-<li id="fn2"><p><a href="https://www.braintrust.dev/docs/reference/mcp">Braintrust</a>, <a href="https://github.com/langchain-ai/langsmith-mcp-server">LangSmith</a>, <a href="https://github.com/Arize-ai/phoenix/tree/main/js/packages/phoenix-mcp">Phoenix</a>, <a href="https://truesight.goodeyelabs.com/docs/mcp-integration">Truesight</a>, and others.↩︎</p></li>
 </ol>
 </section></div> ]]></description>
   <category>AI</category>
