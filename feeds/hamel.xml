@@ -1769,9 +1769,11 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <section id="why-skills-for-evals" class="level2">
 <h2 class="anchored" data-anchor-id="why-skills-for-evals">Why skills for evals</h2>
 <p>There are many <a href="../../../blog/posts/revenge/index.html">easily avoidable footguns</a> in evals. These skills help you avoid them.</p>
-<p>The skills have two entry points. <strong>eval-audit</strong> is the diagnostic, and <strong>error-discovery</strong> assists with data analysis you need to do before creating an eval.</p>
-<p>If you’re new to evals, start with <strong>eval-audit</strong>. It inspects your current setup, or the lack of one. Then it runs diagnostic checks across six areas and produces a prioritized list of problems with next steps. The audit isn’t a complete solution, but it will catch common problems.</p>
-<p>The <strong>error-discovery</strong> skill builds a customized annotation interface and helps you sample traces intelligently. Shreya does a live walkthrough of using this skill <a href="https://youtu.be/tqUDjc1HzO4">here</a>.</p>
+<p><strong>start</strong> is the entry point. It looks at your situation and routes you to the right skill. Most of the time it will send you to one of these two:</p>
+<ul>
+<li><strong>eval-audit</strong>, if you already have an eval pipeline. It inspects your setup and recommends next steps. <sup>2</sup></li>
+<li><strong>error-discovery</strong>, if you have traces but haven’t analyzed them yet. It builds a customized annotation interface and helps you sample traces intelligently. Shreya does a live walkthrough of using this skill <a href="https://youtu.be/tqUDjc1HzO4">here</a>.</li>
+</ul>
 </section>
 <section id="the-skills" class="level2">
 <h2 class="anchored" data-anchor-id="the-skills">The skills</h2>
@@ -1781,9 +1783,9 @@ background-color: null;
 font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/evals-skills</span></code></pre></div></div>
 <p>Then give your agent this prompt:</p>
 <blockquote class="blockquote">
-<p>Run eval-audit on my eval pipeline. Investigate each diagnostic area using a separate subagent in parallel, then synthesize the findings into a single report. Use other skills as recommended by the audit.</p>
+<p>Run the start skill from the evals plugin and follow the skill it picks. If it picks eval-audit, investigate each diagnostic area using a separate subagent in parallel, then synthesize the findings into a single report.</p>
 </blockquote>
-<p>If you’re experienced with evals, skip the audit and pick the skill you need:</p>
+<p>If you’re experienced with evals, skip the router and pick the skill you need:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 35%">
@@ -1797,12 +1799,12 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </thead>
 <tbody>
 <tr class="odd">
-<td>eval-audit</td>
-<td>Audit an eval pipeline and surface problems with prioritized severity</td>
+<td>start</td>
+<td>Entry point. Routes to the skill that matches your situation</td>
 </tr>
 <tr class="even">
-<td>error-analysis</td>
-<td>Entry point for error analysis requests. Routes to the skill that matches your situation</td>
+<td>eval-audit</td>
+<td>Audit an eval pipeline and surface problems with prioritized severity</td>
 </tr>
 <tr class="odd">
 <td>error-discovery</td>
@@ -1843,6 +1845,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 
 <ol>
 <li id="fn1"><p>Not foundation model benchmarks like MMLU or HELM that measure general LLM capabilities. Product evals measure whether <em>your</em> pipeline works on <em>your</em> task with <em>your</em> data. If you aren’t familiar with product-specific AI evals, check out my <a href="../../../blog/posts/evals-faq/index.html">AI Evals FAQ</a>.↩︎</p></li>
+<li id="fn2"><p>The audit isn’t a complete solution, but it will catch common problems.↩︎</p></li>
 </ol>
 </section></div> ]]></description>
   <category>AI</category>
