@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-16T22:00:39+00:00</updated><author><name>Simon Willison</name></author><entry><title>Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things</title><link href="https://simonwillison.net/2026/Aug/16/qwen-38-27b/" rel="alternate"/><published>2026-08-16T22:00:39+00:00</published><updated>2026-08-16T22:00:39+00:00</updated><id>https://simonwillison.net/2026/Aug/16/qwen-38-27b/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-16T23:59:37+00:00</updated><author><name>Simon Willison</name></author><entry><title>Markdown SVG upgrades</title><link href="https://simonwillison.net/2026/Aug/16/markdown-svg-upgrades/" rel="alternate"/><published>2026-08-16T23:59:37+00:00</published><updated>2026-08-16T23:59:37+00:00</updated><id>https://simonwillison.net/2026/Aug/16/markdown-svg-upgrades/</id><summary type="html">
+    &lt;p&gt;I started building my &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer"&gt;markdown-svg-renderer&lt;/a&gt; tool &lt;a href="https://tools.simonwillison.net/colophon#markdown-svg-renderer.html"&gt;in May&lt;/a&gt;, but I've since added enough features to it that it's worth talking about here again.&lt;/p&gt;
+&lt;p&gt;It's evolved into my ideal tool for sharing Markdown transcripts that include SVG documents. Given my &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/"&gt;proclivity for drawing pelicans riding bicycles&lt;/a&gt; this is a problem that I needed to solve!&lt;/p&gt;
+&lt;p&gt;The tool is very simple. Navigate to &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer"&gt;markdown-svg-renderer&lt;/a&gt; in your browser and paste in some Markdown to see it rendered... or save that Markdown to a CORS-friendly URL or a GitHub Gist and paste in a URL to that document.&lt;/p&gt;
+&lt;p&gt;The URL option will give you a bookmarkable page, for example &lt;a style="overflow-wrap: anywhere;" href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F6f9e48293be5c916652d29f0dc0b0657"&gt;https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F6f9e48293be5c916652d29f0dc0b0657&lt;/a&gt; - which bakes in the URL to &lt;a href="https://gist.github.com/simonw/6f9e48293be5c916652d29f0dc0b0657"&gt;this Gist&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you visit &lt;a href="https://gist.github.com/simonw/6f9e48293be5c916652d29f0dc0b0657"&gt;the Gist&lt;/a&gt; you'll see raw SVG:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="beautiful-circle.md. Here's a self-contained SVG — a &amp;quot;compass study&amp;quot; of a circle with construction lines, a slowly rotating tick ring, and an orbiting accent dot: a block of SVG code" src="https://static.simonwillison.net/static/2026/raw-svg.webp" /&gt;&lt;/p&gt;
+&lt;p&gt;In the rendered tool that &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F6f9e48293be5c916652d29f0dc0b0657"&gt;looks like this&lt;/a&gt; instead:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The same text, but now the code block has been replaced by a tabbed panel. The selected tab reads &amp;quot;Rendered&amp;quot; and shows the rendered PNG. The other tabs are PNG, JPEG, MP4, and Code" src="https://static.simonwillison.net/static/2026/rendered-svg.webp" /&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, that SVG block in the Markdown has been transformed into a rendered SVG (in this case animated) plus several tabs.&lt;/p&gt;
+&lt;p&gt;The tabs are the really fun bit. The PNG and JPEG tabs render that SVG to those image formats in the browser and lets you copy or download them - useful for sharing on platforms that don't support SVG directly.&lt;/p&gt;
+&lt;p&gt;The MP4 tab is &lt;a href="https://github.com/simonw/tools/commit/73e0327f6df9887ba2a9f9f16a2d06a45451d248"&gt;new today&lt;/a&gt; - it examines the SVG to see if it contains any animations, attempts to guess how long the looped video should be, then renders a whole bunch of frames of the animation and loads 30+MB of &lt;a href="https://github.com/ffmpegwasm/ffmpeg.wasm"&gt;ffmpeg.wasm&lt;/a&gt; so it can compile those frames into an MP4 video using the full power of FFMPEG compiled to WebAssembly and running in the browser.&lt;/p&gt;
+&lt;p&gt;Being able to turn an animated SVG into a MP4 again makes it easy to share on platforms that can't support SVG animation natively. It's a neat trick!&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/svg"&gt;svg&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/markdown"&gt;markdown&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="svg"/><category term="markdown"/><category term="tools"/></entry><entry><title>Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things</title><link href="https://simonwillison.net/2026/Aug/16/qwen-38-27b/" rel="alternate"/><published>2026-08-16T22:00:39+00:00</published><updated>2026-08-16T22:00:39+00:00</updated><id>https://simonwillison.net/2026/Aug/16/qwen-38-27b/</id><summary type="html">
     &lt;p&gt;Friday's big release was &lt;a href="https://huggingface.co/Qwen/Qwen3.8-27B"&gt;Qwen 3.8 27B&lt;/a&gt;, an Apache 2 licensed 27B parameter vision-capable LLM from Alibaba's Qwen research lab. I've been looking forward to this one: 27B is an excellent size for running a model on a reasonably specced laptop, and its predecessor &lt;a href="https://simonwillison.net/2026/Apr/22/qwen36-27b/"&gt;Qwen 3.6 27B&lt;/a&gt; was impressive.&lt;/p&gt;
 &lt;p&gt;Qwen's &lt;a href="https://huggingface.co/Qwen/Qwen3.8-27B#benchmark-results"&gt;self-reported benchmarks&lt;/a&gt; for this model are eye-opening. They show a boost from both Qwen 3.6 27B &lt;em&gt;and&lt;/em&gt; the closed-weight Qwen 3.7-Plus, which was one of Qwen's strongest models of any size as recently as &lt;a href="https://qwen.ai/blog?id=qwen3.7-plus"&gt;May this year&lt;/a&gt;. It will be interesting to hear what independent benchmarks have to say about the model.&lt;/p&gt;
 &lt;p&gt;I've been running the model on two different machines: my 128GB M5 Max MacBook Pro, and an &lt;a href="https://simonwillison.net/2025/Oct/14/nvidia-dgx-spark/"&gt;NVIDIA DGX Spark&lt;/a&gt;. On both machines I'm running LM Studio and &lt;a href="https://lmstudio.ai/models/qwen3.8"&gt;their 17GB Q4_K_M quantized build&lt;/a&gt;. I also tried  using &lt;code&gt;llama-server&lt;/code&gt; directly on the Spark.&lt;/p&gt;
@@ -560,7 +578,7 @@ Anthropic are &lt;em&gt;really&lt;/em&gt; confident in Claude Code's &lt;a href=
 
 </summary><category term="security"/><category term="ai"/><category term="prompt-injection"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="coding-agents"/><category term="claude-code"/><category term="lethal-trifecta"/><category term="thariq-shihipar"/></entry><entry><title>Now we have a timeline of the OpenAI accidental attack against Hugging Face</title><link href="https://simonwillison.net/2026/Aug/8/now-we-have-a-timeline-of-the-openai-accidental-attack-against-h/" rel="alternate"/><published>2026-08-08T14:06:41+00:00</published><updated>2026-08-08T14:06:41+00:00</updated><id>https://simonwillison.net/2026/Aug/8/now-we-have-a-timeline-of-the-openai-accidental-attack-against-h/</id><summary type="html">
     
-        &lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=49220609#49221745"&gt;My comment&lt;/a&gt; on &lt;a href="https://news.ycombinator.com/item?id=49220609"&gt;Now we have a timeline of the OpenAI accidental attack against Hugging Face&lt;/a&gt; &amp;mdash; Hacker News.&lt;/p&gt;&lt;p&gt;I think one of the most interesting details here might be tucked away in that first bulletin point:&lt;/p&gt;
+        &lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=49220609#49221745"&gt;My comment&lt;/a&gt; on &lt;a href="https://news.ycombinator.com/item?id=49220609"&gt;Now we have a timeline of the OpenAI accidental attack against Hugging Face&lt;/a&gt; &amp;mdash; Hacker News.&lt;/p&gt;&lt;p&gt;I think one of the most interesting details here might be tucked away in that first bullet point:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;May 7: OpenAI starts a new training run for an experimental, unreleased model. &lt;em&gt;(Do they mean an evaluation run? They say training run in the video, and later mention a “reward signal to judge how well they’re doing”, so I guess this really was about training a model, not evaluating one that was already trained.)&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -731,29 +749,4 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="datasette"/></entry><entry><title>Simon Willison on Technical Blogging</title><link href="https://simonwillison.net/2026/Aug/6/simon-willison-on-technical-blogging/" rel="alternate"/><published>2026-08-06T18:04:39+00:00</published><updated>2026-08-06T18:04:39+00:00</updated><id>https://simonwillison.net/2026/Aug/6/simon-willison-on-technical-blogging/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://writethatblog.substack.com/p/simon-willison-on-technical-blogging"&gt;Simon Willison on Technical Blogging&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-I was interviewed by Cynthia Dunlop for her "Write that blog!" series back in January, but I just realized I never linked to the interview from my own blog!&lt;/p&gt;
-&lt;p&gt;It includes my answers to the following questions:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Why did you start blogging – and why do you continue?&lt;/li&gt;
-&lt;li&gt;What has been the most surprising impact of blogging for you?&lt;/li&gt;
-&lt;li&gt;What blog post are you most proud of and why?&lt;/li&gt;
-&lt;li&gt;What post was the most difficult to write and how did you tackle it?&lt;/li&gt;
-&lt;li&gt;Any lessons learned that you want to share with the community?&lt;/li&gt;
-&lt;li&gt;Your advice for people just getting started with blogging?&lt;/li&gt;
-&lt;li&gt;A few blogs that you particularly enjoy?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I'll repeat my most important piece of advice here:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;My number one tip for blogging is to lower your standards! Aim to hit publish while you are still actively unhappy with what you have written, because the only alternative is a huge folder full of drafts and never publishing anything at all.&lt;/p&gt;
-&lt;p&gt;Nobody will ever know how perfect the thing you &lt;em&gt;intended&lt;/em&gt; to write would have been. The flaws you see in your writing are invisible to everyone else.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/blogging"&gt;blogging&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/interviews"&gt;interviews&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="blogging"/><category term="interviews"/></entry></feed>
+</summary><category term="datasette"/></entry></feed>
