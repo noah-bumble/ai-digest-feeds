@@ -63,7 +63,7 @@ And just for completeness, I used OpenRouter to run the same prompt through the 
     Your browser does not support HTML5 video.
   &lt;/video&gt;
 &lt;/p&gt;
-I said Qwen at xhigh has a tendency to over-think things, but how bad really is it?
+&lt;p&gt;I said Qwen at xhigh has a tendency to over-think things, but how bad really is it?&lt;/p&gt;
 &lt;p&gt;I tried a much simpler prompt, again with that default extra high setting:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;draw an svg of a circle&lt;/code&gt;&lt;/p&gt;
