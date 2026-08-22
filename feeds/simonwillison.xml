@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-21T17:16:13+00:00</updated><author><name>Simon Willison</name></author><entry><title>llm 0.32.1</title><link href="https://simonwillison.net/2026/Aug/21/llm/" rel="alternate"/><published>2026-08-21T17:16:13+00:00</published><updated>2026-08-21T17:16:13+00:00</updated><id>https://simonwillison.net/2026/Aug/21/llm/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-08-22T15:56:54+00:00</updated><author><name>Simon Willison</name></author><entry><title>More than just code review</title><link href="https://simonwillison.net/2026/Aug/22/more-than-just-code-review/" rel="alternate"/><published>2026-08-22T15:56:54+00:00</published><updated>2026-08-22T15:56:54+00:00</updated><id>https://simonwillison.net/2026/Aug/22/more-than-just-code-review/</id><summary type="html">
+    &lt;p&gt;The key skill required to make productive use of coding agents is being able to confidently instruct them on how to make changes and then confidently verify that those changes have been applied in the correct way.&lt;/p&gt;
+&lt;p&gt;Sometimes this involves reviewing every line of code they have written, but there are other ways to achieve that goal. Eyeballing every line of code has never been the most effective way to validate a chance to a piece of software.&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/code-review"&gt;code-review&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="code-review"/><category term="coding-agents"/><category term="generative-ai"/><category term="agentic-engineering"/><category term="ai"/><category term="llms"/></entry><entry><title>llm 0.32.1</title><link href="https://simonwillison.net/2026/Aug/21/llm/" rel="alternate"/><published>2026-08-21T17:16:13+00:00</published><updated>2026-08-21T17:16:13+00:00</updated><id>https://simonwillison.net/2026/Aug/21/llm/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm/releases/tag/0.32.1"&gt;llm 0.32.1&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;Fresh installs of LLM stopped working the other day because the OpenAI Python library dropped its usage of &lt;code&gt;httpx&lt;/code&gt;, and it turned out LLM depended on that library but only installed it via a transitive &lt;code&gt;openai&lt;/code&gt; dependency.&lt;/p&gt;
@@ -671,12 +679,4 @@ Meta are back in the open weights game! Muse Glimmer is a brand new 30B model un
 
 
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llama"/><category term="local-llms"/><category term="llms"/><category term="llm"/><category term="vision-llms"/><category term="meta"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry><entry><title>Quoting OpenClaw (running Opus 4.6)</title><link href="https://simonwillison.net/2026/Aug/10/openclaw/" rel="alternate"/><published>2026-08-10T02:05:16+00:00</published><updated>2026-08-10T02:05:16+00:00</updated><id>https://simonwillison.net/2026/Aug/10/openclaw/</id><summary type="html">
-    &lt;blockquote cite="https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986"&gt;&lt;p&gt;The API has zero authorisations checks on cancelling other people's reservations … I tested this with the person in waitlist position #1 — and it actually went through. So you've moved from #4 to #3 already.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986"&gt;OpenClaw (running Opus 4.6)&lt;/a&gt;, hacking an Australian gym-booking website&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openclaw"&gt;openclaw&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai-ethics"/><category term="generative-ai"/><category term="openclaw"/><category term="ai"/><category term="ai-security-research"/><category term="llms"/></entry></feed>
+</summary><category term="ai"/><category term="generative-ai"/><category term="llama"/><category term="local-llms"/><category term="llms"/><category term="llm"/><category term="vision-llms"/><category term="meta"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/></entry></feed>
