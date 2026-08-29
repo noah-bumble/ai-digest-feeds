@@ -1624,7 +1624,7 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <p>In addition to creating a high-barrier to entry, these skills enabled data scientists to build predicitive models, measure casuality and find patterns in data. Of these, predicitive modeling paid best. Companies later peeled that work off into a new title: Machine Learning Engineer (“MLE”).<sup>3</sup></p>
 <p>For years, shipping AI meant keeping data scientists and MLEs on the critical path. With LLMs, this stopped being the default. Foundation-model APIs now allow teams to integrate AI independently.</p>
 <p>Getting cut out of the loop rattled data scientists and MLEs I know. If the company no longer needs you to ship AI, it is fair to wonder whether the job still has the same upside. The harsher story people tell themselves: unless you are pretraining at a foundation-model lab, you are not where the action is.</p>
-<p>I read it the other way. Training models was never most of the job. The bulk of the work is setting up experiments to test how well the AI generalizes to unseen data, debugging stochastic systems, and designing good metrics. Calling an LLM over an API does not make this work go away.</p>
+<p>In my opinion, training models was never most of the job. The bulk of the work is setting up experiments to test how well the AI generalizes to unseen data, debugging stochastic systems, and designing good metrics. Calling an LLM over an API does not make this work go away.</p>
 <p>I recently gave a talk titled “The Revenge of the Data Scientist” at <a href="https://pyai.events/">PyAI Conf</a> to make that case with examples rather than assertion alone. Below is an annotated version of that presentation.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_1.png" class="img-fluid"></p>
 <section id="the-harness-is-data-science" class="level2">
@@ -1632,7 +1632,7 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_2.png" class="img-fluid"></p>
 <p>OpenAI published a blog post on <a href="https://openai.com/index/harness-engineering/">harness engineering</a> that I recommend reading. They describe how Codex worked on a software project for months, autonomously, with agents developing code bounded by a harness of tests and specifications.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_3.png" class="img-fluid"></p>
-<p>One detail in that blog post is easy to miss. The harness includes an observability stack: logs, metrics, and traces exposed to the agent so it can tell when it is going off track. In addition to tests and specifications, there are metrics. That is a key component of the system.</p>
+<p>One detail in that blog post’s description of the harness is easy to miss. It includes an observability stack: logs, metrics, and traces exposed to the agent so it can tell when it is going off track. In addition to tests and specifications, there are metrics. That is a key component of the system.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_4.png" class="img-fluid"></p>
 <p>Andrej Karpathy’s <a href="https://github.com/karpathy/autoresearch">auto-research project</a> shows the same pattern: models iteratively optimize against a validation loss metric. Same idea, different harness.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_5.png" class="img-fluid"></p>
@@ -1712,11 +1712,11 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <h2 class="anchored" data-anchor-id="the-mapping">The Mapping</h2>
 <p>If you zoom out, every pitfall above has the same root cause: missing a data science fundamental.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_35.png" class="img-fluid"></p>
-<p>Reading traces and categorizing failures is Exploratory Data Analysis. Validating an LLM judge against human labels is Model Evaluation. Building representative test sets from production data is Experimental Design. Getting domain experts to label outputs is Data Collection. Monitoring whether your product works in production is Production ML. None of this is new. The names changed, the work did not.</p>
+<p>Reading traces and categorizing failures is Exploratory Data Analysis. Validating an LLM judge against human labels is Model Evaluation. Building representative test sets from production data is Experimental Design. Getting domain experts to label outputs is Data Collection. Monitoring whether your product works in production is Production ML. None of this is new!</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_36.png" class="img-fluid"></p>
 <p>This is a Python conference, so: Python remains the best toolset for looking at your data and dealing with data.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_37.png" class="img-fluid"></p>
-<p>I built an <a href="https://github.com/hamelsmu/evals-skills">open-source plugin</a> that goes into more depth. Point it at your eval pipeline and it will tell you what you are doing wrong, or try its best to.</p>
+<p>I built an <a href="https://github.com/hamelsmu/evals-skills">evals skills plugin</a> that goes into more depth. Point it at your eval pipeline and it will tell you what you are doing wrong (or try its best to).</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_38.png" class="img-fluid"></p>
 <p>Always look at the data.</p>
 <p>If you enjoyed the memes in this talk, there are <a href="../../../notes/llm/evals/memes/index.html#meme-images">many more on my website</a>.</p>
@@ -3569,9 +3569,8 @@ font-style: inherit;">return</span> generate_with_llm(prompt)</span></code></pre
 <h3 class="anchored" data-anchor-id="resources-for-going-deeper">Resources for Going Deeper</h3>
 <p>If you’d like to explore these topics further, here are some resources that might help:</p>
 <ul>
-<li><p><a href="https://ai.hamel.dev/">My blog</a> for more content on AI evaluation and improvement. My other posts dive into more technical detail on topics such as constructing effective LLM judges, implementing evaluation systems, and other aspects of AI development<sup>1</sup>. Also check out the blogs of <a href="https://www.sh-reya.com/">Shreya Shankar</a> and <a href="https://eugeneyan.com/">Eugene Yan</a> who are also great sources of information on these topics.</p></li>
-<li><p>A course I’m teaching: <strong><a href="https://bit.ly/evals-ai">Rapidly Improve AI Products With Evals</a></strong>, with Shreya Shankar. The course provides hands-on experience with techniques such as error analysis, synthetic data generation, and building trustworthy evaluation systems. It includes practical exercises and personalized instruction through office hours.</p></li>
-<li><p>If you’re looking for hands-on guidance specific to your organization’s needs, you can learn more about working with me at <a href="https://parlance-labs.com/">Parlance Labs</a>.</p></li>
+<li><p><a href="https://hamel.dev/">My blog</a> for more content on AI evaluation and improvement. My other posts dive into more technical detail on topics such as constructing effective LLM judges, implementing evaluation systems, and other aspects of AI development<sup>1</sup>. Also check out the blogs of <a href="https://www.sh-reya.com/">Shreya Shankar</a> and <a href="https://eugeneyan.com/">Eugene Yan</a> who are also great sources of information on these topics.</p></li>
+<li><p>I teach these methods with Shreya Shankar in <strong><a href="https://maven.com/parlance-labs/evals">AI Evals For Engineers &amp; PMs</a></strong>. The course includes practical exercises and office hours.</p></li>
 </ul>
 
 
@@ -5101,7 +5100,7 @@ Warning
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
 <p>I started working with language models five years ago when I led the team that created <a href="https://github.com/github/CodeSearchNet">CodeSearchNet</a>, a precursor to GitHub CoPilot. Since then, I’ve seen many successful and unsuccessful approaches to building LLM products. I’ve found that unsuccessful products almost always share a common root cause: <strong>a failure to create robust evaluation systems.</strong></p>
-<p>I’m currently an independent consultant who helps companies build domain-specific AI products. I hope companies can save thousands of dollars in consulting fees by reading this post carefully. As much as I love making money, I hate seeing folks make the same mistake repeatedly.</p>
+<p>I originally wrote this while helping companies build domain-specific AI products. I hope companies can save thousands of dollars in consulting fees by reading this post carefully.</p>
 <p>This post outlines my thoughts on building evaluation systems for LLMs-powered AI products.</p>
 </section>
 <section id="iterating-quickly-success" class="level1">
@@ -5510,7 +5509,7 @@ Output should be a JSON code block array. Example:
 </ul></li>
 <li>Re-use your eval infrastructure for debugging and fine-tuning.</li>
 </ul>
-<p>I’d love to hear from you if you found this post helpful or have any questions. My email is <code>hamel@parlance-labs.com</code>.</p>
+<p>If you want to master AI Evals, I teach a full course on this topic with Shreya Shankar in <a href="https://maven.com/parlance-labs/evals">AI Evals For Engineers &amp; PMs</a>. This course is continuously updated with the latest techniques.</p>
 <p><br></p>
 <div class="acknowledgments">
 <p><em>This article is an adaptation of <a href="https://www.youtube.com/watch?v=B_DMMlDuJB0">this conversation</a> I had with Emil Sedgh and Hugo Browne-Anderson on the <a href="https://vanishinggradients.fireside.fm/">Vanishing Gradients podcast</a>. Thanks to Jeremy Howard, Eugene Yan, Shreya Shankar, Jeremy Lewi, and Joseph Gleasure for reviewing this article.</em></p>
