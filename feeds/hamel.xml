@@ -1769,7 +1769,7 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <section id="why-skills-for-evals" class="level2">
 <h2 class="anchored" data-anchor-id="why-skills-for-evals">Why skills for evals</h2>
 <p>There are many <a href="../../../blog/posts/revenge/index.html">easily avoidable footguns</a> in evals. These skills help you avoid them.</p>
-<p><strong>start</strong> is the entry point. It looks at your situation and routes you to the right skill. Most of the time it will send you to one of these two:</p>
+<p><strong>evals-start</strong> is the entry point. It looks at your situation and routes you to the right skill. Most of the time it will send you to one of these two:</p>
 <ul>
 <li><strong>eval-audit</strong>, if you already have an eval pipeline. It inspects your setup and recommends next steps. <sup>2</sup></li>
 <li><strong>error-discovery</strong>, if you have traces but haven’t analyzed them yet. It builds a customized annotation interface and helps you sample traces intelligently. Shreya does a live walkthrough of using this skill <a href="https://youtu.be/tqUDjc1HzO4">here</a>.</li>
@@ -1783,7 +1783,7 @@ background-color: null;
 font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/evals-skills</span></code></pre></div></div>
 <p>Then give your agent this prompt:</p>
 <blockquote class="blockquote">
-<p>Run the start skill from the evals plugin and follow the skill it picks. If it picks eval-audit, investigate each diagnostic area using a separate subagent in parallel, then synthesize the findings into a single report.</p>
+<p>Run the evals-start skill from the evals plugin and follow the skill it picks. If it picks eval-audit, investigate each diagnostic area using a separate subagent in parallel, then synthesize the findings into a single report.</p>
 </blockquote>
 <p>If you’re experienced with evals, skip the router and pick the skill you need:</p>
 <table class="caption-top table">
@@ -1799,7 +1799,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </thead>
 <tbody>
 <tr class="odd">
-<td>start</td>
+<td>evals-start</td>
 <td>Entry point. Routes to the skill that matches your situation</td>
 </tr>
 <tr class="even">
@@ -2086,7 +2086,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
   <pubDate>Mon, 23 Jun 2025 07:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>LLM Evals: Everything You Need to Know</title>
+  <title>AI Evals: Everything You Need to Know</title>
   <dc:creator>Hamel Husain</dc:creator>
   <dc:creator>Shreya Shankar</dc:creator>
   <link>https://hamel.dev/blog/posts/evals-faq/</link>
@@ -2101,21 +2101,21 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 
 
 
-<p>This document curates the most common questions Shreya and I received while <a href="https://bit.ly/evals-ai" target="_blank">teaching</a> 700+ engineers &amp; PMs AI Evals. <em>Warning: These are sharp opinions about what works in most cases. They are not universal truths. Use your judgment.</em></p>
+<p>This document curates the most common questions Shreya and I received while <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">teaching</a> 700+ engineers &amp; PMs AI Evals. <em>Warning: These are sharp opinions about what works in most cases. They are not universal truths. Use your judgment.</em></p>
 <p>For a guided path through the rest of our evals work, use the <a href="../../../notes/llm/evals/">AI evals topic hub</a>.</p>
 <hr>
 <div class="cta" style="text-align: center;">
-<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://bit.ly/evals-ai" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://bit.ly/evals-ai" target="_blank">25% discount code</a> for readers. 👈</p>
+<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">25% discount code</a> for readers. 👈</p>
 </div>
 <hr>
 <section id="getting-started-fundamentals" class="level1">
 <h1>Getting Started &amp; Fundamentals</h1>
 <section id="q-what-are-llm-evals" class="level2">
-<h2 class="anchored" data-anchor-id="q-what-are-llm-evals">Q: What are LLM Evals?</h2>
-<p>If you are completely new to product-specific LLM evals (not foundation model benchmarks), see these posts: <a href="../../../blog/posts/evals/index.html" target="_blank">part 1</a>, <a href="../../../blog/posts/llm-judge/index.html" target="_blank">part 2</a> and <a href="../../../blog/posts/field-guide/index.html" target="_blank">part 3</a>. Otherwise, keep reading.</p>
+<h2 class="anchored" data-anchor-id="q-what-are-llm-evals">Q: What are AI Evals?</h2>
+<p>If you are completely new to product-specific AI evals (not foundation model benchmarks), see these posts: <a href="../../../blog/posts/evals/index.html" target="_blank">part 1</a>, <a href="../../../blog/posts/llm-judge/index.html" target="_blank">part 2</a> and <a href="../../../blog/posts/field-guide/index.html" target="_blank">part 3</a>. Otherwise, keep reading.</p>
 <div class="grid">
 <div class="g-col-4">
-<p><a href="https://hamel.dev/evals" target="_blank"><img src="https://hamel.dev/blog/posts/evals/images/diagram-cover.png" class="img-fluid"></a></p>
+<p><a href="https://hamel.dev/evals" target="_blank"><img src="https://hamel.dev/blog/posts/evals/images/diagram-cover.webp" class="img-fluid faq-media-ratio-2081-1109" alt="Diagram of the fast feedback cycle for improving AI products" decoding="async" width="2081" height="1109"></a></p>
 <p><a href="https://hamel.dev/evals" target="_blank"><strong>Your AI Product Needs Eval (Evaluation Systems)</strong></a></p>
 <p><strong>Contents:</strong></p>
 <ol type="1">
@@ -2139,7 +2139,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </ol>
 </div>
 <div class="g-col-4">
-<p><a href="https://hamel.dev/llm-judge/" target="_blank"><img src="https://hamel.dev/blog/posts/llm-judge/images/cover_img.png" class="img-fluid"></a></p>
+<p><a href="https://hamel.dev/llm-judge/" target="_blank"><img src="https://hamel.dev/blog/posts/llm-judge/images/cover_img.webp" class="img-fluid faq-media-ratio-16-9" alt="Cover for Creating an LLM-as-a-Judge That Drives Business Results" loading="lazy" decoding="async" width="1600" height="900"></a></p>
 <p><a href="https://hamel.dev/llm-judge/" target="_blank"><strong>Creating a LLM-as-a-Judge That Drives Business Results</strong></a></p>
 <p><strong>Contents:</strong></p>
 <ol type="1">
@@ -2156,7 +2156,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </ol>
 </div>
 <div class="g-col-4">
-<p><a href="https://hamel.dev/field-guide" target="_blank"><img src="https://hamel.dev/blog/posts/field-guide/images/field_guide_2.png" class="img-fluid"></a></p>
+<p><a href="https://hamel.dev/field-guide" target="_blank"><img src="https://hamel.dev/blog/posts/field-guide/images/field_guide_2.webp" class="img-fluid faq-media-ratio-16-9" alt="Cover for A Field Guide to Rapidly Improving AI Products" loading="lazy" decoding="async" width="1600" height="900"></a></p>
 <p><a href="https://hamel.dev/field-guide" target="_blank"><strong>A Field Guide to Rapidly Improving AI Products</strong></a></p>
 <p><strong>Contents:</strong></p>
 <ol type="1">
@@ -2177,7 +2177,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><strong>Note on terminology:</strong> Different observability vendors use varying definitions of traces and spans. <a href="https://mlops.systems/posts/2025-06-04-instrumenting-an-agentic-app-with-arize-phoenix-and-litellm.html#llm-tracing-tools-naming-conventions-june-2025">Alex Strick van Linschoten’s analysis</a> highlights these differences (screenshot below):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/alex.jpeg" class="img-fluid figure-img"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/alex.webp" class="img-fluid figure-img" loading="lazy" decoding="async" width="900" height="586"></p>
 <figcaption>Vendor differences in trace definitions as of 2025-07-02</figcaption>
 </figure>
 </div>
@@ -2187,7 +2187,16 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <h2 class="anchored" data-anchor-id="q-whats-a-minimum-viable-evaluation-setup">Q: What’s a minimum viable evaluation setup?</h2>
 <p>Start with error analysis, not infrastructure. Spend 30 minutes manually reviewing 20-50 LLM outputs whenever you make significant changes. Use one domain expert who understands your users as your quality decision maker (a “benevolent dictator”).</p>
 <p><strong>Use a notebook</strong> to review traces and analyze data, or build your own custom annotation interface with an AI coding assistant like Claude or Codex. Either way, you can write arbitrary code, visualize data, and iterate quickly. The <a href="https://youtu.be/aqKUwPKBkB0?si=5KDmMQnRzO_Ce9xH" target="_blank">video</a> below shows a simple annotation interface built inside a notebook.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/aqKUwPKBkB0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="faq-lite-video" data-video-id="aqKUwPKBkB0" data-video-title="Build Your Own Eval Tools With Notebooks!">
+  <div class="faq-lite-video__frame">
+    <button class="faq-lite-video__button" type="button" aria-label="Play Build Your Own Eval Tools With Notebooks!">
+      <img class="faq-lite-video__poster" src="https://i.ytimg.com/vi/aqKUwPKBkB0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low">
+      
+    </button>
+  </div>
+  <p class="faq-lite-video__fallback"><a href="https://www.youtube.com/watch?v=aqKUwPKBkB0" target="_blank" rel="noopener">Watch “Build Your Own Eval Tools With Notebooks!” on YouTube</a></p>
+</div>
+
 <p><a href="../../../blog/posts/evals-faq/whats-a-minimum-viable-evaluation-setup.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 <section id="q-how-much-of-my-development-budget-should-i-allocate-to-evals" class="level2">
@@ -2226,7 +2235,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <section id="error-analysis-data-collection" class="level1">
 <h1>Error Analysis &amp; Data Collection</h1>
 <section id="q-why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed" class="level2">
-<h2 class="anchored" data-anchor-id="q-why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed">Q: Why is "error analysis" so important in LLM evals, and how is it performed?</h2>
+<h2 class="anchored" data-anchor-id="q-why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed">Q: Why is "error analysis" so important in AI evals, and how is it performed?</h2>
 <p>Error analysis is <strong>the most important activity in evals</strong>. Error analysis helps you decide what evals to write in the first place. It allows you to identify failure modes unique to your application and data. The process involves:</p>
 <section id="creating-a-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-dataset">1. Creating a Dataset</h3>
@@ -2246,7 +2255,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>You should frequently revisit this process. There are advanced ways to <a href="how-can-i-efficiently-sample-production-traces-for-review.html" target="_blank">sample data more efficiently</a>, like clustering, sorting by user feedback, and sorting by high probability failure patterns. Over time, you’ll develop a “nose” for where to look for failures in your data.</p>
 <p>Do not skip error analysis. It ensures that the evaluation metrics you develop are supported by real application behaviors instead of counter-productive generic metrics (which most platforms nudge you to use). For examples of how error analysis can be helpful, see <a href="https://www.youtube.com/watch?v=e2i6JbU2R-s" target="_blank">this video</a>, or this <a href="https://hamel.dev/blog/posts/field-guide/" target="_blank">blog post</a>.</p>
 <p>Here is a visualization of the error analysis process by one of our students, <a href="https://www.linkedin.com/in/pawel-huryn/" target="_blank">Pawel Huryn</a> - including how it fits into the overall evaluation process:</p>
-<p><img src="https://hamel.dev/blog/posts/evals-faq/pawel-error-analysis.png" class="img-fluid"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/pawel-error-analysis.webp" class="img-fluid" alt="Infographic showing an error-analysis workflow: review traces, refine failure modes, recode examples, then build application-specific evaluators" loading="lazy" decoding="async" width="1200" height="1500"></p>
 <p><a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 </section>
@@ -2320,7 +2329,16 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><strong><em><a href="https://youtu.be/e2i6JbU2R-s?si=8p5XVxbBiioz69Xc" target="_blank">Error Analysis</a> is all you need.</em></strong> Your evaluation strategy should emerge from observed failure patterns (e.g.&nbsp;error analysis), not predetermined query classifications. Rather than creating a massive evaluation matrix covering every query type you can imagine, let your system’s actual behavior guide where you invest evaluation effort.</p>
 <p>During error analysis, you’ll likely discover that certain query categories share failure patterns. For instance, all queries requiring temporal reasoning might struggle regardless of whether they’re simple lookups or complex aggregations. Similarly, queries that need to combine information from multiple sources might fail in consistent ways. These patterns discovered through error analysis should drive your evaluation priorities. It could be that query category is a fine way to group failures, but you don’t know that until you’ve analyzed your data.</p>
 <p>To see an example of basic error analysis in action, <a href="https://youtu.be/e2i6JbU2R-s?si=8p5XVxbBiioz69Xc" target="_blank">see this video</a>.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/e2i6JbU2R-s" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="faq-lite-video" data-video-id="e2i6JbU2R-s" data-video-title="Error Analysis: The Highest ROI Technique In AI Engineering">
+  <div class="faq-lite-video__frame">
+    <button class="faq-lite-video__button" type="button" aria-label="Play Error Analysis: The Highest ROI Technique In AI Engineering">
+      <img class="faq-lite-video__poster" src="https://i.ytimg.com/vi/e2i6JbU2R-s/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low">
+      
+    </button>
+  </div>
+  <p class="faq-lite-video__fallback"><a href="https://www.youtube.com/watch?v=e2i6JbU2R-s" target="_blank" rel="noopener">Watch “Error Analysis: The Highest ROI Technique In AI Engineering” on YouTube</a></p>
+</div>
+
 <p><a href="../../../blog/posts/evals-faq/how-do-i-approach-evaluation-when-my-system-handles-diverse-user-queries.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 <section id="q-how-can-i-efficiently-sample-production-traces-for-review" class="level2">
@@ -2374,12 +2392,21 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <h3 class="anchored" data-anchor-id="use-labels-to-choose-the-next-traces">Use labels to choose the next traces</h3>
 <p>We can borrow a technique from machine learning called active learning to sample production traces. In active learning, a system asks a person to label the data points that would be most useful for its next update.</p>
 <p>In <a href="https://youtu.be/tqUDjc1HzO4">Shreya Shankar’s walkthrough</a>, Claude Code clusters traces and chooses examples from each cluster for review. A <code>monitor</code> command watches <code>annotations.json</code> for new labels. When a label arrives, the agent updates a failure taxonomy and looks for similar cases or different failures.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/tqUDjc1HzO4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="faq-lite-video" data-video-id="tqUDjc1HzO4" data-video-title="How to Automate AI Evals (Correctly)">
+  <div class="faq-lite-video__frame">
+    <button class="faq-lite-video__button" type="button" aria-label="Play How to Automate AI Evals (Correctly)">
+      <img class="faq-lite-video__poster" src="https://i.ytimg.com/vi/tqUDjc1HzO4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low">
+      
+    </button>
+  </div>
+  <p class="faq-lite-video__fallback"><a href="https://www.youtube.com/watch?v=tqUDjc1HzO4" target="_blank" rel="noopener">Watch “How to Automate AI Evals (Correctly)” on YouTube</a></p>
+</div>
+
 <p>In the above video, active learning is used in the context of error analysis to find new cases to review. However, this approach can be used anywhere in the workflow where you are annotating data.</p>
 <p><a href="../../../blog/posts/evals-faq/how-can-i-efficiently-sample-production-traces-for-review.html" class="faq-individual-link">↗ Focus view</a></p>
 <hr>
 <div class="cta" style="text-align: center;">
-<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://bit.ly/evals-ai" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://bit.ly/evals-ai" target="_blank">25% discount code</a> for readers. 👈</p>
+<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">25% discount code</a> for readers. 👈</p>
 </div>
 <hr>
 </section>
@@ -2456,7 +2483,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><a href="../../../blog/posts/evals-faq/how-do-we-evaluate-a-models-ability-to-express-uncertainty-or-know-what-it-doesnt-know.html" class="faq-individual-link">↗ Focus view</a></p>
 <hr>
 <div class="cta" style="text-align: center;">
-<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://bit.ly/evals-ai" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://bit.ly/evals-ai" target="_blank">25% discount code</a> for readers. 👈</p>
+<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">25% discount code</a> for readers. 👈</p>
 </div>
 <hr>
 </section>
@@ -2559,7 +2586,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><a href="../../../blog/posts/evals-faq/should-i-stop-writing-prompts-manually-in-favor-of-automated-tools.html" class="faq-individual-link">↗ Focus view</a></p>
 <hr>
 <div class="cta" style="text-align: center;">
-<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://bit.ly/evals-ai" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://bit.ly/evals-ai" target="_blank">25% discount code</a> for readers. 👈</p>
+<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">25% discount code</a> for readers. 👈</p>
 </div>
 <hr>
 </section>
@@ -2577,7 +2604,16 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </ul>
 <p>Off-the-shelf tools may be justified when you need to coordinate dozens of distributed annotators with enterprise access controls. Even then, many teams find the configuration overhead and limitations aren’t worth it.</p>
 <p><a href="https://youtu.be/fA4pe9bE0LY" target="_blank">Isaac’s Anki flashcard annotation app</a> shows the power of custom tools—handling 400+ results per query with keyboard navigation and domain-specific evaluation criteria that would be nearly impossible to configure in a generic tool.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/fA4pe9bE0LY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="faq-lite-video" data-video-id="fA4pe9bE0LY" data-video-title="Building Eval Tools with FastHTML">
+  <div class="faq-lite-video__frame">
+    <button class="faq-lite-video__button" type="button" aria-label="Play Building Eval Tools with FastHTML">
+      <img class="faq-lite-video__poster" src="https://i.ytimg.com/vi/fA4pe9bE0LY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low">
+      
+    </button>
+  </div>
+  <p class="faq-lite-video__fallback"><a href="https://www.youtube.com/watch?v=fA4pe9bE0LY" target="_blank" rel="noopener">Watch “Building Eval Tools with FastHTML” on YouTube</a></p>
+</div>
+
 <p><a href="../../../blog/posts/evals-faq/should-i-build-a-custom-annotation-tool-or-use-something-off-the-shelf.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 <section id="q-what-makes-a-good-custom-interface-for-reviewing-llm-outputs" class="level2">
@@ -2588,7 +2624,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>Present the trace in a way that’s intuitive for the domain. If you’re evaluating generated emails, render them to look like emails. If the output is code, use syntax highlighting. Allow the reviewer to see the full trace (user input, tool calls, and LLM reasoning), but keep less important details in collapsed sections that can be expanded. Here is an example of a custom annotation tool for reviewing real estate assistant emails:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/images/emailinterface1.png" class="img-fluid figure-img" style="width:75.0%" target="_blank"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/emailinterface1.webp" class="faq-media-width-75 img-fluid figure-img" target="_blank" loading="lazy" decoding="async" width="1984" height="1736"></p>
 <figcaption>A custom interface for reviewing emails for a real estate assistant.</figcaption>
 </figure>
 </div>
@@ -2598,7 +2634,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>Keep reviewers in a state of flow by minimizing friction and motivating completion. Include progress indicators (e.g., “Trace 45 of 100”) to keep the review session bounded and encourage completion. Enable hotkeys for navigating between traces (e.g., N for next), applying labels, and saving notes quickly. Below is an illustration of these features:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/images/hotkey.png" class="img-fluid figure-img" style="width:75.0%" target="_blank"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/hotkey.webp" class="faq-media-width-75 img-fluid figure-img" target="_blank" loading="lazy" decoding="async" width="1362" height="1098"></p>
 <figcaption>An annotation interface with a progress bar and hotkey guide</figcaption>
 </figure>
 </div>
@@ -2608,7 +2644,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>Allow reviewers to filter traces by metadata or search by keywords. Semantic search helps find conceptually similar problems. Clustering similar traces (like grouping by user persona) lets reviewers spot recurring issues and explore hypotheses. Below is an illustration of these features:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/images/group1.png" class="img-fluid figure-img" style="width:75.0%" target="_blank"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/group1.webp" class="faq-media-width-75 img-fluid figure-img" target="_blank" loading="lazy" decoding="async" width="1564" height="1730"></p>
 <figcaption>Cluster view showing groups of emails, such as property-focused or client-focused examples. Reviewers can drill into a group to see individual traces.</figcaption>
 </figure>
 </div>
@@ -2618,7 +2654,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>Surface traces flagged by guardrails, CI failures, or automated evaluators for review. Provide buttons to take actions like adding to datasets, filing bugs, or re-running pipeline tests. Display relevant context (pipeline version, eval scores, reviewer info) directly in the interface to minimize context switching. Below is an illustration of these ideas:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/images/ci.png" class="img-fluid figure-img" style="width:88.0%" target="_blank"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/ci.webp" class="faq-media-width-88 img-fluid figure-img" target="_blank" loading="lazy" decoding="async" width="2070" height="1152"></p>
 <figcaption>A trace view that allows you to quickly see auto-evaluator verdict, add traces to dataset or open issues. Also shows metadata like pipeline version, reviewer info, and more.</figcaption>
 </figure>
 </div>
@@ -2668,7 +2704,16 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>Alternatively, most vendors in the LLM tooling space, such as observability platforms like Arize, Braintrust, and LangSmith, offer dedicated prompt management tools. These are accessible for rapid iteration but risk creating additional layers of indirection.</p>
 <p><strong>Why prompt management tools often fall short:</strong> AI products typically involve many moving parts: tools, RAG, agents, etc. Prompt management tools are inherently limiting because they can’t easily execute your application’s code. Even when they can, there’s often significant indirection involved, making it difficult to test prompts with your system’s capabilities.</p>
 <p><strong>When possible, a notebook provides a great solution for prompt experimentation</strong> If you have Python entry points into your codebase or your codebase is written in Python, Jupyter notebooks are particularly powerful for this purpose. You can experiment with prompts and iterate on your actual AI agents with their full tool and RAG capabilities. This makes it much easier to understand how your system works in practice. Additionally, you can create widgets and small user interfaces within notebooks, giving you the best of both worlds for experimentation and iteration. To see what this looks like in practice, Teresa Torres gives a fantastic, hands-on walkthrough of how she, as a PM, used notebooks for the entire eval and experimentation lifecycle:</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/N-qAOv_PNPc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="faq-lite-video" data-video-id="N-qAOv_PNPc" data-video-title="From Noob to Automated Evals In A Week (as a PM) w/Teresa Torres">
+  <div class="faq-lite-video__frame">
+    <button class="faq-lite-video__button" type="button" aria-label="Play From Noob to Automated Evals In A Week (as a PM) w/Teresa Torres">
+      <img class="faq-lite-video__poster" src="https://i.ytimg.com/vi/N-qAOv_PNPc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low">
+      
+    </button>
+  </div>
+  <p class="faq-lite-video__fallback"><a href="https://www.youtube.com/watch?v=N-qAOv_PNPc" target="_blank" rel="noopener">Watch “From Noob to Automated Evals In A Week (as a PM) w/Teresa Torres” on YouTube</a></p>
+</div>
+
 <p>If notebooks are not feasible for your code base, an <a href="../../../blog/posts/field-guide/#build-bridges-not-gatekeepers">​integrated prompt environment</a>​ can be effective for experimentation. Either way, I prefer to version and manage prompts in Git.</p>
 <p><a href="../../../blog/posts/evals-faq/how-should-i-version-and-manage-prompts.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
@@ -2680,7 +2725,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><a href="../../../blog/posts/evals-faq/what-should-go-in-the-system-prompt-vs-the-user-prompt.html" class="faq-individual-link">↗ Focus view</a></p>
 <hr>
 <div class="cta" style="text-align: center;">
-<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://bit.ly/evals-ai" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://bit.ly/evals-ai" target="_blank">25% discount code</a> for readers. 👈</p>
+<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">25% discount code</a> for readers. 👈</p>
 </div>
 <hr>
 </section>
@@ -2834,25 +2879,34 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><strong>Use transition failure matrices to understand error patterns.</strong> Create a matrix where rows represent the last successful state and columns represent where the first failure occurred. This is a great way to understand where the most failures occur.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/images/shreya_matrix.png" class="img-fluid figure-img" style="width:75.0%" target="_blank"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/shreya_matrix.webp" class="faq-media-width-75 img-fluid figure-img" target="_blank" loading="lazy" decoding="async" width="1140" height="742"></p>
 <figcaption>Transition failure matrix showing hotspots in text-to-SQL agent workflow</figcaption>
 </figure>
 </div>
 <p>Transition matrices transform overwhelming agent complexity into actionable insights. Instead of drowning in individual trace reviews, you can immediately see that GenSQL → ExecSQL transitions cause 12 failures while DecideTool → PlanCal causes only 2. This data-driven approach guides where to invest debugging effort. Here is another <a href="https://www.figma.com/deck/nwRlh5renu4s4olaCsf9lG/Failure-is-a-Funnel?node-id=2009-927&amp;t=GJlTtxQ8bLJaQ92A-1" target="_blank">example</a> from Bryan Bischof, that is also a text-to-SQL agent:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/images/bischof_matrix.png" class="img-fluid figure-img" style="width:75.0%" target="_blank"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/bischof_matrix.webp" class="faq-media-width-75 img-fluid figure-img" target="_blank" loading="lazy" decoding="async" width="2154" height="1102"></p>
 <figcaption>Bischof, Bryan “Failure is A Funnel - Data Council, 2025”</figcaption>
 </figure>
 </div>
 <p>In this example, Bryan shows variation in transition matrices across experiments. How you organize your transition matrix depends on the specifics of your application. For example, Bryan’s text-to-SQL agent has an inherent sequential workflow which he exploits for further analytical insight. You can watch his <a href="https://youtu.be/R_HnI9oTv3c?si=hRRhDiydHU5k6ikc" target="_blank">full talk</a> for more details.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/R_HnI9oTv3c" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="faq-lite-video" data-video-id="R_HnI9oTv3c" data-video-title="Stop Managing AI Projects Like Traditional Software">
+  <div class="faq-lite-video__frame">
+    <button class="faq-lite-video__button" type="button" aria-label="Play Stop Managing AI Projects Like Traditional Software">
+      <img class="faq-lite-video__poster" src="https://i.ytimg.com/vi/R_HnI9oTv3c/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low">
+      
+    </button>
+  </div>
+  <p class="faq-lite-video__fallback"><a href="https://www.youtube.com/watch?v=R_HnI9oTv3c" target="_blank" rel="noopener">Watch “Stop Managing AI Projects Like Traditional Software” on YouTube</a></p>
+</div>
+
 <p><strong>Creating Test Cases for Agent Failures</strong></p>
 <p>Creating test cases for agent failures follows the same principles as our previous FAQ on debugging multi-turn conversation traces (i.e.&nbsp;try to reproduce the error in the simplest way possible, only use multi-turn tests when the failure actually requires conversation context, etc.).</p>
 <p><a href="../../../blog/posts/evals-faq/how-do-i-evaluate-agentic-workflows.html" class="faq-individual-link">↗ Focus view</a></p>
 <hr>
 <div class="cta" style="text-align: center;">
-<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://bit.ly/evals-ai" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://bit.ly/evals-ai" target="_blank">25% discount code</a> for readers. 👈</p>
+<p><strong>👉 <em>Want to learn more about AI Evals? Check out our <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">AI Evals course</a></em></strong>. It’s a live cohort with hands on exercises and office hours. Here is a <a href="https://maven.com/parlance-labs/evals?promoCode=evals-info-book" target="_blank">25% discount code</a> for readers. 👈</p>
 </div>
 <hr>
 
@@ -2873,7 +2927,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
   <category>evals</category>
   <guid>https://hamel.dev/blog/posts/evals-faq/</guid>
   <pubDate>Wed, 28 May 2025 07:00:00 GMT</pubDate>
-  <media:content url="https://hamel.dev/blog/posts/evals-faq/images/eval_faq.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://hamel.dev/blog/posts/evals-faq/images/eval_faq-social.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>A Field Guide to Rapidly Improving AI Products</title>
