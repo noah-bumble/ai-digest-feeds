@@ -2112,64 +2112,56 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <h1>Getting Started &amp; Fundamentals</h1>
 <section id="q-what-are-llm-evals" class="level2">
 <h2 class="anchored" data-anchor-id="q-what-are-llm-evals">Q: What are AI Evals?</h2>
-<p>If you are completely new to product-specific AI evals (not foundation model benchmarks), see these posts: <a href="../../../blog/posts/evals/index.html" target="_blank">part 1</a>, <a href="../../../blog/posts/llm-judge/index.html" target="_blank">part 2</a> and <a href="../../../blog/posts/field-guide/index.html" target="_blank">part 3</a>. Otherwise, keep reading.</p>
-<div class="grid">
-<div class="g-col-4">
-<p><a href="https://hamel.dev/evals" target="_blank"><img src="https://hamel.dev/blog/posts/evals/images/diagram-cover.webp" class="img-fluid faq-media-ratio-2081-1109" alt="Diagram of the fast feedback cycle for improving AI products" decoding="async" width="2081" height="1109"></a></p>
-<p><a href="https://hamel.dev/evals" target="_blank"><strong>Your AI Product Needs Eval (Evaluation Systems)</strong></a></p>
-<p><strong>Contents:</strong></p>
-<ol type="1">
-<li>Motivation</li>
-<li>Iterating Quickly == Success<br>
-</li>
-<li>Case Study: Lucy, A Real Estate AI Assistant</li>
-<li>The Types Of Evaluation
-<ol type="a">
-<li>Level 1: Unit Tests</li>
-<li>Level 2: Human &amp; Model Eval</li>
-<li>Level 3: A/B Testing</li>
-<li>Evaluating RAG</li>
-</ol></li>
-<li>Eval Systems Unlock Superpowers For Free
-<ol type="a">
-<li>Fine-Tuning</li>
-<li>Data Synthesis &amp; Curation</li>
-<li>Debugging</li>
-</ol></li>
-</ol>
-</div>
-<div class="g-col-4">
-<p><a href="https://hamel.dev/llm-judge/" target="_blank"><img src="https://hamel.dev/blog/posts/llm-judge/images/cover_img.webp" class="img-fluid faq-media-ratio-16-9" alt="Cover for Creating an LLM-as-a-Judge That Drives Business Results" loading="lazy" decoding="async" width="1600" height="900"></a></p>
-<p><a href="https://hamel.dev/llm-judge/" target="_blank"><strong>Creating a LLM-as-a-Judge That Drives Business Results</strong></a></p>
-<p><strong>Contents:</strong></p>
-<ol type="1">
-<li>The Problem: AI Teams Are Drowning in Data</li>
-<li>Step 1: Find The Principal Domain Expert</li>
-<li>Step 2: Create a Dataset</li>
-<li>Step 3: Direct The Domain Expert to Make Pass/Fail Judgments with Critiques</li>
-<li>Step 4: Fix Errors</li>
-<li>Step 5: Build Your LLM as A Judge, Iteratively</li>
-<li>Step 6: Perform Error Analysis</li>
-<li>Step 7: Create More Specialized LLM Judges (if needed)</li>
-<li>Recap of Critique Shadowing</li>
-<li>Resources</li>
-</ol>
-</div>
-<div class="g-col-4">
-<p><a href="https://hamel.dev/field-guide" target="_blank"><img src="https://hamel.dev/blog/posts/field-guide/images/field_guide_2.webp" class="img-fluid faq-media-ratio-16-9" alt="Cover for A Field Guide to Rapidly Improving AI Products" loading="lazy" decoding="async" width="1600" height="900"></a></p>
-<p><a href="https://hamel.dev/field-guide" target="_blank"><strong>A Field Guide to Rapidly Improving AI Products</strong></a></p>
-<p><strong>Contents:</strong></p>
-<ol type="1">
-<li>How error analysis consistently reveals the highest-ROI improvements</li>
-<li>Why a simple data viewer is your most important AI investment</li>
-<li>How to empower domain experts (not just engineers) to improve your AI</li>
-<li>Why synthetic data is more effective than you think</li>
-<li>How to maintain trust in your evaluation system</li>
-<li>Why your AI roadmap should count experiments, not features</li>
-</ol>
-</div>
-</div>
+<p>AI evals are tests that tell you whether an AI system is doing what you want. They give your team feedback when the product drifts from user needs or business goals. The failures they catch also become data you can use to improve the system.</p>
+<p>More formally, evaluation is the systematic measurement of quality. Each eval checks one behavior on relevant examples and returns a score or structured review. Most AI products need several evals because they can fail in different ways.</p>
+<p>When you hear the word “evals,” it usually refers to one of two things: model benchmarks or product evals.</p>
+<section id="model-benchmarks" class="level3">
+<h3 class="anchored" data-anchor-id="model-benchmarks">Model benchmarks</h3>
+<p>Model benchmarks compare general-purpose models on shared tasks. Model providers publish these benchmark results when they release new models. Common examples include <strong>GPQA Diamond</strong> for graduate-level science reasoning, <strong>Terminal-Bench</strong> for agents doing complex work in command-line environments, and <strong>MMLU</strong> for knowledge and reasoning across a wide range of subjects. These scores can help you choose a promising model as a starting point. To assess quality on your own tasks you need product evals, which we discuss next.</p>
+</section>
+<section id="product-evals" class="level3">
+<h3 class="anchored" data-anchor-id="product-evals">Product evals</h3>
+<p>Product evals measure whether your specific AI product does what you want it to do. They turn your judgment about what a good product experience looks like into metrics you can track. Product evals encompass all components of your product, including the model, prompts, retrieval, tools, and application code. This flavor of evals are focused on capturing failures that matter to users and the business.</p>
+<p>Consider an order-cancellation agent. Its product evals might check whether it selected the correct order and waited for the cancellation tool to succeed before telling the user the order was canceled. A high score on GPQA Diamond or Terminal-Bench gives you little information on this, because those benchmarks don’t have access to your systems.</p>
+<p>There are several mechanisms you can use to implement product evals, including code assertions, human review, LLM judges, and online experiments. The right method depends on the failure being measured, and is discussed in greater detail <a href="../../../notes/llm/evals/index.html">in this series</a>.</p>
+<p>In the rest of the <a href="../../../blog/posts/evals-faq/index.html">AI Evals FAQ</a>, we focus on product evals. It starts with analyzing traces to discover real failure modes. We then turn important failures into targeted evals and use the results to guide changes. Finally, <a href="../../../blog/posts/evals/index.html#step-3-run-track-your-tests-regularly">rerunning the evals</a> tells us whether the system improved.</p>
+</section>
+<section id="where-to-start-with-evals" class="level3">
+<h3 class="anchored" data-anchor-id="where-to-start-with-evals">Where to start with evals</h3>
+<p>If you are completely new to product-specific evals, see these posts:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 35%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: left;">Guide</th>
+<th style="text-align: left;">What it covers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><a href="../../../blog/posts/evals/index.html" target="_blank"><img src="https://hamel.dev/blog/posts/evals/images/diagram-cover.webp" class="img-fluid faq-media-ratio-2081-1109" style="width: 100px; height: auto;" loading="eager" decoding="async" width="2081" height="1109" alt="Your AI Product Needs Evals cover"></a></td>
+<td style="text-align: left;"><a href="../../../blog/posts/evals/index.html" target="_blank">Part 1</a>: <strong>Your AI Product Needs Evals</strong></td>
+<td style="text-align: left;">Build a domain-specific evaluation system with scoped tests, trace review, human evaluation, and experiments.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="../../../blog/posts/llm-judge/index.html" target="_blank"><img src="https://hamel.dev/blog/posts/llm-judge/images/cover_img.webp" class="img-fluid faq-media-ratio-16-9" style="width: 100px; height: auto;" loading="eager" decoding="async" width="1600" height="900" alt="Using LLM-as-a-Judge For Evaluation cover"></a></td>
+<td style="text-align: left;"><a href="../../../blog/posts/llm-judge/index.html" target="_blank">Part 2</a>: <strong>Using LLM-as-a-Judge For Evaluation: A Complete Guide</strong></td>
+<td style="text-align: left;">Capture a domain expert’s judgment, automate it with an LLM judge, and validate the judge against human labels.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="../../../blog/posts/field-guide/index.html" target="_blank"><img src="https://hamel.dev/blog/posts/field-guide/images/field_guide_2.webp" class="img-fluid faq-media-ratio-16-9" style="width: 100px; height: auto;" loading="eager" decoding="async" width="1600" height="900" alt="A Field Guide to Rapidly Improving AI Products cover"></a></td>
+<td style="text-align: left;"><a href="../../../blog/posts/field-guide/index.html" target="_blank">Part 3</a>: <strong>A Field Guide to Rapidly Improving AI Products</strong></td>
+<td style="text-align: left;">Use error analysis, realistic data, and trustworthy evals to run a sustained product-improvement loop.</td>
+</tr>
+</tbody>
+</table>
 <p><a href="../../../blog/posts/evals-faq/what-are-llm-evals.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 </section>
 <section id="q-what-is-a-trace" class="level2">
 <h2 class="anchored" data-anchor-id="q-what-is-a-trace">Q: What is a trace?</h2>
@@ -2285,26 +2277,35 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <section id="q-what-is-the-best-approach-for-generating-synthetic-data" class="level2">
 <h2 class="anchored" data-anchor-id="q-what-is-the-best-approach-for-generating-synthetic-data">Q: What is the best approach for generating synthetic data?</h2>
 <p>A common mistake is prompting an LLM to <code>"give me test queries"</code> without structure, resulting in generic, repetitive outputs. A structured approach using dimensions produces far better synthetic data for testing LLM applications.</p>
+<section id="when-should-i-use-synthetic-data-for-evals" class="level3">
+<h3 class="anchored" data-anchor-id="when-should-i-use-synthetic-data-for-evals">When should I use synthetic data for evals?</h3>
+<p>Use synthetic data to start error analysis before you have enough production traffic, or to test a known failure that appears rarely in real data. Define the variation you need, generate examples, run them through the full system, and review the resulting traces.</p>
+<p>Synthetic data cannot tell you how common a failure is in production. It can also miss details that matter in specialized domains. Compare synthetic examples with real data as soon as real data becomes available. See <a href="../../../blog/posts/evals-faq/are-there-scenarios-where-synthetic-data-may-not-be-reliable.html" target="_blank">when synthetic data may be unreliable</a> for cases that require extra review.</p>
+</section>
+<section id="define-important-dimensions-first" class="level3">
+<h3 class="anchored" data-anchor-id="define-important-dimensions-first">Define important dimensions first</h3>
 <p><strong>Start by defining dimensions</strong>: categories that describe different aspects of user queries. Each dimension captures one type of variation in user behavior. For example:</p>
 <ul>
 <li>For a recipe app, dimensions might include Dietary Restriction (<em>vegan</em>, <em>gluten-free</em>, <em>none</em>), Cuisine Type (<em>Italian</em>, <em>Asian</em>, <em>comfort food</em>), and Query Complexity (<em>simple request</em>, <em>multi-step</em>, <em>edge case</em>).</li>
 <li>For a customer support bot, dimensions could be Issue Type (<em>billing</em>, <em>technical</em>, <em>general</em>), Customer Mood (<em>frustrated</em>, <em>neutral</em>, <em>happy</em>), and Prior Context (<em>new issue</em>, <em>follow-up</em>, <em>resolved</em>).</li>
 </ul>
 <p><strong>Start with failure hypotheses</strong>. If you lack intuition about failure modes, use your application extensively or recruit friends to use it. Then choose dimensions targeting those likely failures.</p>
-<p><strong>Create tuples manually first</strong>: Write 20 tuples by hand—specific combinations selecting one value from each dimension. Example: (<em>Vegan</em>, <em>Italian</em>, <em>Multi-step</em>). This manual work helps you understand your problem space.</p>
+<p><strong>Create tuples manually first</strong>: Write 20 tuples by hand. Each tuple selects one value from each dimension. Example: (<em>Vegan</em>, <em>Italian</em>, <em>Multi-step</em>). This manual work helps you understand your problem space.</p>
 <p><strong>Scale with two-step generation</strong>:</p>
 <ol type="1">
 <li><strong>Generate structured tuples</strong>: Have the LLM create more combinations like (<em>Gluten-free</em>, <em>Asian</em>, <em>Simple</em>)</li>
-<li><strong>Convert tuples to queries</strong>: In a separate prompt, transform each tuple into natural language</li>
+<li><strong>Convert tuples to queries</strong>: In a separate prompt, turn each tuple into natural language</li>
 </ol>
 <p>This separation avoids repetitive phrasing. The (<em>Vegan</em>, <em>Italian</em>, <em>Multi-step</em>) tuple becomes: <code>"I need a dairy-free lasagna recipe that I can prep the day before."</code></p>
+</section>
 <section id="generation-approaches" class="level3">
 <h3 class="anchored" data-anchor-id="generation-approaches">Generation approaches</h3>
 <p>You can generate tuples two ways:</p>
 <p><strong>Cross product then filter</strong>: Generate all dimension combinations, then filter with an LLM. Guarantees coverage including edge cases. Use when most combinations are valid.</p>
-<p><strong>Direct LLM generation</strong>: Ask the LLM to generate tuples directly. More realistic but tends toward generic outputs and misses rare scenarios. Use when many dimension combinations are invalid.</p>
+<p><strong>Direct LLM generation</strong>: Ask the LLM to generate tuples directly. This produces more realistic combinations, but it tends toward generic outputs and misses rare scenarios. Use it when many dimension combinations are invalid.</p>
 <p><strong>Fix obvious problems first</strong>: Don’t generate synthetic data for issues you can fix immediately. If your prompt doesn’t mention dietary restrictions, fix the prompt rather than generating specialized test queries.</p>
 <p>After iterating on your tuples and prompts, <strong>run these synthetic queries through your actual system to capture full traces</strong>. Sample 100 traces for error analysis. This number provides enough traces to manually review and identify failure patterns without being overwhelming.</p>
+<p>Here is a <a href="../../../notes/llm/evals/flashcards/9-synthetic-data.png" target="_blank">visual</a> that helps visualize the process.</p>
 <p><a href="../../../blog/posts/evals-faq/what-is-the-best-approach-for-generating-synthetic-data.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 </section>
@@ -2387,7 +2388,11 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </table>
 <p>The table above orders sampling methods from the most exploratory to the most targeted. When you’re starting out, you should optimize for exploration of the data. As you learn more, you can start to lean more heavily on signals to select traces. The proper mix of methods depends on your goals and requires experimentation.</p>
 <p>Keep some random traces in every batch. This gives you a chance to find failure modes that your current signals do not describe.</p>
+<section id="how-do-i-measure-rare-failure-modes" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-i-measure-rare-failure-modes">How do I measure rare failure modes?</h3>
+<p>Use targeted sampling to find rare failures. Search for signals that correlate with the failure, such as a specific tool sequence, unusually long traces, retries, or a known input pattern. Review the targeted batch to collect examples and improve the failure definition.</p>
 <p><a href="../../../notes/llm/evals/flashcards/8-sample-traces.png">This flashcard</a> from our evals flashcards series visualizes these methods.</p>
+</section>
 <section id="use-labels-to-choose-the-next-traces" class="level3">
 <h3 class="anchored" data-anchor-id="use-labels-to-choose-the-next-traces">Use labels to choose the next traces</h3>
 <p>We can borrow a technique from machine learning called active learning to sample production traces. In active learning, a system asks a person to label the data points that would be most useful for its next update.</p>
@@ -2442,15 +2447,14 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </section>
 <section id="q-should-i-use-ready-to-use-evaluation-metrics" class="level2">
 <h2 class="anchored" data-anchor-id="q-should-i-use-ready-to-use-evaluation-metrics">Q: Should I use "ready-to-use" evaluation metrics?</h2>
-<p><strong>No.&nbsp;Generic evaluations waste time and create false confidence.</strong> (Unless you’re using them for exploration).</p>
-<p>One instructor noted:</p>
-<blockquote class="blockquote">
-<p>“All you get from using these prefab evals is you don’t know what they actually do and in the best case they waste your time and in the worst case they create an illusion of confidence that is unjustified.”<sup>1</sup></p>
-</blockquote>
+<p><strong>No.&nbsp;Generic evaluations waste time and create false confidence when you use them as quality measures.</strong> However, they can still help you find traces to inspect.</p>
+<section id="why-are-generic-eval-metrics-misleading" class="level3">
+<h3 class="anchored" data-anchor-id="why-are-generic-eval-metrics-misleading">Why are generic eval metrics misleading?</h3>
 <p>Generic evaluation metrics are everywhere. Eval libraries contain scores like helpfulness, coherence, quality, etc. promising easy evaluation. These metrics measure abstract qualities that may not matter for your use case. Good scores on them don’t mean your system works.</p>
-<p>Instead, conduct error analysis to understand failures. Define binary failure modes based on real problems. Create custom evaluators for those failures and validate them against human judgment. Essentially, the entire evals process.</p>
-<p>Experienced practitioners may still use these metrics, just not how you’d expect. As Picasso said: “Learn the rules like a pro, so you can break them like an artist.” Once you understand why generic metrics fail as evaluations, you can repurpose them as exploration tools to find interesting traces (explained in the next FAQ).</p>
+<p>Instead, conduct error analysis to understand failures. Define binary failure modes based on real problems. Create custom evaluators for those failures and validate them against human judgment.</p>
+<p>Experienced practitioners may use generic metrics as exploration signals. Once you understand why they fail as quality measures, you can use them to find interesting traces for human review.</p>
 <p><a href="../../../blog/posts/evals-faq/should-i-use-ready-to-use-evaluation-metrics.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 </section>
 <section id="q-are-similarity-metrics-bertscore-rouge-etc-useful-for-evaluating-llm-outputs" class="level2">
 <h2 class="anchored" data-anchor-id="q-are-similarity-metrics-bertscore-rouge-etc-useful-for-evaluating-llm-outputs">Q: Are similarity metrics (BERTScore, ROUGE, etc.) useful for evaluating LLM outputs?</h2>
@@ -2492,11 +2496,16 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <h1>Human Annotation &amp; Process</h1>
 <section id="q-how-many-people-should-annotate-my-llm-outputs" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-many-people-should-annotate-my-llm-outputs">Q: How many people should annotate my LLM outputs?</h2>
-<p>For most small to medium-sized companies, appointing a single domain expert as a “benevolent dictator” is the most effective approach. This person—whether it’s a psychologist for a mental health chatbot, a lawyer for legal document analysis, or a customer service director for support automation—becomes the definitive voice on quality standards.</p>
+<p>For most small to medium-sized companies, appointing a single domain expert as a “benevolent dictator” is the most effective approach. This person becomes the definitive voice on quality standards. The expert might be a psychologist for a mental health chatbot or a lawyer for legal document analysis.</p>
 <p>A single expert eliminates annotation conflicts and prevents the paralysis that comes from “too many cooks in the kitchen”. The benevolent dictator can incorporate input and feedback from others, but they drive the process. If you feel like you need five subject matter experts to judge a single interaction, it’s a sign your product scope might be too broad.</p>
 <p>However, larger organizations or those operating across multiple domains (like a multinational company with different cultural contexts) may need multiple annotators. When you do use multiple people, you’ll need to measure their agreement using metrics like Cohen’s Kappa, which accounts for agreement beyond chance. However, use your judgment. Even in larger companies, a single expert is often enough.</p>
-<p>Start with a benevolent dictator whenever feasible. Only add complexity when your domain demands it.</p>
+<section id="how-should-annotators-resolve-disagreements" class="level3">
+<h3 class="anchored" data-anchor-id="how-should-annotators-resolve-disagreements">How should annotators resolve disagreements?</h3>
+<p>Have annotators label the same examples independently before they discuss them. Measure agreement and collect the cases where their labels differ. During an alignment session, ask which part of the rubric caused the disagreement and what rule would make the next decision clear.</p>
+<p>Update the rubric with a definition, rule, or example that covers the disputed case. Then relabel affected examples. If the annotators still disagree, assign a domain expert to make the final decision and record the reason.</p>
+<p>Start with a benevolent dictator whenever feasible. Only add complexity when absolutely necessary.</p>
 <p><a href="../../../blog/posts/evals-faq/how-many-people-should-annotate-my-llm-outputs.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 </section>
 <section id="q-should-product-managers-and-engineers-collaborate-on-error-analysis-how" class="level2">
 <h2 class="anchored" data-anchor-id="q-should-product-managers-and-engineers-collaborate-on-error-analysis-how">Q: Should product managers and engineers collaborate on error analysis? How?</h2>
@@ -2580,8 +2589,8 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </section>
 <section id="q-should-i-stop-writing-prompts-manually-in-favor-of-automated-tools" class="level2">
 <h2 class="anchored" data-anchor-id="q-should-i-stop-writing-prompts-manually-in-favor-of-automated-tools">Q: Should I stop writing prompts manually in favor of automated tools?</h2>
-<p>Automating prompt engineering can be tempting, but you should be skeptical of tools that promise to optimize prompts for you, especially in early stages of development. When you write a prompt, you are forced to clarify your assumptions and externalize your requirements. Good writing is good thinking <sup>2</sup>. If you delegate this task to an automated tool too early, you risk never fully understanding your own requirements or the model’s failure modes.</p>
-<p>This is because automated prompt optimization typically hill-climb a predefined evaluation metric. It can refine a prompt to perform better on known failures, but it cannot discover <em>new</em> ones. Discovering new errors requires error analysis. Furthermore, research shows that evaluation criteria tends to shift after reviewing a model’s outputs, a phenomenon known as “criteria drift” <sup>3</sup>. This means that evaluation is an iterative, human-driven sensemaking process, not a static target that can be set once and handed off to an optimizer.</p>
+<p>Automating prompt engineering can be tempting, but you should be skeptical of tools that promise to optimize prompts for you, especially in early stages of development. When you write a prompt, you are forced to clarify your assumptions and externalize your requirements. Good writing is good thinking <sup>1</sup>. If you delegate this task to an automated tool too early, you risk never fully understanding your own requirements or the model’s failure modes.</p>
+<p>This is because automated prompt optimization typically hill-climb a predefined evaluation metric. It can refine a prompt to perform better on known failures, but it cannot discover <em>new</em> ones. Discovering new errors requires error analysis. Furthermore, research shows that evaluation criteria tends to shift after reviewing a model’s outputs, a phenomenon known as “criteria drift” <sup>2</sup>. This means that evaluation is an iterative, human-driven sensemaking process, not a static target that can be set once and handed off to an optimizer.</p>
 <p>A pragmatic approach is to use LLMs to improve your prompt based on open coding (open-ended notes about traces). This way, you maintain a human in the loop who is looking at the data and externalizing their requirements. Once you have a high-quality set of evals, prompt optimization can be effective for that last mile of performance.</p>
 <p><a href="../../../blog/posts/evals-faq/should-i-stop-writing-prompts-manually-in-favor-of-automated-tools.html" class="faq-individual-link">↗ Focus view</a></p>
 <hr>
@@ -2734,11 +2743,21 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <h1>Production &amp; Deployment</h1>
 <section id="q-how-are-evaluations-used-differently-in-cicd-vs-monitoring-production" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-are-evaluations-used-differently-in-cicd-vs-monitoring-production">Q: How are evaluations used differently in CI/CD vs.&nbsp;monitoring production?</h2>
-<p>The most important difference between CI vs.&nbsp;production evaluation is the data used for testing.</p>
+<p>CI evals protect against known regressions before deployment. Online monitoring find failures in production traffic and estimate how often they occur.</p>
+<section id="evals-in-ci" class="level3">
+<h3 class="anchored" data-anchor-id="evals-in-ci">Evals in CI</h3>
 <p>Test datasets for CI are small (in many cases 100+ examples) and purpose-built. Examples cover core features, regression tests for past bugs, and known edge cases. Since CI tests are run frequently, the cost of each test has to be carefully considered (that’s why you carefully curate the dataset). Favor assertions or other deterministic checks over LLM-as-judge evaluators.</p>
+</section>
+<section id="onnline-monitoring-for-production" class="level3">
+<h3 class="anchored" data-anchor-id="onnline-monitoring-for-production">Onnline monitoring for production</h3>
 <p>For evaluating production traffic, you can sample live traces and run evaluators against them asynchronously. Since you usually lack reference outputs on production data, you might rely more on on more expensive reference-free evaluators like LLM-as-judge. Additionally, track confidence intervals for production metrics. If the lower bound crosses your threshold, investigate further.</p>
+</section>
+<section id="connect-the-two-systems" class="level3">
+<h3 class="anchored" data-anchor-id="connect-the-two-systems">Connect the two systems</h3>
 <p>These two systems are complementary: when production monitoring reveals new failure patterns through error analysis and evals, add representative examples to your CI dataset. This mitigates regressions on new issues.</p>
+<p><a href="../../../notes/llm/evals/flashcards/12-deploy-evals.png">Here is a visual</a> that helps contrast the approaches.</p>
 <p><a href="../../../blog/posts/evals-faq/how-are-evaluations-used-differently-in-cicd-vs-monitoring-production.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 </section>
 <section id="q-whats-the-difference-between-guardrails-evaluators" class="level2">
 <h2 class="anchored" data-anchor-id="q-whats-the-difference-between-guardrails-evaluators">Q: What’s the difference between guardrails &amp; evaluators?</h2>
@@ -2796,14 +2815,20 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <section id="q-how-should-i-approach-evaluating-my-rag-system" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-should-i-approach-evaluating-my-rag-system">Q: How should I approach evaluating my RAG system?</h2>
 <p>RAG systems have two distinct components that require different evaluation approaches: retrieval and generation.</p>
+<section id="start-with-retrieval-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="start-with-retrieval-evaluation">Start with retrieval evaluation</h3>
 <p>The retrieval component is a search problem. Evaluate it using traditional information retrieval (IR) metrics. Common examples include Recall@k (of all relevant documents, how many did you retrieve in the top k?), Precision@k (of the k documents retrieved, how many were relevant?), or MRR (how high up was the first relevant document?). The specific metrics you choose depend on your use case. These metrics are pure search metrics that measure whether you’re finding the right documents (more on this below).</p>
 <p>To evaluate retrieval, create a dataset of queries paired with their relevant documents. Generate this synthetically by taking documents from your corpus, extracting key facts, then generating questions those facts would answer. This reverse process gives you query-document pairs for measuring retrieval performance without manual annotation.</p>
-<p>For the generation component—how well the LLM uses retrieved context, whether it hallucinates, whether it answers the question—use the same evaluation procedures covered throughout this course: error analysis to identify failure modes, collecting human labels, building LLM-as-judge evaluators, and validating those judges against human annotations.</p>
-<p>Jason Liu’s <a href="https://jxnl.co/writing/2025/05/19/there-are-only-6-rag-evals/" target="_blank">“There Are Only 6 RAG Evals”</a> provides a framework that maps well to this separation. His Tier 1 covers traditional IR metrics for retrieval. Tiers 2 and 3 evaluate relationships between Question, Context, and Answer—like whether the context is relevant (C|Q), whether the answer is faithful to context (A|C), and whether the answer addresses the question (A|Q).</p>
+</section>
+<section id="next-evaluate-generation" class="level3">
+<h3 class="anchored" data-anchor-id="next-evaluate-generation">Next, evaluate generation</h3>
+<p>For the generation component, check how well the LLM uses the retrieved context and whether it answers the question. Use <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank">error analysis</a> to identify failure modes, collect human labels, build targeted LLM judges, and validate those judges against human annotations.</p>
+<p>Jason Liu’s <a href="https://jxnl.co/writing/2025/05/19/there-are-only-6-rag-evals/" target="_blank">“There Are Only 6 RAG Evals”</a> provides a framework that maps well to this separation. His Tier 1 covers traditional IR metrics for retrieval. Tiers 2 and 3 evaluate relationships between Question, Context, and Answer. These include whether the context is relevant (C|Q), whether the answer is faithful to context (A|C), and whether the answer addresses the question (A|Q).</p>
 <p>In addition to Jason’s six evals, error analysis on your specific data may reveal domain-specific failure modes that warrant their own metrics. For example, a medical RAG system might consistently fail to distinguish between drug dosages for adults versus children, or a legal RAG might confuse jurisdictional boundaries. These patterns emerge only through systematic review of actual failures. Once identified, you can create targeted evaluators for these specific issues beyond the general framework.</p>
 <p>Finally, when implementing Jason’s Tier 2 and 3 metrics, don’t just use prompts off the shelf. The standard LLM-as-judge process requires several steps: error analysis, prompt iteration, creating labeled examples, and measuring your judge’s accuracy against human labels. Once you know your judge’s True Positive and True Negative rates, you can correct its estimates to determine the actual failure rate in your system. Skip this validation and your judges may not reflect your actual quality criteria.</p>
 <p>In summary, debug retrieval first using IR metrics, then tackle generation quality using properly validated LLM judges.</p>
 <p><a href="../../../blog/posts/evals-faq/how-should-i-approach-evaluating-my-rag-system.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 </section>
 <section id="q-how-do-i-choose-the-right-chunk-size-for-my-document-processing-tasks" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-do-i-choose-the-right-chunk-size-for-my-document-processing-tasks">Q: How do I choose the right chunk size for my document processing tasks?</h2>
@@ -2842,7 +2867,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </section>
 <section id="annotation-strategy" class="level3">
 <h3 class="anchored" data-anchor-id="annotation-strategy">Annotation strategy</h3>
-<p>Annotate only the first failure in the trace initially—don’t worry about downstream failures since these often cascade from the first issue. Fixing upstream failures often resolves dependent downstream failures automatically. As you gain experience, you can annotate independent failure modes within the same trace to speed up overall error analysis.</p>
+<p>Annotate only the first failure in the trace at first. Downstream failures often cascade from the first issue, so fixing the upstream failure can resolve the dependent ones. As you gain experience, you can annotate independent failure modes within the same trace to speed up error analysis.</p>
 </section>
 <section id="simplify-when-possible" class="level3">
 <h3 class="anchored" data-anchor-id="simplify-when-possible">Simplify when possible</h3>
@@ -2852,6 +2877,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <h3 class="anchored" data-anchor-id="test-case-generation">Test case generation</h3>
 <p>You have two main approaches. First, simulate users with another LLM to create realistic multi-turn conversations. Second, use “N-1 testing” where you provide the first N-1 turns of a real conversation and test what happens next. The N-1 approach often works better since it uses actual conversation prefixes rather than fully synthetic interactions, but is less flexible.</p>
 <p>The key is balancing thoroughness with efficiency. Not every multi-turn failure requires multi-turn analysis.</p>
+<p>When the conversation includes tools or several agents, use a transition failure matrix to find hotspots of errors.</p>
 <p><a href="../../../blog/posts/evals-faq/how-do-i-debug-multi-turn-conversation-traces.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 </section>
@@ -2872,9 +2898,21 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <section id="q-how-do-i-evaluate-agentic-workflows" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-do-i-evaluate-agentic-workflows">Q: How do I evaluate agentic workflows?</h2>
 <p>We recommend evaluating agentic workflows in two phases:</p>
-<p><strong>1. End-to-end task success.</strong> Treat the agent as a black box and ask “did we meet the user’s goal?”. Define a precise success rule per task (exact answer, correct side-effect, etc.) and measure with human or <a href="https://hamel.dev/blog/posts/llm-judge/" target="_blank">aligned LLM judges</a>. Take note of the first upstream failure when conducting error analysis.</p>
+<p><strong>1. End-to-end task success.</strong> Treat the agent as a black box and decide whether it met the user’s goal. Define a precise success rule per task and measure it with human review or <a href="https://hamel.dev/blog/posts/llm-judge/" target="_blank">validated LLM judges</a>. Record the first upstream failure during error analysis.</p>
 <p>Once error analysis reveals which workflows fail most often, move to step-level diagnostics to understand why they’re failing.</p>
-<p><strong>2. Step-level diagnostics.</strong> Assuming that you have sufficiently <a href="https://hamel.dev/blog/posts/evals/#logging-traces" target="_blank">instrumented your system</a> with details of tool calls and responses, you can score individual components such as: - <em>Tool choice</em>: was the selected tool appropriate? - <em>Parameter extraction</em>: were inputs complete and well-formed? - <em>Error handling</em>: did the agent recover from empty results or API failures? - <em>Context retention</em>: did it preserve earlier constraints? - <em>Efficiency</em>: how many steps, seconds, and tokens were spent? - <em>Goal checkpoints</em>: for long workflows verify key milestones.</p>
+<p><strong>2. Step-level diagnostics.</strong> After you <a href="https://hamel.dev/blog/posts/evals/#logging-traces" target="_blank">log the system’s traces</a>, you can score individual components such as:</p>
+<ul>
+<li><em>Tool choice</em>: check whether the agent selected the appropriate tool.</li>
+<li><em>Parameter extraction</em>: check whether the inputs were complete and well-formed.</li>
+<li><em>Error handling</em>: check how the agent handled empty results or API failures.</li>
+<li><em>Context retention</em>: check whether the agent preserved earlier constraints.</li>
+<li><em>Efficiency</em>: count the steps, seconds, and tokens spent.</li>
+<li><em>Goal checkpoints</em>: verify key milestones in long workflows.</li>
+</ul>
+<section id="how-do-i-test-tool-calls" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-i-test-tool-calls">How do I test tool calls?</h3>
+<p>Test the tool name, arguments, result, and resulting state as separate checks. Use code assertions when the expected behavior is objective. For example, verify that the agent selected <code>cancel_order</code>, passed the correct order ID, received a successful response, and changed the order status before it told the user that cancellation succeeded.</p>
+<p>Also test authorization and preconditions. A valid tool call can still be wrong if the user did not approve the action or the system skipped a required check.</p>
 <p>Example: “Find Berkeley homes under $1M and schedule viewings” breaks into: parameters extracted correctly, relevant listings retrieved, availability checked, and calendar invites sent. Each checkpoint can pass or fail independently, making debugging tractable.</p>
 <p><strong>Use transition failure matrices to understand error patterns.</strong> Create a matrix where rows represent the last successful state and columns represent where the first failure occurred. This is a great way to understand where the most failures occur.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -2883,7 +2921,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <figcaption>Transition failure matrix showing hotspots in text-to-SQL agent workflow</figcaption>
 </figure>
 </div>
-<p>Transition matrices transform overwhelming agent complexity into actionable insights. Instead of drowning in individual trace reviews, you can immediately see that GenSQL → ExecSQL transitions cause 12 failures while DecideTool → PlanCal causes only 2. This data-driven approach guides where to invest debugging effort. Here is another <a href="https://www.figma.com/deck/nwRlh5renu4s4olaCsf9lG/Failure-is-a-Funnel?node-id=2009-927&amp;t=GJlTtxQ8bLJaQ92A-1" target="_blank">example</a> from Bryan Bischof, that is also a text-to-SQL agent:</p>
+<p>Transition matrices show where failures cluster. In this example, GenSQL → ExecSQL transitions cause 12 failures while DecideTool → PlanCal causes only 2. The counts show where to investigate first. Here is another <a href="https://www.figma.com/deck/nwRlh5renu4s4olaCsf9lG/Failure-is-a-Funnel?node-id=2009-927&amp;t=GJlTtxQ8bLJaQ92A-1" target="_blank">text-to-SQL example</a> from Bryan Bischof:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://hamel.dev/blog/posts/evals-faq/images/bischof_matrix.webp" class="faq-media-width-75 img-fluid figure-img" target="_blank" loading="lazy" decoding="async" width="2154" height="1102"></p>
@@ -2902,7 +2940,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </div>
 
 <p><strong>Creating Test Cases for Agent Failures</strong></p>
-<p>Creating test cases for agent failures follows the same principles as our previous FAQ on debugging multi-turn conversation traces (i.e.&nbsp;try to reproduce the error in the simplest way possible, only use multi-turn tests when the failure actually requires conversation context, etc.).</p>
+<p>Creating test cases for agent failures follows the same principles as our previous FAQ on debugging multi-turn conversation traces. Reproduce the error with the simplest test that still fails. Use a multi-turn test only when the failure depends on conversation context.</p>
 <p><a href="../../../blog/posts/evals-faq/how-do-i-evaluate-agentic-workflows.html" class="faq-individual-link">↗ Focus view</a></p>
 <hr>
 <div class="cta" style="text-align: center;">
@@ -2913,14 +2951,14 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 
 </section>
 </section>
+</section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p><a href="https://www.linkedin.com/in/intellectronica/" target="_blank">Eleanor Berger</a>, our wonderful TA.↩︎</p></li>
-<li id="fn2"><p>Paul Graham, <a href="https://paulgraham.com/writes.html" target="_blank">“Writes and Write-Nots”</a>↩︎</p></li>
-<li id="fn3"><p>Shreya Shankar, et al., <a href="https://arxiv.org/abs/2404.12272" target="_blank">“Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences”</a>↩︎</p></li>
+<li id="fn1"><p>Paul Graham, <a href="https://paulgraham.com/writes.html" target="_blank">“Writes and Write-Nots”</a>↩︎</p></li>
+<li id="fn2"><p>Shreya Shankar, et al., <a href="https://arxiv.org/abs/2404.12272" target="_blank">“Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences”</a>↩︎</p></li>
 </ol>
 </section></div> ]]></description>
   <category>LLMs</category>
@@ -4209,6 +4247,7 @@ Note
 <section id="how-many-examples-do-you-need" class="level3">
 <h3 class="anchored" data-anchor-id="how-many-examples-do-you-need">How many examples do you need?</h3>
 <p>The number of examples you need depends on the complexity of the task. My heuristic is that I start with around 30 examples and keep going until I do not see any new failure modes. From there, I keep going until I’m not learning anything new.</p>
+<p>That heuristic is for discovering failure modes and writing the rubric. Validating an automated judge needs a larger labeled set. Aim for about 100 examples per failure mode, with enough Pass and Fail examples to measure both classes. Below 60 examples, the confidence intervals are often too wide to support a useful conclusion.</p>
 <p>Next, we’ll look at how to use this data to build an LLM judge.</p>
 </section>
 </section>
@@ -4344,7 +4383,7 @@ then provide a pass/fail judgment in the same format as above.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In this example, we used agreement between the model and human evaluator because our dataset was roughly balanced (about 50% of instances were failures). However, using raw agreement is generally not recommended and can be misleading when classes are imbalanced. Instead, you should typically measure <a href="https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall">precision and recall</a> separately to get a more accurate picture of your judge’s alignment.</p>
+<p>In this example, we used agreement between the model and human evaluator because our dataset was roughly balanced (about 50% of instances were failures). Raw agreement can be misleading when classes are imbalanced. Treat the human labels as ground truth and report the judge’s True Positive Rate and True Negative Rate separately.</p>
 </div>
 </div>
 <p>It took us only three iterations to achieve &gt; 90% agreement between the LLM and Phillip. Your mileage may vary depending on the complexity of the task. For example, <a href="https://humanloop.com/blog/why-your-product-needs-evals">Swyx has conducted a similar process hundreds of times</a> for <a href="https://www.latent.space/">AI News</a>, an <a href="https://x.com/swyx/status/1672306744884887553">extremely popular</a> news aggregator with high quality recommendations. The quality of the AI owing to this process is why this product has received <a href="https://buttondown.com/ainews">critical acclaim</a>.</p>
@@ -4813,9 +4852,17 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="whats-wrong-with-off-the-shelf-llm-judges">What’s wrong with off-the-shelf LLM judges?</h3>
 <p>Nothing is strictly wrong with them. It’s just that many people are led astray by them. If you are disciplined you can apply them to your data and see if they are telling you something valuable. However, I’ve found that these tend to cause more confusion than value.</p>
 </section>
-<section id="how-do-you-evaluate-the-llm-judge" class="level3">
-<h3 class="anchored" data-anchor-id="how-do-you-evaluate-the-llm-judge">How Do you evaluate the LLM judge?</h3>
-<p>You will collect metrics on the agreement between the domain expert and the LLM judge. This tells you how much you can trust the judge and in what scenarios. Your domain expert doesn’t have to inspect every single example, you just need a representative sample so you can have reliable statistics.</p>
+<section id="how-do-you-validate-an-llm-judge-against-human-labels" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-you-validate-an-llm-judge-against-human-labels">How do you validate an LLM judge against human labels?</h3>
+<p>Treat the judge as a binary classifier. Ask a trusted domain expert to label examples, then split them into train, dev, and test sets.</p>
+<ul>
+<li><strong>Train set:</strong> Choose a small set of clear Pass and Fail examples that you may use as few-shot examples in the judge prompt.</li>
+<li><strong>Dev set:</strong> Run the judge on these examples and compare its decisions with the human labels. Inspect the errors, revise the prompt, and repeat. Dev set examples must stay out of the prompt.</li>
+<li><strong>Test set:</strong> Keep these examples hidden until you finish revising the prompt. Freeze the prompt, run the judge on the test set once, and use the result as your final estimate of the judge’s performance.</li>
+</ul>
+<p>A typical split uses 10 to 20 percent of the labeled examples for training, with 40 to 45 percent each for dev and test. The dev and test sets should each contain enough Pass and Fail examples to estimate both rates. Aim for 30 to 50 examples of each label in each set when possible. Never place dev or test examples in the judge prompt.</p>
+<p>Finally, measure judge performance using <a href="../../../notes/llm/evals/flashcards/7-how-to-trust-a-llm-judge.png">true positive rate and true negative rate</a>, since agreement can be misleading when failures are rare. For example, if an error occurs in 5% of examples, a judge that always predicts Pass still has 95% agreement while detecting none of the errors.</p>
+<p><a href="../../../notes/llm/evals/flashcards/7-how-to-trust-a-llm-judge.png" target="_blank">This flashcard</a> is a visual guide to this approach.</p>
 </section>
 <section id="what-model-do-you-use-for-the-llm-judge" class="level3">
 <h3 class="anchored" data-anchor-id="what-model-do-you-use-for-the-llm-judge">What model do you use for the LLM judge?</h3>
