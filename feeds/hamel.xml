@@ -1716,7 +1716,7 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_36.png" class="img-fluid"></p>
 <p>This is a Python conference, so: Python remains the best toolset for looking at your data and dealing with data.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_37.png" class="img-fluid"></p>
-<p>I built an <a href="https://github.com/hamelsmu/evals-skills">evals skills plugin</a> that goes into more depth. Point it at your eval pipeline and it will tell you what you are doing wrong (or try its best to).</p>
+<p>I built an <a href="https://github.com/ai-evals-course/evals-skills">evals skills plugin</a> that goes into more depth. Point it at your eval pipeline and it will tell you what you are doing wrong (or try its best to).</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_38.png" class="img-fluid"></p>
 <p>Always look at the data.</p>
 <p>If you enjoyed the memes in this talk, there are <a href="../../../notes/llm/evals/memes/index.html#meme-images">many more on my website</a>.</p>
