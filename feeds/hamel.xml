@@ -2235,20 +2235,85 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </section>
 <section id="open-coding" class="level3">
 <h3 class="anchored" data-anchor-id="open-coding">2. Open Coding</h3>
-<p>Human annotator(s) (ideally a benevolent dictator) review and write open-ended notes about traces, noting any issues. This process is akin to “journaling” and is adapted from qualitative research methodologies. When beginning, it is recommended to focus on noting the first failure observed in a trace, as upstream errors can cause downstream issues, though you can also tag all independent failures if feasible. A <a href="https://hamel.dev/blog/posts/llm-judge/#step-1-find-the-principal-domain-expert" target="_blank">domain expert</a> should be performing this step.</p>
+<p>Human annotator(s) (ideally a benevolent dictator) review and write open-ended notes about traces, noting any issues. This process is akin to “journaling” and is adapted from qualitative research methodologies. Start by annotating at least 30 traces yourself before reviewing suggestions from an agent. When beginning, it is recommended to focus on noting the first failure observed in a trace, as upstream errors can cause downstream issues, though you can also tag all independent failures if feasible. A <a href="https://hamel.dev/blog/posts/llm-judge/#step-1-find-the-principal-domain-expert" target="_blank">domain expert</a> should be performing this step.</p>
 </section>
 <section id="axial-coding" class="level3">
 <h3 class="anchored" data-anchor-id="axial-coding">3. Axial Coding</h3>
-<p>Categorize the open-ended notes into a “failure taxonomy.”. In other words, group similar failures into distinct categories. This is the most important step. At the end, count the number of failures in each category. You can use a LLM to help with this step.</p>
+<p>Categorize the open-ended notes into a “failure taxonomy.” In other words, group similar failures into distinct categories. Axial coding is the most important step. At the end, count the number of failures in each category. You can use an LLM to help with this step.</p>
 </section>
 <section id="iterative-refinement" class="level3">
 <h3 class="anchored" data-anchor-id="iterative-refinement">4. Iterative Refinement</h3>
-<p>Keep iterating on more traces until you reach <a href="https://delvetool.com/blog/theoreticalsaturation" target="_blank">theoretical saturation</a>, meaning new traces do not seem to reveal new failure modes or information to you. As a rule of thumb, you should aim to review at least 100 traces. My rough heuristic is if ~20 traces don’t turn up a new category, you can stop (but review at least 100 to start). Remember, the goal is to prioritize the failures that actually happen the most, not catch every possible failure (evals are not free, so we need to be pragmatic).</p>
+<p>Have your agent cluster the data and choose a diverse initial sample. After your first 30 annotations, let it search the remaining traces for likely instances of the failures you described. Accept or reject its suggestions and keep iterating until you reach <a href="https://delvetool.com/blog/theoreticalsaturation" target="_blank">theoretical saturation</a>, meaning new reviews stop revealing failure modes or changing existing ones.</p>
+<p>A working pool of roughly 100 diverse traces is a useful guardrail for this human-agent loop. The agent can focus your attention on the most informative traces, so you no longer have to read all 100 sequentially. See how many examples you need for each kind of eval for the full breakdown.</p>
 <p>You should frequently revisit this process. There are advanced ways to <a href="how-can-i-efficiently-sample-production-traces-for-review.html" target="_blank">sample data more efficiently</a>, like clustering, sorting by user feedback, and sorting by high probability failure patterns. Over time, you’ll develop a “nose” for where to look for failures in your data.</p>
 <p>Do not skip error analysis. It ensures that the evaluation metrics you develop are supported by real application behaviors instead of counter-productive generic metrics (which most platforms nudge you to use). For examples of how error analysis can be helpful, see <a href="https://www.youtube.com/watch?v=e2i6JbU2R-s" target="_blank">this video</a>, or this <a href="https://hamel.dev/blog/posts/field-guide/" target="_blank">blog post</a>.</p>
 <p>Here is a visualization of the error analysis process by one of our students, <a href="https://www.linkedin.com/in/pawel-huryn/" target="_blank">Pawel Huryn</a> - including how it fits into the overall evaluation process:</p>
 <p><img src="https://hamel.dev/blog/posts/evals-faq/pawel-error-analysis.webp" class="img-fluid" alt="Infographic showing an error-analysis workflow: review traces, refine failure modes, recode examples, then build application-specific evaluators" loading="lazy" decoding="async" width="1200" height="1500"></p>
 <p><a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
+</section>
+<section id="q-how-many-examples-do-i-need-for-an-eval" class="level2">
+<h2 class="anchored" data-anchor-id="q-how-many-examples-do-i-need-for-an-eval">Q: How many examples do I need for an eval?</h2>
+<p>Building evals is a pipeline, and each stage needs a different amount of data. We describe these stages below:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Review the application</td>
+<td>Read traces and write down the ways your application fails. This process is called <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank">error discovery</a>. Start with 100 diverse traces and annotate at least the first 30 yourself.</td>
+</tr>
+<tr class="even">
+<td>2. Create and validate evaluators</td>
+<td>Choose between two evaluator types. Use a <a href="../../../blog/posts/evals/index.html#level-1-unit-tests" target="_blank">code-based eval</a> when an objective rule can identify the failure. Include Pass and Fail examples for every condition and important edge case. Use an <a href="../../../blog/posts/llm-judge/index.html" target="_blank">LLM judge</a> when the failure requires human judgment. Label 100 to 200 examples for each failure mode.</td>
+</tr>
+<tr class="odd">
+<td>3. Build a repeatable eval set</td>
+<td>Collect examples that represent important workflows and confirmed failures. Run this set when you change your application. These sets often grow to 100 or more examples.</td>
+</tr>
+</tbody>
+</table>
+<section id="stage-1-review-traces-to-find-failures" class="level3">
+<h3 class="anchored" data-anchor-id="stage-1-review-traces-to-find-failures">Stage 1: Review traces to find failures</h3>
+<p>A trace is a complete record of one user session with your application. Ask a coding agent to help you sample the initial pool so it covers different users and workflows. Our <a href="https://github.com/ai-evals-course/evals-skills" target="_blank">evals plugin</a> can help with sampling and build an annotation interface for your traces.</p>
+<section id="review-at-least-30-traces-yourself" class="level4">
+<h4 class="anchored" data-anchor-id="review-at-least-30-traces-yourself">Review at least 30 traces yourself</h4>
+<p>We recommend annotating at least 30 traces with a process called <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank">error discovery</a> yourself before asking the agent to suggest failures. Write free-text notes about anything that seems wrong from the user’s perspective. These examples give the agent a concrete record of your judgment.</p>
+<p>Keep this first pass manual. If the agent starts suggesting problems too early, its guesses can bias your judgment. You may miss failures that depend on product context or your definition of a good user experience.</p>
+<p>After 30 traces, ask the agent to search the remaining pool for similar examples. Review every suggestion yourself. Accept or reject each one and correct the agent when it misunderstands your criteria.</p>
+</section>
+<section id="when-to-stop" class="level4">
+<h4 class="anchored" data-anchor-id="when-to-stop">When to stop</h4>
+<p>Continue until new traces stop revealing failure modes or changing existing ones. Qualitative researchers call this <a href="https://delvetool.com/blog/theoreticalsaturation" target="_blank">theoretical saturation</a>. We recommend reviewing at least 100 traces. Continue past 100 while you are still learning.</p>
+<p>If you want to see the process done live, watch the <a href="https://youtu.be/tqUDjc1HzO4" target="_blank">live walkthrough</a>. The video shows how Shreya Shankar uses an agent to review traces quickly while keeping a human in charge of the failure criteria.</p>
+<p>This review produces a failure taxonomy, which is a list of the specific ways your application fails. Use that taxonomy to decide which evaluators to build.</p>
+</section>
+</section>
+<section id="stage-2-create-and-validate-evaluators" class="level3">
+<h3 class="anchored" data-anchor-id="stage-2-create-and-validate-evaluators">Stage 2: Create and validate evaluators</h3>
+<p>Choose an evaluator for each important failure mode. The evaluator type determines how many labeled examples you need. Code-based evals work for objective rules. LLM judges work for failures that require human judgment.</p>
+<section id="code-based-evals-need-coverage" class="level4">
+<h4 class="anchored" data-anchor-id="code-based-evals-need-coverage">Code-based evals need coverage</h4>
+<p>Use a code-based eval when a deterministic rule can identify the failure. Examples include checking whether JSON parses or whether a tool call uses the correct arguments.</p>
+<p>The number of examples depends on the scenarios the check covers. At minimum, include examples that should Pass and Fail for every condition. Add important edge cases you found during error discovery. A check with one rule may need only a few examples that Pass and a few that Fail.</p>
+</section>
+<section id="llm-judges-need-labeled-examples" class="level4">
+<h4 class="anchored" data-anchor-id="llm-judges-need-labeled-examples">LLM judges need labeled examples</h4>
+<p>Use an LLM judge when the failure requires subjective or domain-specific judgment. Plan to label 100 to 200 examples for each failure mode. Reuse labeled traces from error discovery when they match the failure mode, then collect more until you reach that range. The labels should come from a trusted <a href="../../../blog/posts/evals-faq/how-many-people-should-annotate-my-llm-outputs.html" target="_blank">domain expert</a> and contain enough Pass and Fail examples to evaluate both classes.</p>
+<p>Split these examples into train, dev, and test sets. Use 10 to 20 percent for train examples that may appear in the prompt. Use 40 to 45 percent for dev while refining the judge. Reserve the remaining 40 to 45 percent for one final test. When possible, include 30 to 50 Pass examples and 30 to 50 Fail examples in both the dev and test sets.</p>
+<p>The <a href="../../../blog/posts/llm-judge/index.html#how-do-you-validate-an-llm-judge-against-human-labels" target="_blank">validation guide</a> explains the full process. The <a href="../../../notes/llm/evals/flashcards/7-how-to-trust-a-llm-judge.png" target="_blank">judge-validation flashcard</a> is a good visual reference as well.</p>
+<p>After validating the evaluators, assemble the examples you will run repeatedly during development.</p>
+</section>
+</section>
+<section id="stage-3-build-the-repeatable-eval-set" class="level3">
+<h3 class="anchored" data-anchor-id="stage-3-build-the-repeatable-eval-set">Stage 3: Build the repeatable eval set</h3>
+<p>Start with examples from error discovery that capture important failure modes. Add confirmed failures as you find them.</p>
+<p>A purpose-built eval set often grows to 100 or more examples. Coverage determines the final size. Each important workflow and known failure should be represented, and the set should remain cheap enough to run often. Code-based checks and LLM judges can run over the same examples. The <a href="../../../blog/posts/evals-faq/how-are-evaluations-used-differently-in-cicd-vs-monitoring-production.html" target="_blank">CI evals</a> FAQ explains how to use this set during development.</p>
+<p><a href="../../../blog/posts/evals-faq/how-many-examples-do-i-need-for-an-eval.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 </section>
 <section id="q-how-do-i-surface-problematic-traces-for-review-beyond-user-feedback" class="level2">
@@ -2304,7 +2369,7 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><strong>Cross product then filter</strong>: Generate all dimension combinations, then filter with an LLM. Guarantees coverage including edge cases. Use when most combinations are valid.</p>
 <p><strong>Direct LLM generation</strong>: Ask the LLM to generate tuples directly. This produces more realistic combinations, but it tends toward generic outputs and misses rare scenarios. Use it when many dimension combinations are invalid.</p>
 <p><strong>Fix obvious problems first</strong>: Don’t generate synthetic data for issues you can fix immediately. If your prompt doesn’t mention dietary restrictions, fix the prompt rather than generating specialized test queries.</p>
-<p>After iterating on your tuples and prompts, <strong>run these synthetic queries through your actual system to capture full traces</strong>. Sample 100 traces for error analysis. This number provides enough traces to manually review and identify failure patterns without being overwhelming.</p>
+<p>After iterating on your tuples and prompts, <strong>run these synthetic queries through your actual system to capture full traces</strong>. A pool of roughly 100 diverse traces is a useful starting point for failure discovery. Have an agent help with sampling, annotate at least 30 traces yourself, then review the agent’s suggestions until your learning plateaus. See how many examples you need for error discovery for the full explanation.</p>
 <p>Here is a <a href="../../../notes/llm/evals/flashcards/9-synthetic-data.png" target="_blank">visual</a> that helps visualize the process.</p>
 <p><a href="../../../blog/posts/evals-faq/what-is-the-best-approach-for-generating-synthetic-data.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
