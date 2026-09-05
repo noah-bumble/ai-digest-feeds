@@ -6,10 +6,83 @@
   <link href="https://lucumr.pocoo.org/feed.atom" rel="self" />
   <description>Armin Ronacher's personal blog about programming, games and random thoughts that come to his mind.</description>
   <language>en</language>
-  <updated>2026-09-05T06:12:19.339398+00:00</updated>
+  <updated>2026-09-05T12:55:42.075239+00:00</updated>
   <author>
     <name>Armin Ronacher</name>
   </author>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/9/5/latent-powers/</id>
+    <title>Latent Powers</title>
+    <link href="https://lucumr.pocoo.org/2026/9/5/latent-powers/" />
+    <published>2026-09-05T00:00:00+00:00</published>
+    <updated>2026-09-05T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>A few weeks ago I felt like it would be fun to see if I can make one of those
+cheap Chinese CarPlay dongles run something other than the stock firmware.  The
+idea was that rather than just forwarding CarPlay, why not do something more
+interesting with them?  They all work quite similarly: they act as bridges
+between your car and the phone.  From there they deal with video and audio
+streams and pass some other data through.  Most of them also bring up a custom
+UI for pairing and have a web interface that your phone can reach for updates.</p>
+<p>Long story short: I had a conversation with Fable and Sol via Pi about what
+could be done with such a dongle or whether I should use a Raspberry Pi instead
+if I wanted to do my own thing there.  I figured it might be quite fun to run my
+own code while still allowing regular CarPlay to pass through.</p>
+<p>Through working with the LLM I learned about
+<a href="https://github.com/catplay-labs/catplay">CatPlay</a>, which is a Rust
+reimplementation of the CarPlay protocol that can run on Carlinkit devices.  In
+particular, it can run on the Carlinkit Mini Ultra, which I figured would be
+easy enough to buy.  I do have a few CarPlay adapters around, but I did not have
+that particular model, so I bought one on Amazon.  Twenty-four hours later, I
+had a device in my hand that was branded as a Carlinkit Mini Ultra, but instead
+of being the Ingenic device that the original author used, it turned out to be
+something else.</p>
+<p>This is normally where the story would stop.  However, it&#8217;s 2026.  Armed with a
+bit of knowledge about how these systems work, I managed to have some fruitful
+discussions with Kimi K3 and Sol and figure out how <a href="https://github.com/catplay-labs/catplay-firmware/issues/4">flash the
+device</a> and in turn,
+how to make CatPlay compile for that SoC.</p>
+<p>I guess that hacking these USB devices is not necessarily hard, but it&#8217;s
+laborious and you can easily end up bricking your devices.  It also just sucks
+because sometimes you need to work with someone else&#8217;s code that does not itself
+run on your machine.  In the past, I would abandon many such projects for lack
+of tenacity.  But my clanker is tenacious.</p>
+<p>But so are <em>all of our clankers</em>.  Some of the projects we&#8217;re now attempting are
+happening because of conversations we have with them.  In this case I did not
+find or decide on CatPlay, the model did.  It was not the only suggestion, but
+it became the best starting point after discarding others.</p>
+<p>And I discover this more and more.  Particularly when we have solitary
+interactions with these models, some of us &#8220;independently&#8221; decide to work on
+similar projects.  When I talked with an acquaintance about CarPlay he also
+mentioned recently that he decided to try something similar because he too
+wanted to see if he can get his own agent be hooked up with the car.  And guess
+what: he too learned about the CarPlay hacking community, and that it&#8217;s an
+option, from the models and roughly around the same time.</p>
+<p>It really got me thinking about how this could create situations in which
+completely independent people end up building things they believe are their own
+ideas.  Yet they were inspired or pushed towards doing something by a
+conversation with an LLM — a conversation that someone else also had.  What if
+we took paths, because those were the paths that were more likely with current
+generation models?  There is a running joke in the AI builder community right
+now that we&#8217;re all working on the same things, and in many ways it feels like we
+are.  That might be because those things are obvious, or it might be partly
+because we all use the same models with the same capabilities.</p>
+<p>A few months ago, I first saw <a href="https://x.com/lucasmeijer">Lucas Meijer</a> share the
+idea to make a model in Pi produce HTML reports rather than Markdown.  I thought
+that was pretty unique.  Except, well turns out the models are probably trained
+more and more for that (e.g. Claude Artifacts), and now it has become for many
+the default choice for sharing reports.</p>
+<p>How much of what we build comes from eliciting the same latent capabilities from
+the same models?  Did the models make us prompt them that way?  Was it because
+we shared ideas on Twitter and other communities that inspired us?  Or is it all
+unrelated?</p>
+<p>There is something powerful and strange about how LLMs diffuse knowledge and
+capabilities, while perhaps also nudging us all simultaniously and independently
+toward building the same things.</p>
+]]></content>
+  </entry>
   <entry>
     <id>https://lucumr.pocoo.org/2026/8/24/anger-anxiety-agency/</id>
     <title>Anger, Anxiety and Agency</title>
@@ -1135,62 +1208,6 @@ paying if it keeps gates open.  We should not let companies own the narrative
 that preventing access is in our interest, particularly not as Europeans where
 the odds are already stacked against us by our underdeveloped capital markets,
 brain drain and internal fighting.</p>
-]]></content>
-  </entry>
-  <entry>
-    <id>https://lucumr.pocoo.org/2026/6/6/communities-of-not/</id>
-    <title>Communities of Not</title>
-    <link href="https://lucumr.pocoo.org/2026/6/6/communities-of-not/" />
-    <published>2026-06-06T00:00:00+00:00</published>
-    <updated>2026-06-06T00:00:00+00:00</updated>
-    <author>
-      <name>Armin Ronacher</name>
-    </author>
-    <content type="html"><![CDATA[<p>There is a strange thing that happens in communities that gather around
-abstinence from something: identity from opposition.  At their best these
-communities are not <em>just</em> negative: childfree spaces can be about autonomy,
-choice and acceptance, anti-car spaces about safer streets and transit, and
-LLM-skeptical developer spaces about the future of labor, code quality and
-slop<sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup>.  But the thing being refused often does not go away and instead
-becomes the main subject of the community&#8217;s identity.</p>
-<p>That would be fine if it stayed at criticism, maybe even angry criticism, but
-more often than not it turns into policing and hatred towards others.  An
-influencer without children becomes a parent, an urban bike commuter by choice
-buys a Porsche, a respected developer tries LLMs, and the community feels
-betrayed because it assumed they were members of the same tribe.  The expulsion
-of that person (who never signed up to be a community member) is entirely
-imaginary but the punishment that the community unleashes is not: people pile on
-and shame them, quote them out of context and turn their weakest moments into
-proof that the person was always unserious, a sharlatan or should not be
-listened to.</p>
-<p>I do not think the answer is to tell people to stop paying attention.  Cars
-shape cities even for people who cycle, children influence politics, workplaces
-and taxes even for people who do not have them.  For us developers, LLMs show up
-in editors, issue trackers, hiring conversations, management pressure and code
-reviews whether we asked for them or not.  Resisting that can be legitimate but
-that is no excuse for using one&#8217;s rejection to justify shitty mob behavior.</p>
-<p>I understand the thinking all too well, because I have done versions of this
-myself in the past.  It took me a while to become more accepting of other
-people&#8217;s worldviews that diverge from mine.  Whatever insecurities we have,
-finding a group of others sharing them can be comforting.  The danger is that
-being part of a crowd of negativity can easily make us part of collective
-harassment.</p>
-<p>I can only encourage you to breathe, slow down, de-escalate when given the
-chance, and resist the temptation to always assume the most catastrophic
-reading.  Default to being <a href="/2026/4/11/the-center-has-a-bias/">open to new things</a>.
-Being negative towards something, and making that ones identity, is an easy trap
-to fall into.</p>
-<div class="footnotes">
-<ol>
-<li id="fn-1">
-<p>These examples are not meant as equivalents.  The recent
-<a href="https://github.com/RsyncProject/rsync/issues/929">mob</a> <a href="https://mastodon.gamedev.place/@JeremiahFieldhaven/116654345332213390">against
-rsync</a>
-is the LLM version that prompted this post.  I picked the others because I&#8217;m
-familiar with those communities and they all show similar cases of personal
-choices being interpreted as betrayal.<a href="#fnref-1" class="footnote">&#8617;</a></p></li>
-</ol>
-</div>
 ]]></content>
   </entry>
 </feed>
