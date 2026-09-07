@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-06T23:57:40+00:00</updated><author><name>Simon Willison</name></author><entry><title>Research acceleration: The view inside OpenAI</title><link href="https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/" rel="alternate"/><published>2026-09-06T23:57:40+00:00</published><updated>2026-09-06T23:57:40+00:00</updated><id>https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-07T22:26:25+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Jakub Pachocki</title><link href="https://simonwillison.net/2026/Sep/7/jakub-pachocki/" rel="alternate"/><published>2026-09-07T22:26:25+00:00</published><updated>2026-09-07T22:26:25+00:00</updated><id>https://simonwillison.net/2026/Sep/7/jakub-pachocki/</id><summary type="html">
+    &lt;blockquote cite="https://openai.com/index/an-alien-mind/#scalable-defense"&gt;&lt;p&gt;The strongest argument I see for continuing to train much smarter models quickly is the need to build defensive systems against the dangers posed by other AI. [...]&lt;/p&gt;
+&lt;p&gt;We will need powerful, aligned AI for defense; to secure infrastructure, to protect against rogue agents in real time, and to invent entirely new protective measures. This will be a primary focus of OpenAI’s deployment efforts.&lt;/p&gt;
+&lt;p&gt;At the same time, even with the uncertainty that comes from anticipated broad AI progress and the need to build defensive systems, we must not let that become an excuse for recklessness. The idea of racing forward at all costs seems absurd once one internalizes the seriousness of the stakes.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://openai.com/index/an-alien-mind/#scalable-defense"&gt;Jakub Pachocki&lt;/a&gt;, Chief Scientist at OpenAI&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai-ethics"/><category term="openai"/><category term="ai"/></entry><entry><title>Video compressor</title><link href="https://simonwillison.net/2026/Sep/7/video-compressor/" rel="alternate"/><published>2026-09-07T18:29:07+00:00</published><updated>2026-09-07T18:29:07+00:00</updated><id>https://simonwillison.net/2026/Sep/7/video-compressor/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/video-compressor"&gt;Video compressor&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I recorded a short demo video of &lt;a href="https://simonwillison.net/2026/Sep/7/equal-earth/"&gt;my Equal Earth&lt;/a&gt; animation on my phone and wanted to publish an optimized version of that video (using FFMPEG) on my blog, so I had Claude Fable 5.1 in Claude Code for web &lt;a href="https://claude.ai/code/session_01QHTdJZ4xg6TZfDXCmuvAE9"&gt;build me this tool&lt;/a&gt; using the WebAssembly build of FFMPEG.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of a video compression web tool. Under &amp;quot;Versions to generate&amp;quot; is a table of five presets (Largest, Large, Medium, Small, Smallest) with output sizes of 854×370 or 640×276, CRF quality settings from 22 to 28, and audio bitrates from 128 to 64 kbps, plus options for encoder speed, H.264 profile, 30 fps limit, stripping metadata, dropping audio, and encoding only the first 10 seconds. A green &amp;quot;Generate versions&amp;quot; button reads &amp;quot;Done: 5 versions in 11.8s.&amp;quot; Below, &amp;quot;Results, smallest first&amp;quot; shows three video players: Smallest at 145 KB (48% of original), Medium at 241 KB (79%), and Small at 264 KB (87%), each with a Download .mp4 button and a collapsible ffmpeg command." src="https://static.simonwillison.net/static/2026-09-07/video-compressor.webp" /&gt;&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ffmpeg"&gt;ffmpeg&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/video"&gt;video&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/webassembly"&gt;webassembly&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="ffmpeg"/><category term="video"/><category term="webassembly"/><category term="claude"/><category term="claude-code"/><category term="claude-mythos-fable"/></entry><entry><title>Mercator ↔ Equal Earth</title><link href="https://simonwillison.net/2026/Sep/7/equal-earth/" rel="alternate"/><published>2026-09-07T16:24:16+00:00</published><updated>2026-09-07T16:24:16+00:00</updated><id>https://simonwillison.net/2026/Sep/7/equal-earth/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/equal-earth"&gt;Mercator ↔ Equal Earth&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I got curious about the Equal Earth map projection that was recently &lt;a href="https://www.theguardian.com/world/2026/sep/04/un-vote-world-map-mercator-equal-earth-africa"&gt;voted on at the UN&lt;/a&gt; so I had GPT-6 Astra (medium) in ChatGPT Work &lt;a href="https://chatgpt.com/share/6a9ee520-c82c-83ea-8111-2f7050c08638"&gt;build me&lt;/a&gt; this animated transition between Mercator and Equal Earth using D3.&lt;/p&gt;
+&lt;center&gt;&lt;video controls playsinline preload="none" width="360" height="476" poster="https://static.simonwillison.net/static/2026-09-07/equal-earth.jpg"&gt;
+  &lt;source src="https://static.simonwillison.net/static/2026-09-07/equal-earth-medium.mp4" type="video/mp4"&gt;
+&lt;/video&gt;&lt;/center&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/geospatial"&gt;geospatial&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/d3"&gt;d3&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/vibe-coding"&gt;vibe-coding&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt-6-astra"&gt;gpt-6-astra&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="geospatial"/><category term="d3"/><category term="vibe-coding"/><category term="gpt-6-astra"/></entry><entry><title>Research acceleration: The view inside OpenAI</title><link href="https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/" rel="alternate"/><published>2026-09-06T23:57:40+00:00</published><updated>2026-09-06T23:57:40+00:00</updated><id>https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://openai.com/index/research-acceleration-view-inside-openai/"&gt;Research acceleration: The view inside OpenAI&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Apparently today is RSI day at OpenAI, for Recursive Self-Improvement - I think it's their new AGI. Both this piece and the new essay &lt;a href="https://openai.com/index/an-alien-mind/"&gt;An Alien Mind&lt;/a&gt; (by Chief Scientist Jakub Pachocki) talk about it, and this one doesn't even bother to expand the acronym.&lt;/p&gt;
@@ -855,51 +887,4 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
 
 
 
-</summary><category term="coding-agents"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="bun"/><category term="ai"/><category term="llms"/></entry><entry><title>EVE Online: The Move to Python 3 Begins!</title><link href="https://simonwillison.net/2026/Aug/25/eve-online-move-to-python-3/" rel="alternate"/><published>2026-08-25T22:59:30+00:00</published><updated>2026-08-25T22:59:30+00:00</updated><id>https://simonwillison.net/2026/Aug/25/eve-online-move-to-python-3/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.eveonline.com/news/view/the-move-to-python-3-begins"&gt;EVE Online: The Move to Python 3 Begins!&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-EVE Online has been one of the most interesting case studies in Python at scale for over twenty years now.&lt;/p&gt;
-&lt;p&gt;They've been running on &lt;a href="https://github.com/stackless-dev/stackless/wiki/"&gt;Stackless Python&lt;/a&gt; since their launch in 2003, and their last major upgrade was 16 years ago, to Stackless Python 2.7 &lt;a href="https://www.eveonline.com/news/view/stackless-python-2.7"&gt;in 2010&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Their upgrade to Python 3 will start using the &lt;a href="https://python-future.org/futurize.html"&gt;futurize&lt;/a&gt; script against 2.4 million lines of code, followed by careful manual review of the ~20,000 places where Python 2 and 3 behavior differ - for example &lt;code&gt;1 / 2&lt;/code&gt; is &lt;code&gt;0&lt;/code&gt; in Python 2 but is &lt;code&gt;0.5&lt;/code&gt; in Python 3.&lt;/p&gt;
-&lt;p&gt;There's nothing in this announcement about how they plan to replace Stackless, but at their conference last year they presented &lt;a href="https://youtu.be/-x299qHLQs0"&gt;Scheduling in Carbon: Leaving Stackless Python Behind&lt;/a&gt; describing how they replaced Stackless in the Carbon engine for their more recent game EVE Frontier, using their (now open source) &lt;a href="https://github.com/carbonengine/scheduler"&gt;carbonengine/scheduler&lt;/a&gt; library.
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://lobste.rs/s/e1oalq/move_python_3_begins"&gt;Lobster.rs&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/eve-online"&gt;eve-online&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/migrations"&gt;migrations&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python3"&gt;python3&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/stackless"&gt;stackless&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="eve-online"/><category term="migrations"/><category term="python"/><category term="python3"/><category term="stackless"/></entry><entry><title>llm-anthropic 0.27</title><link href="https://simonwillison.net/2026/Aug/24/llm-anthropic/" rel="alternate"/><published>2026-08-24T16:27:04+00:00</published><updated>2026-08-24T16:27:04+00:00</updated><id>https://simonwillison.net/2026/Aug/24/llm-anthropic/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm-anthropic/releases/tag/0.27"&gt;llm-anthropic 0.27&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;This release of the Anthropic plugin for &lt;a href="https://llm.datasette.io/"&gt;LLM&lt;/a&gt; mainly provides compatibility with the recently released &lt;a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v1.0.0"&gt;anthropic v1.0.0&lt;/a&gt; Python library, which switches from &lt;code&gt;httpx&lt;/code&gt; to &lt;a href="https://github.com/pydantic/httpx2"&gt;httpx2&lt;/a&gt;. OpenAI made the same change in their &lt;a href="https://github.com/openai/openai-python/releases/tag/v3.0.0"&gt;v3.0.0 release&lt;/a&gt; two weeks ago.&lt;/p&gt;
-&lt;p&gt;Anthropic provide this &lt;a href="https://github.com/anthropics/anthropic-sdk-python/blob/v1.0.0/MIGRATION.md"&gt;migration guide&lt;/a&gt; for upgrading to 1.0, so I prompted Fable 5 in Claude Code with:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Upgrade to anthropic&amp;gt;=1 - read https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/refs/heads/main/MIGRATION.md and get the tests passing&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's &lt;a href="https://github.com/simonw/llm-anthropic/pull/84"&gt;the resulting PR&lt;/a&gt;.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/httpx"&gt;httpx&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="python"/><category term="httpx"/><category term="llm"/><category term="anthropic"/><category term="claude"/></entry><entry><title>Your executable is a SQLite database</title><link href="https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/" rel="alternate"/><published>2026-08-24T11:38:15+00:00</published><updated>2026-08-24T11:38:15+00:00</updated><id>https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://fzakaria.com/2026/08/23/your-executable-is-a-sqlite-database"&gt;Your executable is a SQLite database&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Farid Zakaria describes a neat Linux pattern for creating a SQLite database file that can be directly used as an executable binary.&lt;/p&gt;
-&lt;p&gt;The trick sets the SQLite file format's 4-byte application ID (68 bytes into the file) to SELF, standing for Structured Executable &amp;amp; Linkable Format.  The various components of the ELF executable format are then arranged into a number of different SQLite tables, using &lt;a href="https://github.com/fzakaria/selfdb/blob/main/schema/self.sql"&gt;this schema&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Their &lt;code&gt;self-exec&lt;/code&gt; interpreter (&lt;a href="https://github.com/fzakaria/selfdb/blob/main/loader/self-exec.c"&gt;C code here&lt;/a&gt;) can then extract and execute the necessary pieces.&lt;/p&gt;
-&lt;p&gt;You can additionally use a Linux mechanism called &lt;a href="https://docs.kernel.org/admin-guide/binfmt-misc.html"&gt;binfmt_misc&lt;/a&gt; to teach the kernel to execute that any time it encounters an executable matching that binary pattern. Farid uses NixOS here, but without NixOS I think registration looks something like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;printf '%s\n' ':self:M:68:SELF::/usr/local/bin/self-exec:' \
-  &amp;gt; /proc/sys/fs/binfmt_misc/register
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=49415271"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/c"&gt;c&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/linux"&gt;linux&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="c"/><category term="linux"/><category term="sqlite"/></entry></feed>
+</summary><category term="coding-agents"/><category term="ai-assisted-programming"/><category term="generative-ai"/><category term="bun"/><category term="ai"/><category term="llms"/></entry></feed>
