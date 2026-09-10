@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-10T00:56:41+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Calif Research</title><link href="https://simonwillison.net/2026/Sep/10/calif-research/" rel="alternate"/><published>2026-09-10T00:56:41+00:00</published><updated>2026-09-10T00:56:41+00:00</updated><id>https://simonwillison.net/2026/Sep/10/calif-research/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-10T21:11:15+00:00</updated><author><name>Simon Willison</name></author><entry><title>Native is now the future of mobile at Shopify</title><link href="https://simonwillison.net/2026/Sep/10/shopify-react-native/" rel="alternate"/><published>2026-09-10T21:11:15+00:00</published><updated>2026-09-10T21:11:15+00:00</updated><id>https://simonwillison.net/2026/Sep/10/shopify-react-native/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://shopify.engineering/back-to-native"&gt;Native is now the future of mobile at Shopify&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Shopify are moving from React Native back to separate Swift and Kotlin codebases for their native apps, for the exact reason you would expect:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We decided to switch from native to React Native in 2020 for three reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stop building the same features twice&lt;/li&gt;
+&lt;li&gt;Allow developers to work across the stack&lt;/li&gt;
+&lt;li&gt;Spend less time chasing feature parity and more time shipping value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[...]&lt;/p&gt;
+&lt;p&gt;Native still means building and maintaining software on two platforms, that cost has not disappeared. What changed is that agents can now do enough of the implementation, translation, testing, and review work that it’s no longer the deciding factor it was in 2020.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It's a well-written post, which gives full credit to React Native as a great platform for the six years they were using it.&lt;/p&gt;
+&lt;p&gt;Shopify are the maintainers of three significant React Native libraries: &lt;a href="https://github.com/Shopify/react-native-skia"&gt;react-native-skia&lt;/a&gt;, &lt;a href="https://github.com/Shopify/flash-list"&gt;flash-list&lt;/a&gt;, and &lt;a href="https://github.com/Shopify/restyle"&gt;restyle&lt;/a&gt;. The first two are finding new homes; the third "has a smaller user base than our other libraries" and will be archived at the end of 2026.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=49643982"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/android"&gt;android&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/mobile"&gt;mobile&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/open-source"&gt;open-source&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ios"&gt;ios&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/react"&gt;react&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-search"&gt;ai-assisted-search&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/swift"&gt;swift&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="android"/><category term="mobile"/><category term="open-source"/><category term="ios"/><category term="ai"/><category term="react"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-search"/><category term="coding-agents"/><category term="swift"/></entry><entry><title>Quoting Calif Research</title><link href="https://simonwillison.net/2026/Sep/10/calif-research/" rel="alternate"/><published>2026-09-10T00:56:41+00:00</published><updated>2026-09-10T00:56:41+00:00</updated><id>https://simonwillison.net/2026/Sep/10/calif-research/</id><summary type="html">
     &lt;blockquote cite="https://calif.io/research/weworm"&gt;&lt;p&gt;Today, we're releasing a demo of WeWorm, the first zero-click worm to spread through WeChat calls across iOS and Android. [...]&lt;/p&gt;
 &lt;p&gt;The victim does not need to answer the call, or interact with their phone at all. Even if they do answer, they hear nothing, and the exploit still succeeds. [...]&lt;/p&gt;
 &lt;p&gt;Working with AI, our team found the bug and wrote the first remote code execution (RCE) exploit in about two days. Building the worm took one more week.&lt;/p&gt;
@@ -691,12 +715,4 @@ GPT-6 Astra is "rolling out today to a limited set of organizations and over the
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/geospatial"&gt;geospatial&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/geojson"&gt;geojson&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/chatgpt"&gt;chatgpt&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="geospatial"/><category term="tools"/><category term="geojson"/><category term="chatgpt"/></entry><entry><title>Quoting Tarn Adams</title><link href="https://simonwillison.net/2026/Sep/1/tarn-adams/" rel="alternate"/><published>2026-09-01T17:01:11+00:00</published><updated>2026-09-01T17:01:11+00:00</updated><id>https://simonwillison.net/2026/Sep/1/tarn-adams/</id><summary type="html">
-    &lt;blockquote cite="https://www.pcgamer.com/gaming-industry/dwarf-fortress-creator-says-the-industrys-in-shambles-over-ai-and-layoff-happy-ceos-everyone-i-know-their-bosses-are-slowly-getting-psychosis/"&gt;&lt;p&gt;They took the letters from me! I have to talk about &lt;em&gt;dwarf behavior&lt;/em&gt; now. I can't even talk about dwarf AI. It doesn't exist. It's &lt;em&gt;dwarf behavior&lt;/em&gt;, and they misbehave sometimes&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.pcgamer.com/gaming-industry/dwarf-fortress-creator-says-the-industrys-in-shambles-over-ai-and-layoff-happy-ceos-everyone-i-know-their-bosses-are-slowly-getting-psychosis/"&gt;Tarn Adams&lt;/a&gt;, co-creator of Dwarf Fortress&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/game-design"&gt;game-design&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="game-design"/></entry></feed>
+</summary><category term="geospatial"/><category term="tools"/><category term="geojson"/><category term="chatgpt"/></entry></feed>
