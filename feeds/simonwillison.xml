@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-12T18:00:21+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Paul Ford</title><link href="https://simonwillison.net/2026/Sep/12/paul-ford/" rel="alternate"/><published>2026-09-12T18:00:21+00:00</published><updated>2026-09-12T18:00:21+00:00</updated><id>https://simonwillison.net/2026/Sep/12/paul-ford/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-12T21:16:09+00:00</updated><author><name>Simon Willison</name></author><entry><title>California Brown Pelican</title><link href="https://simonwillison.net/2026/Sep/12/sighting-399708714/" rel="alternate"/><published>2026-09-12T21:16:09+00:00</published><updated>2026-09-12T21:16:09+00:00</updated><id>https://simonwillison.net/2026/Sep/12/sighting-399708714/</id><summary type="html">
+    
+        &lt;p&gt;&lt;img src="https://static.inaturalist.org/photos/733368932/large.jpg" alt="California Brown Pelican"&gt;&lt;/p&gt;&lt;p&gt;&lt;img src="https://static.inaturalist.org/photos/733368989/large.jpg" alt="California Brown Pelican"&gt;&lt;/p&gt;&lt;p&gt;California Brown Pelican, in San Mateo County, CA, US&lt;/p&gt;&lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Pacifica_Pier"&gt;Pacifica Pier&lt;/a&gt; shut down at the start of June after a crack in the concrete walkway made access to the pier unsafe.&lt;/p&gt;
+&lt;p&gt;It has since been entirely taken over by pelicans!&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/wildlife"&gt;wildlife&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="wildlife"/></entry><entry><title>Quoting Paul Ford</title><link href="https://simonwillison.net/2026/Sep/12/paul-ford/" rel="alternate"/><published>2026-09-12T18:00:21+00:00</published><updated>2026-09-12T18:00:21+00:00</updated><id>https://simonwillison.net/2026/Sep/12/paul-ford/</id><summary type="html">
     &lt;blockquote cite="https://www.nytimes.com/2026/09/12/opinion/ai-software-coding-apps.html"&gt;&lt;p&gt;For a while, I must admit, it looked as if software developer roles like mine were done for. How could we fight against tireless robots? But our industry is slowly realizing that making truly cutting-edge software still requires humans to think and work together, to maximize their skill sets and to practice their respective crafts. A.I. can write very good software, but it also makes it easy to do someone else’s job badly, which is part of why all those projects fail. Now that everyone can code, it’s become clearer why many shouldn’t.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.nytimes.com/2026/09/12/opinion/ai-software-coding-apps.html"&gt;Paul Ford&lt;/a&gt;, A.I. Was Supposed to Give Us New Killer Apps. What Happened?&lt;/p&gt;
 
@@ -441,21 +450,4 @@ Terence Eden shares some daunting statistics in support of his take that "the Do
 
 
 
-</summary><category term="technical-debt"/></entry><entry><title>Introducing GPT-6 Astra for developers</title><link href="https://simonwillison.net/2026/Sep/5/introducing-gpt-6-astra-for-developers/" rel="alternate"/><published>2026-09-05T23:27:48+00:00</published><updated>2026-09-05T23:27:48+00:00</updated><id>https://simonwillison.net/2026/Sep/5/introducing-gpt-6-astra-for-developers/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.youtube.com/watch?v=bOC3DisEOfg"&gt;Introducing GPT-6 Astra for developers&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Blink and you'll miss it, but there's a familiar creature at &lt;a href="https://www.youtube.com/watch?v=bOC3DisEOfg&amp;amp;t=119"&gt;1m59s&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Across the board, Astra has more attention to detail, better understanding of the user's prompt, and can build more sophisticated outputs. In particular, it excels at building 3D models. I've seen it make incredible renderings of gardens, shipyards, &lt;strong&gt;animals&lt;/strong&gt;, cityscapes, even Dyson spheres.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="astra-video-pelican.webp" src="https://static.simonwillison.net/static/2026-09-05/astra-video-pelican.webp" /&gt;&lt;/p&gt;
-&lt;p&gt;Astra &lt;a href="https://simonwillison.net/2026/Sep/5/blender-coding-agents-macos/"&gt;really&lt;/a&gt; does &lt;a href="https://simonwillison.net/2026/Sep/4/astra-pelicans/"&gt;believe&lt;/a&gt; in putting a red neckerchief on a pelican riding a bicycle.
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=49554643#49575117"&gt;Hacker News comment&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt-6-astra"&gt;gpt-6-astra&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="pelican-riding-a-bicycle"/><category term="gpt-6-astra"/></entry></feed>
+</summary><category term="technical-debt"/></entry></feed>
