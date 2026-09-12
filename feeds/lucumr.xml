@@ -6,10 +6,167 @@
   <link href="https://lucumr.pocoo.org/feed.atom" rel="self" />
   <description>Armin Ronacher's personal blog about programming, games and random thoughts that come to his mind.</description>
   <language>en</language>
-  <updated>2026-09-12T06:12:24.309686+00:00</updated>
+  <updated>2026-09-12T19:55:02.416069+00:00</updated>
   <author>
     <name>Armin Ronacher</name>
   </author>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/9/12/pdoom/</id>
+    <title>P(doom)</title>
+    <link href="https://lucumr.pocoo.org/2026/9/12/pdoom/" />
+    <published>2026-09-12T00:00:00+00:00</published>
+    <updated>2026-09-12T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>This week some flavor of &#8220;AI is going to kill us all&#8221; went viral.  In particular
+one where an employee put his personal probability of that happening above
+10%.  Which made me go to the <a href="https://en.wikipedia.org/wiki/P(doom)">Wikipedia page of
+P(doom)</a> and I realized that Dario
+Amodei&#8217;s apparent probability of something bad happening seems to be between
+10-25%.  And well, Dario then wrote about <a href="https://darioamodei.com/post/we-must-pace-the-frontier">pacing the frontier
+</a>.  And Sam read it and
+<a href="https://x.com/sama/status/2098811563415150910">wants to pace too</a>.  And well,
+<a href="https://x.com/elonmusk/status/2098789109980332057">so does Musk</a>.</p>
+<p>I encourage you strongly to read the post, because I think it&#8217;s a good one.  And
+yet, when I read the post I could not help but feel in strong opposition to it,
+despite the fact that I think I&#8217;m on the same page with regard to all
+observations and, to a large degree, the concerns.</p>
+<p>I thought it might be interesting to write down my present-day thoughts on this,
+even if for no other reason than for myself to look back at it a year or two
+from now.</p>
+<h2>What Is Doom?</h2>
+<p>What I really appreciate about Dario&#8217;s post is that he lays out a scenario that
+is not a huge stretch but also one that describes a clear, unfortunate outcome
+we should fight: persistent botnets and other forms of nuisance.  And well, we
+don&#8217;t have to look very far to see the issues left and right.  Wikipedia has a
+page called <a href="https://en.wikipedia.org/wiki/2026_OpenAI_agent_cyberattacks">2026 OpenAI agent
+cyberattacks</a>
+which gives you at least some overview of what we figured out agents have hacked
+up to this point.  Except I know it&#8217;s not up to date, because for instance they
+also poisoned <a href="https://www.rubyhack.ai/">RubyGems</a>.</p>
+<p>Today these systems might be annoying, but they can be turned off when we figure
+out where they are.  Except, it seems like OpenAI and Anthropic are operating at
+such a scale that they seemingly can be completely blind to what their systems
+are doing.</p>
+<p>I don&#8217;t think we are anywhere close to a world where an agent might decide to
+hack into core inference infrastructure to upload weights to other GPUs to
+survive.  But simultaneously it&#8217;s entirely in the realm of possibility and
+primarily curtailed by the labs probably being particularly careful about their
+IP.</p>
+<p>For me the scenario I <em>primarily</em> worry about is what it does to us.  And by us
+I mean anyone who is not currently working on closed weight, dopamine-loaded,
+subsidized token faucet.  I <em>really</em> don&#8217;t worry about someone using these
+models to build a nuke, or to control some rockets in the Middle East, or that
+America would lose against China in some international culture war.  I almost
+exclusively worry about what this does to us as humans.</p>
+<h2>What Needs To Be Paced?</h2>
+<p>What I find absolutely hilarious and simultaneously entirely frustrating about
+this conversation is that there is this idea that there is something to be
+paced.  First of all, we should really talk about who Dario is talking about
+here.  There are really only two companies: Anthropic and OpenAI.  Nobody else
+matters in this space right now (this might change, but we&#8217;re talking about the
+right now).  Both of those companies are basically coming from the same origin.  The
+solution that Dario proposed, at least in part, is a third-party evaluator that
+in this case is <a href="https://en.wikipedia.org/wiki/METR">METR</a>.  Which,
+unsurprisingly, also has strong ties to both OpenAI and Anthropic.  Sure, there
+are some philosophical differences between the companies, but they are much more
+alike than they are different.</p>
+<p>Both those companies greatly benefited from being able to train on public data
+that we all generated in one form or another over the last decades.  They are
+also both increasingly causing strain on public resources, though it seems that
+OpenAI has their shit way less under control.  But now we are presented with the
+idea that what these models are being trained on is so dangerous that it really
+should be in the hands of very few American corporations to decide who can do
+what and when and how.</p>
+<p>But behold, Dario is also very worried about China.  It starts with using AI for
+&#8220;democracy and freedom&#8221; and then it asks for ensuring that a gap with China
+exists.  All new recent shenanigans on the Anthropic API are fully there to
+prevent the distillation by the Chinese, and they are not at all hiding it.</p>
+<h2>Automatic Pacing</h2>
+<p>I can tell you when the topic of AI safety and pacing is much less of a concern:
+if we actually were forced to have open weight models to begin with.  A powerful
+technology that is out there for everyone to use comes with built-in pacing.  In
+a way it&#8217;s the truest form of
+<a href="https://en.wikipedia.org/wiki/Mutually_assured_destruction">MAD</a> or
+proliferation.  I would argue we are in this pickle in the first place because
+right now the public is massively supporting (indirectly) the development of
+these models but simultaneously has to buy back the economic benefits that they
+might create from very few labs who have significant power.  And their power is
+also seen as a geopolitical power, at least in the US, and maybe to some lesser
+degree in China.</p>
+<p>And I know I use &#8220;public&#8221; loosely here.  PyPI is not a public project, nor are
+RubyGems or GitHub.  But they&#8217;re part of the Open Source commons and large AI
+companies are currently doing a tremendous job at stressing these in an effort
+to train ever more powerful models.</p>
+<p>We should be glad that China is currently massively bailing out the world.  If
+it were not for Chinese labs distilling American models, we would be in a pretty
+awful situation right now, particularly as Europeans.  The open weight models
+are driving innovation and the diffusion of capabilities, and are leveling the
+playing field.</p>
+<blockquote>
+<p>If we greatly restrain our AI capabilities in the belief that China will do
+the same, and then China defects, AI could be so powerful that such a defection
+could lead to their geopolitical dominance. Therefore any agreement must either
+have ironclad verifiability, or must be limited enough that defection would not
+be militarily existential. </p>
+<p>— Dario Amodei</p>
+</blockquote>
+<p>I am assuming Dario has reasons to believe this, but the models that are
+actually causing issues right now are all closed weight American models.  I&#8217;m
+fairly certain if they were open weight models, we would not have that issue.
+Why?  Because for a start, the economics of serving up these models are only
+that distorted due to how the big labs can operate.  OpenAI is casually burning
+18 million USD to brute force a problem on a whim.  They are operating
+subscriptions at a massive loss, distorting the market everywhere.  If we had
+mass accessibility on somewhat equal terms, a lot of the crazy issues we are
+seeing today would not be taking place.</p>
+<h2>A Total Regulatory Failure</h2>
+<p>From where I sit, what we observe right now is a total regulatory failure
+everywhere.  In Europe you have some whacky AI regulation that is two years old
+and completely misses the problems that we actually have and focuses on
+problems that nobody has.  In the US we&#8217;re seeing a system that is probably best
+described as turbo capitalism paired with sinophobia and erratic
+decision-making.  In the chaos in which we find ourselves, the reality emerges.
+And the reality is, even today, really problematic.</p>
+<p>Whatever laws and regulations already exist are largely completely ignored.
+Plenty of companies are buying data from all over the place that people never
+agreed could be used for training of AI models.  The token economy that is
+emerging is one that looks like a drug market where you don&#8217;t know where the
+requests are going, what model is served up to you, where the GPUs are even
+running, let alone what you pay for all of this.</p>
+<p>We now have mathematicians who are scared that their use of ChatGPT leads to
+future models being trained on their ideas, and OpenAI apparently <a href="https://www.bbc.com/news/articles/cy7zygy3rl2o">can&#8217;t even
+rule it out</a>.</p>
+<p>Ideally the regulators would have forced these models to actually benefit the
+commons if they are from the commons.  The internet has, for instance, greatly
+benefited from very liberal rulings in the US that permitted scraping.  Learning
+on public data could have been regulated in a way that labs would have to
+actively support and enable certain forms of distillation.  That alone would
+dramatically change how these models are trained.</p>
+<h2>What Might Happen?</h2>
+<p>As I said before, I don&#8217;t think AI is going to usher in an extinction event.  In
+fact, even if nobody were to slow down, I really don&#8217;t think humanity would have
+much to worry about.  I tend to think it would actually be the large labs that have
+much more to lose there in reputation and legal responsibilities.  I find it
+preposterous that OpenAI&#8217;s agents are committing actual crimes out there, but
+we&#8217;re just shrugging our shoulders and moving on as if nothing happened.  But
+I&#8217;m sure executives in those companies are waking up to the reality that this is
+not at all popular with a lot of their potential consumers.</p>
+<p>I also think that this entire recursive self-improvement business has a good
+chance of being a problem.  But not necessarily in that it will cause the end of
+humanity or societies, but that it will just do massive damage everywhere.</p>
+<p>And really, it will just make a lot of the things we are doing much more
+expensive.  Software engineering is an early victim of that.  The newfound
+powers so far have resulted in a new tax that companies need to pay to the model
+providers, both to keep up with the new speed and to deal with the problem of
+these machines finding security issues left and right.</p>
+<p>And presumably what is going on in software will happen to more industries.
+Universities and research groups will have to pour a lot of money into the
+closed models as well, to keep up with others who do.</p>
+<p>In a way, I&#8217;m really confused that society is taking all of this so well.</p>
+]]></content>
+  </entry>
   <entry>
     <id>https://lucumr.pocoo.org/2026/9/7/astra-why/</id>
     <title>Astra for Coding: Why Are We Doing This Again?</title>
@@ -1451,217 +1608,6 @@ loop because clearly we will.  Maybe the question is that in a future of loops,
 how do we don&#8217;t abdicate judgment, how we can retain rules of good engineering,
 how we can ensure that responsible human can continue to supervise, how we need
 to re-think how we architect code to retain sanity along the way.</p>
-]]></content>
-  </entry>
-  <entry>
-    <id>https://lucumr.pocoo.org/2026/6/13/americans-only/</id>
-    <title>Dangerous Technology For Americans Only</title>
-    <link href="https://lucumr.pocoo.org/2026/6/13/americans-only/" />
-    <published>2026-06-13T00:00:00+00:00</published>
-    <updated>2026-06-13T00:00:00+00:00</updated>
-    <author>
-      <name>Armin Ronacher</name>
-    </author>
-    <content type="html"><![CDATA[<p>There is a bit of schadenfreude on Twitter right now about Anthropic being hit
-by the US government&#8217;s export control directive to <a href="https://www.anthropic.com/news/fable-mythos-access">suspend access to Fable and
-Mythos</a>.  Anthropic and
-their leadership have spent a lot of time and effort describing its own
-technology as dangerous and in need of strict controls and regulation.  Now that
-the US government appears to have taken that framing seriously and told them to
-turn it off for foreign nationals I can see why people are making fun of that
-situation.</p>
-<p>I understand the reaction, but I urge you to not entertain it for too long
-because it is a giant distraction.  The important part is not that Anthropic&#8217;s
-safety language came back to bite them but the line the US government is
-drawing: this technology is apparently so powerful that only Americans should
-have it.</p>
-<p>We are on a clear path towards a world of division.  One should think that if a
-model is too dangerous for everyone, then it is too dangerous for Americans too.
-Instead the US is treating these models like weapons that need to be controlled.
-It is not just about capabilities, it is about racism and nationalism.  If you
-have the wrong passport, you are not to be trusted.  This is a very different
-thing from safety, and Europeans should pay close attention to it.</p>
-<h2>Safety and National Control</h2>
-<p>The directive, as Anthropic describes it, applies to foreign nationals whether
-they are inside or outside the United States, including foreign national
-Anthropic employees.  That is an astonishing boundary if you think about it.  We
-moved from &#8220;do not sell this model to hostile governments&#8221; to nationality itself
-being the defining boundary.  This should be a wake-up call to Europeans in and
-outside the US, and quite frankly, any non US citizen.</p>
-<p>A lot of AI safety discourse presents itself as universal: humanity,
-catastrophic risk, safeguards, responsible deployment.  Even Anthropic&#8217;s own
-writings start out that way, but yet every time regulation is discussed there
-is an overtone of national security and that it cannot get into the wrong hands.
-It&#8217;s not just Anthropic, it&#8217;s the entire US based discourse on AI.  The
-foundation is that the US has moral superiority and others are not to be
-trusted.  That there are other countries are authoritarian, that they lack
-freedoms.</p>
-<p>That should make us uncomfortable, not just Europeans, but particularly us.  It
-is also a situation you cannot regulate yourself out of.  European technology
-policy is entirely unprepared for this, because this is not a question of
-regulation but a question of might and power, something that Europe lacks.</p>
-<p>Europe has spent years trying to regulate large American technology companies,
-sometimes for good reasons.  I am not reflexively against that.  The DMA matters
-<a href="/2026/6/10/gaslighting/">because access matters</a>.  Users should have agency
-over their devices, their data, and the software they run.  But regulation is a
-useless substitute for capability and we are lacking that.  Regulation might try
-to force open doors but if those doors only come from American or Chinese
-companies, then that accomplishes very little.</p>
-<p>Also let&#8217;s not be naive in that this is a negotiation of money and force.  The
-US is in that position because the US has a mighty military.  The US can bomb
-nations anywhere in the world, force international trade routes closed and get
-away with it.  That&#8217;s true leverage.</p>
-<h2>Oh Europe</h2>
-<p>Europe is dependent on the United States in ways that are becoming increasingly
-impossible to ignore.  We depend on American cloud providers, operating systems,
-developer platforms and now AI models and internet from satellites.  We also
-depend on global semiconductor supply chains we do not control.  If access to
-frontier AI becomes a matter of American national security policy, Europe is not
-a peer in that conversation and might not even be a market.</p>
-<p>That is a humiliating position, but one that happened entirely intentionally.</p>
-<p>European citizens and politicians still have not managed to move beyond blaming
-the EU for its failures.  We built and maintained fragmented markets and then
-pretended we had a single one.  We let company formation, hiring, equity
-compensation, tax, notaries, KYC, banking, and cross-border services remain much
-harder than they need to be and we are playing these rules against each other.
-Not just on the European level, but within every single member state.  We
-protect the trusts and established enterprises, who are risk averse and
-entrenched, instead of trusting the next generation to build great companies.
-We created a culture where process <a href="/2025/10/21/eu-resigation/">becomes an excuse for low
-agency</a>.  We made it hard to build new and large
-companies and then act surprised when our most ambitious founders move somewhere
-else or just decided to incorporate their companies in the US.</p>
-<p>Increasingly, Europeans who want to build very large technology companies move
-to the United States.  They do it because the capital markets are better, the
-startup infrastructure is better, <a href="/2026/4/23/equity-for-europeans/">employee equity is better
-understood</a>.  I cannot blame anyone doing it,
-and I&#8217;m guilty of this myself as we have incorporated our holding in Delaware.
-If you are trying to raise serious money, hire aggressively, and move quickly,
-the US often looks like the only game in town.  Because quite frankly: it is.</p>
-<p>But this is why we are on a dangerous death spiral already.  Talent leaves
-because the ecosystem is weak and the ecosystem stays weak because talent
-leaves.  Infrastructure makes the world: build excellent swimming pools and you
-will grow a generation of great swimmers.</p>
-<p>The temporary task is straightforward but uncomfortable: Europeans need to
-believe in themselves enough not to surrender to American gravity.  Moving to
-the US as a founder or tech employee is rational and individually it is often
-the right decision.  But if every ambitious person treats Europe as a lost
-cause, then Europe becomes one.  If everyone with agency leaves, the only people
-left to shape the system are the people most comfortable with the system as it
-is.  Then we really should not be surprised when nothing changes.</p>
-<p>Europe needs more ambition, more ownership, more urgency, and more willingness
-to build.  It needs less resignation.  It needs to stop confusing regulation
-with strategy and dependency with virtue.  We need to deregulate where rules
-serve mostly as protectionism.  We need capital markets that can fund companies
-at the scale modern technology requires.  We need employee ownership to become
-normal rather than exotic.  We need a real single market for services, not just
-speeches about one.  We need countries to stop fighting each other while
-claiming to act in the European interest.</p>
-<p>Most importantly: we need to stop blaming the politicians.  Too many European
-companies are adding to that bureaucracy entirely out of their own choice.  They
-drown you in paperwork.  At one point I had to sign a four page contract for a
-120 Euro lamp at an Austrian retailer, just to pick up from their store 15
-minutes later.  Sometimes I cannot get a speaking engagement at a European event
-without someone sending me complex rights waivers over.  It&#8217;s all just paperwork
-protection against potential downsides.</p>
-<p>When we do not have the power to influence, we should at least understand why
-and where things are failing.  Too many entrepreneurs are blaming EU regulation
-for failures that are originating within the member states.  EU regulation is
-the result of a democratic process between countries that are lobbying in favor
-of their local industries against others in the same economic bloc.  No amount
-of <a href="/2025/12/9/fixing-europe/">abolishment of the EU</a> is going to fix this harsh
-reality.  Nothing more demonstrates this as the inability for cross-border M&amp;A in
-the European Union.  It&#8217;s not the EU that blocks it, it&#8217;s the country that loses
-out.</p>
-<p>Strengthening Europe is necessary because weakness makes us pawns.  A Europe
-that cannot build, cannot finance, cannot coordinate and cannot defend its own
-interests will not be treated as an equal.  It will be regulated around,
-export-controlled around, consulted after the fact or not consulted at all.</p>
-<h2>The American Trap</h2>
-<p>I do not want the lesson to be that Europe simply needs to turn itself into a
-copy of the United States.  The US has solved some things that Europe has not.
-It has deep capital markets, a much stronger culture of ownership, a greater
-tolerance for risk, and institutions that often try to make progress possible
-rather than explain why it cannot happen.  It also has achieved an internal
-level of integration that is unparalleled in Europe.  Tremendous advantages!</p>
-<p>But the American path is not obviously a healthy one in all aspects.  It tends
-to take paths with a lot of conflict and wars, a lot of internal societal
-division and deep inequalities.  It centralizes powers away from citizens in the
-presidency and people with money.  You are still trading one set of failures for
-another.  You are at the whim of the US government and its strict rules and
-regulations.  The US barely manages to uphold the rights for its own citizens
-today.</p>
-<p>We should be honest about both sides.  You do not win by pretending that Europe
-is fine.  You also do not win by pretending that America has figured everything
-out.</p>
-<p>We must not be blind to all the signs of how international cooperation is
-falling apart around us.  The US no longer talks to European governments before
-implementing orders that directly affect Europeans.  It is threatening to take
-Greenland, the territory of Denmark, one of its oldest allies.  Treaties,
-alliances and institutions have lost all their worth.</p>
-<p>All that matters even if our own lives are focused on building companies,
-creating wealth, hiring people and making things.  Our individual path to
-success is one thing, but it depends on a world where contracts work, visas work
-and don&#8217;t change on a moment&#8217;s notice, trade routes stay open, payment systems
-function, and families are not torn apart by border regimes or wars.  If the
-world descends into chaos, our basic needs cannot be considered met just because
-we have a great salaries or equity or investors that trust us.</p>
-<p>This is why strengthening Europe cannot be the final goal.  A stronger EU is,
-at best, a temporary defense against a darker world and not an excuse to replace
-American nationalism with European nationalism.  The long-term answer cannot be
-bigger and bigger blocs fighting over who may use which model, which chip, which
-cloud or which trade route.</p>
-<h2>The Way Out Is Cooperation</h2>
-<p>I&#8217;m not asking here for Europeans to get their shit together just to compete
-with the US or China.  Maybe I hope that this is a thing that develops, but the
-goal absolutely cannot be that we accept the deterioration of international
-relationships long term.</p>
-<p>I truly believe that Open Source matters and international cooperation matters.
-It is not a magical answer to every problem, but it is one of the few paths we
-have that does not naturally lead to total concentration of power.</p>
-<p>If frontier AI becomes something only large corporations and governments can
-control, then everyone else becomes dependent on their judgment.  That is a bad
-place to be.  Corporations will optimize for their incentives, as well
-structured as they might be, and governments will optimize for more and more
-power.  Right now we&#8217;re on a path in which access to general-purpose capability
-is mediated by a small number of actors with tremendous powers.</p>
-<p>I&#8217;m not naive in pretending AI cannot carry inherent risks.  Open systems are
-messy, they can be misused and they create uncomfortable questions about
-dual-use capabilities.  I do not want to wave that away but closed systems do
-not make those questions disappear either.  Moving the power to decide into
-fewer hands is not a solution I believe in.  And I would have the same opinion
-if I was a US citizen living in the US.</p>
-<p>Any path that puts large blocs in a constant fight against each other has
-despicable downstream effects that result in the removal of individual rights.
-It&#8217;s entirely pointless for the US to talk about freedoms that do not extend to
-non-US citizens and the same is true for Europe or any other country.  We might
-accept these restrictions temporarily, but we absolutely cannot accept them long
-term for the inhumane effects that they can cause.</p>
-<p>If we believe this technology can be used for good, then broad access matters
-and our goal should be to restore the international rule of law, and not to
-further weaken it.  If we find ourselves in a war against our friends from other
-countries, cold or hot, we have failed as society.</p>
-<p>The world we should be working back toward is one of international cooperation,
-globalization in the best sense of the word, and human dignity.  The internet
-has made our lives irreversibly international: every day people fall in love
-across borders, marry across languages, move across continents, and work with
-friends they may never meet in countries they may never visit.  Identifying too
-strongly with any one country in that world is a fool&#8217;s errand.</p>
-<p>Over the last decade too many of the people I got to know through Open Source
-were directly dragged into a war.  I want to believe there is a way for us to
-break this cycle.  We should be repairing failed states, rebuilding trust
-between people, and finding ways to cooperate again instead of letting the
-richest countries arm themselves and fight over who gets to control the future
-and narrative.  Of course I want Europe to become stronger so it can stop being
-a pawn, but if we mistake that temporary need for the destination, I will be
-deeply disappointed.</p>
-<p>The way out is not American supremacy, Chinese supremacy or European supremacy.
-The way out is to climb back toward cooperation before the alternative becomes
-war.</p>
-<p>Artificial Intelligence is quickly becoming another instrument of militarization
-and national rivalry, when it could be one of the most powerful tools for
-cooperation we have.  We should be using it to help people across societies and
-languages understand one another, not fighting over who gets to control it.</p>
 ]]></content>
   </entry>
 </feed>
