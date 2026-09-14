@@ -1,20 +1,63 @@
-  <?xml version="1.0" encoding="UTF-8"?>
-  <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
-    <channel>
-      <atom:link href="https://rss.xcancel.com/trq212/rss" rel="self" type="application/rss+xml" />
-      <title>RSS reader not yet whitelisted!</title>
-      <link>https://rss.xcancel.com/trq212/rss</link>
-      <description>RSS reader not yet whitelist! Please send an email rss [AT] xcancel [DOT] com with this ID to get your RSS feed reader whitelisted: 2c5473bec4e89a7c7f2e32744d4fb102436f8ee2f2d96646a0a7b4af858740845581d4f44b960eb67cfb51223e3abf807d2649f45162ab6dc3befef43896c212b8bfdd65f7045f870b8abde740688a93729c7866526d84045f63d1ba71817b821ecb1e320d5de1bd74129d9976e15145d5cfc617fe2bed5ee612571649539dc9</description>
-      <language>en-us</language>
-      <ttl>1</ttl>
-        <item>
-          <title>RSS reader not yet whitelisted!</title>
-          <dc:creator>@xcancel</dc:creator>
-          <description>RSS reader not yet whitelist! Plain request with just the ID will be ignored! Please send an email rss [AT] xcancel [DOT] com with the reason why you want your RSS feed reader to be whitelist and this ID: 2c5473bec4e89a7c7f2e32744d4fb102436f8ee2f2d96646a0a7b4af858740845581d4f44b960eb67cfb51223e3abf807d2649f45162ab6dc3befef43896c212b8bfdd65f7045f870b8abde740688a93729c7866526d84045f63d1ba71817b821ecb1e320d5de1bd74129d9976e15145d5cfc617fe2bed5ee612571649539dc9</description>
-          <pubDate>Mon, 01 January 1971 00:00:00 GMT</pubDate>
-          <guid>https://rss.xcancel.com/trq212/rss</guid>
-          <link>https://rss.xcancel.com/trq212/rss</link>
-        </item>
-    </channel>
-  </rss>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>XCancel service is suspended.</title>
+    <style>
+        :root { color-scheme: light dark; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                         Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background: #0f0f0f;
+            color: #e7e7e7;
+        }
+        main {
+            max-width: 40rem;
+            width: 100%;
+            text-align: center;
+        }
+        h1 { font-size: 1.6rem; margin: 0 0 1rem; }
+        p { margin: 0 0 1rem; color: #b9b9b9; }
+        a.button {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            background: #e7e7e7;
+            color: #0f0f0f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a.button:hover { background: #cfcfcf; }
+        .muted { font-size: 0.85rem; color: #7a7a7a; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>XCancel service is suspended.</h1>
+        <p>
+            Unfortunately, due to a new development in the ongoing legal proceedings, we are required to suspend this service again until further notice.
+            We can't share more details.
+        </p>
+        <p>
+            You can find the content you were looking for on the original
+            website:
+        </p>
+        <p>
+            <a class="button" href="https://x.com/trq212/rss" rel="noopener noreferrer">Continue to X</a>
+        </p>
+        <p class="muted">Thank you for your understanding. And the trust you have put into the XCancel project.</p>
+    </main>
+</body>
+</html>
 
