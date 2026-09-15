@@ -2252,6 +2252,21 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 </section>
+<section id="q-do-i-need-a-reference-answer-before-annotating-data" class="level2">
+<h2 class="anchored" data-anchor-id="q-do-i-need-a-reference-answer-before-annotating-data">Q: Do I need a reference answer or rubric before annotating data?</h2>
+<p>No.&nbsp;Writing a rubric before you review examples can get in the way.</p>
+<p>Let’s get some definitions out of the way:</p>
+<ul>
+<li>A reference answer is an example of a correct response.</li>
+<li>A rubric is a set of criteria for judging a response, such as whether it follows the refund policy.</li>
+</ul>
+<p>Both can help, but treat your initial expectations as a starting point that you will revise.</p>
+<p>It’s often better to wait until you’ve reviewed some examples before developing a detailed rubric. Reviewers can become so focused on checking each item that they overlook problems outside the rubric. It’s important to give reviewers room to notice things you didn’t anticipate. This change in what you consider good is called <a href="https://arxiv.org/abs/2404.12272" target="_blank">“criteria drift”</a>.</p>
+<p>For example, let’s say you have a support agent that handles refunds and it escalates refunds to a human per your policy. You might only realize that the process is frustrating for the user after reading a few interactions. Don’t underestimate the degree of criteria drift that will happen as you review examples!</p>
+<p>We recommend using <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank">error analysis</a> to systematically review examples and decide what might belong in the rubric. This involves writing open-ended notes about what looks wrong, then group similar notes to see which problems recur. See this <a href="https://www.youtube.com/watch?v=BsWxPI9UM4c" target="_blank">live demo</a> for a walkthrough.</p>
+<p>After doing error analysis, you can write a better rubric informed by user and application behavior. You should <a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" target="_blank">periodically</a> do error analysis to make sure your rubric is current.</p>
+<p><a href="../../../blog/posts/evals-faq/do-i-need-a-reference-answer-before-annotating-data.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 <section id="q-how-many-examples-do-i-need-for-an-eval" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-many-examples-do-i-need-for-an-eval">Q: How many examples do I need for an eval?</h2>
 <p>Building evals is a pipeline, and each stage needs a different amount of data. We describe these stages below:</p>
@@ -2339,6 +2354,14 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>Between major analyses, review 10-20 traces weekly, focusing on outliers: unusually long conversations, sessions with multiple retries, or traces flagged by automated monitoring. Adjust frequency based on system stability and usage growth. New systems need weekly analysis until failure patterns stabilize. Mature systems might need only monthly analysis unless usage patterns change. Always analyze after incidents, user complaint spikes, or metric drift. Scaling usage introduces new edge cases.</p>
 <p><a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
+<section id="q-what-should-i-do-when-my-gold-eval-dataset-becomes-stale" class="level2">
+<h2 class="anchored" data-anchor-id="q-what-should-i-do-when-my-gold-eval-dataset-becomes-stale">Q: What should I do when my "gold" eval dataset becomes stale?</h2>
+<p>Eval datasets naturally get stale as your product and users change. Use regular <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank">error analysis</a> to find new problems and update your examples or reference answers. <a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" target="_blank">How often you review</a> depends on your use case and how quickly your product or usage changes.</p>
+<p>Like unit tests, evals can catch problems that return after a fix. However, evals often cost considerably more than unit tests to maintain and run. Therefore, you should weigh each eval’s cost against the value of its signals. If <a href="../../../blog/posts/evals-faq/how-much-of-my-development-budget-should-i-allocate-to-evals.html" target="_blank">everything keeps passing</a>, this is a sign that the eval is no longer useful and should be retired or run less often.</p>
+<p>As your eval set changes, its scores may no longer be directly comparable with older scores. That is ok! One purpose of evals are to provide you with challenges you can hill climb against. These challenges should change as your product evolves to help you keep improving.</p>
+<p>For tracking progress with metrics over longer time horizons, it’s often better to use product metrics in addition to evals. Examples of product metrics include: churn, active users, revenue, etc.</p>
+<p><a href="../../../blog/posts/evals-faq/what-should-i-do-when-my-gold-eval-dataset-becomes-stale.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 <section id="q-what-is-the-best-approach-for-generating-synthetic-data" class="level2">
 <h2 class="anchored" data-anchor-id="q-what-is-the-best-approach-for-generating-synthetic-data">Q: What is the best approach for generating synthetic data?</h2>
 <p>A common mistake is prompting an LLM to <code>"give me test queries"</code> without structure, resulting in generic, repetitive outputs. A structured approach using dimensions produces far better synthetic data for testing LLM applications.</p>
@@ -2386,6 +2409,18 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <li><p><strong>Underrepresented user groups</strong>: For underrepresented user groups, LLMs may misrepresent context, values, or challenges. Synthetic data can reinforce biases in the training data of the LLM.</p></li>
 </ol>
 <p><a href="../../../blog/posts/evals-faq/are-there-scenarios-where-synthetic-data-may-not-be-reliable.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
+<section id="q-how-can-i-do-error-analysis-when-production-traces-contain-sensitive-data" class="level2">
+<h2 class="anchored" data-anchor-id="q-how-can-i-do-error-analysis-when-production-traces-contain-sensitive-data">Q: How can I do evals when traces contain sensitive data?</h2>
+<p>There is no replacement for looking at real interactions. This situation is not ideal, but there are some things you can do. Here are some options, in order of preference:</p>
+<ol type="1">
+<li><p>Try to find real data you are allowed to inspect. A customer may agree to share a subset of traces, or test users may let you review their interactions. Even limited access gives you examples of how people use the product.</p></li>
+<li><p>If you cannot inspect the data yourself, work with domain experts who are allowed to see it. Make your product <a href="../../../blog/posts/eval-smell/index.html" target="_blank">easier for them to verify</a> as part of their normal work. For example, a medical research assistant could show a clinician the evidence behind each claim and flag conflicting sources for review. The clinician can correct a specific claim or resolve a conflict while using the product. Those decisions can provide additional data for evals, subject to the same restrictions on what you can store and share.</p>
+<p>To design this well, learn how the experts check an answer. Give them links to the supporting evidence and smaller pieces of work they can review. Asking whether the final answer was helpful often tells you too little about what went wrong. I discuss this approach in <a href="../../../blog/posts/eval-smell/" target="_blank">this post</a>.</p></li>
+<li><p>Redact or edit traces so they can be shared. If sensitive information cannot be stored, redact it before logging. Redaction tools can miss sensitive information, so check their output. When edited traces can be shared, removing personal information and changing sensitive details can make real examples usable for review. Check that those edits preserve the behavior you need to evaluate.</p></li>
+<li><p>If none of the above options are possible, synthetic data should be your last resort. Synthetic data can help you find initial problems but has the downside that it only gives you limited evidence about how real users will behave. Read more about when <a href="../../../blog/posts/evals-faq/are-there-scenarios-where-synthetic-data-may-not-be-reliable.html" target="_blank">synthetic data may be unreliable</a>.</p></li>
+</ol>
+<p><a href="../../../blog/posts/evals-faq/how-can-i-do-error-analysis-when-production-traces-contain-sensitive-data.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 <section id="q-how-do-i-approach-evaluation-when-my-system-handles-diverse-user-queries" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-do-i-approach-evaluation-when-my-system-handles-diverse-user-queries">Q: How do I approach evaluation when my system handles diverse user queries?</h2>
@@ -2538,6 +2573,14 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>When selecting judge models, start with the most capable models available to establish strong alignment with human judgments. You can optimize for cost later once you’ve established reliable evaluation criteria.</p>
 <p><a href="../../../blog/posts/evals-faq/can-i-use-the-same-model-for-both-the-main-task-and-evaluation.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
+<section id="q-how-much-of-a-trace-should-i-give-an-llm-judge" class="level2">
+<h2 class="anchored" data-anchor-id="q-how-much-of-a-trace-should-i-give-an-llm-judge">Q: How much context should I give a LLM judge?</h2>
+<p>Give each judge only the parts of the trace it needs for its failure mode. Do not give every judge the same full trace by default. Extra context can cause <a href="../../../notes/llm/rag/p6-context_rot.html" target="_blank">context rot</a> and make the judge worse.</p>
+<p>Finding the right pieces of context often requires experimentation. Test your choices by comparing the judge’s decisions with human labels. Then, inspect disagreements to see whether the judge lacked necessary evidence or was distracted by irrelevant information.</p>
+<p>If you’re unsure whether a piece of information helps, try an ablation study. This means removing one piece at a time and checking how the results change against human labels. If performance stays the same or improves, you may be able to leave it out.</p>
+<p>Long-running agents can produce large traces that fill or exceed the judge’s context window. For these cases, consider giving the judge a tool to search the parts it needs. However, don’t add this unless you absolutely need it, as a tool like this adds additional complexity, cost, and latency.</p>
+<p><a href="../../../blog/posts/evals-faq/how-much-of-a-trace-should-i-give-an-llm-judge.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 <section id="q-how-do-we-evaluate-a-models-ability-to-express-uncertainty-or-know-what-it-doesnt-know" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-do-we-evaluate-a-models-ability-to-express-uncertainty-or-know-what-it-doesnt-know">Q: How do we evaluate a model’s ability to express uncertainty or "know what it doesn’t know"?</h2>
 <p>Many applications require a model that can refuse to answer a question when it lacks sufficient information. To evaluate whether this refusal behavior is well-calibrated, you need to test if the model refuses at the appropriate times without refusing to answer questions it <em>should</em> be able to answer.</p>
@@ -2621,6 +2664,14 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 </ul>
 <p><a href="../../../blog/posts/evals-faq/should-i-outsource-annotation-and-labeling-to-a-third-party.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
+</section>
+<section id="q-what-if-the-source-material-is-too-large-for-a-person-to-review" class="level2">
+<h2 class="anchored" data-anchor-id="q-what-if-the-source-material-is-too-large-for-a-person-to-review">Q: How do you review a trace that is really large?</h2>
+<p>Traces can get large when an agent runs for a long time or retrieves a large amount of context. A useful heuristic is to focus on the <a href="../../../blog/posts/evals-faq/how-do-i-debug-multi-turn-conversation-traces.html" target="_blank">first upstream failure</a>. Errors tend to compound, which means you can prioritize earlier ones to save time.</p>
+<p>Use progressive disclosure in your review tool by showing the most relevant information first and letting reviewers expand details as needed. For example, show the conversation initially, with tool outputs collapsed until a reviewer needs to inspect them.</p>
+<p>If a single trace is still too large to review, work with the domain expert to identify what they need to check. Build a tool that extracts the relevant evidence and links back to its location in the trace or retrieved document. For example, when reviewing an answer about a long contract, the tool could show the relevant clauses with links to their original pages. Always validate this kind of extraction with a domain expert.</p>
+<p>Quality is more important than quantity. You can usually learn more from carefully investigating a few failures than from rushing through many traces.</p>
+<p><a href="../../../blog/posts/evals-faq/what-if-the-source-material-is-too-large-for-a-person-to-review.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 <section id="q-what-parts-of-evals-can-be-automated-with-llms" class="level2">
 <h2 class="anchored" data-anchor-id="q-what-parts-of-evals-can-be-automated-with-llms">Q: What parts of evals can be automated with LLMs?</h2>
