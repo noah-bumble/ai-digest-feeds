@@ -2267,6 +2267,13 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p>After doing error analysis, you can write a better rubric informed by user and application behavior. You should <a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" target="_blank">periodically</a> do error analysis to make sure your rubric is current.</p>
 <p><a href="../../../blog/posts/evals-faq/do-i-need-a-reference-answer-before-annotating-data.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
+<section id="q-should-i-record-problems-that-arent-the-models-fault" class="level2">
+<h2 class="anchored" data-anchor-id="q-should-i-record-problems-that-arent-the-models-fault">Q: Should I record problems that aren’t the model’s fault?</h2>
+<p>Yes. When reviewing interactions, write down anything that makes the product less useful. This includes missing or broken features that have nothing to do with the model. Additionally, don’t focus on why the error occurred, as that should only come after you prioritize which issues to fix.</p>
+<p>For example, a support agent might tell a customer that an order has shipped without providing a tracking link. Even if your AI doesn’t have the ability to fetch a tracking link, record that problem. A prerequisite to building evals is to identify and prioritize which issues to fix through <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank">error analysis</a>. Some of these issues may end up being engineering or design issues that <a href="../../../blog/posts/evals-faq/should-i-build-automated-evaluators-for-every-failure-mode-i-find.html" target="_blank">don’t need</a> an automated evaluator, but they are still important to fix!</p>
+<p>Lastly, we’ve found that deferring root-cause analysis and focusing on problems allows you to write higher-quality annotations while looking at more data.</p>
+<p><a href="../../../blog/posts/evals-faq/should-i-record-problems-that-arent-the-models-fault.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 <section id="q-how-many-examples-do-i-need-for-an-eval" class="level2">
 <h2 class="anchored" data-anchor-id="q-how-many-examples-do-i-need-for-an-eval">Q: How many examples do I need for an eval?</h2>
 <p>Building evals is a pipeline, and each stage needs a different amount of data. We describe these stages below:</p>
@@ -2615,11 +2622,45 @@ font-style: inherit;">npx</span> skills add https://github.com/ai-evals-course/e
 <p><a href="../../../blog/posts/evals-faq/how-many-people-should-annotate-my-llm-outputs.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 </section>
+<section id="q-what-if-human-reviewers-approve-ai-outputs-without-checking-them-carefully" class="level2">
+<h2 class="anchored" data-anchor-id="q-what-if-human-reviewers-approve-ai-outputs-without-checking-them-carefully">Q: How can I make AI outputs easier for people to evaluate?</h2>
+<p>Start by scrutinizing your product design. It’s often helpful to surface intermediate outputs users can check before a final result. For example, suppose you have an agent that writes a medical report by synthesizing a patient’s medical history. Instead of asking a doctor to provide feedback on the report, show the extracted facts with links to the source material and let doctors correct a fact or resolve conflicting evidence before generating the report. This also keeps the doctor involved and helps them build trust by checking the work as they go. This is a sketch of how such an interface might look:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hamel.dev/blog/posts/eval-smell/_static-imgs/09-workers-comp-after.png" class="img-fluid figure-img" style="width:100.0%" alt="ClaimDraft review interface with source-linked findings, controls to resolve contradictions, and an option to add notes before generating a report."></p>
+<figcaption>A mockup that guides a doctor through facts and conflicting evidence before generating a report.</figcaption>
+</figure>
+</div>
+<p>For more discussion on designing for verification, see <a href="../../../blog/posts/eval-smell/index.html" target="_blank">“It’s Hard to Eval” Is a Product Smell</a>. The post expands on this example and discusses several others with before-and-after mockups.</p>
+<p>After you have designed for verification, make sure the review interface removes friction from reviewing data. See the advice on <a href="../../../blog/posts/evals-faq/what-makes-a-good-custom-interface-for-reviewing-llm-outputs.html" target="_blank">building a review interface</a>. Some common tips include:</p>
+<ul>
+<li>Display outputs in a familiar format. Render generated emails as emails, and use syntax highlighting for code.</li>
+<li>Keep the context reviewers need on the same screen. Put less important details in sections they can expand when needed.</li>
+<li>Add keyboard shortcuts for moving between examples and recording judgments. Make it easy to save notes without reaching for the mouse.</li>
+<li>Show progress, such as “45 of 100 examples reviewed,” so reviewers know how much work remains.</li>
+</ul>
+<p>Next, debug the review process. First, try fewer examples so reviewers have time to inspect each one carefully. Have people review the same examples independently and <a href="../../../blog/posts/evals-faq/how-many-people-should-annotate-my-llm-outputs.html" target="_blank">discuss disagreements</a>. You can also review examples together to see where people get stuck. Disagreement can reveal unclear instructions or missing information.</p>
+<p><a href="../../../blog/posts/evals-faq/what-if-human-reviewers-approve-ai-outputs-without-checking-them-carefully.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
 <section id="q-should-product-managers-and-engineers-collaborate-on-error-analysis-how" class="level2">
 <h2 class="anchored" data-anchor-id="q-should-product-managers-and-engineers-collaborate-on-error-analysis-how">Q: Should product managers and engineers collaborate on error analysis? How?</h2>
 <p>At the outset, collaborate to establish shared context. Engineers catch technical issues like retrieval issues and tool errors. PMs identify product failures like unmet user expectations, confusing responses, or missing features users expect.</p>
 <p>As time goes on you should lean towards a benevolent dictator for error analysis: a domain expert or PM who understands user needs. Empower domain experts to evaluate actual outcomes rather than technical implementation. Ask “Has an appointment been made?” not “Did the tool call succeed?” The best way to empower the domain expert is to give them custom annotation tools that display system outcomes alongside traces. Show the confirmation, generated email, or database update that validates goal completion. Keep all context on one screen so non-technical reviewers focus on results.</p>
 <p><a href="../../../blog/posts/evals-faq/should-product-managers-and-engineers-collaborate-on-error-analysis-how.html" class="faq-individual-link">↗ Focus view</a></p>
+</section>
+<section id="q-can-i-help-with-evals-if-im-not-a-domain-expert" class="level2">
+<h2 class="anchored" data-anchor-id="q-can-i-help-with-evals-if-im-not-a-domain-expert">Q: Can I help with evals if I’m not a domain expert?</h2>
+<p>Yes, especially when you’re beginning with evals. I’m often surprised by the number of low-hanging fruit I find while reviewing data that don’t require domain knowledge. For example, I’ve found issues like this in specialized domains as an outsider:</p>
+<ul>
+<li>Text message chatbots getting confused by the conversational flow of lots of short, broken-up messages people tend to write in text versus chat.</li>
+<li>Lack of query disambiguation or follow-up when users’ requests are obviously vague.</li>
+<li>Not having proper instrumentation, logging or traces to begin with.</li>
+<li>Lack of widgets, UI elements or other affordances that help users complete tasks versus over-reliance on text responses.</li>
+</ul>
+<p>Furthermore, ask a domain expert to walk through an example and explain why it is good or bad. Watch what they check and which evidence they need. Use what you learn to <a href="../../../blog/posts/evals-faq/what-makes-a-good-custom-interface-for-reviewing-llm-outputs.html" target="_blank">build a better annotation interface</a> that makes reviewing easier.</p>
+<p>You can also help the team collect interactions and review them regularly. For example, see <a href="../../../blog/posts/evals-faq/should-product-managers-and-engineers-collaborate-on-error-analysis-how.html" target="_blank">how product managers and engineers can collaborate on error analysis</a> to get an idea of how to structure cross-functional collaboration.</p>
+<p>Lastly, make sure you leave judgments that require specialized knowledge to the expert. However, don’t assume you need domain expertise to start being useful!</p>
+<p><a href="../../../blog/posts/evals-faq/can-i-help-with-evals-if-im-not-a-domain-expert.html" class="faq-individual-link">↗ Focus view</a></p>
 </section>
 <section id="q-should-i-outsource-annotation-and-labeling-to-a-third-party" class="level2">
 <h2 class="anchored" data-anchor-id="q-should-i-outsource-annotation-and-labeling-to-a-third-party">Q: Should I outsource annotation &amp; labeling to a third party?</h2>
