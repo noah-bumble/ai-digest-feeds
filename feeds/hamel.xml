@@ -5357,9 +5357,9 @@ Warning
 
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>I started working with language models five years ago when I led the team that created <a href="https://github.com/github/CodeSearchNet">CodeSearchNet</a>, a precursor to GitHub CoPilot. Since then, I’ve seen many successful and unsuccessful approaches to building LLM products. I’ve found that unsuccessful products almost always share a common root cause: <strong>a failure to create robust evaluation systems.</strong></p>
-<p>I originally wrote this while helping companies build domain-specific AI products. I hope companies can save thousands of dollars in consulting fees by reading this post carefully.</p>
-<p>This post outlines my thoughts on building evaluation systems for LLMs-powered AI products.</p>
+<p>I started working with language models many years ago when I led the team that created <a href="https://github.com/github/CodeSearchNet">CodeSearchNet</a>, a precursor to GitHub CoPilot. Since then, I’ve seen many successful and unsuccessful approaches to building LLM products. I’ve found that unsuccessful products almost always share a common root cause: <strong>a failure to create robust evaluation systems.</strong></p>
+<p>To know whether your AI product is working, you need a way to measure success beyond vibe checks (which are useful, but not enough). This calls for <a href="../../../blog/posts/evals-faq/what-are-llm-evals.html">product evals tailored to your users’ tasks</a>, which measure something different from general model benchmarks.</p>
+<p>This post outlines my thoughts on good evaluation systems for AI Products.</p>
 </section>
 <section id="iterating-quickly-success" class="level1">
 <h1>Iterating Quickly == Success</h1>
