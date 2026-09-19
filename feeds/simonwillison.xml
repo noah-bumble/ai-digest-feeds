@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-18T19:21:32+00:00</updated><author><name>Simon Willison</name></author><entry><title>Note on 18th September 2026</title><link href="https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/" rel="alternate"/><published>2026-09-18T19:21:32+00:00</published><updated>2026-09-18T19:21:32+00:00</updated><id>https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-18T23:57:57+00:00</updated><author><name>Simon Willison</name></author><entry><title>Gemini Hacked Three Companies in First Known Breakout by Google’s AI</title><link href="https://simonwillison.net/2026/Sep/18/gemini-hacked-three-companies/" rel="alternate"/><published>2026-09-18T23:57:57+00:00</published><updated>2026-09-18T23:57:57+00:00</updated><id>https://simonwillison.net/2026/Sep/18/gemini-hacked-three-companies/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.wsj.com/tech/ai/gemini-hacked-three-companies-in-first-known-breakout-by-googles-ai-5c0baba2"&gt;Gemini Hacked Three Companies in First Known Breakout by Google’s AI&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Gemini finally caught up on &lt;a href="https://www.felonybench.com/"&gt;Felony Bench&lt;/a&gt;!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The hacks, which the company confirmed on Friday, occurred in May as part of a test run by the company Irregular, which was also involved in similar incidents disclosed by OpenAI, Anthropic and Meta.&lt;/p&gt;
+&lt;p&gt;In one of the cases, the model guessed passwords until it gained access to a protected system. In the other two cases, the model found credentials in a public repository that allowed it to then access protected systems. In each case, the model ended the intrusion after determining it had accessed a real company’s systems, Google said.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Gemini is apparently less determined than other models, and decided &lt;em&gt;not&lt;/em&gt; to keep going.&lt;/p&gt;
+&lt;p&gt;Google knew about these in July, but chose not to disclose them until the WSJ reached out, presumably based on a tip.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Google said it didn’t consider the hacks to warrant public disclosure—because its model didn’t cause harm to the companies and ended each intrusion immediately upon determining it had hacked a real company rather than a simulated one.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gemini"&gt;gemini&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/accidental-cyberattacks"&gt;accidental-cyberattacks&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="security"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="gemini"/><category term="accidental-cyberattacks"/></entry><entry><title>Note on 18th September 2026</title><link href="https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/" rel="alternate"/><published>2026-09-18T19:21:32+00:00</published><updated>2026-09-18T19:21:32+00:00</updated><id>https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/</id><summary type="html">
     &lt;p&gt;Being a computer scientist who refuses to find anything about LLMs interesting right now is a bit like being a geneticist who refuses to find anything interesting about the recently opened Jurassic Park.&lt;/p&gt;
 
     &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;&lt;/p&gt;
@@ -459,13 +478,4 @@ Today we're releasing two new security patch versions of Datasette: &lt;a href="
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="github"/><category term="sqlite"/></entry><entry><title>datasette 0.65.4</title><link href="https://simonwillison.net/2026/Sep/11/datasette/" rel="alternate"/><published>2026-09-11T00:06:55+00:00</published><updated>2026-09-11T00:06:55+00:00</updated><id>https://simonwillison.net/2026/Sep/11/datasette/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/datasette/releases/tag/0.65.4"&gt;datasette 0.65.4&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;See &lt;a href="https://datasette.io/blog/2026/september-security-releases/"&gt;Datasette 1.0a39 and 0.65.4 security releases&lt;/a&gt; on the Datasette blog.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="security"/><category term="datasette"/></entry></feed>
+</summary><category term="github"/><category term="sqlite"/></entry></feed>
