@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-21T23:09:20+00:00</updated><author><name>Simon Willison</name></author><entry><title>Jev introduces a new shape of LLM - System One, aka Decision Models</title><link href="https://simonwillison.net/2026/Sep/21/jev/" rel="alternate"/><published>2026-09-21T23:09:20+00:00</published><updated>2026-09-21T23:09:20+00:00</updated><id>https://simonwillison.net/2026/Sep/21/jev/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-22T15:54:16+00:00</updated><author><name>Simon Willison</name></author><entry><title>llm-typesafe 0.1a0</title><link href="https://simonwillison.net/2026/Sep/22/llm-typesafe/" rel="alternate"/><published>2026-09-22T15:54:16+00:00</published><updated>2026-09-22T15:54:16+00:00</updated><id>https://simonwillison.net/2026/Sep/22/llm-typesafe/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm-typesafe/releases/tag/0.1a0"&gt;llm-typesafe 0.1a0&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I built this new plugin for &lt;a href="https://llm.datasette.io/"&gt;LLM&lt;/a&gt; to add support for &lt;a href="https://simonwillison.net/2026/Sep/21/jev/"&gt;TypeSafe AI's new Jev model&lt;/a&gt;. Install it like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;llm install llm-typesafe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then set an API key (&lt;a href="https://console.typesafe.ai/"&gt;get one here&lt;/a&gt;, the waitlist seems to move pretty fast):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;llm keys set typesafe
+# Paste key
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And now you can ask yes/no "noul" questions like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;llm -m jev 'Please refund my last payment.' \
+  -s 'Does this message explicitly request a refund?'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{"type": "noul", "noul": 0.99}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Or choice questions like this:&lt;/p&gt;
+&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;cat message.txt &lt;span class="pl-k"&gt;|&lt;/span&gt; llm -m jev \
+  -s &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;Which team should handle this message? If billing and technical issues both occur, choose billing.&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt; \
+  -o answer_type choice \
+  -o criteria &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;{&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "billing":"Charges, invoices, payments, or refunds",&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "technical":"Problems installing or using the product",&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "other":"Neither category fits"&lt;/span&gt;
+&lt;span class="pl-s"&gt;  }&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Or scoring questions like this:&lt;/p&gt;
+&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;cat report.txt &lt;span class="pl-k"&gt;|&lt;/span&gt; llm -m jev \
+  -s &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;How reproducible is the problem described in this report?&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt; \
+  -o answer_type score \
+  -o criteria &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;[&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "No reproduction instructions",&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "Some instructions, but important steps are missing",&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "Complete steps with expected and actual results"&lt;/span&gt;
+&lt;span class="pl-s"&gt;  ]&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;See &lt;a href="https://github.com/simonw/llm-typesafe/blob/main/README.md"&gt;the README&lt;/a&gt; for more details.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/jev"&gt;jev&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="projects"/><category term="llm"/><category term="jev"/></entry><entry><title>Jev introduces a new shape of LLM - System One, aka Decision Models</title><link href="https://simonwillison.net/2026/Sep/21/jev/" rel="alternate"/><published>2026-09-21T23:09:20+00:00</published><updated>2026-09-21T23:09:20+00:00</updated><id>https://simonwillison.net/2026/Sep/21/jev/</id><summary type="html">
     &lt;p&gt;Last week &lt;a href="https://typesafe.ai/"&gt;TypeSafe AI&lt;/a&gt; unveiled &lt;a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev"&gt;Jev&lt;/a&gt;, their first example of a new category of model that they are calling "System One models" (I'm with Maggie Appleton, I think "decision models" is &lt;a href="https://twitter.com/Mappletons/status/2101560333441610133"&gt;a better name&lt;/a&gt; for these). Jev is an interesting variant on the usual LLM format: it still accepts text inputs, but instead of text output it returns floating point numbers corresponding to categories, yes/no questions, ratings, and associated confidence scores.&lt;/p&gt;
 &lt;p&gt;TypeSafe describe Jev like this:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -14,6 +55,7 @@
 &lt;li&gt;Score questions, where you provide sequence of numeric levels with descriptions and it provides a floating point score somewhere along that range.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The Jev API can accept a single document ("state") and as many questions as you can cram into the context window. Questions are evaluated in parallel, so sending many questions should take a similar time to sending just one.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://docs.typesafe.ai/model-jaggedness/jev-1.13"&gt;Jev 1.13 jaggedness&lt;/a&gt; documentation offers useful guidance as to Jev's strengths and weaknesses. It's currently not great with numbers, dates, or "adversarial content".&lt;/p&gt;
 &lt;p&gt;I think the &lt;strong&gt;decision model&lt;/strong&gt; framing is useful for understanding where to use Jev. It's great for anything that can be expressed as a classification task - think spam detection, suggesting labels, prioritization and ranking.&lt;/p&gt;
 &lt;p&gt;I've also been experimenting with it for search reranking, where you fetch 100 likely matches using an inexpensive algorithm like BM25, then have Jev score those 100 candidates for relevance against the original query.&lt;/p&gt;
 &lt;h4 id="black-boxes-are-back-in-fashion"&gt;Black boxes are back in fashion&lt;/h4&gt;
@@ -37,10 +79,10 @@
 &lt;p&gt;There's also been a flurry of projects attempting to create a model like Jev using on top of open weight models. &lt;a href="https://github.com/jaredpalmer/kev"&gt;Kev&lt;/a&gt; is one interesting example, using Qwen 3.5 to produce 0.8B, 4B, and 9B models. Here's the &lt;a href="https://news.ycombinator.com/item?id=49783999"&gt;accompanying Hacker News thread&lt;/a&gt;, where someone linked to a &lt;a href="https://benchmarkheaven.com/jev-models"&gt;JevBench&lt;/a&gt; benchmark that has already cropped up to compare "Jev-class decision models".&lt;/p&gt;
 &lt;p&gt;Given Jev was released just under a week ago, the amount of activity around it is extremely impressive.&lt;/p&gt;
     
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/evals"&gt;evals&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-bias"&gt;ai-bias&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/jev"&gt;jev&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/></entry><entry><title>Cloudflare Python Workers are now generally available</title><link href="https://simonwillison.net/2026/Sep/21/cloudflare-python-worker/" rel="alternate"/><published>2026-09-21T22:25:44+00:00</published><updated>2026-09-21T22:25:44+00:00</updated><id>https://simonwillison.net/2026/Sep/21/cloudflare-python-worker/</id><summary type="html">
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="evals"/><category term="ai-bias"/><category term="jev"/></entry><entry><title>Cloudflare Python Workers are now generally available</title><link href="https://simonwillison.net/2026/Sep/21/cloudflare-python-worker/" rel="alternate"/><published>2026-09-21T22:25:44+00:00</published><updated>2026-09-21T22:25:44+00:00</updated><id>https://simonwillison.net/2026/Sep/21/cloudflare-python-worker/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://blog.cloudflare.com/python-workers-ga/"&gt;Cloudflare Python Workers are now generally available&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 After a two year preview, Cloudflare's support for running Python code in their server-side Workers platform is now stable: "Python is now a first-class, fully supported language on the Cloudflare Developer Platform".&lt;/p&gt;
@@ -495,19 +537,4 @@ Bryan Cantrill responds to the &lt;a href="https://x.com/hilbertspaess/status/20
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ruby"&gt;ruby&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openai"&gt;openai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/supply-chain"&gt;supply-chain&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-ethics"&gt;ai-ethics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/accidental-cyberattacks"&gt;accidental-cyberattacks&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="ruby"/><category term="security"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="supply-chain"/><category term="ai-ethics"/><category term="accidental-cyberattacks"/></entry><entry><title>So you want to use OpenRouter?</title><link href="https://simonwillison.net/2026/Sep/11/so-you-want-to-use-openrouter/" rel="alternate"/><published>2026-09-11T22:49:18+00:00</published><updated>2026-09-11T22:49:18+00:00</updated><id>https://simonwillison.net/2026/Sep/11/so-you-want-to-use-openrouter/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://mmoustafa.com/blog/so-you-want-to-use-openrouter/"&gt;So you want to use OpenRouter?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-One of OpenRouter's selling points is that it "handles fallbacks automatically and picks the most cost-effective option for each request", so you can call a single API endpoint for a model and get routed to the best available backend provider.&lt;/p&gt;
-&lt;p&gt;Mohamed Moustafa points out a whole set of ways that this can cause you problems. Different providers run different serving software with different optimizations and settings, which means that the same OpenRouter endpoint can serve model requests that behave in different ways.&lt;/p&gt;
-&lt;p&gt;Some providers even lack vision capability for vision models, and the way the reasoning effort option is processed can differ as well.&lt;/p&gt;
-&lt;p&gt;Thankfully you can control which provider is routed to using &lt;a href="https://openrouter.ai/docs/guides/routing/provider-selection#allowing-only-specific-providers"&gt;the provider.only option&lt;/a&gt;. The &lt;a href="https://openrouter.ai/docs/api/api-reference/endpoints/list-all-endpoints-for-a-model"&gt;/endpoints method&lt;/a&gt; returns the list of available providers for a specific model ID.
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=49621546"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openrouter"&gt;openrouter&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="openrouter"/></entry></feed>
+</summary><category term="ruby"/><category term="security"/><category term="ai"/><category term="openai"/><category term="generative-ai"/><category term="llms"/><category term="supply-chain"/><category term="ai-ethics"/><category term="accidental-cyberattacks"/></entry></feed>
