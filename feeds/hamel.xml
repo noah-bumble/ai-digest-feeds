@@ -121,6 +121,7 @@
 <li>Q: How can I make AI outputs easier for people to evaluate?</li>
 <li>Q: Should product managers and engineers collaborate on error analysis? How?</li>
 <li>Q: Can I help with evals if I’m not a domain expert?</li>
+<li>Q: How do I evaluate outputs in a language I don’t speak?</li>
 <li>Q: Should I outsource annotation &amp; labeling to a third party?</li>
 <li>Q: How do you review a trace that is really large?</li>
 <li>Q: What parts of evals can be automated with LLMs?</li>
@@ -414,7 +415,7 @@
 <section id="q-what-should-i-do-when-my-gold-eval-dataset-becomes-stale" class="level2" data-faq-published="2026-09-15">
 <h2 data-faq-published="2026-09-15" class="anchored" data-anchor-id="q-what-should-i-do-when-my-gold-eval-dataset-becomes-stale">Q: What should I do when my "gold" eval dataset becomes stale?</h2>
 <p>Eval datasets naturally get stale as your product and users change. Use regular <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> to find new problems and update your examples or reference answers. <a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" target="_blank" rel="noopener">How often you review</a> depends on your use case and how quickly your product or usage changes.</p>
-<p>Like unit tests, evals can catch problems that return after a fix. However, evals often cost considerably more than unit tests to maintain and run. Therefore, you should weigh each eval’s cost against the value of its signals. If <a href="../../../blog/posts/evals-faq/how-much-of-my-development-budget-should-i-allocate-to-evals.html" target="_blank" rel="noopener">everything keeps passing</a>, this is a sign that the eval is no longer useful and should be retired or run less often.</p>
+<p>Like unit tests, evals can catch problems that return after a fix. However, evals often cost considerably more than unit tests to maintain and run. Therefore, you should weigh each eval’s cost against the value of its signals. If <a href="../../../blog/posts/evals-faq/how-much-of-my-development-budget-should-i-allocate-to-evals.html" target="_blank" rel="noopener">everything keeps passing</a>, this is a sign that the eval is less useful and should be run less often or retired. You should phase out expensive evals like LLM-as-a-judge more agressively than cheaper evals.</p>
 <p>As your eval set changes, its scores may no longer be directly comparable with older scores. That is ok! One purpose of evals are to provide you with challenges you can hill climb against. These challenges should change as your product evolves to help you keep improving.</p>
 <p>For tracking progress with metrics over longer time horizons, it’s often better to use product metrics in addition to evals. Examples of product metrics include: churn, active users, revenue, etc.</p>
 <p><a href="../../../blog/posts/evals-faq/what-should-i-do-when-my-gold-eval-dataset-becomes-stale.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
@@ -776,6 +777,13 @@
 <p>You can also help the team collect interactions and review them regularly. For example, see <a href="../../../blog/posts/evals-faq/should-product-managers-and-engineers-collaborate-on-error-analysis-how.html" target="_blank" rel="noopener">how product managers and engineers can collaborate on error analysis</a> to get an idea of how to structure cross-functional collaboration.</p>
 <p>Lastly, make sure you leave judgments that require specialized knowledge to the expert. However, don’t assume you need domain expertise to start being useful!</p>
 <p><a href="../../../blog/posts/evals-faq/can-i-help-with-evals-if-im-not-a-domain-expert.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
+</section>
+<section id="q-how-do-i-evaluate-outputs-in-a-language-i-dont-speak" class="level2" data-faq-published="2026-09-25">
+<h2 data-faq-published="2026-09-25" class="anchored" data-anchor-id="q-how-do-i-evaluate-outputs-in-a-language-i-dont-speak">Q: How do I evaluate outputs in a language I don’t speak?</h2>
+<p>Even though you can translate interactions in a foreign language with an LLM, be cautious about relying on it. Translation often loses meaning as some words and expressions have no direct equivalent. Moreover, what “good” means often depends on culture and social norms. For example, understanding the literal meaning of an answer is not enough to judge whether its tone is appropriate in a different cultural frame.</p>
+<p>Because of these limitations, we recommend involving a reviewer who understands both the language and the cultural context of your users. You can still <a href="../../../blog/posts/evals-faq/can-i-help-with-evals-if-im-not-a-domain-expert.html" target="_blank" rel="noopener">contribute to evals</a> by helping organize the review and investigating problems you can identify yourself. That reviewer should <a href="../../../blog/posts/evals-faq/should-product-managers-and-engineers-collaborate-on-error-analysis-how.html" target="_blank" rel="noopener">set the standard for error analysis</a>.</p>
+<p>If you cannot find a reviewer who understands both the language and cultural context, be aware that your assessment will be limited.</p>
+<p><a href="../../../blog/posts/evals-faq/how-do-i-evaluate-outputs-in-a-language-i-dont-speak.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
 </section>
 <section id="q-should-i-outsource-annotation-and-labeling-to-a-third-party" class="level2" data-faq-published="2025-07-24">
 <h2 data-faq-published="2025-07-24" class="anchored" data-anchor-id="q-should-i-outsource-annotation-and-labeling-to-a-third-party">Q: Should I outsource annotation &amp; labeling to a third party?</h2>
