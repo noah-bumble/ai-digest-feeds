@@ -140,6 +140,7 @@
 <li>Production &amp; Deployment
 <ul>
 <li>Q: How are evaluations used differently in CI/CD vs.&nbsp;monitoring production?</li>
+<li>Q: How often should I run my evals?</li>
 <li>Q: What’s the difference between guardrails &amp; evaluators?</li>
 <li>Q: Can my evaluators also be used to automatically <em>fix</em> or <em>correct</em> outputs in production?</li>
 <li>Q: How much time should I spend on model selection?</li>
@@ -314,14 +315,14 @@
 <p>Both can help, but treat your initial expectations as a starting point that you will revise.</p>
 <p>It’s often better to wait until you’ve reviewed some examples before developing a detailed rubric. Reviewers can become so focused on checking each item that they overlook problems outside the rubric. It’s important to give reviewers room to notice things you didn’t anticipate. This change in what you consider good is called <a href="https://arxiv.org/abs/2404.12272" target="_blank" rel="noopener">“criteria drift”</a>.</p>
 <p>For example, let’s say you have a support agent that handles refunds and it escalates refunds to a human per your policy. You might only realize that the process is frustrating for the user after reading a few interactions. Don’t underestimate the degree of criteria drift that will happen as you review examples!</p>
-<p>We recommend using <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> to systematically review examples and decide what might belong in the rubric. This involves writing open-ended notes about what looks wrong, then group similar notes to see which problems recur. See this <a href="https://www.youtube.com/watch?v=BsWxPI9UM4c" target="_blank" rel="noopener">live demo</a> for a walkthrough.</p>
+<p>We recommend using <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> to systematically review examples and decide what might belong in the rubric. This involves writing open-ended notes about what looks wrong, then group similar notes to see which problems recur. See this <a href="https://www.youtube.com/watch?v=BsWxPI9UM4c" target="_blank" rel="noopener">live demo</a> for a walkthrough.</p>
 <p>After doing error analysis, you can write a better rubric informed by user and application behavior. You should <a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" target="_blank" rel="noopener">periodically</a> do error analysis to make sure your rubric is current.</p>
 <p><a href="../../../blog/posts/evals-faq/do-i-need-a-reference-answer-before-annotating-data.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
 </section>
 <section id="q-should-i-record-problems-that-arent-the-models-fault" class="level2" data-faq-published="2026-09-17">
 <h2 data-faq-published="2026-09-17" class="anchored" data-anchor-id="q-should-i-record-problems-that-arent-the-models-fault">Q: Should I record problems that aren’t the model’s fault?</h2>
 <p>Yes. When reviewing interactions, write down anything that makes the product less useful. This includes missing or broken features that have nothing to do with the model. Additionally, don’t focus on why the error occurred, as that should only come after you prioritize which issues to fix.</p>
-<p>For example, a support agent might tell a customer that an order has shipped without providing a tracking link. Even if your AI doesn’t have the ability to fetch a tracking link, record that problem. A prerequisite to building evals is to identify and prioritize which issues to fix through <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a>. Some of these issues may end up being engineering or design issues that <a href="../../../blog/posts/evals-faq/should-i-build-automated-evaluators-for-every-failure-mode-i-find.html" target="_blank" rel="noopener">don’t need</a> an automated evaluator, but they are still important to fix!</p>
+<p>For example, a support agent might tell a customer that an order has shipped without providing a tracking link. Even if your AI doesn’t have the ability to fetch a tracking link, record that problem. A prerequisite to building evals is to identify and prioritize which issues to fix through <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a>. Some of these issues may end up being engineering or design issues that <a href="../../../blog/posts/evals-faq/should-i-build-automated-evaluators-for-every-failure-mode-i-find.html" target="_blank" rel="noopener">don’t need</a> an automated evaluator, but they are still important to fix!</p>
 <p>Lastly, we’ve found that deferring root-cause analysis and focusing on problems allows you to write higher-quality annotations while looking at more data.</p>
 <p><a href="../../../blog/posts/evals-faq/should-i-record-problems-that-arent-the-models-fault.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
 </section>
@@ -338,7 +339,7 @@
 <tbody>
 <tr class="odd">
 <td>1. Review the application</td>
-<td>Read traces and write down the ways your application fails. This process is called <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error discovery</a>. Start with 100 diverse traces and annotate at least the first 30 yourself.</td>
+<td>Read traces and write down the ways your application fails. This process is called <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error discovery</a>. Start with 100 diverse traces and annotate at least the first 30 yourself.</td>
 </tr>
 <tr class="even">
 <td>2. Create and validate evaluators</td>
@@ -355,7 +356,7 @@
 <p>A trace is a complete record of one user session with your application. Ask a coding agent to help you sample the initial pool so it covers different users and workflows. Our <a href="https://github.com/ai-evals-course/evals-skills" target="_blank" rel="noopener">evals plugin</a> can help with sampling and build an annotation interface for your traces.</p>
 <section id="review-at-least-30-traces-yourself" class="level4">
 <h4 class="anchored" data-anchor-id="review-at-least-30-traces-yourself">Review at least 30 traces yourself</h4>
-<p>We recommend annotating at least 30 traces with a process called <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error discovery</a> yourself before asking the agent to suggest failures. Write free-text notes about anything that seems wrong from the user’s perspective. These examples give the agent a concrete record of your judgment.</p>
+<p>We recommend annotating at least 30 traces with a process called <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error discovery</a> yourself before asking the agent to suggest failures. Write free-text notes about anything that seems wrong from the user’s perspective. These examples give the agent a concrete record of your judgment.</p>
 <p>Keep this first pass manual. If the agent starts suggesting problems too early, its guesses can bias your judgment. You may miss failures that depend on product context or your definition of a good user experience.</p>
 <p>After 30 traces, ask the agent to search the remaining pool for similar examples. Review every suggestion yourself. Accept or reject each one and correct the agent when it misunderstands your criteria.</p>
 </section>
@@ -414,7 +415,7 @@
 </section>
 <section id="q-what-should-i-do-when-my-gold-eval-dataset-becomes-stale" class="level2" data-faq-published="2026-09-15">
 <h2 data-faq-published="2026-09-15" class="anchored" data-anchor-id="q-what-should-i-do-when-my-gold-eval-dataset-becomes-stale">Q: What should I do when my "gold" eval dataset becomes stale?</h2>
-<p>Eval datasets naturally get stale as your product and users change. Use regular <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> to find new problems and update your examples or reference answers. <a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" target="_blank" rel="noopener">How often you review</a> depends on your use case and how quickly your product or usage changes.</p>
+<p>Eval datasets naturally get stale as your product and users change. Use regular <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> to find new problems and update your examples or reference answers. <a href="../../../blog/posts/evals-faq/how-often-should-i-re-run-error-analysis-on-my-production-system.html" target="_blank" rel="noopener">How often you review</a> depends on your use case and how quickly your product or usage changes.</p>
 <p>Like unit tests, evals can catch problems that return after a fix. However, evals often cost considerably more than unit tests to maintain and run. Therefore, you should weigh each eval’s cost against the value of its signals. If <a href="../../../blog/posts/evals-faq/how-much-of-my-development-budget-should-i-allocate-to-evals.html" target="_blank" rel="noopener">everything keeps passing</a>, this is a sign that the eval is less useful and should be run less often or retired. You should phase out expensive evals like LLM-as-a-judge more agressively than cheaper evals.</p>
 <p>As your eval set changes, its scores may no longer be directly comparable with older scores. That is ok! One purpose of evals are to provide you with challenges you can hill climb against. These challenges should change as your product evolves to help you keep improving.</p>
 <p>For tracking progress with metrics over longer time horizons, it’s often better to use product metrics in addition to evals. Examples of product metrics include: churn, active users, revenue, etc.</p>
@@ -426,7 +427,7 @@
 <section id="when-should-i-use-synthetic-data-for-evals" class="level3">
 <h3 class="anchored" data-anchor-id="when-should-i-use-synthetic-data-for-evals">When should I use synthetic data for evals?</h3>
 <p>Use synthetic data to start error analysis before you have enough production traffic, or to test a known failure that appears rarely in real data. Define the variation you need, generate examples, run them through the full system, and review the resulting traces.</p>
-<p>Synthetic data cannot tell you how common a failure is in production. It can also miss details that matter in specialized domains. Compare synthetic examples with real data as soon as real data becomes available. See <a href="../../../blog/posts/evals-faq/are-there-scenarios-where-synthetic-data-may-not-be-reliable.html" target="_blank" rel="noopener">when synthetic data may be unreliable</a> for cases that require extra review.</p>
+<p>Synthetic data cannot tell you how common a failure is in production. It can also miss details that matter in specialized domains. Compare synthetic examples with real data as soon as real data becomes available. See when synthetic data may be unreliable for cases that require extra review.</p>
 </section>
 <section id="define-important-dimensions-first" class="level3">
 <h3 class="anchored" data-anchor-id="define-important-dimensions-first">Define important dimensions first</h3>
@@ -476,7 +477,7 @@
 <li><p>If you cannot inspect the data yourself, work with domain experts who are allowed to see it. Make your product <a href="../../../blog/posts/eval-smell/index.html" target="_blank" rel="noopener">easier for them to verify</a> as part of their normal work. For example, a medical research assistant could show a clinician the evidence behind each claim and flag conflicting sources for review. The clinician can correct a specific claim or resolve a conflict while using the product. Those decisions can provide additional data for evals, subject to the same restrictions on what you can store and share.</p>
 <p>To design this well, learn how the experts check an answer. Give them links to the supporting evidence and smaller pieces of work they can review. Asking whether the final answer was helpful often tells you too little about what went wrong. I discuss this approach in <a href="../../../blog/posts/eval-smell/" target="_blank" rel="noopener">this post</a>.</p></li>
 <li><p>Redact or edit traces so they can be shared. If sensitive information cannot be stored, redact it before logging. Redaction tools can miss sensitive information, so check their output. When edited traces can be shared, removing personal information and changing sensitive details can make real examples usable for review. Check that those edits preserve the behavior you need to evaluate.</p></li>
-<li><p>If none of the above options are possible, synthetic data should be your last resort. Synthetic data can help you find initial problems but has the downside that it only gives you limited evidence about how real users will behave. Read more about when <a href="../../../blog/posts/evals-faq/are-there-scenarios-where-synthetic-data-may-not-be-reliable.html" target="_blank" rel="noopener">synthetic data may be unreliable</a>.</p></li>
+<li><p>If none of the above options are possible, synthetic data should be your last resort. Synthetic data can help you find initial problems but has the downside that it only gives you limited evidence about how real users will behave. Read more about when <a href="are-there-scenarios-where-synthetic-data-may-not-be-reliable.html" target="_blank" rel="noopener">synthetic data may be unreliable</a>.</p></li>
 </ol>
 <p><a href="../../../blog/posts/evals-faq/how-can-i-do-error-analysis-when-production-traces-contain-sensitive-data.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
 </section>
@@ -666,7 +667,7 @@
 </section>
 <section id="q-what-should-i-do-when-i-cant-get-my-llm-judge-to-agree-with-human-reviewers" class="level2" data-faq-published="2026-09-19">
 <h2 data-faq-published="2026-09-19" class="anchored" data-anchor-id="q-what-should-i-do-when-i-cant-get-my-llm-judge-to-agree-with-human-reviewers">Q: What should I do when I can’t get my LLM judge to agree with human reviewers?</h2>
-<p>To debug a LLM judge, you need examples with human Pass/Fail labels to compare its decisions against. An effective way to get these labels is <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a>, which provides you with a structured way to review your application’s data and find errors.</p>
+<p>To debug a LLM judge, you need examples with human Pass/Fail labels to compare its decisions against. An effective way to get these labels is <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a>, which provides you with a structured way to review your application’s data and find errors.</p>
 <p>As you collect labeled examples (we recommend at least 50 passing and 50 failing examples), inspect where the judge disagrees with the human labels to get clues on what needs fixing. Common issues include <a href="../../../blog/posts/evals-faq/how-much-of-a-trace-should-i-give-an-llm-judge.html" target="_blank" rel="noopener">missing context</a> or vague instructions. If you have trouble deciding whether an example should pass or fail, this is a sign that you need to refine your definition of success more precisely.</p>
 <p>Inspect a few disagreements manually before trying automated prompt tuning. Algorithms such as <a href="https://arxiv.org/pdf/2507.19457" target="_blank" rel="noopener">GEPA</a> try changes to the judge’s prompt and measure whether they improve agreement with human labels. If you engage in prompt tuning too early, you can miss important problems that aren’t prompt related (like missing context, bad labels, etc.).</p>
 <p>The most common mistake people make is directing their LLM judge to catch too many different kinds of errors at once. Instead, we recommend building a separate judge for each type of failure. For example, checking whether the assistant escalated to a human when required is more specific than grading overall conversation quality. A focused judge is also easier to align with human labels and is more actionable.</p>
@@ -839,12 +840,12 @@
 </section>
 <section id="q-what-parts-of-evals-can-be-automated-with-llms" class="level2" data-faq-published="2025-07-24">
 <h2 data-faq-published="2025-07-24" class="anchored" data-anchor-id="q-what-parts-of-evals-can-be-automated-with-llms">Q: What parts of evals can be automated with LLMs?</h2>
-<p>LLMs can speed up parts of your eval workflow, but they can’t replace human judgment where your expertise is essential. For example, if you let an LLM handle all of <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> (i.e., reviewing and annotating traces), you might overlook failure cases that matter for your product. Suppose users keep mentioning “lag” in feedback, but the LLM lumps these under generic “performance issues” instead of creating a “latency” category. You’d miss a recurring complaint about slow response times and fail to prioritize a fix.</p>
+<p>LLMs can speed up parts of your eval workflow, but they can’t replace human judgment where your expertise is essential. For example, if you let an LLM handle all of <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> (i.e., reviewing and annotating traces), you might overlook failure cases that matter for your product. Suppose users keep mentioning “lag” in feedback, but the LLM lumps these under generic “performance issues” instead of creating a “latency” category. You’d miss a recurring complaint about slow response times and fail to prioritize a fix.</p>
 <p>That said, LLMs are valuable tools for accelerating certain parts of the evaluation workflow <em>when used with oversight</em>.</p>
 <section id="here-are-some-areas-where-llms-can-help" class="level3">
 <h3 class="anchored" data-anchor-id="here-are-some-areas-where-llms-can-help">Here are some areas where LLMs can help:</h3>
 <ul>
-<li><strong>First-pass axial coding:</strong> After you’ve open coded 30–50 traces yourself, use an LLM to organize your raw failure notes into proposed groupings. This helps you quickly spot patterns, but always review and refine the clusters yourself. <em>Note: If you aren’t familiar with axial and open coding, see <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">this faq</a>.</em></li>
+<li><strong>First-pass axial coding:</strong> After you’ve open coded 30–50 traces yourself, use an LLM to organize your raw failure notes into proposed groupings. This helps you quickly spot patterns, but always review and refine the clusters yourself. <em>Note: If you aren’t familiar with axial and open coding, see <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">this faq</a>.</em></li>
 <li><strong>Mapping annotations to failure modes:</strong> Once you’ve defined failure categories, you can ask an LLM to suggest which categories apply to each new trace (e.g., “Given this annotation: [open_annotation] and these failure modes: [list_of_failure_modes], which apply?”).<br>
 </li>
 <li><strong>Suggesting prompt improvements:</strong> When you notice recurring problems, have the LLM propose concrete changes to your prompts. Review these suggestions before adopting any changes.<br>
@@ -981,7 +982,7 @@
 <section id="q-what-should-an-internal-eval-platform-standardize-across-teams" class="level2" data-faq-published="2026-09-19">
 <h2 data-faq-published="2026-09-19" class="anchored" data-anchor-id="q-what-should-an-internal-eval-platform-standardize-across-teams">Q: What should an internal eval platform standardize across teams?</h2>
 <p>When building an internal eval platform, it’s tempting to start with tools, infrastructure, and a shared set of metrics. That can lead teams to adopt whatever the platform offers without checking whether it helps them find and fix problems in their products.</p>
-<p>Start by encouraging teams to perform <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> and <a href="../../../blog/posts/evals-faq/how-can-i-efficiently-sample-production-traces-for-review.html" target="_blank" rel="noopener">sample data</a> effectively for review. They can use the failures they find to decide which <a href="../../../blog/posts/evals-faq/should-i-build-automated-evaluators-for-every-failure-mode-i-find.html" target="_blank" rel="noopener">automated checks</a> to build, then <a href="../../../blog/posts/evals-faq/how-do-i-know-if-i-can-trust-my-automated-eval.html" target="_blank" rel="noopener">validate evaluators</a> against human labels. Standardize these processes while letting each team develop its own metrics and, when needed, tools. The <a href="../../../blog/posts/field-guide/index.html" target="_blank" rel="noopener">field guide</a> shows an example of how these might fit together.</p>
+<p>Start by encouraging teams to perform <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> and <a href="../../../blog/posts/evals-faq/how-can-i-efficiently-sample-production-traces-for-review.html" target="_blank" rel="noopener">sample data</a> effectively for review. They can use the failures they find to decide which <a href="../../../blog/posts/evals-faq/should-i-build-automated-evaluators-for-every-failure-mode-i-find.html" target="_blank" rel="noopener">automated checks</a> to build, then <a href="../../../blog/posts/evals-faq/how-do-i-know-if-i-can-trust-my-automated-eval.html" target="_blank" rel="noopener">validate evaluators</a> against human labels. Standardize these processes while letting each team develop its own metrics and, when needed, tools. The <a href="../../../blog/posts/field-guide/index.html" target="_blank" rel="noopener">field guide</a> shows an example of how these might fit together.</p>
 <p>Give teams the flexibility to build their own tools, especially now that AI coding agents make custom software cheaper to create. For example, tools to <a href="../../../blog/posts/evals-faq/should-i-build-a-custom-annotation-tool-or-use-something-off-the-shelf.html" target="_blank" rel="noopener">annotate data</a> often need <a href="../../../blog/posts/evals-faq/what-makes-a-good-custom-interface-for-reviewing-llm-outputs.html" target="_blank" rel="noopener">custom interfaces</a> that fit the data being reviewed. Reviewing text extracted from a scanned document calls for a different interface than reviewing chat conversations.</p>
 <p>A platform can still provide shared storage for results and support collaboration on labeling. Start by serving one team and one use case well, then expand as you learn which needs are shared. The benefit of standardization is smaller when teams have very different needs and can build their own tools cheaply.</p>
 <p>Comparing eval scores across projects only makes sense when the checks and test data are comparable. <strong>We strongly advise against offering <a href="../../../blog/posts/evals-faq/should-i-use-ready-to-use-evaluation-metrics.html" target="_blank" rel="noopener">generic metrics</a></strong>, such as helpfulness or coherence, as a shortcut. They are rarely useful as quality measures and tend to distract teams from the failures that affect their users.</p>
@@ -1043,6 +1044,88 @@
 <p><a href="../../../blog/posts/evals-faq/how-are-evaluations-used-differently-in-cicd-vs-monitoring-production.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
 </section>
 </section>
+<section id="q-how-often-should-i-run-my-evals" class="level2" data-faq-published="2026-09-27">
+<h2 data-faq-published="2026-09-27" class="anchored" data-anchor-id="q-how-often-should-i-run-my-evals">Q: How often should I run my evals?</h2>
+<p>There are three dimensions to consider:</p>
+<ol type="1">
+<li>The <strong>cost</strong> to run and maintain the eval. The more expensive the eval, the greater benefit it needs to provide to justify running it frequently. For example, LLM-as-a-judge is more expensive to run than a unit test.</li>
+<li><strong>How saturated</strong> the eval is on the dataset. If the eval passes all examples, its giving you no new information. You should consider retiring the eval or running it less frequently if its saturated. However, you should first try to <a href="../../../blog/posts/evals-faq/what-should-i-do-when-my-gold-eval-dataset-becomes-stale.html" target="_blank" rel="noopener">make the eval more difficult</a> so its not saturated to begin with.<br>
+</li>
+<li>The <strong>business value</strong> of catching this error. For critical errors, the busines value of catching it may be high enough that you should run it more frequently, despite its cost. One caveat here is not to get carried away with hypothetical errors. At the very least, you should prove that you can trigger the error at least once by red-teaming your application before implementing the eval (which will also help you make a better eval)</li>
+</ol>
+<p>There are no bright-line rules. This decision often requires judgement as opposed to something formulaic. Here’s a visual that can help you think through the tradeoffs:</p>
+<div class="light-content">
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/how-often-light.png" class="img-fluid" alt="How often to run an eval based on its cost, how many test examples pass, and the business value of catching the error."></p>
+</div>
+<div class="dark-content">
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/how-often-dark.png" class="img-fluid" alt="How often to run an eval based on its cost, how many test examples pass, and the business value of catching the error."></p>
+</div>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<p>Below are concrete examples to help you understand the factors involved. Note that these are illustrative:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Eval</th>
+<th>Test examples passing</th>
+<th>Business cost of failure</th>
+<th>Suggested schedule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>An answer-quality judge with GPT-6 Astra on max reasoning.</td>
+<td>All pass</td>
+<td>Medium</td>
+<td>Retire or run infrequently (e.g.&nbsp;every 2 weeks)</td>
+</tr>
+<tr class="even">
+<td>A code assertion which checks that a contact was saved correctly.</td>
+<td>All pass</td>
+<td>Medium</td>
+<td>You can run this on every change b/c its incredibly cheap.</td>
+</tr>
+<tr class="odd">
+<td>A judge with Fable 5 checks whether a support agent follows a new refund policy.</td>
+<td>None pass</td>
+<td>Medium</td>
+<td>Even though expensive, the eval is providing useful feedback b/c nothing is passing, and the business value of catching the error is high enough. I would run this as frequently as possible.</td>
+</tr>
+<tr class="even">
+<td>A judge with GPT-6 Luna checks whether a support agent resolves the customer’s problem.</td>
+<td>Some pass</td>
+<td>Medium</td>
+<td>Not a terribly expensive judge b/c model is smaller and the eval is still catching errors, so I would run this somewhat frequently (e.g.&nbsp;nightly).</td>
+</tr>
+<tr class="odd">
+<td>A judge with GPT-6 Astra on max reasoning checks for improper disclosure of confidential information on a legal assistant.</td>
+<td>All pass</td>
+<td>High</td>
+<td>Even though expensive and eval is saturated, the business value of catching the error is high enough that I would run this prior to each release. Given the importance of the error, I would also try to make the eval more difficult so that it’s more useful.</td>
+</tr>
+<tr class="even">
+<td>A judge with GPT-6 Astra on medium reasoning checks a minor formatting preference.</td>
+<td>Some pass</td>
+<td>Low</td>
+<td>Occasionally or retire; use code instead if possible.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>It’s always worth exploring <a href="../../../blog/posts/evals-faq/what-model-or-llm-should-i-use-to-build-automated-evals.html" target="_blank" rel="noopener">cheaper evaluators</a> to see if you can find one that provides similar or better alignment with human labels for less cost.</p>
+</section>
+<section id="offline-vs.-online-evals" class="level3">
+<h3 class="anchored" data-anchor-id="offline-vs.-online-evals">Offline vs.&nbsp;Online Evals</h3>
+<p>The discussion here focused on offline evals. Online evals involve similar considerations, with an additional decision about how many production traces to sample. For example, you might run cheap checks on every trace and an expensive judge on a nightly sample. For more discussion on how these approaches work together, see <a href="../../../blog/posts/evals-faq/how-are-evaluations-used-differently-in-cicd-vs-monitoring-production.html" target="_blank" rel="noopener">How are evaluations used differently in CI/CD vs.&nbsp;monitoring production?</a></p>
+<p><a href="../../../blog/posts/evals-faq/how-often-should-i-run-my-evals.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
+</section>
+</section>
 <section id="q-whats-the-difference-between-guardrails-evaluators" class="level2" data-faq-published="2025-06-29">
 <h2 data-faq-published="2025-06-29" class="anchored" data-anchor-id="q-whats-the-difference-between-guardrails-evaluators">Q: What’s the difference between guardrails &amp; evaluators?</h2>
 <p>Guardrails are <strong>inline safety checks</strong> that sit directly in the request/response path. They validate inputs or outputs <em>before</em> anything reaches a user, so they typically are:</p>
@@ -1101,7 +1184,7 @@
 <p>If your coding agent handles a wide variety of tasks, start by using public benchmarks much as you would a foundation model. For an agent that handles a narrow workflow, product-specific evals are a better fit. The <a href="../../../blog/posts/evals-faq/what-are-llm-evals.html" target="_blank" rel="noopener">evals FAQ</a> explains this distinction.</p>
 <p>Popular coding benchmarks include <a href="https://www.swebench.com/" target="_blank" rel="noopener">SWE-bench</a>, <a href="https://www.tbench.ai/" target="_blank" rel="noopener">Terminal-Bench</a>, <a href="https://aider.chat/docs/leaderboards/" target="_blank" rel="noopener">Aider Polyglot</a>, and <a href="https://github.com/openai/human-eval" target="_blank" rel="noopener">HumanEval</a>.</p>
 <p>In addition to public benchmarks, you can also build a private benchmark of difficult tasks from your organization. OpenAI described using <a href="https://openai.com/index/introducing-codex/" target="_blank" rel="noopener">real internal software engineering tasks to evaluate Codex</a> at launch. Each task needs a working environment and code-based tests that establish whether the agent completed it successfully.</p>
-<p>To decide which tasks to include, look at how people use your agent and where it fails. Review runs with engineers, group recurring problems, and turn useful examples into tests. This is <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a>, and it applies to coding products too. If existing tests already identify failures, use those results to choose runs to investigate.</p>
+<p>To decide which tasks to include, look at how people use your agent and where it fails. Review runs with engineers, group recurring problems, and turn useful examples into tests. This is <a href="why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a>, and it applies to coding products too. If existing tests already identify failures, use those results to choose runs to investigate.</p>
 <p>Anthropic’s <a href="https://www.anthropic.com/research/clio" target="_blank" rel="noopener">Clio research</a> illustrates a related approach that clusters chat conversations by topic. You can apply that idea to coding sessions to identify the kinds of work your benchmark should cover.</p>
 <p>Anthropic’s <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener">coding-agent eval guidance</a> recommends starting with clearly specified tasks and a stable environment where unit tests can verify results. After you have these unit tests, they recommend adding checks for things those tests don’t capture, such as code quality or how the agent interacts with users. Claude Code’s team, for example, added evals for file edits and later for over-engineering. There are many approaches to measure file edits and over-engineering but you can start with metrics like net new lines of code added and <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank" rel="noopener">cyclomatic complexity</a>.</p>
 <p><a href="https://www.youtube.com/watch?v=LwLxlEwrtRA&amp;t=534s" target="_blank" rel="noopener">John Berryman and Shawn Simister’s Copilot talk</a> provides additional examples of coding-agent evals. For code completions, the team removed function implementations from repositories, had the model regenerate them, and ran the existing tests. For chat, they used LLM judges with specific criteria and separate checks for whether the assistant called the right tool. They also ran A/B tests, tracking whether users accepted suggestions and kept the code afterward. These product metrics complemented the offline evals.</p>
@@ -1117,7 +1200,7 @@
 </section>
 <section id="next-evaluate-generation" class="level3">
 <h3 class="anchored" data-anchor-id="next-evaluate-generation">Next, evaluate generation</h3>
-<p>For the generation component, check how well the LLM uses the retrieved context and whether it answers the question. Use <a href="../../../blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">error analysis</a> to identify failure modes, collect human labels, build targeted LLM judges, and validate those judges against human annotations.</p>
+<p>For the generation component, check how well the LLM uses the retrieved context and whether it answers the question. Use error analysis to identify failure modes, collect human labels, build targeted LLM judges, and validate those judges against human annotations.</p>
 <p>Jason Liu’s <a href="https://jxnl.co/writing/2025/05/19/there-are-only-6-rag-evals/" target="_blank" rel="noopener">“There Are Only 6 RAG Evals”</a> provides a framework that maps well to this separation. His Tier 1 covers traditional IR metrics for retrieval. Tiers 2 and 3 evaluate relationships between Question, Context, and Answer. These include whether the context is relevant (C|Q), whether the answer is faithful to context (A|C), and whether the answer addresses the question (A|Q).</p>
 <p>In addition to Jason’s six evals, error analysis on your specific data may reveal domain-specific failure modes that warrant their own metrics. For example, a medical RAG system might consistently fail to distinguish between drug dosages for adults versus children, or a legal RAG might confuse jurisdictional boundaries. These patterns emerge only through systematic review of actual failures. Once identified, you can create targeted evaluators for these specific issues beyond the general framework.</p>
 <p>Finally, when implementing Jason’s Tier 2 and 3 metrics, don’t just use prompts off the shelf. The standard LLM-as-judge process requires several steps: error analysis, prompt iteration, creating labeled examples, and measuring your judge’s accuracy against human labels. Once you know your judge’s True Positive and True Negative rates, you can correct its estimates to determine the actual failure rate in your system. Skip this validation and your judges may not reflect your actual quality criteria.</p>
