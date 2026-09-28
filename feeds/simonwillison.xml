@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-27T23:54:15+00:00</updated><author><name>Simon Willison</name></author><entry><title>2026 in LLMs (so far)</title><link href="https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/" rel="alternate"/><published>2026-09-27T23:54:15+00:00</published><updated>2026-09-27T23:54:15+00:00</updated><id>https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-09-28T04:01:30+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Muse AI Agent</title><link href="https://simonwillison.net/2026/Sep/28/muse-ai-agent/" rel="alternate"/><published>2026-09-28T04:01:30+00:00</published><updated>2026-09-28T04:01:30+00:00</updated><id>https://simonwillison.net/2026/Sep/28/muse-ai-agent/</id><summary type="html">
+    &lt;blockquote cite="https://www.threads.com/share/_oWfPufYJ/"&gt;&lt;p&gt;Bad news on the MX Keys Mini pickup. Usman showed up at your building around 9:15 and waited, messaged a bunch of times, and nobody came down. He left angry at 9:38 and left a negative rating.&lt;/p&gt;
+&lt;p&gt;Worse, my auto-reply told him "Yep I'm here!" at 9:27 when you clearly weren't available, which is on me. That's a bad look and it made the no-show worse.
+I've sent him an apology from your account owning it and offering to try again another day.&lt;/p&gt;
+&lt;p&gt;But the negative rating is real, and I should probably stop the auto-replies from claiming you're home when I can't verify that. Want me to change the pickup replies so they don't promise you're there?&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.threads.com/share/_oWfPufYJ/"&gt;Muse AI Agent&lt;/a&gt;, working on behalf of @matt.j.robb&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/meta"&gt;meta&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/muse-agent"&gt;muse-agent&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/general-agents"&gt;general-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="meta"/><category term="generative-ai"/><category term="muse-agent"/><category term="ai"/><category term="general-agents"/><category term="llms"/></entry><entry><title>2026 in LLMs (so far)</title><link href="https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/" rel="alternate"/><published>2026-09-27T23:54:15+00:00</published><updated>2026-09-27T23:54:15+00:00</updated><id>https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/</id><summary type="html">
     &lt;p&gt;On Friday I gave the closing keynote at the &lt;a href="https://www.wearedevelopers.com/world-congress-north-america"&gt;WeAreDevelopers World Congress North America&lt;/a&gt; in San Jose. I tied together the key trends from the past year into a chronological exploration of everything that happened in 2026. The video &lt;a href="https://www.youtube.com/watch?v=GAkIytR7vcc"&gt;is on YouTube&lt;/a&gt;; here are my annotated slides and notes to accompany the talk.&lt;/p&gt;
 
 &lt;p&gt;&lt;lite-youtube videoid="GAkIytR7vcc" js-api="js-api"
   title="WWC26-NA - 2026 in LLMs (so far)"
   playlabel="Play: WWC26-NA - 2026 in LLMs (so far)"
 &gt; &lt;/lite-youtube&gt;&lt;/p&gt;
+
+&lt;p&gt;And as an &lt;a href="https://simonwillison.net/tags/annotated-talks/"&gt;annotated presentation&lt;/a&gt;:&lt;/p&gt;
 
 &lt;div class="slide" id="simon-willison-2026-in-llms.001.webp"&gt;
   &lt;img loading="lazy" src="https://static.simonwillison.net/static/2026/2026-in-llms/simon-willison-2026-in-llms-png.001.webp" alt="2026 in LLMs (so far)
@@ -1436,30 +1449,4 @@ Gemini finally caught up on &lt;a href="https://www.felonybench.com/"&gt;Felony 
 
 
 
-</summary><category term="thariq-shihipar"/><category term="coding-agents"/><category term="anthropic"/><category term="claude-code"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>The Creative Spirit of Who Framed Roger Rabbit</title><link href="https://simonwillison.net/2026/Sep/18/the-creative-spirit-of-who-framed-roger-rabbit/" rel="alternate"/><published>2026-09-18T14:36:41+00:00</published><updated>2026-09-18T14:36:41+00:00</updated><id>https://simonwillison.net/2026/Sep/18/the-creative-spirit-of-who-framed-roger-rabbit/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://blog.cypressf.com/post/828067789747208192/the-creative-spirit-of-who-framed-roger-rabbit"&gt;The Creative Spirit of Who Framed Roger Rabbit&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-I love &lt;a href="https://en.wikipedia.org/wiki/Who_Framed_Roger_Rabbit"&gt;Who Framed Roger Rabbit&lt;/a&gt;, the 1988 movie by Robert Zemeckis. I haven't watched it in quite a few years, and Cypress Frankenfeld just pointed out this sequence from early in the movie:&lt;/p&gt;
-&lt;p&gt;&lt;video
-  src="https://static.simonwillison.net/static/2026/pelican-bicicle-roger-rabbit.mp4"
-  poster="https://static.simonwillison.net/static/2026-09-18/IMG_8118.jpeg"
-  preload="none"
-  loop controls
-  playsinline muted
-  width="886"
-  height="480"
-  style="display: block; width: 100%; height: auto;"
-&gt;&lt;/video&gt;
-&lt;/p&gt;
-&lt;p&gt;It's a pelican riding a bicycle!&lt;/p&gt;
-&lt;p&gt;Look closely and you'll note that the pelican is animated while the bicycle is a real bicycle. Apparently they filled the wheels with water to add stability, then set it running and guided it with a cable.&lt;/p&gt;
-&lt;p&gt;Cypress &lt;a href="https://blog.cypressf.com/post/828067789747208192/the-creative-spirit-of-who-framed-roger-rabbit"&gt;gathered more details&lt;/a&gt; on the scene. What a delight.
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://bsky.app/profile/cypressf.bsky.social/post/3mvrf45utrs2z"&gt;@cypressf.bsky.social&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/animation"&gt;animation&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/film"&gt;film&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="animation"/><category term="film"/><category term="pelican-riding-a-bicycle"/></entry></feed>
+</summary><category term="thariq-shihipar"/><category term="coding-agents"/><category term="anthropic"/><category term="claude-code"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry></feed>
