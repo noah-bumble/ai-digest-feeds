@@ -709,7 +709,7 @@
 <p>You validate Jev the same way you would <a href="../../../blog/posts/evals-faq/what-model-or-llm-should-i-use-to-build-automated-evals.html" target="_blank" rel="noopener">any other classifier used for evals</a>, by comparing its predictions against trusted labels. That’s why we’ve crossed out “LLM Judge” in our <a href="../../../notes/llm/evals/flashcards/7-how-to-trust-a-llm-judge.png" target="_blank" rel="noopener">original flashcard</a> and replaced it with “Classifier for Evals”:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/evals-faq/images/how-to-trust-a-classifier-for-evals.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="https://hamel.dev/blog/posts/evals-faq/images/how-to-trust-a-classifier-for-evals.png" class="faq-media-width-60 img-fluid figure-img" loading="lazy" decoding="async" width="1122" height="1402"></p>
 <figcaption>Measure against human labels and keep training, development, and test data separate to avoid overfitting.</figcaption>
 </figure>
 </div>
@@ -738,7 +738,7 @@
 <p>The flashcard below illustrates this process for an LLM judge. The same separation of development and testing applies to <a href="../../../blog/posts/evals-faq/can-i-use-jev-for-evals.html" target="_blank" rel="noopener">other evaluators</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hamel.dev/notes/llm/evals/flashcards/7-how-to-trust-a-llm-judge.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="https://hamel.dev/notes/llm/evals/flashcards/7-how-to-trust-a-llm-judge.png" class="faq-media-width-60 img-fluid figure-img" loading="lazy" decoding="async" width="1200" height="1500"></p>
 <figcaption>How to trust an LLM judge: validate against human labels, separate training, development, and test examples, and measure TPR and TNR.</figcaption>
 </figure>
 </div>
