@@ -81,7 +81,20 @@
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/open-source"&gt;open-source&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/profiling"&gt;profiling&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/uv"&gt;uv&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="open-source"/><category term="profiling"/><category term="python"/><category term="sqlite"/><category term="uv"/></entry><entry><title>web-edit 0.1a0</title><link href="https://simonwillison.net/2026/Oct/12/web-edit/" rel="alternate"/><published>2026-10-12T15:54:36+00:00</published><updated>2026-10-12T15:54:36+00:00</updated><id>https://simonwillison.net/2026/Oct/12/web-edit/</id><summary type="html">
+</summary><category term="open-source"/><category term="profiling"/><category term="python"/><category term="sqlite"/><category term="uv"/></entry><entry><title>Profiling web-edit with Python 3.15: flame graphs and source heatmaps</title><link href="https://simonwillison.net/2026/Oct/12/python-3-15-web-edit-profiling/" rel="alternate"/><published>2026-10-12T16:58:00+00:00</published><updated>2026-10-12T16:58:00+00:00</updated><id>https://simonwillison.net/2026/Oct/12/python-3-15-web-edit-profiling/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Research:&lt;/strong&gt; &lt;a href="https://github.com/simonw/research/tree/main/python-3-15-web-edit-profiling#readme"&gt;Profiling web-edit with Python 3.15: flame graphs and source heatmaps&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I put the &lt;a href="https://simonwillison.net/2026/Oct/12/python-3-15/#a-sampling-profiler"&gt;new Python 3.15 profiler&lt;/a&gt; through its paces by having GPT-6 Astra Extra High in Codex run it against my new &lt;a href="https://simonwillison.net/2026/Oct/12/web-edit/"&gt;web-edit app&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;I need a Python 3.15 flame graph and heatmap demo of the "web-edit" app from PyPI - research first then make me those demos&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here's the resulting example &lt;a href="https://simonw.github.io/research/python-3-15-web-edit-profiling/artifacts/flamegraph.html"&gt;flame graph&lt;/a&gt; and &lt;a href="https://simonw.github.io/research/python-3-15-web-edit-profiling/artifacts/heatmap/index.html"&gt;heatmap&lt;/a&gt;.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/profiling"&gt;profiling&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/codex"&gt;codex&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="profiling"/><category term="python"/><category term="codex"/></entry><entry><title>web-edit 0.1a0</title><link href="https://simonwillison.net/2026/Oct/12/web-edit/" rel="alternate"/><published>2026-10-12T15:54:36+00:00</published><updated>2026-10-12T15:54:36+00:00</updated><id>https://simonwillison.net/2026/Oct/12/web-edit/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/web-edit/releases/tag/0.1a0"&gt;web-edit 0.1a0&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;I was working on a project from my phone using Codex Remote when I found myself wanting to edit a credentials file without round-tripping those credentials through the LLM itself.&lt;/p&gt;
@@ -527,25 +540,4 @@ Position 3 (hundreds): 6 + 9 = 15, write 5, carry 1
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/mathematics"&gt;mathematics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/local-llms"&gt;local-llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/qwen"&gt;qwen&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-reasoning"&gt;llm-reasoning&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/dgx-spark"&gt;dgx-spark&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="mathematics"/><category term="ai"/><category term="generative-ai"/><category term="local-llms"/><category term="llms"/><category term="qwen"/><category term="llm-reasoning"/><category term="dgx-spark"/></entry><entry><title>We're going to need default hard budget caps on pretty much everything</title><link href="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/" rel="alternate"/><published>2026-10-03T23:34:02+00:00</published><updated>2026-10-03T23:34:02+00:00</updated><id>https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/</id><summary type="html">
-    &lt;p&gt;Here's a product feature which the world is going to need a whole lot more of over the coming months and years: &lt;strong&gt;default hard budget caps&lt;/strong&gt;. I'm talking about the feature of pay-by-usage services and APIs that lets you say "after $X/month, cut this thing off and return errors". These need to be &lt;strong&gt;hard&lt;/strong&gt; limits. Soft caps, "after $X/month, send me a warning email", will not cut it.&lt;/p&gt;
-&lt;p&gt;Coding agents, and personal agents (coding agents wrapped in a less threatening UI), greatly reduce the friction of spinning up code that can do useful things. Sometimes those things cost money - calls to paid APIs, or hosted web applications, or systems that can bill for additional storage and compute.&lt;/p&gt;
-&lt;p&gt;Nobody wants to wake up to an email sent at midnight warning about a budget limit and find that, while they slept, their rogue service had consumed several hundred (or several thousand) more dollars of usage.&lt;/p&gt;
-&lt;p&gt;An argument against this is that businesses don't want their hosted applications to start throwing errors because some budget was exceeded. I expect that most businesses and individuals would prefer errors to a surprise $10,000+ bill.&lt;/p&gt;
-&lt;p&gt;I think hard budget caps need to be the default. If someone wants to live dangerously they should be able to do that, but it needs to be on an opt-in basis. Have a nice, clear checkbox somewhere prominent:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;input type="checkbox" disabled="disabled" /&gt; Remove the budget cap. My application will not be shut down if I exceed the configured budget limit, and I will be responsible for subsequent charges.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The service I most want to see this from is AWS. I've heard plenty of stories from people who refuse to use AWS for personal projects out of (justified) fear that a runaway service might bankrupt them. I've also heard stories from people who &lt;em&gt;didn't&lt;/em&gt; anticipate this and ended up seriously burned.&lt;/p&gt;
-&lt;p&gt;... and it turns out AWS finally launched spending limits a few weeks ago! From their announcement &lt;a href="https://aws.amazon.com/about-aws/whats-new/2026/09/New-AWS-Builder-Experience/"&gt;New AWS experience helps builders get started and ship faster&lt;/a&gt; on 16th September:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When you're ready to upgrade to a paid plan, you can set a monthly spend limit for your project based on your usage patterns so that you stay within your budget. If a project's usage reaches its spend limit, your project is paused for that month.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;See also &lt;a href="https://docs.aws.amazon.com/accounts/latest/reference/create-spend-limit.html"&gt;Create a spend limit in AWS Settings&lt;/a&gt;, though that page warns that "We're currently releasing our new experience to a limited number of customers." Here's hoping that hits general availability for existing accounts soon.&lt;/p&gt;
-&lt;p&gt;Google Cloud &lt;a href="https://cloud.google.com/blog/topics/cost-management/new-early-anomalies-and-spend-caps-on-google-cloud-budgets"&gt;launched a similar feature&lt;/a&gt; in July, called Spend Caps, which lets you "set a monthly financial cap on specific services within a project". Looks like this is becoming a trend!&lt;/p&gt;
-&lt;p&gt;In an ideal world, our agents could help with this. It would be great if agents started biasing towards recommending providers with hard budget caps, and warning new and inexperienced builders against deploying applications using uncapped services that might get them into trouble.&lt;/p&gt;
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/amazon-web-services"&gt;amazon-web-services&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="amazon-web-services"/><category term="ai"/><category term="coding-agents"/></entry></feed>
+</summary><category term="mathematics"/><category term="ai"/><category term="generative-ai"/><category term="local-llms"/><category term="llms"/><category term="qwen"/><category term="llm-reasoning"/><category term="dgx-spark"/></entry></feed>
