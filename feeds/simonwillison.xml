@@ -22,7 +22,8 @@ document.currentScript.replaceWith(
 </summary><category term="javascript"/></entry><entry><title>web-edit 0.1a2</title><link href="https://simonwillison.net/2026/Oct/17/web-edit/" rel="alternate"/><published>2026-10-17T13:16:49+00:00</published><updated>2026-10-17T13:16:49+00:00</updated><id>https://simonwillison.net/2026/Oct/17/web-edit/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/web-edit/releases/tag/0.1a2"&gt;web-edit 0.1a2&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I added a "copy to clipboard" option for both text and image data. I needed this because I was running pelican prompts on a laptop from my phone (here's &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fb1cec9726b6aa62d4de47100f90f0c1a"&gt;DeepSeek 4.1 Flash 1017&lt;/a&gt;) and I wanted an easy way to copy the resulting logs into a Gist.&lt;/p&gt;
+        &lt;p&gt;web-edit (&lt;a href="https://simonwillison.net/2026/Oct/12/web-edit/"&gt;previously&lt;/a&gt;) is my tiny web app for browsing and editing files in a folder. I mainly built it for editing files on different machines via Tailscale.&lt;/p&gt;
+&lt;p&gt;I added a "copy to clipboard" option for both text and image data. I needed this because I was running pelican prompts on a laptop from my phone (here's &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fb1cec9726b6aa62d4de47100f90f0c1a"&gt;DeepSeek 4.1 Flash 1017&lt;/a&gt;) and I wanted an easy way to copy the resulting logs into a Gist.&lt;/p&gt;
     
     
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/deepseek"&gt;deepseek&lt;/a&gt;&lt;/p&gt;
