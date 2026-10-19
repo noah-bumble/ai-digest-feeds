@@ -3032,7 +3032,7 @@ Data Scientist (n.): Person who is better at statistics than any software engine
 <p>For years, shipping AI meant keeping data scientists and MLEs on the critical path. With LLMs, this stopped being the default. Foundation-model APIs now allow teams to integrate AI independently.</p>
 <p>Getting cut out of the loop rattled data scientists and MLEs I know. If the company no longer needs you to ship AI, it is fair to wonder whether the job still has the same upside. The harsher story people tell themselves: unless you are pretraining at a foundation-model lab, you are not where the action is.</p>
 <p>In my opinion, training models was never most of the job. The bulk of the work is setting up experiments to test how well the AI generalizes to unseen data, debugging stochastic systems, and designing good metrics. Calling an LLM over an API does not make this work go away.</p>
-<p>I recently gave a talk titled “The Revenge of the Data Scientist” at <a href="https://pyai.events/">PyAI Conf</a> to make that case with examples rather than assertion alone. Below is an annotated version of that presentation.</p>
+<p>I recently gave a talk titled “The Revenge of the Data Scientist” at <a href="https://www.youtube.com/watch?v=lA4MfpgF91Y">PyAI Conf</a> to make that case with examples rather than assertion alone. Below is an annotated version of that presentation.</p>
 <p><img src="https://hamel.dev/blog/posts/revenge/images/slide_1.png" class="img-fluid"></p>
 <section id="the-harness-is-data-science" class="level2">
 <h2 class="anchored" data-anchor-id="the-harness-is-data-science">The Harness Is Data Science</h2>
