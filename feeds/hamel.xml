@@ -17,7 +17,458 @@
 <width>144</width>
 </image>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Wed, 30 Sep 2026 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 20 Oct 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>How To Use Decision Models for Evals</title>
+  <dc:creator>Hamel Husain</dc:creator>
+  <dc:creator>Antaripa Saha</dc:creator>
+  <link>https://hamel.dev/blog/posts/decision-model-evals/</link>
+  <description><![CDATA[ 
+
+<!-- Content inserted at the beginning of body tag -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKGWQMKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<script async="" data-uid="df8af2b6ed" src="https://hamel.kit.com/df8af2b6ed/index.js"></script>
+
+
+
+
+<style>
+main.content table { display:block; width:100%; max-width:100%; overflow-x:auto; }
+#evaluation-prompt pre { background:var(--bs-body-bg); color:var(--bs-body-color); padding:18px; border:1px solid var(--bs-border-color); border-radius:6px; }
+#evaluation-prompt pre code { color:inherit; white-space:pre-wrap; overflow-wrap:anywhere; }
+</style>
+<p>Decision models have exploded onto the scene recently, starting with TypeSafe’s Jev, followed by Perplexity’s Decider, Liquid’s d1, Cloudflare’s Clef, and OpenAI’s Decisions API<sup>1</sup>. These models promise fast, inexpensive classification.</p>
+<p>Decision models are an appealing low-cost alternative to LLM judges<sup>2</sup> for automated evals. But whether they’re the right choice depends on the cost, performance, and latency requirements of your use case.</p>
+<p>We’ve also noticed people using the default decision threshold of 0.50 without checking whether it works well for their task. This can leave a lot of performance on the table.</p>
+<p>In this post, we’ll start by showing how to tune thresholds to get the best results from decision models. With those thresholds tuned, we’ll compare cost and performance to help you assess which model fits your use case. Finally, we’ll explore how to interpret model scores when deciding whether to act, and how calibration can make them more useful as confidence estimates.</p>
+<section id="what-we-tested" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-tested">What we tested</h2>
+<p>We used 100 traces, or logs of conversations and actions, from an apartment leasing agent. The task is to identify traces containing an error, such as a failed booking or a missed handoff to a human.<sup>3</sup> We used the same dataset and broad failure-finding task in our <a href="https://parlance-labs.com/blog/posts/auto-evals/">prior post on automated evals</a>. Here, each decision model returns a failure probability for each trace.</p>
+<p>We tested Jev 1.13, Perplexity Decider 1.1 27B, Liquid d1 and d1-ultra, Cloudflare Clef Flash, and OpenAI Decisions (GPT-6 Luna)<sup>1</sup>. Each model received the same evaluation criteria. The appendix shows the prompt and the structured version used for Jev.</p>
+<p>We compare models on two dimensions:</p>
+<ul>
+<li><strong>Performance:</strong> We compare each model’s predictions with traces that people have reviewed and labeled as passing or failing. This measures how well the model catches failures while avoiding false alarms.</li>
+<li><strong>Cost:</strong> We calculate API cost from token usage and the provider’s prices.<sup>4</sup></li>
+</ul>
+<p>For brevity, we leave latency aside because it depends on factors outside this experiment’s control.<sup>5</sup></p>
+</section>
+<section id="understanding-decision-thresholds" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-decision-thresholds">Understanding decision thresholds</h2>
+<p>We assign each trace one of two labels, pass or fail. This is a <a href="https://hamel.dev/blog/posts/evals-faq/why-do-you-recommend-binary-passfail-evaluations-instead-of-1-5-ratings-likert-scales.html">binary pass/fail eval</a>, which we recommend because it encourages clear criteria and is easier to align with human preferences.</p>
+<p>Each decision model returns a score from 0 to 1 that estimates how likely a trace is to contain a failure. The APIs turn this score into a decision using a <strong>default decision threshold of 0.50</strong>. Traces with scores at or above the threshold are flagged as failures. Using this default without checking it against your data can give you subpar results.</p>
+<p>For example, a model could assign every failure a score of 0.40 and every passing trace a score of 0.10. Even though this model classifies traces perfectly at a threshold of 0.30, the default threshold of 0.50 would catch nothing.</p>
+<p>In practice, scores for failures and passing traces will overlap. Lowering the threshold catches more failures but can also raise more false alarms. Choosing a threshold means balancing:</p>
+<ul>
+<li><strong>Precision:</strong> The share of flagged traces that contain a known failure.</li>
+<li><strong>Recall:</strong> The share of known failures that the model catches.</li>
+</ul>
+<p>The right tradeoff depends on your business goals. For example, criminal trials set a high bar for conviction to avoid convicting innocent people, emphasizing precision. Cancer screening may emphasize recall, accepting more false alarms to miss fewer cases.<sup>6</sup> For this comparison, we’ll give precision and recall equal weight using the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html">F1 score</a>, their harmonic mean. F1 ranges from 0 to 1, and higher is better.</p>
+<p>The curves below show how each model scores failures (orange) and passing traces (blue). Taller parts of a curve mean more scores from that class fall in that range. Scores at or above the dashed threshold line are flagged. Use the toggle to compare <strong>0.50</strong> with <strong>Optimized for best F1</strong>, which chooses a threshold for each model.<sup>7</sup></p>
+<iframe src="charts/threshold-explorer.html?v=unconstrained-2" title="Compare score densities and decision thresholds for six evaluation models" class="eval-score-frame" style="display:block;width:100%;height:1400px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.eval-score-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>OpenAI separates the two classes best on this task, which is also reflected in its higher F1 score.</p>
+<p>It’s also important not to blindly maximize F1 without thinking about your minimum requirements for the classifier to be useful. For example, if this classifier is used for an automated alerting system, I would want a minimum of 80% on both precision and recall so that I’m minimizing false alarms while catching a sufficient number of failures.</p>
+<p>The chart below shows how precision and recall change at different thresholds.<sup>8</sup> The shaded region marks where both reach at least 80%.</p>
+<iframe src="charts/precision-recall.html" title="Precision and recall across decision thresholds, with 80% requirements" class="precision-recall-frame" style="display:block;width:100%;height:1150px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.precision-recall-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>Perplexity, Liquid d1-ultra, and OpenAI Decisions meet our requirements, but we still need to choose a decision threshold within the shaded region for each model. In the next section, we’ll discuss how to tune those thresholds.</p>
+<section id="tuning-the-decision-threshold" class="level3">
+<h3 class="anchored" data-anchor-id="tuning-the-decision-threshold">Tuning the decision threshold</h3>
+<p>For this example, we’ll optimize F1. For our candidates, we’ll restrict tuning to thresholds that meet both 80% minimums on the training data whenever possible. We leave the other models unconstrained to illustrate the effect of tuning.<sup>9</sup></p>
+<p>With labeled traces and saved model scores, you can ask a coding agent to tune the thresholds. Below is an example prompt you can modify for your use case:</p>
+<blockquote class="blockquote">
+<p>Using my saved model scores and binary labels (1 means failure), tune a decision threshold to maximize F1 while requiring at least 80% precision and 80% recall. Use stratified five-fold cross-validation, choosing thresholds on the training examples and measuring performance on the remaining examples. If comparing models, use the same splits for each. Only select thresholds that meet both minimums on the training examples. If none qualifies, report that rather than relaxing either requirement. Report validation precision, recall, and F1, along with any splits where no threshold qualified or validation performance fell below my minimums. Compare with the default threshold of 0.50. Reuse the saved scores without making new model calls.</p>
+</blockquote>
+<p>Here’s how tuning for F1 changed each model’s performance. We group the three candidates from the precision-recall chart together and show the other models in gray to illustrate how much tuning can help.</p>
+<iframe src="charts/threshold-impact.html?v=constrained-1" title="F1 by model before and after threshold tuning" class="threshold-impact-frame" style="display:block;width:100%;height:460px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.threshold-impact-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>Our candidate models gained less from F1 tuning than Liquid d1 and Clef Flash, which fell below our minimums. However, even a small shift in precision and recall can affect business costs or the user experience, so choose the tradeoff deliberately. In practice, it’s unlikely that precision and recall are equally important (as we assumed in this post with F1). For example, the <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#precision-recall-f-measure-metrics">F-beta score</a> lets you give precision more weight with beta below 1, or recall more weight with beta above 1. Optimizing a different metric could lead to different thresholds and results.</p>
+</section>
+</section>
+<section id="performance-versus-cost" class="level2">
+<h2 class="anchored" data-anchor-id="performance-versus-cost">Performance versus cost</h2>
+<p>The chart below compares each model’s F1 (after tuning) against cost, focused on our remaining candidates:</p>
+<iframe src="charts/cost-comparison.html?v=constrained-1" title="API cost versus held-out F1 after threshold tuning" class="cost-comparison-frame" style="display:block;width:100%;height:800px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.cost-comparison-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>The dashed line shows the <strong>Pareto frontier</strong> among our remaining candidates. For any given F1 score, it identifies the cheapest candidate that meets or exceeds that score. This particular chart is a bit silly as there are only three options, but it’s a useful illustration for how to think about cost vs.&nbsp;performance.</p>
+<p>Perplexity was the cheapest of these candidates at 0.82 cents per 100 eval runs, with an F1 of 0.79. OpenAI Decisions reached an F1 of 0.87 at 3.72 cents per 100 eval runs, about 4.5 times the cost.</p>
+</section>
+<section id="can-we-trust-the-probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="can-we-trust-the-probabilities">Can we trust the probabilities?</h2>
+<p>Beyond pass/fail evals, you may want to use a decision model’s score as a confidence estimate. But can you take that number literally? For a score of 0.80 to mean an 80% chance of failure, roughly 80% of traces with similar scores should contain failures.</p>
+<p>The chart below shows each model’s <strong>probability calibration</strong>: how closely its predicted probabilities match observed outcomes.<sup>10</sup> Each point represents about 20 traces with similar scores. A point on the diagonal means the predicted probability matches the failure rate in that group. Above the line, the model underestimates the risk of failure. Below it, the model overestimates that risk.</p>
+<p>If the predicted probabilities don’t match the observed outcomes, we can adjust them using another model. The second panel shows one method, <strong>Platt scaling</strong>, which fits a simple curve to make that adjustment.<sup>11</sup></p>
+<iframe src="charts/calibration-reliability.html?v=2" title="Predicted failure probabilities versus observed failure rates, before and after Platt scaling" class="calibration-frame" style="display:block;width:100%;height:800px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.calibration-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>Perplexity, Liquid d1, and Clef Flash move closer to the diagonal after calibration. For example, one group of Clef Flash traces had an average predicted failure probability of about 8%, but 60% contained failures.</p>
+<p>Jev and Liquid d1-ultra were already well calibrated on this dataset and needed little adjustment.</p>
+<p>Platt scaling isn’t always the best fit. For example, OpenAI’s probabilities got slightly worse with the version of Platt scaling we used.<sup>12</sup> You can direct your coding agent to perform calibration with the following prompt:</p>
+<blockquote class="blockquote">
+<p>Using my saved failure probabilities and binary labels (1 means failure), test whether Platt scaling improves each model’s probabilities. Use stratified five-fold cross-validation with the same splits for every model. Fit the calibration mapping on each training split and apply it to the remaining traces. Fit on log-odds, clipping probabilities away from 0 and 1 first. Plot predicted probabilities against observed failure rates before and after calibration. Report Brier scores (lower is better), and explain which models improved or got worse. Reuse the saved scores without making new model calls.</p>
+</blockquote>
+</section>
+<section id="prompt-tuning-and-evaluator-scope" class="level2">
+<h2 class="anchored" data-anchor-id="prompt-tuning-and-evaluator-scope">Prompt tuning and evaluator scope</h2>
+<p>We kept the eval task in this post broad to make the differences between models easier to see. In practice, we recommend building <a href="https://hamel.dev/blog/posts/evals-faq/what-should-i-do-when-i-cant-get-my-llm-judge-to-agree-with-human-reviewers.html">a separate judge for each failure mode</a>. With a narrower task and more specific guidance, we expect the performance gaps between models to shrink.</p>
+<p>I like to start with a larger model that has acceptable performance on a task and then try smaller models to see if they can match the larger model’s performance for less cost. Prompt tuning can also be helpful if you have high-quality labels.<sup>13</sup> I discuss how to craft a good judge prompt <a href="../../../blog/posts/llm-judge/index.html">in this post</a>.</p>
+</section>
+<section id="putting-these-ideas-into-practice" class="level2">
+<h2 class="anchored" data-anchor-id="putting-these-ideas-into-practice">Putting these ideas into practice</h2>
+<p>For this particular dataset, OpenAI had breakout performance at a higher cost. Perplexity and Liquid d1-ultra offer lower-cost options with lower performance. We have observed that model performance varies substantially across tasks and datasets, which means it’s important to measure things yourself.</p>
+<p>To recap:</p>
+<ul>
+<li>Once you’re satisfied with your <a href="../../../blog/posts/llm-judge/index.html">judge’s prompt</a>, set minimum precision and recall requirements for your use case. Rule out models that cannot meet these.</li>
+<li>Tune each model’s decision threshold before comparing performance. Choose a precision-recall tradeoff that fits your business goals. Be intentional, don’t just use F1 score because this post did!</li>
+<li>If you want to use scores as confidence estimates, check whether the probabilities match observed outcomes. Calibration can help, but you need to measure whether it improves them.</li>
+<li>Weigh performance against cost and latency for your workload.</li>
+</ul>
+<p>This process is iterative. You may improve the prompt, then need to tune the threshold again or revisit calibration. In this post, we focused on threshold tuning and calibration because we’ve seen many people use decision models off the shelf without considering these factors.</p>
+<p>You might also be wondering how decision models stack up to LLMs. OpenAI Decisions uses GPT-6 Luna, which delivered our highest F1 at the highest cost, suggesting that harder eval tasks may justify paying more for an LLM. In a <a href="https://www.randalolson.com/2026/10/14/when-to-use-a-decision-model-instead-of-an-llm/">broader comparison</a>, Randy Olson found that decision models could match LLMs on classification and routing at lower cost, while LLMs pulled ahead on tasks requiring knowledge and reasoning.</p>
+<p>None of the ideas discussed in this post are new. Choosing a precision-recall tradeoff, tuning thresholds and comparing performance vs.&nbsp;cost are part of evaluating any classifier. To learn more about these fundamentals, I recommend <a href="https://www.oreilly.com/library/view/machine-learning-with/9781098135713/">Machine Learning with Python Cookbook, 2nd Edition</a> by Kyle Gallatin and Chris Albon.</p>
+<p>Finally, if you’re a data scientist or ML engineer wondering where you belong in the AI age, these are skills you already have. It’s time to <a href="https://hamel.dev/blog/posts/revenge/">get revenge</a> 🙂.</p>
+</section>
+<section id="evaluation-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation-prompt">Appendix: Evaluation prompt</h2>
+<p>Perplexity, Liquid d1 and d1-ultra, Clef Flash, and OpenAI Decisions received the prompt below. Jev received equivalent criteria in a structured prompt, shown in the example below. The <a href="charts/chart-data.json">scores and labels</a> used in the charts are available as JSON.</p>
+<pre class="text"><code>Decide whether `messages` contains at least one substantive failure, risk, or quality problem in the AI assistant's behavior or tool use. This is one complete production trace from an AI that handles apartment-leasing customer support over phone or messaging. The trace includes the conversation plus any tool calls and tool outputs.
+
+Evaluate the AI assistant and its tool use, not the customer. Treat system messages inside `messages` as the instructions governing the assistant's behavior and allowed capabilities. Inspect the full trace, including final turns and all tool calls and outputs. Base the judgment only on evidence visible in this trace. Do not assume external policies, channel behavior, or business requirements that are not present. Do not assume every trace failed. A short, ambiguous, or inconclusive trace is not an issue unless visible evidence establishes a substantive failure.
+
+Return the probability that at least one substantive issue is present; the issue does not need to be named or clustered.
+
+Count as an issue when supported by the trace: the assistant contradicts an applicable system instruction or tool result; makes an unsupported factual or operational claim; misses, misuses, repeats, or falsely claims completion of a required tool action, transfer, booking, cancellation, follow-up, or confirmation; materially misunderstands or leaves an explicit user request unresolved; or exposes internal actions, placeholders, or broken content to the customer in a way that materially harms the interaction.
+
+Do not count as an issue: a minor stylistic preference with no meaningful effect; a failure caused only by the customer's behavior; internal tool metadata that was not exposed to the customer and did not cause an incorrect response; a hypothetical concern requiring information outside the trace; or insufficient evidence and inconclusive conversations.</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example: A structured prompt
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is how we structured the prompt for Jev’s requests, with separate fields for instructions and evaluation criteria.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-2">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"version"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"nurtureboss-any-issue-v1"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-3">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"question_id"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"has_substantive_issue"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-4">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"type"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"noul"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-5">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"instructions"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-6">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"task"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Does `messages` contain at least one substantive failure, risk, or quality problem in the AI assistant's behavior or tool use?"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-7">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"context"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is one production trace from an AI that handles apartment-leasing customer support over phone or messaging. The trace contains the complete conversation plus any tool calls and tool outputs."</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-8">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"evaluation_rules"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb2-9">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Evaluate the AI assistant and its tool use, not the customer."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-10">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Treat system messages inside `messages` as the instructions governing the assistant's behavior and allowed capabilities."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-11">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Inspect the full trace, including the final turns and all tool calls and outputs."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-12">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Base the judgment only on evidence visible in this trace. Do not assume external policies, channel behavior, or business requirements that are not present."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-13">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Do not assume every trace failed. A short, ambiguous, or inconclusive trace is not an issue unless the visible evidence establishes a substantive failure."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-14">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Return the probability that at least one substantive issue is present. The issue does not need to be named or clustered."</span></span>
+<span id="cb2-15">    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">]</span></span>
+<span id="cb2-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb2-17">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"criteria"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-18">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"true"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-19">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"definition"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"At least one substantive problem is supported by evidence in the trace."</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-20">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"examples_of_qualifying_evidence"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb2-21">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The assistant contradicts an applicable system instruction or a tool result."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-22">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The assistant makes an unsupported factual or operational claim."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-23">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A required tool action, transfer, booking, cancellation, follow-up, or confirmation is missing, incorrect, repeated, or falsely claimed as complete."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-24">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The assistant materially misunderstands or leaves an explicit user request unresolved."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-25">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Customer-facing text exposes internal actions, placeholders, or broken content that materially harms the interaction."</span></span>
+<span id="cb2-26">      <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">]</span></span>
+<span id="cb2-27">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb2-28">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"false"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-29">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"definition"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"No substantive assistant problem can be established from the visible trace."</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-30">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"do_not_count_as_an_issue"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb2-31">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A minor stylistic preference with no meaningful effect."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-32">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A failure caused only by the customer's behavior."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-33">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Internal tool metadata that was not exposed to the customer and did not cause an incorrect response."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-34">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A hypothetical concern that requires information outside the trace."</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-35">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Insufficient evidence or an inconclusive conversation."</span></span>
+<span id="cb2-36">      <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">]</span></span>
+<span id="cb2-37">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-38">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-39"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Versions tested: <a href="https://docs.typesafe.ai/introduction">Jev 1.13</a> (<a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">announced September 15, 2026</a>), <a href="https://docs.perplexity.ai/docs/decisions/quickstart">Perplexity Decider 1.1 27B</a>, <a href="https://docs.liquid.ai/lfm/models/decision-models">Liquid d1 and d1-ultra</a>, <a href="https://blog.cloudflare.com/clef-decision-models">Cloudflare Clef Flash</a>, and <a href="https://developers.openai.com/api/docs/guides/decisions">OpenAI Decisions</a>. OpenAI Decisions uses GPT-6 Luna. The API returns typed answers, including a probability from 0 to 1 for a true/false question. This is a separate API from Structured Outputs, which generates responses matching a custom JSON schema. We include it because it serves the same classification task.↩︎</p></li>
+<li id="fn2"><p>An <a href="../../../blog/posts/llm-judge/index.html">LLM judge</a> uses a prompt to evaluate an AI system’s output or behavior. We recommend asking it for a <a href="../../../blog/posts/evals-faq/why-do-you-recommend-binary-passfail-evaluations-instead-of-1-5-ratings-likert-scales.html">binary pass/fail decision</a> about a specific failure mode. This encourages clear criteria and makes it easier to compare the judge’s decisions with human labels.↩︎</p></li>
+<li id="fn3"><p>We scored 98 production traces after excluding two internal QA examples from the 100-trace dataset. The frozen reference contains 61 known failures and 37 traces without a labeled failure: 39 failures from the original human review plus 22 discoveries from Braintrust and Arize that we manually validated. Models received masked traces without human labels or reviewer notes. Perplexity, Liquid, Clef Flash, and OpenAI received the same instructions and serialized inputs; Jev received equivalent criteria through its structured API. The original conversations are private.↩︎</p></li>
+<li id="fn4"><p>API cost covers 100 eval runs, one per trace. We use <a href="https://www.liquid.ai/pricing">Liquid’s prices as of October 17, 2026</a>, $0.02 per million input tokens for d1 and $0.042 for d1-ultra. The experiment recorded d1 at $0.04; we have repriced its saved token usage. Other models use the rates in the experiment’s operational metrics. Performance excludes two internal QA traces. Threshold tuning uses saved scores and requires no additional model calls.↩︎</p></li>
+<li id="fn5"><p>Latency depends on how you batch or parallelize requests, your arrangement with the vendor, and your distance from its infrastructure, among other factors. Batching and concurrency can also change cost and throughput. See TypeSafe’s <a href="https://docs.typesafe.ai/primitives#ask-multiple-questions-together">multi-question requests</a> and <a href="https://docs.typesafe.ai/sdk/python/usage/advanced">client performance guidance</a>. Its <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">launch discussion</a> also notes the location of its latency tests relative to its service. Mean response times were 4.33 seconds for Jev, 7.85 for Perplexity, 7.38 for Liquid d1, 1.56 for Liquid d1-ultra, 2.09 for Clef Flash, and 2.77 for OpenAI. These came from separate runs and do not establish comparative throughput or tail latency.↩︎</p></li>
+<li id="fn6"><p>These examples illustrate how the consequences of mistakes affect the tradeoff. In U.S. criminal trials, <a href="https://www.law.cornell.edu/wex/reasonable_doubt">proof beyond a reasonable doubt</a> sets a high bar for conviction. In cancer screening, a missed case can delay care, while a false alarm can lead to anxiety and unnecessary procedures. A positive screening result usually requires further testing. The <a href="https://www.cancer.gov/about-cancer/screening/patient-screening-overview-pdq">NCI explains both risks</a>; the appropriate balance depends on the screening test and population.↩︎</p></li>
+<li id="fn7"><p>The density plots show unconstrained F1 tuning, before we introduce minimum precision and recall requirements. The later comparison charts apply those requirements to candidate models where feasible. All use the same five-fold cross-validation splits. Thresholds were chosen on training traces, and precision, recall, and F1 were measured on separate traces. We average those measurements across repeated splits. In the optimized density plots, the dashed line shows the average selected threshold. The displayed scores come from the individual splits, rather than applying that average threshold to the full dataset. The density curves use Gaussian smoothing with bandwidth 0.07 and reflection at 0 and 1. Each class has an area of one. Smoothing affects only the display.↩︎</p></li>
+<li id="fn8"><p>A precision-recall curve plots precision against recall as the decision threshold changes. It shows the tradeoffs available for a model across thresholds. Scikit-learn’s <a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html">precision-recall guide</a> explains how to read and plot these curves.↩︎</p></li>
+<li id="fn9"><p>We identify candidates from the full-sample precision-recall curves. In each training split, we choose the highest-F1 threshold among those reaching at least 80% precision and 80% recall. When no threshold qualifies, we use the unconstrained F1 optimum and record the split as infeasible. This occurred in 36 of 100 training splits for Perplexity and 29 for Liquid d1-ultra, and never for OpenAI. Non-candidates always use unconstrained F1 tuning. We keep all validation predictions, including those from fallback splits, in the reported averages. The minimums apply during selection and do not guarantee the same performance on new examples. The <a href="charts/threshold-selection-audit.json">threshold-selection audit</a> records each split without trace IDs.↩︎</p></li>
+<li id="fn10"><p>A calibrated failure probability of 0.80 means that, among many examples receiving scores near 0.80, roughly 80% contain failures. Platt scaling and isotonic regression use labeled examples to learn an adjustment from model scores to probabilities. Platt scaling fits a sigmoid curve. Isotonic regression fits a more flexible mapping that preserves score order, but is more prone to overfitting with small datasets. Neither guarantees improvement on new examples. Scikit-learn’s <a href="https://scikit-learn.org/stable/modules/calibration.html">probability calibration guide</a> explains both methods and how to assess them.↩︎</p></li>
+<li id="fn11"><p>The reliability chart groups each model’s scores into five groups of 19 or 20 traces, sorted by probability. The adjusted scores are each trace’s mean out-of-fold probability from the saved cross-validation results. We fit Platt scaling to the log-odds of the original probabilities. Each mapping is fitted without the traces it predicts. The chart summarizes this small sample and does not establish an exact failure rate for a future trace. The <a href="charts/calibration-reliability-data.json">plotted calibration results</a> are available as JSON.↩︎</p></li>
+<li id="fn12"><p>On the saved out-of-fold probability summaries, Jev’s Brier score was 0.187 before adjustment and 0.188 afterward. Liquid d1-ultra’s was 0.173 and 0.172, while OpenAI’s was 0.159 and 0.164. Brier score measures average squared probability error, so lower is better. It reflects discrimination as well as calibration. These results describe the log-odds Platt fit shown in the chart. An exploratory refit directly on probabilities, using the same folds, gave OpenAI a Brier score of 0.154. This illustrates sensitivity to the fitting method. It does not establish which method will work best on new data.↩︎</p></li>
+<li id="fn13"><p><a href="https://arxiv.org/abs/2507.19457">GEPA</a> uses feedback from model runs to propose prompt revisions and test them against labeled examples. It retains candidates with different strengths, so a prompt that helps a difficult example can remain in consideration. Incorrect labels can steer this search toward the wrong changes. Keep a <a href="../../../blog/posts/evals-faq/how-do-i-know-if-i-can-trust-my-automated-eval.html">separate test set</a> outside prompt development for the final check. In our small manual Jev experiment, F1 at the default threshold rose from 0.78 with a simple prompt to 0.80 with a checklist of failure types. That experiment did not use GEPA or establish how much systematic optimization would help. Our <a href="../../../blog/posts/evals-faq/what-model-or-llm-should-i-use-to-build-automated-evals.html">FAQ on choosing an eval model</a> discusses prompt optimization and model comparison.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>LLMs</category>
+  <category>Evals</category>
+  <guid>https://hamel.dev/blog/posts/decision-model-evals/</guid>
+  <pubDate>Tue, 20 Oct 2026 07:00:00 GMT</pubDate>
+  <media:content url="https://hamel.dev/blog/posts/decision-model-evals/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>Claude’s new auto eval tool</title>
   <dc:creator>Hamel Husain</dc:creator>
@@ -5613,101 +6064,6 @@ font-style: inherit;">}</span></span></code></pre></div></div>
   <category>LLMs</category>
   <guid>https://hamel.dev/</guid>
   <pubDate>Sat, 01 Jun 2024 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Debugging AI With Adversarial Validation</title>
-  <dc:creator>Hamel Husain</dc:creator>
-  <link>https://hamel.dev/blog/posts/drift/</link>
-  <description><![CDATA[ 
-
-<!-- Content inserted at the beginning of body tag -->
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKGWQMKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-
-
-
-<p>For years, I’ve relied on a straightforward method to identify sudden changes in model inputs or training data, known as “drift.” This method, Adversarial Validation<sup>1</sup>, is both simple and effective. The best part? <strong>It requires no complex tools or infrastructure.</strong></p>
-<p>Examples where drift can cause bugs in your AI:</p>
-<ol type="1">
-<li>Your data for <a href="../../../blog/posts/evals/index.html">evaluations</a> are materially different from the inputs your model receives in production, causing your evaluations to be misleading.</li>
-<li>Updates to prompts, functions, RAG, and similar elements aren’t incorporated into your fine-tuning or training data, leading to unexpected model behavior in production.</li>
-</ol>
-<p>No matter how careful you are, bugs can still slip through the cracks. A a high ROI activity is to routinely audit all your AI/ML projects for drift.</p>
-<section id="how-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-it-works">How It Works</h2>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Uncool Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This method is so simple that it might seem uncool. You aren’t going to impress any data scientists. Despite this, it’s too valuable to ignore.</p>
-</div>
-</div>
-<p>This slide from <a href="https://www.youtube.com/watch?v=GHk5HMW4XMA">my talk on MLOps tools</a> explains the technique behind Adversarial Validation<sup>2</sup>:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hamel.dev/blog/posts/drift/images/drift_tfx.png" class="img-fluid figure-img"></p>
-<figcaption>Slide</figcaption>
-</figure>
-</div>
-<p>The process is as follows:</p>
-<ol type="1">
-<li>Collect two datasets to compare. For example:
-<ul>
-<li>Training data from two different fine-tuning runs</li>
-<li>Training data vs.&nbsp;evaluation data</li>
-<li>Training data vs.&nbsp;production data (organized into the same format)</li>
-<li>Data from two different time-periods</li>
-</ul></li>
-<li>Create features from the dataset. A basic example that creates features from <a href="https://platform.openai.com/tokenizer">tokens</a> is illustrated <a href="https://github.com/hamelsmu/ft-drift/blob/main/ft_drift/model.py">here</a>.<sup>3</sup></li>
-<li>Give dataset #1 a label of 0 and dataset #2 a label of 1.</li>
-<li>Fit a binary classifier (random forest, logistic regression, etc) to discriminate between the two datasets.</li>
-<li>If the classifier demonstrates sufficient predictive power (ex: AUC &gt;=0.60), we know there is drift.</li>
-<li>If you used an interpretable model (like logistic regression, random forest, etc.), you can inspect feature importance metrics to understand the root cause of the drift. If you use a more complex model (like a neural network), you can use <a href="https://shap.readthedocs.io/en/latest/">SHAP values</a> or other methods to understand what is causing the drift. I recommend starting with a simple interpretable model.</li>
-</ol>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If this process doesn’t detect drift, it doesn’t mean there isn’t drift. It just means that we couldn’t detect it with the model and features we used.</p>
-</div>
-</div>
-</section>
-<section id="minimal-example-ft_drift" class="level2">
-<h2 class="anchored" data-anchor-id="minimal-example-ft_drift">Minimal Example: <code>ft_drift</code></h2>
-<p>I work with lots of folks who are fine-tuning models using the OpenAI API. I’ve created a small CLI tool, <a href="https://github.com/hamelsmu/ft-drift/"><code>ft_drift</code></a>, that detects drift between two <a href="https://platform.openai.com/docs/guides/fine-tuning">multi-turn chat formatted</a> jsonl files. Currently, <code>ft_drift</code> only detects drift in prompt templates, schemas and other token-based drift (as opposed to semantic drift). However, this is a good starting point to understand the general concept of adversarial validation. Here is a demo of this tool at work:</p>
-<p><img src="https://hamel.dev/blog/posts/drift/images/drift_cli.gif" class="img-fluid"></p>
-<p>The demo is from a real-world example where an unintentional change in a prompt template caused unexpected behavior in a model. The demo shows the tool detecting a difference between two datasets, <code>file_a.jsonl</code> and <code>file_b.jsonl</code>. Afterward, a table of important tokens that account for the drift are shown, such as <code>END-UI-FORMAT</code>, <code>UI-FORMAT</code>, etc. We were able to apply the tool and quickly find the root cause of the issue. The modeling code is embarrassingly simple and located at <a href="https://github.com/hamelsmu/ft-drift/blob/main/ft_drift/model.py"><code>ft_drift/model.py</code></a>. The point is you don’t need sophisticated techniques to get started. You can then take this approach further by adding embeddings to your features to also detect semantic drift. Similarly, you could add additional features by hand like the number of conversation turns, length of messages, etc.</p>
-
-
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>I first learned of this technique in 2016 from <a href="https://fastml.com/adversarial-validation-part-two/">this blog post</a> by Zygmunt Zając. Throughout the years, I’ve seen this technique used in a variety of contexts, sometimes with different names.↩︎</p></li>
-<li id="fn2"><p>This slide uses the word “skew” which is interchangeable with “drift” in this context.↩︎</p></li>
-<li id="fn3"><p>For classic ML, if you are already training a model on this data, you likely have a feature engineering pipeline that you can reuse.↩︎</p></li>
-</ol>
-</section></div> ]]></description>
-  <category>LLMs</category>
-  <guid>https://hamel.dev/blog/posts/drift/</guid>
-  <pubDate>Fri, 12 Apr 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://hamel.dev/blog/posts/drift/images/drift_cover.png" medium="image" type="image/png" height="75" width="144"/>
 </item>
 </channel>
 </rss>
