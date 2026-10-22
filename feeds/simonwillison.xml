@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-22T18:09:56+00:00</updated><author><name>Simon Willison</name></author><entry><title>Donating Agent Skills to the Agentic AI Foundation</title><link href="https://simonwillison.net/2026/Oct/22/donating-agent-skills/" rel="alternate"/><published>2026-10-22T18:09:56+00:00</published><updated>2026-10-22T18:09:56+00:00</updated><id>https://simonwillison.net/2026/Oct/22/donating-agent-skills/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-22T19:42:26+00:00</updated><author><name>Simon Willison</name></author><entry><title>DE STAAT - FREEDOM (Official Music Video)</title><link href="https://simonwillison.net/2026/Oct/22/de-staat-freedom/" rel="alternate"/><published>2026-10-22T19:42:26+00:00</published><updated>2026-10-22T19:42:26+00:00</updated><id>https://simonwillison.net/2026/Oct/22/de-staat-freedom/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.youtube.com/watch?v=hKO4pQtIXow"&gt;DE STAAT - FREEDOM (Official Music Video)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+OK well this is a first for me... at &lt;a href="https://www.youtube.com/watch?v=hKO4pQtIXow&amp;amp;t=44s"&gt;00:44&lt;/a&gt; in this new music video by Dutch alternative rock band &lt;a href="https://en.wikipedia.org/wiki/De_Staat"&gt;De Staat&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;video
+  src="https://static.simonwillison.net/static/2026/freedom-pelican.mp4"
+  poster="https://static.simonwillison.net/static/2026/freedom-pelican-poster.jpg"
+  preload="none"
+  loop="1" controls="1"
+  playsinline="1" muted="1"
+  width="1280"
+  height="720"
+  style="display: block; width: 100%; height: auto;"
+&gt; &lt;/video&gt;
+&lt;/p&gt;
+&lt;p&gt;The visual effects are credited to Matties Grooten of &lt;a href="https://fakeitorleaveit.com"&gt;Fake it or Leave it&lt;/a&gt;.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=50186129#50193407"&gt;flir on Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/music"&gt;music&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="music"/><category term="ai"/><category term="generative-ai"/><category term="pelican-riding-a-bicycle"/></entry><entry><title>Donating Agent Skills to the Agentic AI Foundation</title><link href="https://simonwillison.net/2026/Oct/22/donating-agent-skills/" rel="alternate"/><published>2026-10-22T18:09:56+00:00</published><updated>2026-10-22T18:09:56+00:00</updated><id>https://simonwillison.net/2026/Oct/22/donating-agent-skills/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation"&gt;Donating Agent Skills to the Agentic AI Foundation&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 News today from Anthropic:&lt;/p&gt;
@@ -786,12 +810,4 @@ Bit of a niche link, but I've been waiting for this for a couple of days - I eve
 
 
 
-</summary><category term="github"/><category term="python"/><category term="github-actions"/><category term="chatgpt"/></entry><entry><title>Quoting The New York Times</title><link href="https://simonwillison.net/2026/Oct/10/the-new-york-times/" rel="alternate"/><published>2026-10-10T02:04:12+00:00</published><updated>2026-10-10T02:04:12+00:00</updated><id>https://simonwillison.net/2026/Oct/10/the-new-york-times/</id><summary type="html">
-    &lt;blockquote cite="https://www.nytimes.com/2026/10/09/technology/anthropic-rogue-ai-agents.html"&gt;&lt;p&gt;Anthropic detailed the activity of its A.I. agents in &lt;a href="https://www.anthropic.com/research/investigating-unintended-model-actions"&gt;a blog post&lt;/a&gt; on Friday, without naming the targeted websites. But two sources with knowledge of the incidents said Anthropic’s A.I. agents had submitted 20 visa applications through a form available on the State Department’s website. All the applications were incomplete and were not processed, they said.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.nytimes.com/2026/10/09/technology/anthropic-rogue-ai-agents.html"&gt;The New York Times&lt;/a&gt;, Anthropic Agents Tried to Fill Out Visa Forms on State Dept. Website&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/accidental-cyberattacks"&gt;accidental-cyberattacks&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="accidental-cyberattacks"/><category term="anthropic"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry></feed>
+</summary><category term="github"/><category term="python"/><category term="github-actions"/><category term="chatgpt"/></entry></feed>
