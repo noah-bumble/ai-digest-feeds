@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-22T19:42:26+00:00</updated><author><name>Simon Willison</name></author><entry><title>DE STAAT - FREEDOM (Official Music Video)</title><link href="https://simonwillison.net/2026/Oct/22/de-staat-freedom/" rel="alternate"/><published>2026-10-22T19:42:26+00:00</published><updated>2026-10-22T19:42:26+00:00</updated><id>https://simonwillison.net/2026/Oct/22/de-staat-freedom/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-23T19:40:54+00:00</updated><author><name>Simon Willison</name></author><entry><title>Introducing Kimi K3.1 Pro</title><link href="https://simonwillison.net/2026/Oct/23/kimi-k31-pro/" rel="alternate"/><published>2026-10-23T19:40:54+00:00</published><updated>2026-10-23T19:40:54+00:00</updated><id>https://simonwillison.net/2026/Oct/23/kimi-k31-pro/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.kimi.ai/blog/kimi-k3-1-pro"&gt;Introducing Kimi K3.1 Pro&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Kimi K3.1 Pro landed on the Kimi API today - it's not yet open weights, but Moonshot  promise "Full model weights will be released by Nov 4, 2026".&lt;/p&gt;
+&lt;p&gt;They're also offering a "Highspeed" version that's 2-3x faster, at twice the price (except for input token cache hits, which are priced the same).&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://platform.kimi.ai/docs/pricing/chat"&gt;US dollar pricing&lt;/a&gt; is $2.00/million tokens for input and $10/million for output - the same as GPT-6.1 Sol and half the price of Claude Opus 5.5.&lt;/p&gt;
+&lt;p&gt;Moonshot's own benchmarks show Kimi as approximately level with Opus 5.5 and GPT-6 Astra - beating them on a few benchmarks, coming close on others.&lt;/p&gt;
+&lt;p&gt;Artificial Analysis &lt;a href="https://artificialanalysis.ai/models/kimi-k3-1-pro"&gt;scored Kimi at 55&lt;/a&gt; - ahead of Claude Fable 5.1, GPT-6 Astra, and Gemini 4 Argon (all at 53) and behind only Claude Opus 5.5 (58).&lt;/p&gt;
+&lt;p&gt;This is the first time a (soon-to-be) open weight model has scored this highly against the frontier.&lt;/p&gt;
+&lt;p&gt;I tried it out via the &lt;a href="https://platform.kimi.ai/docs/get-your-api-key"&gt;Moonshot API&lt;/a&gt; using the &lt;a href="https://llm.datasette.io/en/stable/other-models.html#openai-endpoint"&gt;llm openai endpoint&lt;/a&gt; command I added to &lt;a href="https://llm.datasette.io/en/stable/changelog.html#v0-32"&gt;LLM 0.32&lt;/a&gt; back in August:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;llm openai endpoint \
+  https://api.moonshot.ai/v1 \
+  --key kimi \
+  -m kimi-k3.1-pro \
+  "Generate an SVG of a pelican riding a bicycle" \
+  --responses \
+  -o reasoning_effort low \
+  &amp;gt; kimi-k3.1-pro-pelican-low.stdout.txt \
+  2&amp;gt; kimi-k3.1-pro-pelican-low.stderr.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;llm openai endpoint&lt;/code&gt; can run prompts against any OpenAI-compatible endpoint but doesn't log the results, hence the extra options to save stdout and stderr (the reasoning trace).&lt;/p&gt;
+&lt;p&gt;Here &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F9b7181492209387da1d4f53002f26663"&gt;are the pelicans&lt;/a&gt; I got for Kimi K3.1 Pro on the three reasoning levels it supports -  low, medium, and max. This is max:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="It's pretty solid - feet are on the pedals, bicycle frame is good, nice beak. Both legs are on the same side of the Fram though." src="https://static.simonwillison.net/static/2026-10-23/image-2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;For comparison, I ran fresh &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Feba9a4283c9e94cbbb5325902a3921a8"&gt;pelicans against Kimi K3&lt;/a&gt; on those three reasoning levels.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=50212065"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-pricing"&gt;llm-pricing&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-in-china"&gt;ai-in-china&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/moonshot"&gt;moonshot&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/kimi"&gt;kimi&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="llm"/><category term="llm-pricing"/><category term="pelican-riding-a-bicycle"/><category term="llm-release"/><category term="ai-in-china"/><category term="moonshot"/><category term="kimi"/></entry><entry><title>DE STAAT - FREEDOM (Official Music Video)</title><link href="https://simonwillison.net/2026/Oct/22/de-staat-freedom/" rel="alternate"/><published>2026-10-22T19:42:26+00:00</published><updated>2026-10-22T19:42:26+00:00</updated><id>https://simonwillison.net/2026/Oct/22/de-staat-freedom/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://www.youtube.com/watch?v=hKO4pQtIXow"&gt;DE STAAT - FREEDOM (Official Music Video)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 OK well this is a first for me... at &lt;a href="https://www.youtube.com/watch?v=hKO4pQtIXow&amp;amp;t=44s"&gt;00:44&lt;/a&gt; in this new music video by Dutch alternative rock band &lt;a href="https://en.wikipedia.org/wiki/De_Staat"&gt;De Staat&lt;/a&gt;:&lt;/p&gt;
@@ -796,18 +828,4 @@ Interesting piece from Anthropic describing why and how they built their own cus
 
 
 
-</summary><category term="version-control"/></entry><entry><title>Python 3.15.0 added to actions/python-versions</title><link href="https://simonwillison.net/2026/Oct/10/python-actions/" rel="alternate"/><published>2026-10-10T23:58:04+00:00</published><updated>2026-10-10T23:58:04+00:00</updated><id>https://simonwillison.net/2026/Oct/10/python-actions/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/actions/python-versions/commit/49858b91c92d27403416ee43117032e91d00ce24"&gt;Python 3.15.0 added to actions/python-versions&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Bit of a niche link, but I've been waiting for this for a couple of days - I even &lt;a href="https://chatgpt.com/share/6acad42a-2868-83e8-9a16-736f9def2b45"&gt;told ChatGPT&lt;/a&gt; to check for it:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Clone https://github.com/actions/python-versions  and git pull once an hour until they add the stable  3.15 - then tell me about it&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Now that this has landed, you can add &lt;code&gt;"3.15"&lt;/code&gt; to a GitHub Actions testing matrix to run tests against the &lt;a href="https://www.python.org/downloads/release/python-3150/"&gt;new Python 3.15.0 release&lt;/a&gt;.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/github-actions"&gt;github-actions&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/chatgpt"&gt;chatgpt&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="github"/><category term="python"/><category term="github-actions"/><category term="chatgpt"/></entry></feed>
+</summary><category term="version-control"/></entry></feed>
