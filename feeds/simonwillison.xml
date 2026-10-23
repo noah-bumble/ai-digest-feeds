@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-23T19:40:54+00:00</updated><author><name>Simon Willison</name></author><entry><title>Introducing Kimi K3.1 Pro</title><link href="https://simonwillison.net/2026/Oct/23/kimi-k31-pro/" rel="alternate"/><published>2026-10-23T19:40:54+00:00</published><updated>2026-10-23T19:40:54+00:00</updated><id>https://simonwillison.net/2026/Oct/23/kimi-k31-pro/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-23T21:35:13+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quick Study</title><link href="https://simonwillison.net/2026/Oct/23/quick-study-painter/" rel="alternate"/><published>2026-10-23T21:35:13+00:00</published><updated>2026-10-23T21:35:13+00:00</updated><id>https://simonwillison.net/2026/Oct/23/quick-study-painter/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/quick-study-painter"&gt;Quick Study&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Prompt &lt;a href="https://claude.ai/share/71adda96-193f-4f2a-97c0-454e08066afb"&gt;to Claude Opus 5.5 High&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Build an artifact where you open a photo and it rapidly (in a few seconds) paints a version of that photo using a canvas element and simulated paintbrush&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;See also &lt;a href="https://simonwillison.net/2026/Aug/25/pelican-watercolor/"&gt;my previous experiment&lt;/a&gt; getting Claude Fable to simulate a watercolor illustration with P5.js.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A simulated oil painting of a photograph of a heron" src="https://static.simonwillison.net/static/2026/heron-oil.webp" /&gt;&lt;/p&gt;
+&lt;p&gt;Quick Study uses &lt;a href="https://en.wikipedia.org/wiki/Sobel_operator"&gt;Sobel edge detection&lt;/a&gt;, with no external libraries beyond Google Fonts.&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="tools"/></entry><entry><title>Introducing Kimi K3.1 Pro</title><link href="https://simonwillison.net/2026/Oct/23/kimi-k31-pro/" rel="alternate"/><published>2026-10-23T19:40:54+00:00</published><updated>2026-10-23T19:40:54+00:00</updated><id>https://simonwillison.net/2026/Oct/23/kimi-k31-pro/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://www.kimi.ai/blog/kimi-k3-1-pro"&gt;Introducing Kimi K3.1 Pro&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Kimi K3.1 Pro landed on the Kimi API today - it's not yet open weights, but Moonshot  promise "Full model weights will be released by Nov 4, 2026".&lt;/p&gt;
@@ -814,18 +829,4 @@ Interesting piece from Anthropic describing why and how they built their own cus
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="datasette"/></entry><entry><title>Dwarf Fortress uses version control now</title><link href="https://simonwillison.net/2026/Oct/11/dwarf-fortress/" rel="alternate"/><published>2026-10-11T00:52:37+00:00</published><updated>2026-10-11T00:52:37+00:00</updated><id>https://simonwillison.net/2026/Oct/11/dwarf-fortress/</id><summary type="html">
-    &lt;p&gt;I remember hearing a while ago that Dwarf Fortress didn't use version control. That fact has been lodged in my head, because given its inherent complexity I have trouble imagining a codebase that would benefit from version control &lt;em&gt;more&lt;/em&gt;. That's art.&lt;/p&gt;
-&lt;p&gt;I went looking and I'm sad to report that the days without version control appear to have ended. Quoting Tarn Adams over time:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;March 2013: &lt;a href="https://www.reddit.com/r/IAmA/comments/1avszc/comment/c919fo8/?solution=43270267461a564b43270267461a564b&amp;amp;js_challenge=1&amp;amp;jsc_token=2824be10929bdc604753c70a67a1c3310860c2cae0f946ff767fab3727807a35&amp;amp;jsc_orig_r="&gt;"I don't use version control -- I didn't like the feeling of having the code get committed into a black box thingy with no immediate upside"&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;March 2016: &lt;a href="https://www.pcgamer.com/dwarf-fortress-creator-on-how-hes-42-towards-simulating-existence/3/"&gt;"I don’t even use version control. If you don’t know what that is then you’re not gonna yell at me. If you even know what version control is you’re gonna be like, ‘You don’t use version control? You don’t use source control? What is wrong with you? How can you even work? I’m just not cut out for it, in a sense. It’s been 15 years, so the reasons have change over time, but that’s my current understanding of it."&lt;/a&gt; &lt;/li&gt;
-&lt;li&gt;March 2023: &lt;a href="https://www.gamedeveloper.com/programming/how-tarn-adams-upgraded-and-optimized-dwarf-fortress-for-its-official-steam-release"&gt;"I've got Discord channels to check and version control stuff to use now, so the process is definitely a little more involved"&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;That March 2023 quote comes from an interview about the release on Steam which &lt;a href="https://www.pcgamer.com/after-spending-20-years-simulating-reality-the-dwarf-fortress-devs-have-to-get-used-to-a-new-one-being-millionaires/"&gt;made them millionaires&lt;/a&gt;. I'm a tiny bit sad that they gave in before they hit that milestone, but what an impressive run.&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/version-control"&gt;version-control&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="version-control"/></entry></feed>
+</summary><category term="datasette"/></entry></feed>
