@@ -7,7 +7,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;Add a new map for a four player battle - four way rotational symmetry, up to four AI players, works with the WebSocket non-audio based multiplayer mode so up to four human players can join (any spare slots use AI)&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Claude Opus 4.5 added a new map called "Compass Rose" and modified the WebSockets multiplayer network code to support up to four players for that map, joining via share links or QR codes.&lt;/p&gt;
+&lt;p&gt;Claude Opus 5.5 added a new map called "Compass Rose" and modified the WebSockets multiplayer network code to support up to four players for that map, joining via share links or QR codes.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The new map does indeed look a bit like a rose - it uses the cold and ice biome. Also shown are purple robots battling on the map." src="https://raw.githubusercontent.com/simonw/battledrones/v14/progress-shots/v14/compass-rose.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;The new teams use robots themed in purple and green, joining the existing blue and red designs. You can preview those colors in &lt;a href="https://simonw.github.io/battledrones/models.html"&gt;the updated model browser&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here's &lt;a href="https://simonw.github.io/battledrones/v14/?replay=https://gist.githubusercontent.com/simonw/faa550a002b25a78f1c88a64217786c1/raw/4ff9b03de71d757cd33eb5d1a0e388155b6c20e5/compass.json"&gt;a replay link&lt;/a&gt; to watch a four way AI battle with the "Goliath Armada" mutator turned on, where each side starts with four giant Goliath mech units.&lt;/p&gt;
