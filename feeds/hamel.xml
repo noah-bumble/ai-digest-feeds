@@ -16,7 +16,7 @@
 <height>81</height>
 <width>144</width>
 </image>
-<generator>quarto-1.9.38</generator>
+<generator>quarto-1.10.19</generator>
 <lastBuildDate>Tue, 20 Oct 2026 07:00:00 GMT</lastBuildDate>
 <item>
   <title>How To Use Decision Models for Evals</title>
@@ -196,7 +196,7 @@ main.content table { display:block; width:100%; max-width:100%; overflow-x:auto;
 </ul>
 <p>This process is iterative. You may improve the prompt, then need to tune the threshold again or revisit calibration. In this post, we focused on threshold tuning and calibration because we’ve seen many people use decision models off the shelf without considering these factors.</p>
 <p>You might also be wondering how decision models stack up to LLMs. OpenAI Decisions uses GPT-6 Luna, which delivered our highest F1 at the highest cost, suggesting that harder eval tasks may justify paying more for an LLM. In a <a href="https://www.randalolson.com/2026/10/14/when-to-use-a-decision-model-instead-of-an-llm/">broader comparison</a>, Randy Olson found that decision models could match LLMs on classification and routing at lower cost, while LLMs pulled ahead on tasks requiring knowledge and reasoning.</p>
-<p>None of the ideas discussed in this post are new. Choosing a precision-recall tradeoff, tuning thresholds and comparing performance vs.&nbsp;cost are part of evaluating any classifier. To learn more about these fundamentals, I recommend <a href="https://www.oreilly.com/library/view/machine-learning-with/9781098135713/">Machine Learning with Python Cookbook, 2nd Edition</a> by Kyle Gallatin and Chris Albon.</p>
+<p>None of the ideas discussed in this post are new. Choosing a precision-recall tradeoff, tuning thresholds and comparing performance vs.&nbsp;cost are part of evaluating any classifier. To learn more about these fundamentals, I recommend <a href="https://www.amazon.com/dp/B0GTYQTYDP">Machine Learning with Python Cookbook, 2nd Edition</a> by Kyle Gallatin and Chris Albon.</p>
 <p>Finally, if you’re a data scientist or ML engineer wondering where you belong in the AI age, these are skills you already have. It’s time to <a href="https://hamel.dev/blog/posts/revenge/">get revenge</a> 🙂.</p>
 </section>
 <section id="evaluation-prompt" class="level2">
@@ -634,6 +634,7 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <ul>
 <li>Q: Why do you recommend binary (pass/fail) evaluations instead of 1-5 ratings (Likert scales)?</li>
 <li>Q: How do I combine my evals into a single metric?</li>
+<li>Q: What does a good eval dashboard look like for sharing with stakeholders?</li>
 <li>Q: Should I practice eval-driven development?</li>
 <li>Q: Should I build automated evaluators for every failure mode I find?</li>
 <li>Q: What model or LLM should I use to build automated evals?</li>
@@ -1129,6 +1130,14 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <p>If you still need a single score that accounts for differences in importance, you can give some checks more weight than others. I discourage complicated weighted scores for the same reason I discourage <a href="../../../blog/posts/evals-faq/why-do-you-recommend-binary-passfail-evaluations-instead-of-1-5-ratings-likert-scales.html" target="_blank" rel="noopener">Likert scales</a> for LLM judges. If your dashboard reports a composite score that jumps from 3.2 to 3.7 week over week, it’s easy to feel good about the increase without knowing what improved for users. In our experience, dashboards like this are usually performative and waste everyone’s time.</p>
 <p>Whichever approach you choose, remember that as your eval set changes, <a href="../../../blog/posts/evals-faq/what-should-i-do-when-my-gold-eval-dataset-becomes-stale.html" target="_blank" rel="noopener">its scores may no longer be directly comparable with older scores</a>. Evals give you challenges to improve against, and those challenges should change as your product evolves. For tracking progress with metrics over longer time horizons, it’s often better to use product metrics in addition to evals. Measures such as churn or active users can provide a more stable basis for comparison while your evals change.</p>
 <p><a href="../../../blog/posts/evals-faq/how-do-i-combine-my-evals-into-a-single-metric.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
+</section>
+<section id="q-what-does-a-good-eval-dashboard-look-like" class="level2" data-faq-published="2026-10-25">
+<h2 data-faq-published="2026-10-25" class="anchored" data-anchor-id="q-what-does-a-good-eval-dashboard-look-like">Q: What does a good eval dashboard look like for sharing with stakeholders?</h2>
+<p>I have rarely found dashboards to be helpful because they place the burden on the reader to figure out what’s important and don’t tend to be actionable. Stakeholders benefit much more from an explanation of what changed, possible root causes, and next steps.</p>
+<p>Instead of a cookie-cutter dashboard, craft a narrative about what is important supported by custom data visualizations. For example, if your support agent has improved at resolving refund requests but still struggles with order cancellations, show specific visualizations of each trend along with possible root causes.</p>
+<p>AI makes building custom data visualizations feasible, so there is less of an excuse to push every update into the same dashboard.</p>
+<p>A dashboard might be ok if you find yourself presenting the same visual accross many updates. However, even in this case, custom visuals are often more effective.</p>
+<p><a href="../../../blog/posts/evals-faq/what-does-a-good-eval-dashboard-look-like.html" class="faq-individual-link" target="_blank" rel="noopener">↗ Focus view</a></p>
 </section>
 <section id="q-should-i-practice-eval-driven-development" class="level2" data-faq-published="2025-07-27">
 <h2 data-faq-published="2025-07-27" class="anchored" data-anchor-id="q-should-i-practice-eval-driven-development">Q: Should I practice eval-driven development?</h2>
