@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-28T13:55:15+00:00</updated><author><name>Simon Willison</name></author><entry><title>The October inflection point for vibe game development</title><link href="https://simonwillison.net/2026/Oct/28/vibe-game-development/" rel="alternate"/><published>2026-10-28T13:55:15+00:00</published><updated>2026-10-28T13:55:15+00:00</updated><id>https://simonwillison.net/2026/Oct/28/vibe-game-development/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-10-28T16:45:23+00:00</updated><author><name>Simon Willison</name></author><entry><title>GitHub Octoverse 2026</title><link href="https://simonwillison.net/2026/Oct/28/github-octoverse-2026/" rel="alternate"/><published>2026-10-28T16:45:23+00:00</published><updated>2026-10-28T16:45:23+00:00</updated><id>https://simonwillison.net/2026/Oct/28/github-octoverse-2026/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/"&gt;GitHub Octoverse 2026&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+I'm at GitHub Universe today (GitHub gave  me a free ticket through their "GitHub Stars" program). EVP Jay Parikh just announced this year's Octoverse report, and highlighted these numbers in particular:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo of a conference keynote stage: a wide curved screen shows three line charts side by side, with a speaker in a black sweater and dark jeans standing at its right edge beneath an overhead lighting rig. Each chart has a large colored headline number above it and a shaded line that runs low and nearly flat across the left side, then curves sharply upward on the right to end in a dot at its peak. Left, in green: &amp;quot;220M&amp;quot; &amp;quot;Merged PRs per month&amp;quot;, y-axis 0M, 50M, 100M, 150M, 200M. Middle, in magenta: &amp;quot;7.38B&amp;quot; &amp;quot;Commits per month&amp;quot;, y-axis 0B, 2B, 4B, 6B, with the most dramatic, almost vertical final spike. Right, in orange: &amp;quot;30.3M&amp;quot; &amp;quot;New repos per month&amp;quot;, y-axis 0M, 10M, 20M, 30M, with a bumpier, more gradual climb. All three share the x-axis labels '23, '24, '25, '26." src="https://static.simonwillison.net/static/2026/github-numbers.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;This is a pretty stark representation of the impact of agentic engineering on GitHub. In 2026, merged pull requests tripled in less than a year to 220 million per month. Commits more than tripled to 7.38 billion per month, with most of that increase in the second half of this year. New repository rate doubled this year, to 30.3 million per month.&lt;/p&gt;
+&lt;p&gt;The report includes new numbers by industry, and breaks out numbers for repositories that involve "interoperability or reverse engineering". The &lt;a href="https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/#h-methodology"&gt;methodology section&lt;/a&gt; includes notes about how they did this: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Top countries by pushes to public repositories, adjusted by profile location&lt;/strong&gt;. Pushes from each country were summed across the Octoverse year. To adjust for biases caused by VPN usage, LLM classification was used to extract the ISO 3166-1 alpha-2 code from the profiles of GitHub users who contributed pushes during this period [...]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Industry&lt;/strong&gt;. Public repositories created 2022 to 2026 were sorted into NAICS sectors by a fine-tuned multilingual embedding model using name, description, topics, and README, from random samples per year. [...]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interoperability&lt;/strong&gt;. Counts public repositories created each year whose name, description, topics, or README mention interoperability or reverse engineering, or related terms, such as clean room implementation, drop-in replacement, or protocol re-implementation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/disclosures"&gt;disclosures&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="github"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="coding-agents"/><category term="disclosures"/><category term="agentic-engineering"/></entry><entry><title>The October inflection point for vibe game development</title><link href="https://simonwillison.net/2026/Oct/28/vibe-game-development/" rel="alternate"/><published>2026-10-28T13:55:15+00:00</published><updated>2026-10-28T13:55:15+00:00</updated><id>https://simonwillison.net/2026/Oct/28/vibe-game-development/</id><summary type="html">
     &lt;p&gt;I've written before about how November 2025 was &lt;a href="https://simonwillison.net/tags/november-2025-inflection/"&gt;an inflection point for coding agents&lt;/a&gt; - the point where Opus 4.5 and GPT-5.1 crossed a tipping point that meant their respective coding agents became reliable daily drivers for software engineers. I think we've reached a new inflection point in October 2026, and this time it's for &lt;strong&gt;vibe coding computer games&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -855,37 +873,4 @@ Indie game developer Popcar talks about the recent wave of AI-powered decompilat
 
 
 
-</summary><category term="computer-history"/><category term="game-design"/><category term="ai"/><category term="webassembly"/><category term="generative-ai"/><category term="llms"/><category term="ai-ethics"/><category term="coding-agents"/></entry><entry><title>Redesigning source control at Anthropic</title><link href="https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/" rel="alternate"/><published>2026-10-13T23:00:06+00:00</published><updated>2026-10-13T23:00:06+00:00</updated><id>https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.anthropic.com/engineering/redesigning-source-control"&gt;Redesigning source control at Anthropic&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Interesting piece from Anthropic describing why and how they built their own custom alternative to Git, based on the dramatic increase in rate of changes to their code after the past six months.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In May 2026, Anthropic averaged around 2,500 code changes merged per day; as of September, we merged over 30,000 per day.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;They included a chart showing those changes. I &lt;a href="https://claude.ai/share/aefcdd4a-9364-40c1-927a-29bf445894fc"&gt;had Claude modify their chart&lt;/a&gt; (&lt;a href="https://gist.github.com/simonw/4a16dff066fd9763faf8642f797905be"&gt;code here&lt;/a&gt;) to add markers for the public releases of each of their models in 2026:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Stacked bar chart titled “Changes merged per day”, for the Anthropic monorepo, January–September 2026. Each day’s bar is split into pull requests (blue) and antique change requests (orange), with a black line for the 7-day average. Weekdays start at around 1,000 merges in January and climb slowly to about 3,000 by late May. Antique change requests appear in late May, overtake pull requests in mid-June and have almost fully replaced them by mid-July, when weekdays reach 6,000–8,000. A labelled “Quiet week” at the end of July dips below 1,000 a day. After that, growth turns steep: over 10,000 a day by mid-August, about 17,000 in early September, and a peak of 30,401 on Sep 9. Dotted lines mark Claude model releases: Opus 4.6 (Feb 5), Sonnet 4.6 (Feb 17), Mythos Preview (Apr 7), Opus 4.7 (Apr 16), Opus 4.8 (May 28), Fable 5 and Mythos 5 (Jun 9), Sonnet 5 (Jun 30), Opus 5 (Jul 24, just before the quiet week), and Fable 5.1 and Mythos 5.1 (Sep 1)." src="https://static.simonwillison.net/static/2026/anthropic-merges-per-day.webp" /&gt;&lt;/p&gt;
-&lt;p&gt;This shows public release dates, not the date when models became available for Anthropic's internal use. My guess is that the introduction of Fable/Mythos class models is a key factor in the increased coding velocity.&lt;/p&gt;
-&lt;p&gt;"Antique" is their new code review system. The source control system is called Scion, and sounds to me like a reinvention of centralized source control along the lines of Subversion.&lt;/p&gt;
-&lt;p&gt;(&lt;strong&gt;Update&lt;/strong&gt;: Anthropic credit Google's &lt;a href="https://en.wikipedia.org/wiki/Piper_(source_control_system)"&gt;Piper&lt;/a&gt; and Meta's &lt;a href="https://sapling-scm.com/"&gt;Sapling&lt;/a&gt; as "prior art" - it looks like the core concept of "derived data" &lt;a href="https://sunshowers.io/posts/anthropic-mononoke/"&gt;was heavily inspired by Mononoke&lt;/a&gt;, the server component of Sapling.)&lt;/p&gt;
-&lt;p&gt;They had some pretty extreme requirements:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The history of our main branch alone is almost 100 GB, and a &lt;em&gt;compressed&lt;/em&gt; working copy is over 25 GB. We perform on the order of 25 million code checkouts per day for CI, before counting developer environments, agent sandboxes, and research jobs. Fetched naively, that would be over 600 PB of git traffic per day.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The new system was built by a team of seven people, and the migration from Git was completed in five months.&lt;/p&gt;
-&lt;p&gt;When asked on Hacker News about the lack of offline support, Scion engineer Nick G &lt;a href="https://news.ycombinator.com/item?id=50073633#50079495"&gt;replied&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Since Claude is by far the heaviest user of Scion and is necessarily online, this just wasn't important to do.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;As an aside, I've been trying adversarial review in my own projects recently, where you have a model try and find flaws (I often play Claude and GPT off against each other). This note from the article reflected my own experience with that:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Anthropic also makes extensive use of adversarial review, and, while this is incredibly effective in many ways, it can also be myopic, so skilled engineers needed to steer Claude away from over-engineering parts of the system in response to hypothetical concerns.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://news.ycombinator.com/item?id=50073633"&gt;Hacker News&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/git"&gt;git&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/migrations"&gt;migrations&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/version-control"&gt;version-control&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/agentic-engineering"&gt;agentic-engineering&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="git"/><category term="migrations"/><category term="version-control"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="agentic-engineering"/></entry></feed>
+</summary><category term="computer-history"/><category term="game-design"/><category term="ai"/><category term="webassembly"/><category term="generative-ai"/><category term="llms"/><category term="ai-ethics"/><category term="coding-agents"/></entry></feed>
