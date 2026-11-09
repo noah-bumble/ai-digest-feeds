@@ -6,10 +6,95 @@
   <link href="https://lucumr.pocoo.org/feed.atom" rel="self" />
   <description>Armin Ronacher's personal blog about programming, games and random thoughts that come to his mind.</description>
   <language>en</language>
-  <updated>2026-11-09T06:12:18.484202+00:00</updated>
+  <updated>2026-11-09T18:03:20.319788+00:00</updated>
   <author>
     <name>Armin Ronacher</name>
   </author>
+  <entry>
+    <id>https://lucumr.pocoo.org/2026/11/9/irontown/</id>
+    <title>AI and Irontown</title>
+    <link href="https://lucumr.pocoo.org/2026/11/9/irontown/" />
+    <published>2026-11-09T00:00:00+00:00</published>
+    <updated>2026-11-09T00:00:00+00:00</updated>
+    <author>
+      <name>Armin Ronacher</name>
+    </author>
+    <content type="html"><![CDATA[<p>For our last movie night we watched <a href="https://en.wikipedia.org/wiki/Princess_Mononoke">Princess
+Mononoke</a>.  I remembered loving
+that movie when I was younger, but watching it as an adult made me once again
+realize how Miyazaki has a way of expressing diverging sides without picking
+one.  The film shows people, animals and spirits with legitimate and largely
+incompatible needs, and each faction is further engaged in infighting.</p>
+<p>A central arc of the story is Lady Eboshi&#8217;s Irontown, which gives people who
+were largely rejected by society work, protection and dignity.  She gives
+shelter and work to those who have leprosy and to former sex workers.  The mine
+and the weapon factory provide them with a livelihood, but they also destroy the
+forest around them.  The forest&#8217;s inhabitants, in particular the boars,
+response choose war against the humans to defend themselves.  Eboshi is not
+portrayed as a villain.  She does real good for the people of Irontown, but
+also is an arms manufacturer who is destroying the forest around it.</p>
+<p>The film anchors around a character called Ashitaka, who has been condemned to
+death by an unfortunate encounter with a god that was turned into a demon after
+being fatally wounded by one of Eboshi&#8217;s guns.  He doesn&#8217;t take sides, but he
+wants to understand and find the truth.  Another character is San (whom they
+call Mononoke), a girl who was raised by wolves and, despite being human,
+considers herself part of the forest.</p>
+<p>This movie&#8217;s backdrop is human progress, and it reminded me so much of the
+challenges we are facing today with AI.  AI is useful, empowering and
+consequential beyond the people who benefit from it.  It&#8217;s similar to the iron
+in the story.  Irontown gives the outcast purpose and power.  There are people
+today who see themselves in an environment just like that: people who were
+never let in before and who can now build things that were out of reach.  They
+are wielding AI to their benefit.  But there are negative externalities.  In
+Mononoke it&#8217;s not just the spirits and animals in the forest who bear the
+consequences, it&#8217;s also other people.  Irontown produces guns, and its people
+are engaged in fights with other humans.  There is conflict and power seeking
+everywhere.</p>
+<p>Another, unseen character is the power-hungry emperor, who wants the head of
+the forest spirit, a god, because he believes it will make him immortal.
+Eboshi is willing to support that cause, not because she thinks it&#8217;s right, but
+because she is at war with the forest&#8217;s gods who are preventing her expansion,
+so they have a common interest.  But there really is no need for anyone to kill
+the forest spirit, in the same way there is no need for any one country to &#8220;win
+at AI&#8221;.  What drives it is the fear of what happens if someone else wins first.
+And the emperor is willing to have a god killed for it.  The people who help him
+with that desire, Eboshi included, don&#8217;t understand the chaos it will unleash.</p>
+<p>There it also shows the dangers of seeking overwhelming power without
+comprehension of how to control its consequences.  The pursuit of power itself
+becomes destructive.  In the end, the gods die, and what grows back is not the
+old forest anymore.  Irontown is destroyed.  Eboshi wants to rebuild it, and to
+build a better town this time.  Ashitaka stays with the people of Irontown after
+his curse is lifted by the dying forest spirit.  San cannot forgive the humans
+and stays with the wolves.  In the end, nothing is truly resolved, but there is
+a truce that came at great cost.</p>
+<p>Ashitaka&#8217;s role in the movie is one of a neutral actor.  He was wronged both by
+a spirit turned demon in the forest, who put a curse on him, and, indirectly, by
+Eboshi, who caused the spirit to turn evil.  Yet he harbors no ill will towards
+either side.  He sets out to &#8220;see with eyes unclouded by hate,&#8221; and in the
+course of the movie he is seen as an unaligned actor.  He helps people on both
+sides, and stands in their way to prevent further conflict.  He doesn&#8217;t feel
+like a pacifist, but he&#8217;s the closest to one there is.  He&#8217;s a truth seeker in
+a changing world.  Because <a href="/2026/4/11/the-center-has-a-bias/">he engages</a> he&#8217;s
+seen as suspicious by both sides, and ends up shot by the people of Irontown
+when he tries to rescue San.</p>
+<p>I use AI every day and find it genuinely empowering.  But I also recognize the
+pain it causes some, and the moral problems it poses.  It&#8217;s genuine progress
+for humanity, but it comes at significant cost.  And many of those costs will be
+carried by people who aren&#8217;t going to benefit from it.</p>
+<p>So it&#8217;s no surprise that AI feels like a threat to many today.  Communities
+currently <a href="/2026/6/6/communities-of-not/">strongly align</a> themselves with one
+side and fight against the other.  The forst spirit did not have to die and the
+boars did not have to die in a senseless war.</p>
+<p>The question is not whether there will be iron, but what kind of Irontown we
+build with it.  I want our conversation about AI to make room for nuance and
+genuine understanding, for us to look at it and each other with eyes unclouded
+by hate.  We should take advantage of its real benefits, but also recognize the
+damage it can do, and the choices we still have about what we build and what
+we&#8217;re willing to sacrifice for it.  I like to think there is a path for people
+with differing opinions can find a way to live alongside before losing something
+we can&#8217;t get back.</p>
+]]></content>
+  </entry>
   <entry>
     <id>https://lucumr.pocoo.org/2026/10/29/qwen3-custom-voices/</id>
     <title>Custom Voices With Qwen3-TTS</title>
@@ -2027,88 +2112,6 @@ crypto) you were even pushed away because those things were intentionally
 gatekept by the people in the know.</p>
 <p>So maybe the world will have more slop, but it might also have more developers
 in it, that want things to be fast and small.</p>
-]]></content>
-  </entry>
-  <entry>
-    <id>https://lucumr.pocoo.org/2026/8/19/what-is-reasoning/</id>
-    <title>What Is Reasoning</title>
-    <link href="https://lucumr.pocoo.org/2026/8/19/what-is-reasoning/" />
-    <published>2026-08-19T00:00:00+00:00</published>
-    <updated>2026-08-19T00:00:00+00:00</updated>
-    <author>
-      <name>Armin Ronacher</name>
-    </author>
-    <content type="html"><![CDATA[<p>A few weeks ago <a href="https://arxiv.org/html/2608.09867v1">a paper was shared</a> that
-showed how to extract reasoning traces from closed-weight models.  Together
-with online discussions about tricking models into leaking them, it made me
-investigate it more out of curiosity.  Twitter seems full of half-truths and
-confusion about how this works, so perhaps this helps some to understand what is
-happening.</p>
-<h2>Hiding Traces</h2>
-<p>Reasoning traces are usually hidden from us.  <a href="https://earendil.com/posts/session-portability/">We have lamented
-this</a>, but mostly have to
-accept it.  Open-weight models thankfully reveal them, and from their behavior
-you can see that their traces can be long and confusing.  This is probably a
-good reason to separate them from what is normally shown to users.</p>
-<p>At minimum, UIs need to detect them.  The industry has done a good job at making
-reasoning traces sound special and exotic, but they really are just text: the
-model is trained to emit its thinking into a scratchpad as part of its response,
-before its final answer.</p>
-<p>GPT-OSS&#8217;s Harmony response format makes this easy to see:</p>
-<div class="highlight"><pre><span></span>&lt;|channel|&gt;analysis&lt;|message|&gt;
-I need to work this out ...
-&lt;|end|&gt;&lt;|start|&gt;assistant&lt;|channel|&gt;final&lt;|message|&gt;
-The answer is ...
-&lt;|return|&gt;
-</pre></div>
-<p>The markers are special tokens, but the reasoning between them uses &#8220;the same
-text&#8221; as the final answer (just that GPT chain-of-thought text sounds really
-funny).  When the model samples the <code>analysis</code> channel token, a parser routes
-the following text into a separate stream exposed through the Responses API.
-For closed models, presumably a simple model redacts and summarizes it.</p>
-<h2>Reasoning Effort</h2>
-<p>How much budget goes to reasoning?  Earlier APIs exposed reasoning token
-budgets, making it seem like a property of the sampling process.  In reality,
-reasoning effort is baked into the system prompt.  GPT-OSS puts this into the
-system prompt:</p>
-<div class="highlight"><pre><span></span>Reasoning: low
-</pre></div>
-<p>That&#8217;s it.  Training produces the resulting behavior, such as emitting the
-token sequence that switches to the <code>analysis</code> channel.  This also explains why
-changing the effort invalidates the KV cache.  I think closed GPT models call
-reasoning effort &#8220;juice,&#8221; since you can ask most models how much juice they
-have.</p>
-<p>In <a href="https://github.com/antirez/ds4">DwarfStar</a> for DeepSeek with max reasoning
-this is added to the system prompt:</p>
-<div class="highlight"><pre><span></span>Reasoning Effort: Absolute maximum with no shortcuts permitted.
-You MUST be very thorough in your thinking and comprehensively decompose the
-problem to resolve the root cause, rigorously stress-testing your logic against
-all potential paths, edge cases, and adversarial scenarios.
-</pre></div>
-<h2>Don&#8217;t Think</h2>
-<p>The destination of reasoning tokens is therefore a learned convention: the
-model is trained to keep scratch work out of the <code>final</code> channel.  Trick it into
-thinking it is in that channel and it may leak tokens.  We have even seen older
-models, when thinking is disabled, reason into the bash tool and echo their
-thoughts to <code>/dev/null</code>.</p>
-<p>So in some sense the only &#8220;special&#8221; behavior for some models is not to think.
-That at times is done by &#8220;mechanically&#8221; removing the model&#8217;s usual ways to think.
-In <a href="https://github.com/antirez/ds4">DwarfStar</a>, disabled thinking uses the
-prefill <code>&lt;/think&gt;</code>, while enabled thinking uses <code>&lt;think&gt;</code>, which are the tokens
-that close and start thinking.  GPT-OSS doesn&#8217;t prefill but lets the model
-decide either way on its own.</p>
-<p>But presumably, some inference APIs prefill the opening token when reasoning is
-enabled, so the model never samples it itself and might prevent the sampling of
-the reasoning token when disabled since it can be trivially detected.  This may
-explain why a <a href="https://gist.github.com/mitsuhiko/0904a3d89741e8e3bcca1ca93ea076de">custom <code>think</code>
-tool</a> can
-trick models into putting some reasoning where it should not go — but only when
-native reasoning is disabled.</p>
-<details><summary><small>Fun fact: this blog post triggered safey checks</small></summary>
-<p>Hilariously enough I was unable to use GPT 5.6 terra for spell and grammar checking
-on this blog post because of safety filters.  Had to switch to Kimi.</p>
-<img src="/static/gpt-5.6-terra-spell-check.png" alt="GPT-5.6-terra refusing to spell-check this blog post" style="width: 100%">
-</details>
 ]]></content>
   </entry>
 </feed>
