@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-08T22:26:00+00:00</updated><author><name>Simon Willison</name></author><entry><title>parse_number() as a SQLite extension: C vs Rust</title><link href="https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/" rel="alternate"/><published>2026-11-08T22:26:00+00:00</published><updated>2026-11-08T22:26:00+00:00</updated><id>https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-09T04:25:05+00:00</updated><author><name>Simon Willison</name></author><entry><title>Hide your slop PR descriptions behind &lt;details&gt;&lt;summary&gt;</title><link href="https://simonwillison.net/2026/Nov/9/details-summary/" rel="alternate"/><published>2026-11-09T04:25:05+00:00</published><updated>2026-11-09T04:25:05+00:00</updated><id>https://simonwillison.net/2026/Nov/9/details-summary/</id><summary type="html">
+    &lt;p&gt;Most of the changes I make to my projects these days come in the form of PRs opened for me by Claude Code or Codex. The PR is my unit of work - I use them to bundle commits together, iterating on them until a feature is complete, document decisions and then merge the finished result. Today's coding agents are great at writing PR descriptions.&lt;/p&gt;
+&lt;h4 id="they-re-too-good-at-describing-the-work"&gt;They're too good at describing the work&lt;/h4&gt;
+&lt;p&gt;The problem is that they are &lt;em&gt;too&lt;/em&gt; good. An agent-written PR description is accurate and comprehensive. It describes the problem, the detailed solution, and the steps taken to verify it. That's a lot of information to absorb.&lt;/p&gt;
+&lt;p&gt;It's not necessarily slop, but it &lt;em&gt;reads&lt;/em&gt; like slop!&lt;/p&gt;
+&lt;p&gt;It's very easy to spot an AI-written PR, and as with other forms of AI writing my instant reaction is best summarized as "I'm not reading all of that". It doesn't matter how accurate or useful the information is, I'm instantly put off by the thought that it will take me longer to read than it took the driving author to write... even when that driving author is me!&lt;/p&gt;
+&lt;p&gt;I want human editorial judgement. I want someone to have thought just long enough about the PR to give me a human-approved introduction that helps me understand, at a high level, what the PR is for and whether it deserves more of my attention.&lt;/p&gt;
+&lt;p&gt;I think I've found a low-effort way to do this that feels right.&lt;/p&gt;
+&lt;h4 id="hide-most-of-it-in-a-details-summary"&gt;Hide most of it in a details/summary&lt;/h4&gt;
+&lt;p&gt;The HTML &lt;code&gt;&amp;lt;details&amp;gt;&amp;lt;summary&amp;gt;&lt;/code&gt; elements render as a collapsed heading (the summary) that can be expanded to view the larger piece of text. The code looks like this:&lt;/p&gt;
+&lt;div class="highlight highlight-text-html-basic"&gt;&lt;pre&gt;&lt;span class="pl-kos"&gt;&amp;lt;&lt;/span&gt;&lt;span class="pl-ent"&gt;details&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="pl-kos"&gt;&amp;lt;&lt;/span&gt;&lt;span class="pl-ent"&gt;summary&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;Claude Opus 5.5&lt;span class="pl-kos"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="pl-ent"&gt;summary&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="pl-kos"&gt;&amp;lt;&lt;/span&gt;&lt;span class="pl-ent"&gt;h2&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;The hook&lt;span class="pl-kos"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="pl-ent"&gt;h2&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;
+  Plugins implement &lt;span class="pl-kos"&gt;&amp;lt;&lt;/span&gt;&lt;span class="pl-ent"&gt;code&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;register_agent_reference_types(datasette)&lt;span class="pl-kos"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="pl-ent"&gt;code&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;...
+&lt;span class="pl-kos"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="pl-ent"&gt;details&lt;/span&gt;&lt;span class="pl-kos"&gt;&amp;gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When rendered, it looks &lt;a href="https://github.com/datasette/datasette-agent/pull/51"&gt;like this&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://static.simonwillison.net/static/2026/details-summary-pr.gif" alt="Screenshot of a GitHub PR. The text &amp;quot;Claude Opus 5.5&amp;quot; sits next to a little black arrow. Clicking on that text expands a full description inside the PR body." style="max-width: 100%;" /&gt;&lt;/p&gt;
+&lt;p&gt;Crucially, &lt;code&gt;&amp;lt;details&amp;gt;&amp;lt;summary&amp;gt;&lt;/code&gt; &lt;em&gt;is supported in GitHub Markdown&lt;/em&gt;. You can drop those tags directly into an issue comment or PR description and GitHub will hide the details and display just the summary plus an expansion arrow.&lt;/p&gt;
+&lt;p&gt;I've started using this for my AI-generated pull requests.&lt;/p&gt;
+&lt;p&gt;The opening paragraph of my PRs will be carefully selected to act as a high-level explanation of what's going on - the shortest text a human can read that will help get them up to speed.&lt;/p&gt;
+&lt;p&gt;I'll sometimes throw in a screenshot as well, since images are often the best way to quickly illustrate a new feature.&lt;/p&gt;
+&lt;p&gt;The full agent-written essay then follows in a &lt;code&gt;&amp;lt;details&amp;gt;&amp;lt;summary&amp;gt;&lt;/code&gt;. I use the model name and often the effort level as that summary, to make it abundantly clear what is going on - "Claude Opus 5.5 Medium" for example.&lt;/p&gt;
+&lt;p&gt;My PRs don't feel nearly as sloppy now! The information is all still there, but a reader can glance at it and get the top, human-curated information without their eyes glazing over at multiple paragraphs of agent-written details.&lt;/p&gt;
+&lt;p&gt;I don't always write the introduction myself - sometimes the agent has given me what I need already, hidden away in the avalanche of other text. My promise to the reader is that the short opener will represent my human judgement as to what is definitely worth their time.&lt;/p&gt;
+&lt;p&gt;Here are some recent examples where I've used this pattern, including the opener I used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/simonw/datasette/pull/3052"&gt;datasette PR #3052: Redesign row page as a vertical list of fields&lt;/a&gt; - "The row page showed its single row as a one-row table. For wide tables, like a 46-column GitHub &lt;code&gt;repos&lt;/code&gt; table, that scrolled far off to the right and left most of the page blank." (then a screenshot)&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/simonw/datasette/pull/3043"&gt;datasette PR #3043: Pagination bar showing which rows are on the current page&lt;/a&gt; - "Table pages that span more than one page now make it obvious where you are, and offer navigation at the top of the page as well as the bottom." (plus screenshot)&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/simonw/datasette/pull/3042"&gt;datasette PR #3042: Load edit-tools.js on demand via a small loader&lt;/a&gt; - "&lt;code&gt;edit-tools.js&lt;/code&gt; (~220KB) was loaded on every table, row and database page, even for users who couldn't edit anything. Now only load it for users who can edit when they first interact with an edit feature (including mouse over an edit link)."&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/datasette/datasette-agent/pull/51"&gt;datasette-agent PR #51: register_agent_reference_types plugin hook&lt;/a&gt; - "Lets plugins add their own kinds of item to the &lt;code&gt;#&lt;/code&gt; tagging in the chat composer using a new &lt;code&gt;register_agent_reference_types(datasette)&lt;/code&gt; plugin hook." - pictured above.&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/simonw/llm/pull/1838"&gt;llm PR #1838: Add llm openai endpoint add/list/remove/path commands&lt;/a&gt; - "Adds commands for managing the records in &lt;code&gt;extra-openai-models.yaml&lt;/code&gt;, so OpenAI-compatible endpoints can be saved from the command line instead of by hand-editing YAML." - then copied &lt;code&gt;--help&lt;/code&gt; output.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="the-mnemonic"&gt;The mnemonic&lt;/h4&gt;
+&lt;p&gt;I used to have trouble remembering the order of the tags - is it &lt;code&gt;&amp;lt;details&amp;gt;&amp;lt;summary&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;summary&amp;gt;&amp;lt;details&amp;gt;&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;Here are two tricks that helped me.&lt;/p&gt;
+&lt;p&gt;First, and most obviously, the &lt;code&gt;&amp;lt;summary&amp;gt;&lt;/code&gt; is clearly the bit where you summarize the details. That's the tag for your line of text that can be clicked to expand - the &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; element must then wrap everything else.&lt;/p&gt;
+&lt;p&gt;An even better trick is to always refer to these two tags as "details-summary".&lt;/p&gt;
+&lt;p&gt;"details-summary" is two syllables followed by three syllables. That rolls off the tongue more smoothly than the three-two punch of "summary-details".&lt;/p&gt;
+&lt;p&gt;Say "details-summary" out loud just a few times and you'll never forget the order of the tags again.&lt;/p&gt;
+&lt;p&gt;(I still wish GitHub would add a button to their Markdown editor for this - partly to save me painstakingly typing it on my mobile keyboard, and partly to help spread the word to more GitHub users that this feature exists.)&lt;/p&gt;
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/html"&gt;html&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/markdown"&gt;markdown&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="github"/><category term="html"/><category term="markdown"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="coding-agents"/></entry><entry><title>parse_number() as a SQLite extension: C vs Rust</title><link href="https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/" rel="alternate"/><published>2026-11-08T22:26:00+00:00</published><updated>2026-11-08T22:26:00+00:00</updated><id>https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Research:&lt;/strong&gt; &lt;a href="https://github.com/simonw/research/tree/main/sqlite-parse-number-c-vs-rust#readme"&gt;parse_number() as a SQLite extension: C vs Rust&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;I was out walking the dog when I got curious about how easy/difficult it would be to write a SQLite C extension that adds a &lt;code&gt;parse_number()&lt;/code&gt; function for turning strings like &lt;code&gt;-$1,234.56&lt;/code&gt; or &lt;code&gt;'12.5%'&lt;/code&gt; into numeric values that could be summed and sorted.&lt;/p&gt;
@@ -656,14 +705,4 @@ It's always interesting to note which aspects of a new model are emphasized in t
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/browsers"&gt;browsers&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/go"&gt;go&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/javascript"&gt;javascript&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/jeff-lindsay"&gt;jeff-lindsay&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/shot-scraper"&gt;shot-scraper&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="browsers"/><category term="go"/><category term="javascript"/><category term="jeff-lindsay"/><category term="shot-scraper"/></entry><entry><title>Seam Cutter</title><link href="https://simonwillison.net/2026/Oct/25/seam-cutter/" rel="alternate"/><published>2026-10-25T15:10:19+00:00</published><updated>2026-10-25T15:10:19+00:00</updated><id>https://simonwillison.net/2026/Oct/25/seam-cutter/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/seam-cutter"&gt;Seam Cutter&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I built this weird and very specific cropping tool - it lets you create a horizontal or vertical cut across an image, then slide the two sides relative to each other. Effectively it lets you crop out a section in the middle of an image.&lt;/p&gt;
-&lt;p&gt;I wanted this because I often use &lt;a href="https://apps.apple.com/us/app/tailor-screenshot-stitching/id926653095"&gt;Tailor&lt;/a&gt; on my iPhone to stitch several screenshots together into lot long image, but sometimes I find myself wanting to crop out a section in the middle - to redact an irrelevant prompt from a transcript, for example.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="tools"/></entry></feed>
+</summary><category term="browsers"/><category term="go"/><category term="javascript"/><category term="jeff-lindsay"/><category term="shot-scraper"/></entry></feed>
