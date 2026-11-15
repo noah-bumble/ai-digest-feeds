@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-13T23:02:45+00:00</updated><author><name>Simon Willison</name></author><entry><title>datasette-cluster-map 0.19</title><link href="https://simonwillison.net/2026/Nov/13/datasette-cluster-map/" rel="alternate"/><published>2026-11-13T23:02:45+00:00</published><updated>2026-11-13T23:02:45+00:00</updated><id>https://simonwillison.net/2026/Nov/13/datasette-cluster-map/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-14T23:59:28+00:00</updated><author><name>Simon Willison</name></author><entry><title>datasette-llm 0.1a11</title><link href="https://simonwillison.net/2026/Nov/14/datasette-llm/" rel="alternate"/><published>2026-11-14T23:59:28+00:00</published><updated>2026-11-14T23:59:28+00:00</updated><id>https://simonwillison.net/2026/Nov/14/datasette-llm/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-llm/releases/tag/0.1a11"&gt;datasette-llm 0.1a11&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;code&gt;datasette-llm&lt;/code&gt; is the intermediate plugin for Datasette that supports configuring LLMs for use with other Datasette plugins.&lt;/p&gt;
+&lt;p&gt;This release adds support for OpenAI-compatible endpoints, so you can configure Datasette to use an LLM hosted anywhere that talks the OpenAI pseudo-standard web protocol.&lt;/p&gt;
+&lt;p&gt;This means that if you're running local models with &lt;a href="https://lmstudio.ai"&gt;LM Studio&lt;/a&gt; or &lt;a href="https://ollama.com"&gt;Ollama&lt;/a&gt; or &lt;a href="https://github.com/ggml-org/llama.cpp"&gt;llama.cpp&lt;/a&gt; (which just hit &lt;a href="https://huggingface.co/blog/ggml-org/llama-cpp-v1"&gt;v1.0.0&lt;/a&gt;) you can run Datasette via &lt;code&gt;uvx&lt;/code&gt; like this:&lt;/p&gt;
+&lt;div class="highlight highlight-source-shell"&gt;&lt;pre&gt;wget https://datasette.io/content.db
+
+uvx --with datasette-agent datasette \
+  --root --secret 1 \
+  -s plugins.datasette-llm.default_model &lt;span class="pl-s"&gt;&lt;span class="pl-pds"&gt;'&lt;/span&gt;{&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "model": "lmstudio-qwen",&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "model_name": "qwen/qwen3.8-27b",&lt;/span&gt;
+&lt;span class="pl-s"&gt;    "api_base": "http://localhost:1234/v1"&lt;/span&gt;
+&lt;span class="pl-s"&gt;  }&lt;span class="pl-pds"&gt;'&lt;/span&gt;&lt;/span&gt; content.db&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And you'll get a local server running a Datasette Agent instance powered by your local model!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of a chat interface. Header bar reads &amp;quot;home&amp;quot; on the left and &amp;quot;root&amp;quot; with a hamburger menu icon on the right. Below is a back arrow, the heading &amp;quot;Chat&amp;quot;, a model label &amp;quot;lmstudio-qwen&amp;quot; and an &amp;quot;EXPORT&amp;quot; button. A blue user message bubble says &amp;quot;how many repos and how many releases are there?&amp;quot; Below it is a collapsed tool call &amp;quot;list_databases_and_tables&amp;quot; and an expanded tool call &amp;quot;sql_query&amp;quot;. Its REQUEST section shows database &amp;quot;content&amp;quot;, display &amp;quot;both&amp;quot; and the SQL: SELECT (SELECT COUNT(*) FROM repos) AS repo_count, (SELECT COUNT(*) FROM releases) AS release_count. Its RESPONSE section shows columns repo_count and release_count with a single row of 200 and 1889. Below that is a table with columns repo_count and release_count and one row: 200, 1889, followed by a &amp;quot;View SQL query&amp;quot; button. The assistant reply reads &amp;quot;There are 200 repos and 1,889 releases in the content database.&amp;quot; At the bottom is a text input with placeholder &amp;quot;Type a message... (# to tag a table or query)&amp;quot; and a blue &amp;quot;Send&amp;quot; button." src="https://static.simonwillison.net/static/2026/lmstudio-datasette-agent.webp" /&gt;&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/uv"&gt;uv&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette-agent"&gt;datasette-agent&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="uv"/><category term="datasette-agent"/><category term="llm"/><category term="datasette"/><category term="llms"/><category term="ai"/><category term="generative-ai"/></entry><entry><title>datasette-vega 0.7</title><link href="https://simonwillison.net/2026/Nov/14/datasette-vega/" rel="alternate"/><published>2026-11-14T17:09:09+00:00</published><updated>2026-11-14T17:09:09+00:00</updated><id>https://simonwillison.net/2026/Nov/14/datasette-vega/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/datasette-vega/releases/tag/0.7"&gt;datasette-vega 0.7&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;A new release of Datasette's longest untouched plugin, for rendering charts (using &lt;a href="https://vega.github.io/vega-lite/"&gt;Vega-Lite&lt;/a&gt;) against data in a table or custom query. The last release was in July 2018!&lt;/p&gt;
+&lt;p&gt;I finally bumped it for compatibility with the latest Datasette alphas, plus some cosmetic tweaks to make it work better with &lt;a href="https://lite.datasette.io/"&gt;Datasette Lite&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;(Datasette Lite just gained the ability to run JavaScript plugins like this! I'll write more about that soon.)&lt;/p&gt;
+&lt;p&gt;Since it works with Datasette Lite, the live demo in the README now &lt;a href="https://lite.datasette.io/?install=datasette-vega&amp;amp;csv=https%3A%2F%2Fraw.githubusercontent.com%2Ffivethirtyeight%2Fdata%2Fmaster%2Fairline-safety%2Fairline-safety.csv#/data/airline-safety?_size=max#g.mark=bar&amp;amp;g.x_column=airline&amp;amp;g.x_type=ordinal&amp;amp;g.y_column=fatalities_00_14&amp;amp;g.y_type=quantitative"&gt;links to this demo on Datasette Lite&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of a charting tool. A panel headed &amp;quot;Charting options&amp;quot; has radio buttons for &amp;quot;Bar&amp;quot; (selected), &amp;quot;Line&amp;quot; and &amp;quot;Scatter&amp;quot;. Below are select menus: &amp;quot;X column&amp;quot; set to &amp;quot;airline&amp;quot; with &amp;quot;Type&amp;quot; set to &amp;quot;Label&amp;quot;, and &amp;quot;Y column&amp;quot; set to &amp;quot;fatalities_00_14&amp;quot; with &amp;quot;Type&amp;quot; set to &amp;quot;Numeric&amp;quot;. A &amp;quot;Swap X and Y&amp;quot; button sits beneath those, followed by &amp;quot;Color&amp;quot; and &amp;quot;Size&amp;quot; menus both set to &amp;quot;-- none --&amp;quot;. Underneath the panel is a blue bar chart with airline names along the X axis and fatalities_00_14 on the Y axis, running from 0 to 550 - most airlines have no bar, a handful have bars, and Malaysia Airlines is the tallest." src="https://static.simonwillison.net/static/2026/datasette-vega.webp" /&gt;&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/visualisation"&gt;visualisation&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette-lite"&gt;datasette-lite&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="datasette"/><category term="visualisation"/><category term="datasette-lite"/></entry><entry><title>datasette-cluster-map 0.19</title><link href="https://simonwillison.net/2026/Nov/13/datasette-cluster-map/" rel="alternate"/><published>2026-11-13T23:02:45+00:00</published><updated>2026-11-13T23:02:45+00:00</updated><id>https://simonwillison.net/2026/Nov/13/datasette-cluster-map/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/datasette-cluster-map/releases/tag/0.19"&gt;datasette-cluster-map 0.19&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;One of the oldest Datasette plugins, and still one of my favorites. It now works with Datasette 1.0a42, and depends on &lt;a href="https://simonwillison.net/2026/Nov/13/datasette-leaflet/"&gt;the new datasette-leaflet&lt;/a&gt; to ensure OpenStreetMap tiles are requested with a referrer header.&lt;/p&gt;
@@ -735,35 +771,4 @@ Genius piece of OSINT by Colsto, who demonstrates how you can take almost imperc
 
 
 
-</summary><category term="privacy"/><category term="youtube"/></entry><entry><title>October sponsors-only newsletter</title><link href="https://simonwillison.net/2026/Nov/3/october-newsletter/" rel="alternate"/><published>2026-11-03T05:28:59+00:00</published><updated>2026-11-03T05:28:59+00:00</updated><id>https://simonwillison.net/2026/Nov/3/october-newsletter/</id><summary type="html">
-    &lt;p&gt;I sent out the October edition of my &lt;a href="https://github.com/sponsors/simonw/"&gt;sponsors-only monthly newsletter&lt;/a&gt;. If you are a sponsor (or start a sponsorship now) you can &lt;a href="https://github.com/simonw-private/monthly/blob/main/2026-10-october.md"&gt;access it here&lt;/a&gt;. This month:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The October inflection point for vibe game development&lt;/li&gt;
-&lt;li&gt;The vulnerability apocalypse gets hot&lt;/li&gt;
-&lt;li&gt;LLM releases&lt;/li&gt;
-&lt;li&gt;API credits for $100+/month subscriptions&lt;/li&gt;
-&lt;li&gt;What I'm using right now&lt;/li&gt;
-&lt;li&gt;My software releases&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My September newsletter &lt;a href="https://simonwillison.net/newsletters/monthly-2026-09-september/"&gt;can now be seen here&lt;/a&gt;, as a preview of what you'll get. Pay $10/month to stay a month ahead of the free copy!&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/newsletter"&gt;newsletter&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="newsletter"/></entry><entry><title>llm 0.37</title><link href="https://simonwillison.net/2026/Nov/2/llm/" rel="alternate"/><published>2026-11-02T23:49:30+00:00</published><updated>2026-11-02T23:49:30+00:00</updated><id>https://simonwillison.net/2026/Nov/2/llm/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm/releases/tag/0.37"&gt;llm 0.37&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;There's a &lt;em&gt;lot&lt;/em&gt; of stuff in this new release of my LLM CLI tool and Python library, representing around two months of accumulated features and fixes.&lt;/p&gt;
-&lt;p&gt;I added &lt;code&gt;gpt-6.1-sol&lt;/code&gt; and &lt;code&gt;gpt-6.1-terra&lt;/code&gt;, plus a new &lt;a href="https://llm.datasette.io/en/stable/other-models.html#configure-an-openai-compatible-model"&gt;llm openai endpoint add&lt;/a&gt; command to make it easier to configure additional models that use OpenAI-compatible endpoints.&lt;/p&gt;
-&lt;p&gt;I switched the default model (if you have not set your own default) to &lt;code&gt;gpt-6-luna&lt;/code&gt; - half the price of the previous default, &lt;code&gt;gpt-5.6-luna&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;LLM's support for embeddings now accepts that different binary content may have different content-type - necessary for models like &lt;a href="https://deepmind.google/models/gemini/embedding/"&gt;Gemini Embedding 2&lt;/a&gt;, which can embed text, audio, images, and video.&lt;/p&gt;
-&lt;p&gt;A lot of open source maintainers complain about a flood of AI-assisted PRs. LLM is my project that has been most affected by this and, to be honest, I'm not finding it to be a problem. That's mainly because I have Opus 5.5 or GPT-6 Astra help me with triage to spot the most useful fixes!&lt;/p&gt;
-&lt;p&gt;This release includes fixes from 12 authors - almost all AI-assisted - and the burden of reviewing them wasn't nearly as great as I expected. I really see them as bug reports with attached examples - sometimes I land them, sometimes I implement my own fix.&lt;/p&gt;
-&lt;p&gt;So thanks to &lt;a href="https://github.com/0d00ciallo0721"&gt;0d00ciallo0721&lt;/a&gt;, &lt;a href="https://github.com/ac1982"&gt;ac1982&lt;/a&gt;, &lt;a href="https://github.com/allenflux"&gt;Allen Flux&lt;/a&gt;, &lt;a href="https://github.com/bianyh"&gt;Bian Yuhan&lt;/a&gt;, &lt;a href="https://github.com/porkedchop"&gt;Bishop Kammeraad&lt;/a&gt;, &lt;a href="https://github.com/feiiiiii5"&gt;Chen Yufeiyang&lt;/a&gt;, &lt;a href="https://github.com/chrikrah"&gt;Christopher Krah&lt;/a&gt;, &lt;a href="https://github.com/ethanstoner"&gt;Ethan Stoner&lt;/a&gt;, &lt;a href="https://github.com/er-s-an"&gt;Jiachen Xie&lt;/a&gt;, &lt;a href="https://github.com/Pajimo"&gt;Olamide Faniyan&lt;/a&gt;, &lt;a href="https://github.com/sharatchandrasai999-sketch"&gt;Sharat Chandra Sai Boddu&lt;/a&gt;, &lt;a href="https://github.com/nosmile99"&gt;nosmile99&lt;/a&gt; for helping out with (or spending tokens on) this release!&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/open-source"&gt;open-source&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/embeddings"&gt;embeddings&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/annotated-release-notes"&gt;annotated-release-notes&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="open-source"/><category term="llm"/><category term="generative-ai"/><category term="projects"/><category term="ai"/><category term="embeddings"/><category term="llms"/><category term="annotated-release-notes"/></entry></feed>
+</summary><category term="privacy"/><category term="youtube"/></entry></feed>
