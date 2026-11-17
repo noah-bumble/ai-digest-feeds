@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-15T23:58:36+00:00</updated><author><name>Simon Willison</name></author><entry><title>datasette-maplibre 0.1a0</title><link href="https://simonwillison.net/2026/Nov/15/datasette-maplibre/" rel="alternate"/><published>2026-11-15T23:58:36+00:00</published><updated>2026-11-15T23:58:36+00:00</updated><id>https://simonwillison.net/2026/Nov/15/datasette-maplibre/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-17T06:16:26+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Go Proverbs</title><link href="https://simonwillison.net/2026/Nov/17/go-proverbs/" rel="alternate"/><published>2026-11-17T06:16:26+00:00</published><updated>2026-11-17T06:16:26+00:00</updated><id>https://simonwillison.net/2026/Nov/17/go-proverbs/</id><summary type="html">
+    &lt;blockquote cite="https://go-proverbs.github.io"&gt;&lt;p&gt;A little copying is better than a little dependency.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://go-proverbs.github.io"&gt;Go Proverbs&lt;/a&gt;, &lt;a href="https://news.ycombinator.com/item?id=50516689#50526408"&gt;via&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/go"&gt;go&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/programming"&gt;programming&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="go"/><category term="programming"/></entry><entry><title>llm 0.37.3</title><link href="https://simonwillison.net/2026/Nov/16/llm/" rel="alternate"/><published>2026-11-16T23:57:26+00:00</published><updated>2026-11-16T23:57:26+00:00</updated><id>https://simonwillison.net/2026/Nov/16/llm/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm/releases/tag/0.37.3"&gt;llm 0.37.3&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;A bug fix release for &lt;a href="https://llm.datasette.io"&gt;LLM&lt;/a&gt;, mainly to cover a problem with the most recent Homebrew package of the software.&lt;/p&gt;
+&lt;p&gt;Homebrew now ships the latest SQLite, &lt;a href="https://www.sqlite.org/releaselog/3_54_1.html"&gt;3.54.1&lt;/a&gt;, which includes &lt;a href="https://sqlite.org/bugs/info/2026-10-12T13:52:22Z"&gt;a fix&lt;/a&gt; that &lt;a href="https://github.com/simonw/llm/issues/1879"&gt;broke LLM's logging code&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Short version: in SQLite 3.54.0 the following SQL:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select json_object('a', (select json_array(1)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Returns this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{"a":[1]}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But in 3.54.1 the same query returns this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{"a":"[1]"}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;According &lt;a href="https://sqlite.org/forum/forumpost/dff1a343157e422f"&gt;to D. Richard Hipp&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;That was a bug fix. Per the documentation, (SELECT json_array(...)) returns SQL text, not JSON. Hence the 3.54.1 behavior is correct and 3.54.0 was a bug.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The workaround looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select json_object('a', json((select json_array(1))))
+&lt;/code&gt;&lt;/pre&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/webassembly"&gt;webassembly&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/d-richard-hipp"&gt;d-richard-hipp&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="llm"/><category term="webassembly"/><category term="sqlite"/><category term="generative-ai"/><category term="ai"/><category term="llms"/><category term="d-richard-hipp"/></entry><entry><title>datasette-maplibre 0.1a0</title><link href="https://simonwillison.net/2026/Nov/15/datasette-maplibre/" rel="alternate"/><published>2026-11-15T23:58:36+00:00</published><updated>2026-11-15T23:58:36+00:00</updated><id>https://simonwillison.net/2026/Nov/15/datasette-maplibre/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-maplibre/releases/tag/0.1a0"&gt;datasette-maplibre 0.1a0&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;The first new Datasette geospatial plugin in quite a while! This one combines the excellent &lt;a href="https://maplibre.org/maplibre-gl-js/docs/"&gt;MapLibre GL&lt;/a&gt; library with &lt;a href="https://openfreemap.org"&gt;OpenFreeMap&lt;/a&gt;, the free vector map server operated by Zsolt Ero (you should &lt;a href="https://github.com/sponsors/hyperknot"&gt;sponsor Zsolt on GitHub&lt;/a&gt;.)&lt;/p&gt;
@@ -713,31 +747,4 @@ I was looking at the Firefox network panel today when I noticed that requests to
 
 
 
-</summary><category term="browsers"/><category term="paul-ford"/><category term="web-development"/></entry><entry><title>datasette-llm 0.1a10</title><link href="https://simonwillison.net/2026/Nov/4/datasette-llm/" rel="alternate"/><published>2026-11-04T15:26:02+00:00</published><updated>2026-11-04T15:26:02+00:00</updated><id>https://simonwillison.net/2026/Nov/4/datasette-llm/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-llm/releases/tag/0.1a10"&gt;datasette-llm 0.1a10&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;Fixes a &lt;a href="https://github.com/datasette/datasette-llm/pull/11"&gt;bug&lt;/a&gt; that affected my &lt;a href="https://agent.datasette.io/"&gt;agent.datasette.io&lt;/a&gt; demo site, where the set of available LLM models was not correctly restricted to just those in the configuration.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="llm"/><category term="datasette"/></entry><entry><title>datasette-apps 0.3a0</title><link href="https://simonwillison.net/2026/Nov/4/datasette-apps/" rel="alternate"/><published>2026-11-04T00:29:36+00:00</published><updated>2026-11-04T00:29:36+00:00</updated><id>https://simonwillison.net/2026/Nov/4/datasette-apps/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-apps/releases/tag/0.3a0"&gt;datasette-apps 0.3a0&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;Datasette Apps adds support for hosting and editing custom HTML applications inside of Datasette.&lt;/p&gt;
-&lt;p&gt;These can be created by hand, but it's easier to create them using LLMs via &lt;a href="https://agent.datasette.io/"&gt;Datasette Agent&lt;/a&gt;. This release improves that integration:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Apps can now be tagged in Datasette Agent chat messages by typing &lt;code&gt;#&lt;/code&gt;, which autocompletes from the apps the user has permission to view.&lt;/li&gt;
-&lt;li&gt;New &lt;code&gt;app_add_stored_queries()&lt;/code&gt; and &lt;code&gt;app_remove_stored_queries()&lt;/code&gt; tools let the agent manage which stored queries an app is allowed to call. Granting a write query requires approval from the user first.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;app_create()&lt;/code&gt; now checks that each requested stored query exists and that the user can view it, and asks the user to approve any write queries before the app is created.&lt;/li&gt;
-&lt;li&gt;The "View app" buttons shown by the agent tools, and the links on &lt;code&gt;#&lt;/code&gt; app references, now open the app full screen in the Datasette Agent panel.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/datasette-agent"&gt;datasette-agent&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette-apps"&gt;datasette-apps&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="datasette-agent"/><category term="datasette-apps"/><category term="datasette"/></entry></feed>
+</summary><category term="browsers"/><category term="paul-ford"/><category term="web-development"/></entry></feed>
