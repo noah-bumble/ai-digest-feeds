@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-17T22:52:29+00:00</updated><author><name>Simon Willison</name></author><entry><title>External sandboxes for coding agents</title><link href="https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/" rel="alternate"/><published>2026-11-17T22:52:29+00:00</published><updated>2026-11-17T22:52:29+00:00</updated><id>https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-18T15:58:27+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Daniel Stenberg</title><link href="https://simonwillison.net/2026/Nov/18/daniel-stenberg/" rel="alternate"/><published>2026-11-18T15:58:27+00:00</published><updated>2026-11-18T15:58:27+00:00</updated><id>https://simonwillison.net/2026/Nov/18/daniel-stenberg/</id><summary type="html">
+    &lt;blockquote cite="https://daniel.haxx.se/blog/2026/11/17/actual-curl-rewrites-in-rust/"&gt;&lt;p&gt;During the time these agents converted 185,000 lines of C code into 340,000 lines of Rust code (I counted), we merged over 300 commits in the actual curl project. We actually improved curl during these a little more than three weeks. A little over 200 bugfixes actually. 200 bugfixes that none of those rust rewrites have. We also fixed a few vulnerabilities. In another month we have done another 200 and maybe fixed a few more vulnerabilities. Will these clones keep up?&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://daniel.haxx.se/blog/2026/11/17/actual-curl-rewrites-in-rust/"&gt;Daniel Stenberg&lt;/a&gt;, Actual curl rewrites in Rust&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/daniel-stenberg"&gt;daniel-stenberg&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/curl"&gt;curl&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/rust"&gt;rust&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/c"&gt;c&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/vibe-porting"&gt;vibe-porting&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="daniel-stenberg"/><category term="curl"/><category term="rust"/><category term="security"/><category term="coding-agents"/><category term="c"/><category term="ai"/><category term="llms"/><category term="generative-ai"/><category term="vibe-porting"/></entry><entry><title>The PSF end-of-year fundraiser</title><link href="https://simonwillison.net/2026/Nov/18/psf-end-of-year-fundraiser/" rel="alternate"/><published>2026-11-18T14:44:48+00:00</published><updated>2026-11-18T14:44:48+00:00</updated><id>https://simonwillison.net/2026/Nov/18/psf-end-of-year-fundraiser/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://donate.python.org"&gt;The PSF end-of-year fundraiser&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+With my Python Software Foundation board director hat on: we've launched our end-of-year fundraiser for the non-profit that supports Python development and the Python community.&lt;/p&gt;
+&lt;p&gt;If your company or your work benefits from Python, please consider donating this year!&lt;/p&gt;
+&lt;p&gt;The PSF looks after the IP behind Python, operates PyPI, sponsors core developer sprints, supports community events (including running PyCon US every year), and employs a small and excellent staff team to keep everything running.&lt;/p&gt;
+&lt;p&gt;We also operate the &lt;a href="https://www.python.org/psf/developersinresidence/"&gt;Developers in Residence program&lt;/a&gt;, which now includes three security developers (welcome, Brett Smith) focused on helping secure Python, PyPI, and the wider ecosystem.
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/python"&gt;python&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/psf"&gt;psf&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="python"/><category term="psf"/></entry><entry><title>External sandboxes for coding agents</title><link href="https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/" rel="alternate"/><published>2026-11-17T22:52:29+00:00</published><updated>2026-11-17T22:52:29+00:00</updated><id>https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://blog.primeradiant.com/external-sandboxes-for-coding-agents/"&gt;External sandboxes for coding agents&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 I've been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine.&lt;/p&gt;
@@ -782,82 +803,4 @@ llm -m claude-fable-5.2 "Generate an SVG of a pelican riding a bicycle"
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/github"&gt;github&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/html"&gt;html&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/markdown"&gt;markdown&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-programming"&gt;ai-assisted-programming&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="github"/><category term="html"/><category term="markdown"/><category term="ai"/><category term="datasette"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="llm"/><category term="coding-agents"/></entry><entry><title>parse_number() as a SQLite extension: C vs Rust</title><link href="https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/" rel="alternate"/><published>2026-11-08T22:26:00+00:00</published><updated>2026-11-08T22:26:00+00:00</updated><id>https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Research:&lt;/strong&gt; &lt;a href="https://github.com/simonw/research/tree/main/sqlite-parse-number-c-vs-rust#readme"&gt;parse_number() as a SQLite extension: C vs Rust&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I was out walking the dog when I got curious about how easy/difficult it would be to write a SQLite C extension that adds a &lt;code&gt;parse_number()&lt;/code&gt; function for turning strings like &lt;code&gt;-$1,234.56&lt;/code&gt; or &lt;code&gt;'12.5%'&lt;/code&gt; into numeric values that could be summed and sorted.&lt;/p&gt;
-&lt;p&gt;I fired up regular Claude chat (Opus 5.5) &lt;a href="https://claude.ai/share/7f18f157-6c96-4d49-a1d4-f02403e3b261"&gt;and prompted&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;I'm thinking about a SQLite custom function 'parse_number(value)' that strips ',', '$', '£' and '%', handles a leading '-', and returns 'NULL' for anything it can’t parse&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Explore the difference between building this as a SQLite extension in C v.s. in Rust - I want to compare performance and code complexity and size of the resulting&lt;/code&gt;.so&lt;code&gt;(or whatever) file&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This gave me a solid starting point - the Rust extension was 321 KB (using &lt;a href="https://github.com/rusqlite/rusqlite"&gt;Rusqlite&lt;/a&gt;) and 298 KB (using &lt;a href="https://github.com/asg017/sqlite-loadable-rs"&gt;sqlite-loadable-rs&lt;/a&gt;), while the C extension was 14 KB. But the Rust extension was faster!&lt;/p&gt;
-&lt;p&gt;Turns out that's because the Rust equivalent of C's &lt;code&gt;strtod&lt;/code&gt; is "twice as fast". So I prompted:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Try writing your own C function for parsing text into a decimal number that catches up to or beats the Rust implementation&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;And it did, using "Clinger's fast path":&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Net cost per row over 2 million rows, lower is better:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;first C&lt;/th&gt;
-&lt;th&gt;new C&lt;/th&gt;
-&lt;th&gt;rusqlite&lt;/th&gt;
-&lt;th&gt;sqlite-loadable&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Mixed data&lt;/td&gt;
-&lt;td&gt;67 ns&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;19 ns&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;46 ns&lt;/td&gt;
-&lt;td&gt;41 ns&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Integers only&lt;/td&gt;
-&lt;td&gt;25 ns&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;16 ns&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;36 ns&lt;/td&gt;
-&lt;td&gt;32 ns&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Decimals only&lt;/td&gt;
-&lt;td&gt;106 ns&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;18 ns&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;55 ns&lt;/td&gt;
-&lt;td&gt;47 ns&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Finally, I had it rewrite the prototype as a research report to match the others in &lt;a href="https://github.com/simonw/research"&gt;simonw/research&lt;/a&gt; by prompting this:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Clone simonw/research from GitHub and turn your above investigation into a research report as seen in that repository - you can give me a zip file to download that contains your new folder&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's &lt;a href="https://github.com/simonw/research/tree/main/sqlite-parse-number-c-vs-rust#readme"&gt;the resulting report&lt;/a&gt;.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/research"&gt;research&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/c"&gt;c&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/rust"&gt;rust&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/sqlite"&gt;sqlite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="research"/><category term="c"/><category term="rust"/><category term="sqlite"/><category term="claude"/></entry><entry><title>datasette #3046: Don't serve link: rel=next HTTP headers to Firefox for HTML pages</title><link href="https://simonwillison.net/2026/Nov/7/link-rel-next/" rel="alternate"/><published>2026-11-07T23:57:46+00:00</published><updated>2026-11-07T23:57:46+00:00</updated><id>https://simonwillison.net/2026/Nov/7/link-rel-next/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/simonw/datasette/issues/3046"&gt;datasette #3046: Don&amp;#x27;t serve link: rel=next HTTP headers to Firefox for HTML pages&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-I was looking at the Firefox network panel today when I noticed that requests to a Datasette table page were triggering an &lt;a href="https://developer.mozilla.org/en-US/docs/Glossary/Prefetch"&gt;HTTP prefetch&lt;/a&gt; to the next page of rows in that table.&lt;/p&gt;
-&lt;p&gt;This was happening because Datasette pages serve an HTTP &lt;code&gt;link&lt;/code&gt; header like this:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;link: &amp;lt;https://latest.datasette.io/fixtures/compound_three_primary_keys?_next=a%2Cd%2Cv&amp;gt;; rel="next"&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;This is bad. A tiny fraction of the visitors to one of those pages will click the "next" link, which means for everyone else their browser is fetching unnecessary data and the Datasette server is having to render an entire page that then gets thrown away.&lt;/p&gt;
-&lt;p&gt;I dug in and learned that Firefox has &lt;a href="https://bugzilla.mozilla.org/show_bug.cgi?id=175418"&gt;an issue&lt;/a&gt; that has been open for 24 years about this behavior...&lt;/p&gt;
-&lt;p&gt;And one of the early comments on that issue links to &lt;a href="https://simonwillison.net/2002/Oct/17/mozillaPrefetching/"&gt;my blog post from 2002&lt;/a&gt; complaining about this feature. I hadn't just forgotten that I had written about it, I had forgotten the feature entirely!
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/firefox"&gt;firefox&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/html"&gt;html&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/mozilla"&gt;mozilla&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="firefox"/><category term="html"/><category term="mozilla"/><category term="datasette"/></entry></feed>
+</summary><category term="github"/><category term="html"/><category term="markdown"/><category term="ai"/><category term="datasette"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-programming"/><category term="llm"/><category term="coding-agents"/></entry></feed>
