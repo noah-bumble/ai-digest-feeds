@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-20T02:49:57+00:00</updated><author><name>Simon Willison</name></author><entry><title>Token fraud is here and it’s BAD (YouTube)</title><link href="https://simonwillison.net/2026/Nov/20/token-fraud-is-here-and-its-bad/" rel="alternate"/><published>2026-11-20T02:49:57+00:00</published><updated>2026-11-20T02:49:57+00:00</updated><id>https://simonwillison.net/2026/Nov/20/token-fraud-is-here-and-its-bad/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-20T16:30:48+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Levent Alpöge</title><link href="https://simonwillison.net/2026/Nov/20/levent-alpoge/" rel="alternate"/><published>2026-11-20T16:30:48+00:00</published><updated>2026-11-20T16:30:48+00:00</updated><id>https://simonwillison.net/2026/Nov/20/levent-alpoge/</id><summary type="html">
+    &lt;blockquote cite="https://alpo.ge/remark.pdf"&gt;&lt;p&gt;I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis. In fact, the method easily extends much further, resolving the so-called Generalized Riemann Hypothesis, and I expect, with more time, the Extended Riemann Hypothesis too. Claude and I have also formalized the arguments without assumptions. It is natural to feel that this is an end, in my case a loss of a principal guiding light, but what I saw during the course of progress so amazed me that I believe it is one dawn across science of something far greater. [...]&lt;/p&gt;
+&lt;p&gt;Claude and I have had a great time together with such breadth in recent months, but this time Claude far outpaced me near the finish line. No, Claude flew, and danced, and sparkled near that finish line.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://alpo.ge/remark.pdf"&gt;Levent Alpöge&lt;/a&gt;, alpo.ge/remark.pdf&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/mathematics"&gt;mathematics&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/levent-alpoge"&gt;levent-alpoge&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="anthropic"/><category term="claude"/><category term="generative-ai"/><category term="mathematics"/><category term="ai"/><category term="llms"/><category term="levent-alpoge"/></entry><entry><title>Token fraud is here and it’s BAD (YouTube)</title><link href="https://simonwillison.net/2026/Nov/20/token-fraud-is-here-and-its-bad/" rel="alternate"/><published>2026-11-20T02:49:57+00:00</published><updated>2026-11-20T02:49:57+00:00</updated><id>https://simonwillison.net/2026/Nov/20/token-fraud-is-here-and-its-bad/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://www.youtube.com/watch?v=ZDpP7JXPlhc"&gt;Token fraud is here and it’s BAD (YouTube)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Claire Vo runs &lt;a href="https://www.chatprd.ai"&gt;ChatPRD&lt;/a&gt;, an AI platform that helps product managers "turn an idea into a spec". The product has been live since the GPT-4 era, and Claire has been building it in public for much of that time.&lt;/p&gt;
@@ -709,20 +718,4 @@ Meta AI just launched their entry in the Claude Haiku/GPT Luna category: Muse Em
 
 
 
-</summary><category term="prompt-engineering"/><category term="anthropic"/><category term="generative-ai"/><category term="ai"/><category term="llms"/><category term="claude-mythos-fable"/></entry><entry><title>Yonkers Rises</title><link href="https://simonwillison.net/2026/Nov/10/yonkers-rises/" rel="alternate"/><published>2026-11-10T03:53:04+00:00</published><updated>2026-11-10T03:53:04+00:00</updated><id>https://simonwillison.net/2026/Nov/10/yonkers-rises/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/yonkers-rises"&gt;Yonkers Rises&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I realized I didn't know where Yonkers was, so I looked it up on Google Maps and then, to help embed its location and shape in my head (and to try out Claude Fable 5.2's 3D modeling and animation skills), I &lt;a href="https://claude.ai/share/97443910-2e0a-4e17-9b9e-11d14d8ff65c"&gt;prompted Fable 5.2 Medium&lt;/a&gt; to:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and átomos around manhattan and queens and Brooklyn, use openstreetmap mapping data&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;It correctly deduced that "átomos" was a mobile keyboard typo for "stomps":&lt;/p&gt;
-&lt;video controls playsinline preload="none" width="572" height="360" poster="https://static.simonwillison.net/static/2026/yonkers.webp"&gt;
-  &lt;source src="https://static.simonwillison.net/static/2026/yonkers-large.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/three-js"&gt;three-js&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/yonkers-rising"&gt;yonkers-rising&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="three-js"/><category term="llms"/><category term="ai"/><category term="generative-ai"/><category term="yonkers-rising"/><category term="claude-mythos-fable"/></entry></feed>
+</summary><category term="prompt-engineering"/><category term="anthropic"/><category term="generative-ai"/><category term="ai"/><category term="llms"/><category term="claude-mythos-fable"/></entry></feed>
