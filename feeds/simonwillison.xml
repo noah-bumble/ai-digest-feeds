@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-18T23:59:20+00:00</updated><author><name>Simon Willison</name></author><entry><title>llm-gemini 0.38</title><link href="https://simonwillison.net/2026/Nov/18/llm-gemini/" rel="alternate"/><published>2026-11-18T23:59:20+00:00</published><updated>2026-11-18T23:59:20+00:00</updated><id>https://simonwillison.net/2026/Nov/18/llm-gemini/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-19T20:43:57+00:00</updated><author><name>Simon Willison</name></author><entry><title>PostgreSQL 19 Released</title><link href="https://simonwillison.net/2026/Nov/19/postgresql-19/" rel="alternate"/><published>2026-11-19T20:43:57+00:00</published><updated>2026-11-19T20:43:57+00:00</updated><id>https://simonwillison.net/2026/Nov/19/postgresql-19/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.postgresql.org/about/news/postgresql-19-released-3449/"&gt;PostgreSQL 19 Released&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Most years PostgreSQL ships a new release in September, but this year's release came two months later &lt;a href="https://rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-fault.html"&gt;thanks mainly&lt;/a&gt; to the flurry of issues that the PostgreSQL team needed to address as part of the ongoing AI-reported vulnerability apocalypse.&lt;/p&gt;
+&lt;p&gt;This release was definitely worth the wait. My favorite new feature is this one:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For applications that send reads to standbys, PostgreSQL 19 adds "read-your-writes" consistency with the new &lt;a href="https://www.postgresql.org/docs/19/sql-wait.html"&gt;&lt;code&gt;WAIT FOR LSN&lt;/code&gt;&lt;/a&gt; command. A session on a standby can use &lt;code&gt;WAIT FOR LSN&lt;/code&gt; to wait until the standby has replayed the write-ahead log (WAL) up to a specific &lt;a href="https://www.postgresql.org/docs/19/wal-internals.html"&gt;log sequence number (LSN)&lt;/a&gt; before running a query, so the application can read data it just wrote on the primary.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In practice, that looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UPDATE movie SET genre = 'Dramatic' WHERE genre = 'Drama';
+SELECT pg_current_wal_insert_lsn();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That returns a value like &lt;code&gt;0/0306EE20&lt;/code&gt;. Store that somewhere (a signed cookie would work) such that on a subsequent request your application can do:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;WAIT FOR LSN '0/0306EE20' WITH (TIMEOUT '0.1s');
+SELECT * FROM movie WHERE genre = 'Drama';
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The timeout is optional - if you provide one you'll get an error if the replica you are talking to doesn't catch up within the specified time.&lt;/p&gt;
+&lt;p&gt;I first encountered this pattern &lt;a href="https://www.mediawiki.org/wiki/Manual:Database_access#Lag"&gt;in Wikipedia&lt;/a&gt;, which has a hand-rolled version of this built against MySQL replication:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In addition to this, MediaWiki attempts to ensure that the user sees events occurring on the wiki in chronological order. A few seconds of lag can be tolerated, as long as the user sees a consistent picture from subsequent requests. This is done by saving the primary binlog position in the session, and then at the start of each request, waiting for the replica to catch up to that position before doing any reads from it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here's &lt;a href="https://github.com/wikimedia/mediawiki/blob/1ff78194b182ee4b5b3678f7d9fc9aefd0852cf7/includes/libs/Rdbms/Replication/MysqlReplicationReporter.php#L238-L299"&gt;the relevant MediaWiki code&lt;/a&gt;, which these days uses MySQL's &lt;a href="https://dev.mysql.com/doc/refman/9.7/en/gtid-functions.html#function_wait-for-executed-gtid-set"&gt;WAIT_FOR_EXECUTED_GTID_SET()&lt;/a&gt; function and falls back to &lt;a href="https://dev.mysql.com/doc/refman/8.4/en/replication-functions-synchronization.html#function_source-pos-wait"&gt;SOURCE_POS_WAIT()&lt;/a&gt;.
+
+    &lt;p&gt;&lt;small&gt;&lt;/small&gt;Via &lt;a href="https://lobste.rs/s/pqyuhk/postgresql_19_released"&gt;Lobste.rs&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/mysql"&gt;mysql&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/postgresql"&gt;postgresql&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/replication"&gt;replication&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/scaling"&gt;scaling&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/wikipedia"&gt;wikipedia&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-security-research"&gt;ai-security-research&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="mysql"/><category term="postgresql"/><category term="replication"/><category term="scaling"/><category term="wikipedia"/><category term="ai-security-research"/></entry><entry><title>llm-gemini 0.38</title><link href="https://simonwillison.net/2026/Nov/18/llm-gemini/" rel="alternate"/><published>2026-11-18T23:59:20+00:00</published><updated>2026-11-18T23:59:20+00:00</updated><id>https://simonwillison.net/2026/Nov/18/llm-gemini/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/llm-gemini/releases/tag/0.38"&gt;llm-gemini 0.38&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;Today Google &lt;a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"&gt;introduced Gemini 4 Neon&lt;/a&gt;. I &lt;a href="https://simonwillison.net/2026/Nov/12/llm-gemini/"&gt;wrote recently&lt;/a&gt; about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse.&lt;/p&gt;
@@ -701,83 +731,4 @@ llm -m claude-fable-5.2 "Generate an SVG of a pelican riding a bicycle"
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/llm-release"&gt;llm-release&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/pelican-riding-a-bicycle"&gt;pelican-riding-a-bicycle&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="llm-release"/><category term="llm"/><category term="anthropic"/><category term="claude"/><category term="generative-ai"/><category term="pelican-riding-a-bicycle"/><category term="ai"/><category term="llms"/><category term="claude-mythos-fable"/></entry><entry><title>Locating the source of a mysterious beep with Claude</title><link href="https://simonwillison.net/2026/Nov/9/mysterious-beeps/" rel="alternate"/><published>2026-11-09T23:57:21+00:00</published><updated>2026-11-09T23:57:21+00:00</updated><id>https://simonwillison.net/2026/Nov/9/mysterious-beeps/</id><summary type="html">
-    &lt;p&gt;Our house has a box room, full of boxes that we still haven't unpacked from our last move. A couple of weeks ago something in that room started &lt;em&gt;intermittently beeping&lt;/em&gt;. The beeps were far enough apart that standing in the room and trying to determine the source of the noise was frustrating, and I really didn't want to dig through every one of those boxes. So I had Claude Code build &lt;a href="https://github.com/simonw/beep-locator"&gt;Beep Locator&lt;/a&gt;, a software system for triangulating the source of a mysterious beep using multiple devices scattered around the room.&lt;/p&gt;
-&lt;p&gt;Here's what Beep Locator looks like after it has been running for a while:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://static.simonwillison.net/static/2026/beep-locator-ui.webp" alt="Screenshot of a web app that uses several phones, tablets and laptops as microphones to locate a mystery beeping sound in a room. The left column has an &amp;quot;Add a listener&amp;quot; panel with a QR code and join link, a &amp;quot;Controls&amp;quot; panel with buttons including &amp;quot;Calibrate&amp;quot;, &amp;quot;Test beep&amp;quot; and &amp;quot;It just beeped!&amp;quot; plus a &amp;quot;Listen for beeps&amp;quot; checkbox, and a &amp;quot;Mystery beep&amp;quot; note reading &amp;quot;3345 Hz · 3 confirmed · remembered across sessions&amp;quot;. Below that, a &amp;quot;Devices&amp;quot; list shows five color-coded listeners (Simon iPhone, New iPad, Old iPad, MacBook Pro, Surface Ultra), each marked &amp;quot;✓ mic working · ✓ speaker working&amp;quot;. The main area is a gridded map with a 1 m scale bar that shows the five devices as colored dots and earlier sounds as small timestamped markers. A pink shaded circle near the MacBook Pro is labeled &amp;quot;mystery beep · 2 hearings · within ~41 cm&amp;quot;, and beside it a dashed plus marker suggests &amp;quot;add a listener here? could tighten the mystery beep's position by ~12%&amp;quot;. Below the map, a &amp;quot;Mystery beep loudness warmer / colder&amp;quot; panel shows a bar for each device: Surface Ultra is loudest at &amp;quot;-6.0 dB ▲ +11.6 dB warmer&amp;quot;, with the note &amp;quot;about 6 dB louder means roughly half the distance&amp;quot;. At the bottom, a &amp;quot;Sounds located&amp;quot; table lists recent claps and beeps with coordinates, or the warning &amp;quot;arrival times are not physically possible (echo or a different sound?)&amp;quot;." style="max-width: 100%;" /&gt;&lt;/p&gt;
-&lt;p&gt;You run Python web server to show the primary UI, and then use the QR code or URL to connect as many devices as you can spare to act as listeners - I was using two iPads, a phone, a MacBook Pro and a Surface Ultra.&lt;/p&gt;
-&lt;p&gt;The devices then play noises to each other to help estimate their locations. This didn't work particularly well, so I added a "Rough mode" where you can drag their icons around in the space to provide rough locations which are then adjusted based on those sounds.&lt;/p&gt;
-&lt;p&gt;Once that's set up, the devices all listen for the beep!&lt;/p&gt;
-&lt;p&gt;I added a clapping mode too so I could test it by clapping my hands in different locations around the room - displayed as diamonds on the map. This helped me gain confidence that it was capable of locating a sound.&lt;/p&gt;
-&lt;p&gt;Beeps show up on the map as an X, plus a line in the "Sounds located" log. You can replay these sounds (from each device in turn) to confirm they are the mysterious beep you are looking for, then click "This is the mystery beep" to mark them as such.&lt;/p&gt;
-&lt;p&gt;Once you've confirmed the mysterious beep frequency the system will listen out for it, measure the interval between beeps, and use the triangulated locations to lock down the most likely location on the map.&lt;/p&gt;
-&lt;p&gt;The system worked as intended. It gave me the position of the beep to within about 40cm, then I dug through that specific pile of boxes and found an ancient carbon monoxide detector that desperately wanted its batteries replaced.&lt;/p&gt;
-&lt;h4 id="how-it-works"&gt;How it works&lt;/h4&gt;
-&lt;p&gt;When I started working through this problem with Claude it quickly dug up &lt;a href="https://www.cs.purdue.edu/homes/chunyi/pubs/sensys106-beepbeep.pdf"&gt;BeepBeep: A High-Accuracy Acoustic-Based System for Ranging and Localization Using COTS Devices&lt;/a&gt;, a 2007 paper by Chunyi Peng, Guobin Shen, Yongguang Zhang, Yanlin Li, and Kun Tan. Here's that paper's abstract:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;We present the design, implementation, and evaluation of BeepBeep, a high-accuracy acoustic-based ranging system. It operates in a spontaneous, ad-hoc, and device-to-device context without leveraging any pre-planned infrastructure. It is a pure software-based solution and uses only the most basic set of commodity hardware – a speaker, a microphone, and some form of device-to-device communication – so that it is readily applicable to many low-cost sensor platforms and to most commercial-off-the-shelf mobile devices like cell phones and PDAs. It achieves high accuracy through a combination of three techniques: two-way sensing, self-recording, and sample counting.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That sounded exactly like what we needed to build!&lt;/p&gt;
-&lt;p&gt;Beep Locator runs a Python web application server that does most of the work. The listening devices then connect to that server via WebSockets and present a UI which requests browser microphone access. The listeners mainly work by recording a 60 second buffer of recent audio. They also run a simple beep detection algorithm (see &lt;a href="https://github.com/simonw/beep-locator/blob/main/beep_locator/modules/listener/detector.js"&gt;detector.js&lt;/a&gt;), which uses Fast Fourier Transform and a high-pass filter to identify potential beeps. It sends these events to the main server.&lt;/p&gt;
-&lt;p&gt;When a beep is reported, the server has a device play a short chirp (the device with the lowest round-trip time to the server), then asks every listener upload a clip from about 0.6s before the beep to 0.8s after that chirp. This chirp allows the clips to be aligned with each other, a crucial step in locating the beep.&lt;/p&gt;
-&lt;h4 id="how-i-built-it"&gt;How I built it&lt;/h4&gt;
-&lt;p&gt;I started this project using Claude Code Cloud via my iPhone, with Opus 5.5 running in Extra thinking effort mode. Here's &lt;a href="https://claude.ai/code/cshk_016BvfqAWf7MeGZKeYCrUnN2MmRfCSAX9Gu8DiptXMuH9P"&gt;that shared starter session&lt;/a&gt;, which began with this prompt against a newly created empty GitHub repository:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Write out a problem.md file describing the problem we want to solve&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;There is a device beeping in a room and I cannot find it&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;I want to set up several devices - laptops, phones, iPads - around the room all listening at the same time and have them help triangulate where the beep comes from&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;There needs to be a Python web app which coordinates it all - one device shows a web page for the app, other devices join a URL which turns them into listeners - all via browser WebAudio and WebSockets back to the Python server app&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Ideally I wouldn't need to manually input the relative locations of the devices - it would be amazing if they could play sounds to each other in order to locate each other in 2D space - is that even possible though?&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That got me &lt;a href="https://github.com/simonw/beep-locator/blob/main/problem.md"&gt;this problem.md file&lt;/a&gt;. As part of writing that up Claude found and read the BeepBeep paper, which is described in that file.&lt;/p&gt;
-&lt;p&gt;The research looked good, so I told it:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Ok try and build it, add a mechanism so you can send new code to the listeners which they will then run automatically - that way I can set everything up in the room and then leave you alone to continue hacking and experiment while I do something else&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That got me &lt;a href="https://github.com/simonw/beep-locator/commits/e36ac93a81091a246403c074e34c0041c6972fac"&gt;to this point&lt;/a&gt; - most of the system was built, but nothing had actually tried running it yet.&lt;/p&gt;
-&lt;p&gt;I cloned the new repository to my laptop and fired up Claude Code... and then &lt;a href="https://www.anthropic.com/claude-fable-and-mythos-5-2"&gt;Fable 5.2 was released&lt;/a&gt;, and this project seemed like an excellent opportunity to put that through its paces.&lt;/p&gt;
-&lt;p&gt;I had Claude Code on my laptop start the server running, then made sure it could both see what was happening &lt;em&gt;and&lt;/em&gt; make live changes to the software as it ran.&lt;/p&gt;
-&lt;p&gt;This was already baked into the software: Opus 5.5 had built an &lt;a href="https://github.com/simonw/beep-locator/blob/44fea65c918fb31a7d2c0e17797ee1a106860e23/beep_locator/static/runtime.js#L710"&gt;installModule()&lt;/a&gt; method on the listeners that could be triggered over the WebSocket connection, meaning the admin server could execute arbitrary new code on any of its clients.&lt;/p&gt;
-&lt;p&gt;On some devices, web pages that listen on the microphone request user permission any time the page reloads. The hot-swap module mechanism meant that we could deploy new code without having to manually interact with each of the listening devices in turn.&lt;/p&gt;
-&lt;p&gt;From that point on my involvement was mainly to sit by the laptop chatting with Fable 5.2 about what was going on, and occasionally requesting new features. Here are some of the feature prompts I ran:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;I think we need to make it so I can drag things around on the map in “rough mode”, where my job is just to put them roughly where they are, then switch out of rough mode and it attempts to get them accurate&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This gave me the ability to drag listeners around the map.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;what’s a good way for me to test this I wonder? Can we have it listen for claps, then I could clap and it could identify the location of the clap? [...]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Claps should use a different symbol on the map than beeps&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That added the thing where any time I clapped it would show on the map as a different symbol from the beeps.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;each symbol on the map should include a HH:MM:SS timestamp&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That made it easier to spot which symbol likely reflected which real-world sound.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;The log should show beeps and claps with their timestamps AND have a little play button which, when clicked, replays the recorded noise from each of the listeners in sequence (with clear text on screen showing which listener recorded which snippet) while temporarily turning off microphone recording while that replay plays&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Now I could replay sounds, making it much easier to identify which recorded clip was the mysterious beep I was looking for.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;There should be a button next to a recording for “This is the mystery beep” - then I can hit replay to see and then confirm it was the mystery beep if that’s the one I am looking for&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Then the system can categorize noises in the future to see if they are likely that same mysterious beep and use that information to build a more accurate idea of where it is&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;At this point I was getting close - I had a solid idea of where the beep was coming from, but wouldn't it be neat if I could reposition the listeners around that point to get an even finer location?&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;I want a feature for this, I don’t want to have to restart each listening device etc, I want to be able to click a “Reposition the devices” button which lets me switch into repositioning, then I click “Repositioned” and it puts me into Rough mode and asks me to roughly locate them, then I do that and click, then it starts up again. The previous session can be read-only viewed through the app.&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;And since I had one spare device, I then said:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;add a feature where the map includes a spot that is a suggestion for a location that it would be useful to add a listener at - based on data collected so far&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id="giving-claude-code-ears"&gt;Giving Claude Code ears&lt;/h4&gt;
-&lt;p&gt;I think the most interesting part of this project is that I demonstrated it's possible to &lt;em&gt;give Claude Code ears&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Claude doesn't have native audio input (yet), but it can run JavaScript and Python code that can analyze audio captured by a microphone.&lt;/p&gt;
-&lt;p&gt;I told it to run a web server with WebSocket connections to multiple listening devices, then had it both run a WebAudio microphone on those devices and hook them up so they could be sent fresh JavaScript code to execute via that WebSocket.&lt;/p&gt;
-&lt;p&gt;Then I could pretty much leave Claude alone, hacking away at the problem, querying the audio logs, and reconfiguring its ears to help it solve the problem.&lt;/p&gt;
-&lt;p&gt;I'm reminded of a similar hack I heard about at GitHub Universe a few weeks ago, where &lt;a href="https://github.com/martinwoodward"&gt;Martin Woodward&lt;/a&gt; told me he had been debugging the &lt;a href="https://simonwillison.net/2026/Oct/27/game-boy-color-on-my-conference-badge/"&gt;GitHub Universe Badge computers&lt;/a&gt; by plugging them into a computer via USB-C and then pointing a webcam at their screen, so his coding agent could tell if updates were working correctly or not.&lt;/p&gt;
-&lt;p&gt;Figuring out ways to let coding agents perceive the world around them is a whole lot of fun.&lt;/p&gt;
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/coding-agents"&gt;coding-agents&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-code"&gt;claude-code&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="projects"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="claude"/><category term="coding-agents"/><category term="claude-code"/><category term="claude-mythos-fable"/></entry></feed>
+</summary><category term="llm-release"/><category term="llm"/><category term="anthropic"/><category term="claude"/><category term="generative-ai"/><category term="pelican-riding-a-bicycle"/><category term="ai"/><category term="llms"/><category term="claude-mythos-fable"/></entry></feed>
