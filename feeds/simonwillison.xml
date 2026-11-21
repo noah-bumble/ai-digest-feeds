@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-20T16:30:48+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Levent Alpöge</title><link href="https://simonwillison.net/2026/Nov/20/levent-alpoge/" rel="alternate"/><published>2026-11-20T16:30:48+00:00</published><updated>2026-11-20T16:30:48+00:00</updated><id>https://simonwillison.net/2026/Nov/20/levent-alpoge/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-20T19:21:49+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Ravi Vakil</title><link href="https://simonwillison.net/2026/Nov/20/ravi-vakil/" rel="alternate"/><published>2026-11-20T19:21:49+00:00</published><updated>2026-11-20T19:21:49+00:00</updated><id>https://simonwillison.net/2026/Nov/20/ravi-vakil/</id><summary type="html">
+    &lt;blockquote cite="https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/"&gt;&lt;p&gt;Alessandro Masullo has a proposed proof of [Generalized Riemann Hypothesis], and Brian Conrad has been looking closely at it for months and gave extensive feedback which is being incorporated, and it is so far looking good. It is all human, with no AI. The hope was to bring Alessandro to Stanford for a year to polish the writing and then announce it after running it by enough people. Now it seems best to put out the current draft.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/"&gt;Ravi Vakil&lt;/a&gt;, Hurried Announcement: Alessandro Masullo GRH&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/mathematics"&gt;mathematics&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="mathematics"/></entry><entry><title>Quoting Levent Alpöge</title><link href="https://simonwillison.net/2026/Nov/20/levent-alpoge/" rel="alternate"/><published>2026-11-20T16:30:48+00:00</published><updated>2026-11-20T16:30:48+00:00</updated><id>https://simonwillison.net/2026/Nov/20/levent-alpoge/</id><summary type="html">
     &lt;blockquote cite="https://alpo.ge/remark.pdf"&gt;&lt;p&gt;I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis. In fact, the method easily extends much further, resolving the so-called Generalized Riemann Hypothesis, and I expect, with more time, the Extended Riemann Hypothesis too. Claude and I have also formalized the arguments without assumptions. It is natural to feel that this is an end, in my case a loss of a principal guiding light, but what I saw during the course of progress so amazed me that I believe it is one dawn across science of something far greater. [...]&lt;/p&gt;
 &lt;p&gt;Claude and I have had a great time together with such breadth in recent months, but this time Claude far outpaced me near the finish line. No, Claude flew, and danced, and sparkled near that finish line.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://alpo.ge/remark.pdf"&gt;Levent Alpöge&lt;/a&gt;, alpo.ge/remark.pdf&lt;/p&gt;
@@ -705,17 +713,4 @@ Meta AI just launched their entry in the Claude Haiku/GPT Luna category: Muse Em
 
 
 
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="meta"/><category term="llm-pricing"/><category term="llm-release"/><category term="artificial-analysis"/><category term="muse"/></entry><entry><title>Quoting Prompting Claude Fable 5.2</title><link href="https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/" rel="alternate"/><published>2026-11-10T05:34:14+00:00</published><updated>2026-11-10T05:34:14+00:00</updated><id>https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/</id><summary type="html">
-    &lt;blockquote cite="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code"&gt;&lt;p&gt;Claude Fable 5.2 pays close attention to who owns the code it works on. In Anthropic’s testing on small coding tasks, the model tended to add to the existing structure when the prompt said nothing about ownership or presented the code base as someone else’s, even when that duplicated existing code. When the prompt said the code base was the model’s own, it often consolidated duplicated code and sometimes made related fixes without being asked.&lt;/p&gt;
-&lt;p&gt;If you want the model to improve the structure as it works, say that the code is its own:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;You are the owner and long-term maintainer of this codebase, and its design is up to you.&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The ownership sentence makes the model much more likely to consolidate duplicated code into one shared function. In Anthropic’s testing on small coding tasks, the model consolidated duplicated code in under 10 percent of runs without the sentence and in about 75 percent of runs with it.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code"&gt;Prompting Claude Fable 5.2&lt;/a&gt;, Anthropic documentation&lt;/p&gt;
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/prompt-engineering"&gt;prompt-engineering&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="prompt-engineering"/><category term="anthropic"/><category term="generative-ai"/><category term="ai"/><category term="llms"/><category term="claude-mythos-fable"/></entry></feed>
+</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="meta"/><category term="llm-pricing"/><category term="llm-release"/><category term="artificial-analysis"/><category term="muse"/></entry></feed>
