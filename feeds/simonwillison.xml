@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-21T23:56:28+00:00</updated><author><name>Simon Willison</name></author><entry><title>Muru</title><link href="https://simonwillison.net/2026/Nov/21/muru/" rel="alternate"/><published>2026-11-21T23:56:28+00:00</published><updated>2026-11-21T23:56:28+00:00</updated><id>https://simonwillison.net/2026/Nov/21/muru/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-22T19:45:06+00:00</updated><author><name>Simon Willison</name></author><entry><title>Select Styling Specimens</title><link href="https://simonwillison.net/2026/Nov/22/select-styling/" rel="alternate"/><published>2026-11-22T19:45:06+00:00</published><updated>2026-11-22T19:45:06+00:00</updated><id>https://simonwillison.net/2026/Nov/22/select-styling/</id><summary type="html">
+    
+        &lt;p&gt;&lt;strong&gt;Tool:&lt;/strong&gt; &lt;a href="https://tools.simonwillison.net/select-styling"&gt;Select Styling Specimens&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I got frustrated at how HTML &lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt; boxes default to looking different in different browsers, and are (I think) quite ugly in Chrome:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The same select box in Chrome, Safari, and Firefox, Chrome is white with a black border. Safari is grey with no border. Firefox is gray with a black border. They are all slightly different sizes." src="https://static.simonwillison.net/static/2026/select-firefox-safari-chrome.webp" /&gt;&lt;/p&gt;
+&lt;p&gt;So I had Claude Fable 5.2 &lt;a href="https://claude.ai/share/a82c181c-0ea6-4fec-a659-8de653cb3e7b"&gt;build&lt;/a&gt; me &lt;a href="https://tools.simonwillison.net/select-styling"&gt;this page&lt;/a&gt; showing all of the ways they can be styled:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Build an HTML page that shows all of the ways a select box can be styled, I plan to take screenshots in every desktop and mobile browser&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After some experimentation I've decided my favorite CSS for select boxes is this:&lt;/p&gt;
+&lt;div class="highlight highlight-source-css"&gt;&lt;pre&gt;&lt;span class="pl-ent"&gt;select&lt;/span&gt; &lt;span class="pl-kos"&gt;{&lt;/span&gt;
+  &lt;span class="pl-c1"&gt;appearance&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; none&lt;span class="pl-kos"&gt;;&lt;/span&gt;
+  &lt;span class="pl-c1"&gt;color&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; &lt;span class="pl-pds"&gt;&lt;span class="pl-kos"&gt;#&lt;/span&gt;1f2933&lt;/span&gt;&lt;span class="pl-kos"&gt;;&lt;/span&gt;
+  &lt;span class="pl-c1"&gt;padding&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; &lt;span class="pl-c1"&gt;0.5&lt;span class="pl-smi"&gt;em&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-c1"&gt;2.25&lt;span class="pl-smi"&gt;em&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-c1"&gt;0.5&lt;span class="pl-smi"&gt;em&lt;/span&gt;&lt;/span&gt; &lt;span class="pl-c1"&gt;0.75&lt;span class="pl-smi"&gt;em&lt;/span&gt;&lt;/span&gt;&lt;span class="pl-kos"&gt;;&lt;/span&gt;
+  &lt;span class="pl-c1"&gt;border&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; &lt;span class="pl-c1"&gt;1&lt;span class="pl-smi"&gt;px&lt;/span&gt;&lt;/span&gt; solid &lt;span class="pl-pds"&gt;&lt;span class="pl-kos"&gt;#&lt;/span&gt;c4cbd3&lt;/span&gt;&lt;span class="pl-kos"&gt;;&lt;/span&gt;
+  &lt;span class="pl-c1"&gt;border-radius&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; &lt;span class="pl-c1"&gt;6&lt;span class="pl-smi"&gt;px&lt;/span&gt;&lt;/span&gt;&lt;span class="pl-kos"&gt;;&lt;/span&gt;
+  &lt;span class="pl-c1"&gt;background&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; &lt;span class="pl-pds"&gt;&lt;span class="pl-kos"&gt;#&lt;/span&gt;fff&lt;/span&gt; &lt;span class="pl-en"&gt;url&lt;/span&gt;&lt;span class="pl-kos"&gt;(&lt;/span&gt;&lt;span class="pl-s"&gt;"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23667085' stroke-width='1.5'/%3E%3C/svg%3E"&lt;/span&gt;&lt;span class="pl-kos"&gt;)&lt;/span&gt; no-repeat right &lt;span class="pl-c1"&gt;0.75&lt;span class="pl-smi"&gt;em&lt;/span&gt;&lt;/span&gt; center &lt;span class="pl-c1"&gt;/&lt;/span&gt; &lt;span class="pl-c1"&gt;0.75&lt;span class="pl-smi"&gt;em&lt;/span&gt;&lt;/span&gt;&lt;span class="pl-kos"&gt;;&lt;/span&gt;
+&lt;span class="pl-kos"&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here's what that looks like in the three browsers:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Now the select box is the same in all three browsers - it has a rounded corner grey border and a grey downward facing arrow in each one." src="https://static.simonwillison.net/static/2026/select-styled-firefox-safari-chrome.webp" /&gt;&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/tools"&gt;tools&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/css"&gt;css&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/html"&gt;html&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="tools"/><category term="css"/><category term="html"/></entry><entry><title>Muru</title><link href="https://simonwillison.net/2026/Nov/21/muru/" rel="alternate"/><published>2026-11-21T23:56:28+00:00</published><updated>2026-11-21T23:56:28+00:00</updated><id>https://simonwillison.net/2026/Nov/21/muru/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/muruhq/muru"&gt;Muru&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 Graham Dumpleton started &lt;a href="https://modwsgi.readthedocs.io/"&gt;mod_wsgi&lt;/a&gt; 20 years ago, and has been thinking about the ideal way to serve Python web applications in production ever since.&lt;/p&gt;
@@ -631,23 +657,4 @@ I've been wanting a better way to browse my &lt;a href=""&gt;collection of vibe-
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/projects"&gt;projects&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llm"&gt;llm&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/releases"&gt;releases&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="projects"/><category term="security"/><category term="llm"/><category term="releases"/></entry><entry><title>Anthropic's IPO roadshow video</title><link href="https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/" rel="alternate"/><published>2026-11-11T15:11:59+00:00</published><updated>2026-11-11T15:11:59+00:00</updated><id>https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/</id><summary type="html">
-    
-&lt;p&gt;&lt;strong&gt;&lt;a href="https://ipo.anthropic.com/us/#roadshow-video"&gt;Anthropic&amp;#x27;s IPO roadshow video&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-Anthropic kicked off their IPO roadshow yesterday, and their roadshow video has some previously unreleased information about how their business works.&lt;/p&gt;
-&lt;p&gt;The section on "Approach to compute" with co-founder Tom Brown is particularly interesting, describing how Anthropic train and serve Claude across AWS Trainium, Google TPUs, NVIDIA GPUs, and AMD GPUs.&lt;/p&gt;
-&lt;p&gt;I'm not sure why there's no official video transcript, but here's &lt;a href="https://gist.github.com/simonw/9806757fe8acec6221cb0a5cce4d720d"&gt;one that I extracted&lt;/a&gt; using MacWhisper. Highlights below:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;We train and serve Claude now across all four major chip families. That's only possible because early on we made an unconventional bet on a multi-chip strategy. At the time, many people thought that running AI models on different chips wasn't worth the effort. Each chip needs its own tailored software stack and inference stack, which is expensive and difficult to build. We've now been doing it for years, and we've gotten incredibly good at it. [...]&lt;/p&gt;
-&lt;p&gt;As an example, this year, we started working with AMD GPUs for the first time. In the past, bringing on a new chip platform took dozens of engineers months of work &lt;strong&gt;This time, we had Mythos try it out. It got Claude running on AMD in just three days, with basically no human intervention&lt;/strong&gt;. Claude ported or wrote almost 100% of the kernels. [...]&lt;/p&gt;
-&lt;p&gt;The second driver of our compute advantage is our rate of discovery of compute multipliers. We focus on total effective compute, which is the multiplicative product of physical capacity times the compute multipliers that we discover. Each one we discover makes our pool of total effective compute bigger. For example, say you need 100 units of compute to train a model of a certain intelligence. A 4x compute multiplier means you can use 25 units of compute to train the exact same model. Or you can use those hundred physical units to train an even more intelligent model that would have previously required 400 units.&lt;/p&gt;
-&lt;p&gt;Compute multipliers create a competitive advantage for us that's hard to replicate. They build on each other. Each new multiplier we discover has a positive effect on the multipliers before it. They stack. &lt;strong&gt;We believe that this can accelerate even further as we approach recursive self-improvement. Claude will be able to discover compute multipliers entirely by itself&lt;/strong&gt;, allowing the number of compute multipliers to grow faster and faster.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;We got a hint at Anthropic's multi-chip strategy last September in their &lt;a href="https://www.anthropic.com/research/a-postmortem-of-three-recent-issues"&gt;postmortem of three recent issues&lt;/a&gt;, where they described bugs that affected just their TPU deployments.
-
-
-    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/anthropic"&gt;anthropic&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpus"&gt;gpus&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/recursive-self-improvement"&gt;recursive-self-improvement&lt;/a&gt;&lt;/p&gt;
-
-
-
-</summary><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="anthropic"/><category term="gpus"/><category term="claude-mythos-fable"/><category term="recursive-self-improvement"/></entry></feed>
+</summary><category term="projects"/><category term="security"/><category term="llm"/><category term="releases"/></entry></feed>
