@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-24T04:24:29+00:00</updated><author><name>Simon Willison</name></author><entry><title>datasette-charts 0.2a0</title><link href="https://simonwillison.net/2026/Nov/24/datasette-charts/" rel="alternate"/><published>2026-11-24T04:24:29+00:00</published><updated>2026-11-24T04:24:29+00:00</updated><id>https://simonwillison.net/2026/Nov/24/datasette-charts/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-24T16:53:59+00:00</updated><author><name>Simon Willison</name></author><entry><title>GPT 6.2 Astra Solves a Historical Mystery</title><link href="https://simonwillison.net/2026/Nov/24/astra-historical-mystery/" rel="alternate"/><published>2026-11-24T16:53:59+00:00</published><updated>2026-11-24T16:53:59+00:00</updated><id>https://simonwillison.net/2026/Nov/24/astra-historical-mystery/</id><summary type="html">
+    
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical"&gt;GPT 6.2 Astra Solves a Historical Mystery&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+Here's an interesting case-study in using GPT-6.2 Astra for historical research, from history professor Mark Humphries:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;With only minimal prompting, GPT-6.2 Astra was able to autonomously identify the creator of an anonymous 1808 sketchbook held at &lt;a href="https://beinecke.library.yale.edu/"&gt;Yale’s Beinecke Library&lt;/a&gt;. It did so extremely quickly (in just 22 minutes), using publicly available primary and secondary sources. To do so, it discovered a little known source in a paper archive, predicted that it would prove its hypothesis if examined and, in the end, it did. Not only that, but this new source turns out to be a major find on its own that will be of significant interest to both Canadian and fur trade historians.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here's &lt;a href="https://collections.library.yale.edu/catalog/32369099"&gt;the digitized sketchbook&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Astra found a diary reference reference to a visit by the vicomte de Chabot dated five days before a date mentioned in the sketchbook at a nearby river, and suggested that Chabot's journal of his travels (only available by order from Cleveland State University) might confirm that the sketchbook was his work.&lt;/p&gt;
+&lt;p&gt;Are historians due for a round of &lt;a href="https://simonwillison.net/tags/deep-blue/"&gt;Deep Blue&lt;/a&gt;? Mark thinks it will be mild:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;But if the experience of mathematics is any guide, we can also anticipate that sometime next spring or summer we’ll face a sort of crisis of confidence as we struggle to understand how to respond to agentic systems that can do things human historians cannot. To be fair, that crisis will almost certainly be less profound for us than it is for math. The problem in mathematics, of course, is that solving hard math problems was the whole game. Historians, on the other hand, constantly reinterpret the past in light of an evolving present; we don’t chase a single universal truth. We also (in the ideal at least) write books and articles that are closer to works of philosophy and literature than they are to scientific tracts. Humanity is thus something of a requirement for the production of historical literature.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/history"&gt;history&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai-assisted-search"&gt;ai-assisted-search&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/deep-blue"&gt;deep-blue&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/gpt-6-astra"&gt;gpt-6-astra&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="history"/><category term="ai"/><category term="generative-ai"/><category term="llms"/><category term="ai-assisted-search"/><category term="deep-blue"/><category term="gpt-6-astra"/></entry><entry><title>datasette-charts 0.2a0</title><link href="https://simonwillison.net/2026/Nov/24/datasette-charts/" rel="alternate"/><published>2026-11-24T04:24:29+00:00</published><updated>2026-11-24T04:24:29+00:00</updated><id>https://simonwillison.net/2026/Nov/24/datasette-charts/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-charts/releases/tag/0.2a0"&gt;datasette-charts 0.2a0&lt;/a&gt;&lt;/p&gt;
         &lt;p&gt;I introduced this new charting plugin for Datasette &lt;a href="https://simonwillison.net/2026/Nov/23/datasette-charts/"&gt;yesterday&lt;/a&gt;. Today it's gained integration with &lt;a href="https://agent.datasette.io/"&gt;Datasette Agent&lt;/a&gt;, so now you can ask chat for a chart and it will create one for you using the same underlying chart suggestion and generation tools.&lt;/p&gt;
@@ -28,7 +47,7 @@
 </summary><category term="datasette-agent"/><category term="datasette"/><category term="visualization"/></entry><entry><title>datasette-agent 0.7a1</title><link href="https://simonwillison.net/2026/Nov/24/datasette-agent/" rel="alternate"/><published>2026-11-24T03:45:57+00:00</published><updated>2026-11-24T03:45:57+00:00</updated><id>https://simonwillison.net/2026/Nov/24/datasette-agent/</id><summary type="html">
     
         &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/datasette/datasette-agent/releases/tag/0.7a1"&gt;datasette-agent 0.7a1&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I small improvement to &lt;a href="https://agent.datasette.io/"&gt;Datasette Agent&lt;/a&gt;: chat sessions can open an iframe side panel, and that panel can then navigate to different pages. This version improves navigation by fragment hashes, for deeper integration with other Datasette plugins that update fragment hashes when the user interacts with the plugin in a way that changes state.&lt;/p&gt;
+        &lt;p&gt;A small improvement to &lt;a href="https://agent.datasette.io/"&gt;Datasette Agent&lt;/a&gt;: chat sessions could already open an iframe side panel that could then navigate to different pages. This version improves navigation by fragment hashes, for deeper integration with other Datasette plugins that update fragment hashes when the user interacts with the plugin in a way that changes state.&lt;/p&gt;
 &lt;p&gt;I built this in order to fix some bugs with the much more exciting &lt;a href="https://simonwillison.net/2026/Nov/24/datasette-charts/"&gt;datasette-charts 0.2a0 release&lt;/a&gt;.&lt;/p&gt;
     
     
@@ -46,7 +65,11 @@ GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use
 &lt;blockquote&gt;
 &lt;p&gt;Inkling 2 Mini is a looped transformer, running the middle layers of the model three times for every token. This allows the model to apply more reasoning and reach the right answer with fewer tokens, especially on tasks such as agentic coding that depend on reasoning quality.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;GLM 5.4 is not (yet?) available as open weights. I tried it out using the Z.ai API, for which I had to sign up for their &lt;a href="https://docs.z.ai/devpack/overview"&gt;Coding Plan subscription&lt;/a&gt; because 5.4 cannot currently be accessed through the regular API.&lt;/p&gt;
+&lt;p&gt;GLM 5.4 is not yet available as open weights:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We plan to open-source the model weights responsibly after completing necessary safety hardening.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I tried it out using the Z.ai API, for which I had to sign up for their &lt;a href="https://docs.z.ai/devpack/overview"&gt;Coding Plan subscription&lt;/a&gt; because 5.4 cannot currently be accessed through the regular API.&lt;/p&gt;
 &lt;p&gt;It turns out both coding plan and regular API share the same OpenAI-compatible Responses API (at &lt;code&gt;https://api.z.ai/api/v1&lt;/code&gt;), and the API key for the coding plan worked with that and gave me access to the new model.&lt;/p&gt;
 &lt;p&gt;I built a &lt;a href="https://github.com/simonw/llm-glm"&gt;llm-glm plugin&lt;/a&gt;, then realized that &lt;a href="https://github.com/irthomasthomas/llm-zai"&gt;llm-zai&lt;/a&gt; by Tommy Hughes already exists! I've shipped mine purely because &lt;code&gt;llm-zai&lt;/code&gt; doesn't yet support the new model, but I'll likely retire mine once that plugin catches up.&lt;/p&gt;
 &lt;p&gt;Here are &lt;a href="https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fae838c5a6837ca0a602c180c07ac0887"&gt;pelicans for GLM-5.4&lt;/a&gt; on low, high, and max. This is the max one:&lt;/p&gt;
@@ -638,14 +661,4 @@ uvx --with datasette-agent datasette \
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/geospatial"&gt;geospatial&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openstreetmap"&gt;openstreetmap&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="datasette"/><category term="geospatial"/><category term="openstreetmap"/></entry><entry><title>datasette-leaflet 0.3</title><link href="https://simonwillison.net/2026/Nov/13/datasette-leaflet/" rel="alternate"/><published>2026-11-13T22:30:54+00:00</published><updated>2026-11-13T22:30:54+00:00</updated><id>https://simonwillison.net/2026/Nov/13/datasette-leaflet/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/datasette-leaflet/releases/tag/0.3"&gt;datasette-leaflet 0.3&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;OpenStreetMap have a very reasonable policy that hits to their hosted tile server &lt;a href="https://wiki.openstreetmap.org/wiki/Referer"&gt;should send a referrer header&lt;/a&gt;. Datasette table pages used the &lt;code&gt;Referrer-Policy: no-referrer&lt;/code&gt; HTTP header, causing plugins that loaded tiles from OpenStreetMap to violate that policy.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;datasette-leaflet&lt;/code&gt; is the plugin that loads a bundled Leaflet so other Datasette plugins can depend on it. It now sets the referrer policy on the tile requests themselves to &lt;code&gt;strict-origin-when-cross-origin&lt;/code&gt;, passing the host but not the full path to the page.&lt;/p&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/leaflet"&gt;leaflet&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openstreetmap"&gt;openstreetmap&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="leaflet"/><category term="datasette"/><category term="openstreetmap"/></entry></feed>
+</summary><category term="datasette"/><category term="geospatial"/><category term="openstreetmap"/></entry></feed>
