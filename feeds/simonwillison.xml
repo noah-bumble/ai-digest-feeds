@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-26T06:08:25+00:00</updated><author><name>Simon Willison</name></author><entry><title>sqlite3_rsync: Database Remote-Copy Tool For SQLite</title><link href="https://simonwillison.net/2026/Nov/26/sqlite3-rsync/" rel="alternate"/><published>2026-11-26T06:08:25+00:00</published><updated>2026-11-26T06:08:25+00:00</updated><id>https://simonwillison.net/2026/Nov/26/sqlite3-rsync/</id><summary type="html">
+<feed xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom"><title>Simon Willison's Weblog</title><link href="http://simonwillison.net/" rel="alternate"/><link href="http://simonwillison.net/atom/everything/" rel="self"/><id>http://simonwillison.net/</id><updated>2026-11-26T15:09:31+00:00</updated><author><name>Simon Willison</name></author><entry><title>Quoting Jack Despain Zhou</title><link href="https://simonwillison.net/2026/Nov/26/jack-despain-zhou/" rel="alternate"/><published>2026-11-26T15:09:31+00:00</published><updated>2026-11-26T15:09:31+00:00</updated><id>https://simonwillison.net/2026/Nov/26/jack-despain-zhou/</id><summary type="html">
+    &lt;blockquote cite="https://www.tracingwoodgrains.com/p/spitting-in-the-face-of-glaude"&gt;&lt;p&gt;Among the many already existing effects of AI has been a great de-individualization. I open a YouTube video, and I hear Claude. I sit in a conference presentation, and I hear Claude. I open my email inbox, and I find pitches and articles from ostensibly serious people with ostensibly serious credentials attached to ostensibly serious institutions who want to publish things attached to their reputations and mine, &lt;em&gt;and I see Claude&lt;/em&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://www.tracingwoodgrains.com/p/spitting-in-the-face-of-glaude"&gt;Jack Despain Zhou&lt;/a&gt;, Spitting in the Face of Glaude&lt;/p&gt;
+
+    &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/ai-misuse"&gt;ai-misuse&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude"&gt;claude&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;&lt;/p&gt;
+
+
+
+</summary><category term="ai-misuse"/><category term="claude"/><category term="generative-ai"/><category term="ai"/><category term="llms"/></entry><entry><title>sqlite3_rsync: Database Remote-Copy Tool For SQLite</title><link href="https://simonwillison.net/2026/Nov/26/sqlite3-rsync/" rel="alternate"/><published>2026-11-26T06:08:25+00:00</published><updated>2026-11-26T06:08:25+00:00</updated><id>https://simonwillison.net/2026/Nov/26/sqlite3-rsync/</id><summary type="html">
     
 &lt;p&gt;&lt;strong&gt;&lt;a href="https://www.sqlite.org/rsync.html"&gt;sqlite3_rsync: Database Remote-Copy Tool For SQLite&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 This additional SQLite tool has been around for a while now - it was added as "experimental" &lt;a href="https://www.sqlite.org/releaselog/3_47_0.html"&gt;in SQLite 3.47.0 in October 2024&lt;/a&gt; and enhanced in &lt;a href="https://www.sqlite.org/releaselog/3_50_0.html"&gt;SQLite 3.50.0 in May 2025&lt;/a&gt;. It was only today that I understood one of its most attractive characteristics.&lt;/p&gt;
@@ -16,7 +24,19 @@ This additional SQLite tool has been around for a while now - it was added as "e
 
 
 
-</summary><category term="backups"/><category term="sqlite"/></entry><entry><title>Quoting Scott Aaronson</title><link href="https://simonwillison.net/2026/Nov/25/scott-aaronson/" rel="alternate"/><published>2026-11-25T23:26:32+00:00</published><updated>2026-11-25T23:26:32+00:00</updated><id>https://simonwillison.net/2026/Nov/25/scott-aaronson/</id><summary type="html">
+</summary><category term="backups"/><category term="sqlite"/></entry><entry><title>The New York Times warns photographers not to update Photoshop over AI features</title><link href="https://simonwillison.net/2026/Nov/26/hn-50651685/" rel="alternate"/><published>2026-11-26T05:08:46+00:00</published><updated>2026-11-26T05:08:46+00:00</updated><id>https://simonwillison.net/2026/Nov/26/hn-50651685/</id><summary type="html">
+    
+        &lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=50647673#50651685"&gt;My comment&lt;/a&gt; on &lt;a href="https://news.ycombinator.com/item?id=50647673"&gt;The New York Times warns photographers not to update Photoshop over AI features&lt;/a&gt; &amp;mdash; Hacker News.&lt;/p&gt;&lt;p&gt;I had a NYT photographer take my picture at my home earlier this year (for a story about Moltbook, oddly enough). At one point I asked if they could fix things up if I had a stain on my shirt and they said absolutely not - they present photographs as they were taken, with cropping and balancing applied but no edits beyond that.&lt;/p&gt;
+&lt;p&gt;He did spend a bunch of time trying to find the best possible natural lighting for the shots he wanted.&lt;/p&gt;
+&lt;p&gt;The photo at the top of &lt;a href="https://www.nytimes.com/2026/02/02/technology/moltbook-ai-social-media.html"&gt;https://www.nytimes.com/2026/02/02/technology/moltbook-ai-so...&lt;/a&gt; is my laptop, taken in my garden, after hunting around for the best spot that didn't have too much glare on the screen. You can see how dirty my screen is, too!&lt;/p&gt;
+&lt;p&gt;Photography for a newspaper is photo journalism, and they take it seriously.&lt;/p&gt;
+&lt;p&gt;(Thankfully I did not have a visible stain on my shirt.)&lt;/p&gt;
+    
+    
+        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/photography"&gt;photography&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/new-york-times"&gt;new-york-times&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/hacker-news"&gt;hacker-news&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/journalism"&gt;journalism&lt;/a&gt;&lt;/p&gt;
+    
+
+</summary><category term="photography"/><category term="new-york-times"/><category term="hacker-news"/><category term="journalism"/></entry><entry><title>Quoting Scott Aaronson</title><link href="https://simonwillison.net/2026/Nov/25/scott-aaronson/" rel="alternate"/><published>2026-11-25T23:26:32+00:00</published><updated>2026-11-25T23:26:32+00:00</updated><id>https://simonwillison.net/2026/Nov/25/scott-aaronson/</id><summary type="html">
     &lt;blockquote cite="https://scottaaronson.blog/?p=10379"&gt;&lt;p&gt;It’s now obvious that we’ll be getting, not one-off solutions to this or that complexity question, but a whole new continent of mathematical truth, one that we’d previously only glimpsed through fog. Picture van Leeuwenhoek first training a microscope on pondwater, or Galileo first training his telescope on the stars. That might give you &lt;em&gt;some&lt;/em&gt; idea of how our resolution into the complexity-theoretic universe, and the whole universe of mathematical truth beyond it, has now improved.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p class="cite"&gt;&amp;mdash; &lt;a href="https://scottaaronson.blog/?p=10379"&gt;Scott Aaronson&lt;/a&gt;&lt;/p&gt;
 
@@ -660,49 +680,4 @@ OpenAI:&lt;/p&gt;
         &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/visualization"&gt;visualization&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/generative-ai"&gt;generative-ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette-lite"&gt;datasette-lite&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/claude-mythos-fable"&gt;claude-mythos-fable&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/ai"&gt;ai&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/llms"&gt;llms&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/geospatial"&gt;geospatial&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/openstreetmap"&gt;openstreetmap&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
     
 
-</summary><category term="visualization"/><category term="generative-ai"/><category term="datasette-lite"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/><category term="geospatial"/><category term="openstreetmap"/><category term="datasette"/></entry><entry><title>datasette 1.0a43</title><link href="https://simonwillison.net/2026/Nov/15/datasette/" rel="alternate"/><published>2026-11-15T23:20:27+00:00</published><updated>2026-11-15T23:20:27+00:00</updated><id>https://simonwillison.net/2026/Nov/15/datasette/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/datasette/releases/tag/1.0a43"&gt;datasette 1.0a43&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I've been leaning hard into Claude Fable 5.2 to help knock things off the &lt;a href="https://github.com/simonw/datasette/milestone/37"&gt;1.0 milestone&lt;/a&gt;, which is now 53% complete.&lt;/p&gt;
-&lt;p&gt;The biggest 1.0 item in this release is &lt;a href="https://docs.datasette.io/en/latest/plugin_hooks.html#plugin-register-output-renderer-streaming"&gt;streaming support for output renderers&lt;/a&gt; - the built-in TSV and CSV export mechanisms now use this as well, and plugins can register themselves as capable of streaming every row in a table in one go via the new &lt;a href="https://docs.datasette.io/en/latest/internals.html#internals-response-stream"&gt;Response.stream()&lt;/a&gt; method.&lt;/p&gt;
-&lt;p&gt;There are a couple of security fixes, one of which I deemed &lt;a href="https://github.com/simonw/datasette/security/advisories/GHSA-mw6v-83vp-7c4c"&gt;deserving of a GitHub advisory&lt;/a&gt;: private stored queries could be exposed, granting access to the title and SQL of the query (but not allowing that query to be executed).&lt;/p&gt;
-&lt;p&gt;There are dozens of smaller improvements. The row page JSON representation &lt;a href="https://docs.datasette.io/en/latest/json_api.html#json-api-row"&gt;finally has a design suitable for 1.0&lt;/a&gt;. A new &lt;code&gt;&amp;lt;datasette-copy-button&amp;gt;&lt;/code&gt; Web Component provides copy-schema in various places. JSON in columns on the row page can be pretty-printed. There's a new &lt;a href="https://docs.datasette.io/en/latest/javascript_plugins.html#javascript-plugins-modal-confirm"&gt;DatasetteModal.confirm()&lt;/a&gt; JavaScript utility method. Plus dozens of bug fixes, including contributions by &lt;a href="https://github.com/PDGGK"&gt;Zihan Dai&lt;/a&gt;, &lt;a href="https://github.com/peterolkhov"&gt;Peter Olkhovets&lt;/a&gt;, &lt;a href="https://github.com/IlyaKhalafi"&gt;Ilya Khalafi&lt;/a&gt;, and &lt;a href="https://github.com/AnkitaAdvitot"&gt;Ankita Advitot&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The feature I'm most excited about is a pretty tiny one: I've added CSS multi-page view transitions to Datasette! &lt;a href="https://github.com/simonw/datasette/commit/7da8a85ea77786edef975a4066bbadfab0966a0c"&gt;Here's the commit&lt;/a&gt; - key CSS is as follows:&lt;/p&gt;
-&lt;div class="highlight highlight-source-css"&gt;&lt;pre&gt;&lt;span class="pl-c"&gt;/* Enable cross-document view transitions,&lt;/span&gt;
-&lt;span class="pl-c"&gt;   for anyone without prefers-reduced-motion */&lt;/span&gt;
-&lt;span class="pl-k"&gt;@media&lt;/span&gt; &lt;span class="pl-kos"&gt;(&lt;/span&gt;&lt;span class="pl-c1"&gt;prefers-reduced-motion&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; no-preference&lt;span class="pl-kos"&gt;)&lt;/span&gt; &lt;span class="pl-kos"&gt;{&lt;/span&gt;
-    &lt;span class="pl-k"&gt;@view-transition&lt;/span&gt; &lt;span class="pl-kos"&gt;{&lt;/span&gt;
-        &lt;span class="pl-c1"&gt;navigation&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; auto&lt;span class="pl-kos"&gt;;&lt;/span&gt;
-    &lt;span class="pl-kos"&gt;}&lt;/span&gt;
-&lt;span class="pl-kos"&gt;}&lt;/span&gt;
-&lt;span class="pl-c"&gt;/* .facet-results should morph from old position to new */&lt;/span&gt;
-&lt;span class="pl-ent"&gt;html&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt;&lt;span class="pl-c1"&gt;active-view-transition&lt;/span&gt; &lt;span class="pl-kos"&gt;.&lt;/span&gt;&lt;span class="pl-c1"&gt;content&lt;/span&gt; &lt;span class="pl-c1"&gt;&amp;gt;&lt;/span&gt; &lt;span class="pl-kos"&gt;.&lt;/span&gt;&lt;span class="pl-c1"&gt;facet-results&lt;/span&gt; &lt;span class="pl-kos"&gt;{&lt;/span&gt;
-    &lt;span class="pl-c1"&gt;view-transition-name&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; facet-results&lt;span class="pl-kos"&gt;;&lt;/span&gt;
-&lt;span class="pl-kos"&gt;}&lt;/span&gt;
-&lt;span class="pl-c"&gt;/* So should a .table-wrapper, provided it contains .rows-and-columns */&lt;/span&gt;
-&lt;span class="pl-ent"&gt;html&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt;&lt;span class="pl-c1"&gt;active-view-transition&lt;/span&gt; &lt;span class="pl-kos"&gt;.&lt;/span&gt;&lt;span class="pl-c1"&gt;table-wrapper&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt;&lt;span class="pl-c1"&gt;has&lt;/span&gt;&lt;span class="pl-kos"&gt;(&lt;/span&gt;&lt;span class="pl-c1"&gt;&amp;gt;&lt;/span&gt; &lt;span class="pl-ent"&gt;table&lt;/span&gt;&lt;span class="pl-kos"&gt;.&lt;/span&gt;&lt;span class="pl-c1"&gt;rows-and-columns&lt;/span&gt;&lt;span class="pl-kos"&gt;)&lt;/span&gt; &lt;span class="pl-kos"&gt;{&lt;/span&gt;
-    &lt;span class="pl-c1"&gt;view-transition-name&lt;/span&gt;&lt;span class="pl-kos"&gt;:&lt;/span&gt; rows-table&lt;span class="pl-kos"&gt;;&lt;/span&gt;
-&lt;span class="pl-kos"&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;With that in place, navigations within Datasette - still staunchly a multi-page application - feel more like an SPA. This works on Safari and Chrome at the moment and I believe supports for Firefox is due to land in &lt;a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/162#changes_for_web_developers"&gt;Firefox 162&lt;/a&gt; on December 8th 2026 (seeing as they are no longer feature-flagged in Firefox Nightly.)&lt;/p&gt;
-&lt;video controls playsinline preload="none" width="930" height="720" poster="https://static.simonwillison.net/static/cors-allow/2026/css-transitions-datasette.webp"&gt;
-  &lt;source src="https://static.simonwillison.net/static/cors-allow/2026/css-transitions-datasette.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/css"&gt;css&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/browsers"&gt;browsers&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/annotated-release-notes"&gt;annotated-release-notes&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/firefox"&gt;firefox&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/javascript"&gt;javascript&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/safari"&gt;safari&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/chrome"&gt;chrome&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="security"/><category term="datasette"/><category term="css"/><category term="browsers"/><category term="annotated-release-notes"/><category term="firefox"/><category term="javascript"/><category term="safari"/><category term="chrome"/></entry><entry><title>datasette 0.65.6</title><link href="https://simonwillison.net/2026/Nov/15/datasette-2/" rel="alternate"/><published>2026-11-15T23:18:17+00:00</published><updated>2026-11-15T23:18:17+00:00</updated><id>https://simonwillison.net/2026/Nov/15/datasette-2/</id><summary type="html">
-    
-        &lt;p&gt;&lt;strong&gt;Release:&lt;/strong&gt; &lt;a href="https://github.com/simonw/datasette/releases/tag/0.65.6"&gt;datasette 0.65.6&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;I backported a minor security fix from 1.0a43:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Fixed a security issue where a database registered using &lt;code&gt;add_database(db, name=..., route=...)&lt;/code&gt; with a route that differs from its name could be downloaded from &lt;code&gt;/&amp;lt;route&amp;gt;.db&lt;/code&gt; by actors who were denied access to it. [...]&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    
-        &lt;p&gt;Tags: &lt;a href="https://simonwillison.net/tags/security"&gt;security&lt;/a&gt;, &lt;a href="https://simonwillison.net/tags/datasette"&gt;datasette&lt;/a&gt;&lt;/p&gt;
-    
-
-</summary><category term="security"/><category term="datasette"/></entry></feed>
+</summary><category term="visualization"/><category term="generative-ai"/><category term="datasette-lite"/><category term="claude-mythos-fable"/><category term="ai"/><category term="llms"/><category term="geospatial"/><category term="openstreetmap"/><category term="datasette"/></entry></feed>
